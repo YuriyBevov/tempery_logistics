@@ -1,0 +1,42 @@
+.section {
+  padding: 120px 0;
+}
+
+.section-title {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 5px;
+
+    background-color: $purple;
+  }
+}
+
+.card {
+  &-img {
+
+    &-top {
+      height: 195px;
+
+      @include media-breakpoint-up(md) {
+        height: 215px;
+      }
+    }
+
+    &-fluid {
+      height: 363px;
+
+      @include media-breakpoint-up(md) {
+        height: 417px;
+      }
+
+      @include media-breakpoint-up(lg) {
+        height: 437px;
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+/* stylelint-disable color-function-notation */
+/* stylelint-disable alpha-value-notation */
+
+:root {
+    // scrollbar
+    --main-scrollbar-width: 6px;
+    --main-scrollbar-color: var(--light-color);
+    --main-scrollbar-thumb-color: var(--accent-color);
+  }

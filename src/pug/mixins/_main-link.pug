@@ -1,0 +1,10 @@
+
+//
+  opt {
+    cls, text, url, isIconEnabled, iconName, iconWidth, iconHeight
+  }
+mixin main-link(opt)
+  a(href= opt.url class= opt.cls).main-button= opt.text
+    if opt.isIconEnebled
+      svg(width= opt.iconWidth height= opt.iconHeight)
+        use(xlink:href= '#' + opt.iconName)

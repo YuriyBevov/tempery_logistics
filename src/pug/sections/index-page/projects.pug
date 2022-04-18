@@ -1,0 +1,37 @@
+include ../../mixins/_main-link
+include ../../mixins/_card
+
+.projects.bg-lightgray.section
+  .container.p-0
+    .row
+      .col-12.col-xxl-3.d-flex.flex-xxl-column.align-items-center.mb-4.mb-md-5.mb-xxl-2
+        h2.section-title.mb-0.me-auto.me-xxl-0 projects
+        +main-link({
+          cls: 'mt-0 mt-xxl-auto',
+          text:  'View all',
+          url:  '#'
+        })
+
+      .col-12.col-lg-4.col-xxl-3.mb-4.mb-lg-0
+        +card({
+          type: 'full',
+          img: '../assets/img/projects_1@1x.jpg',
+          title: 'Railway and marine forwarding',
+          desc: 'Railway and marine forwarding. 3.5 mln tones, average distance 4800 km...'
+        })
+
+      .col-12.col-md-6.col-lg-4.col-xxl-3.mb-4.mb-md-0
+        +card({
+          type: 'short',
+          img: '../assets/img/projects_2@1x.jpg',
+          title: 'Coal trading, 250 000 tones',
+          desc: 'Coal trading, 250 000 tones.Coal trading, 250 000 tones...'
+        })
+
+      .col-12.col-md-6.col-lg-4.col-xxl-3
+        +card({
+          type: 'short',
+          img: '../assets/img/projects_3@1x.jpg',
+          title: 'Transport package trading and producing',
+          desc: 'Transport package trading and producing...'
+        })

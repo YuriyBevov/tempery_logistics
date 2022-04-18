@@ -1,0 +1,18 @@
+extends layouts/main-layout.pug
+
+block variables
+  -
+    const title = ""
+    const desc = ""
+    const keywords = ""
+
+block content
+  include ./sections/index-page/intro
+  include ./sections/index-page/about
+  include ./sections/index-page/projects
+  include ./sections/index-page/publications
+  include ./sections/index-page/announcement
+  include ./sections/index-page/questions
+
+block modals
+  //include ./modals/...

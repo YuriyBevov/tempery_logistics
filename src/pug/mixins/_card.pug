@@ -1,0 +1,14 @@
+//
+  opt {
+    type: 'full || short',
+    cls,
+  }
+
+mixin card(opt)
+  .card.rounded-0.border-0.h-100(class= opt.type === 'full' ? 'position-relative' : null)
+    if opt.img
+      img(src= opt.img alt= opt.title class= opt.type === 'full' ? 'card-img-fluid' : 'card-img-top').card-img.rounded-0
+    .card-body.d-flex.flex-column.p-4(class= opt.type === 'full' ? 'position-absolute bottom-0' : null)
+      h3.card-title(class= opt.type === 'full' ? 'text-white' : null)= opt.title
+      p.card-text.fw-light.fs-4(class= opt.type === 'full' ? 'text-white' : 'text-gray')= opt.desc
+      include ../components/_read-more-link
