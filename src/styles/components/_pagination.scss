@@ -2,3 +2,29 @@
   width: fit-content;
   margin: 0 auto;
 }
+
+.page-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+
+  width: 3.125rem;
+  height: 100%;
+  border-radius: 5px;
+
+  @include media-breakpoint-down(md) {
+    width: 2.375rem;
+  }
+}
+
+.page-item {
+  margin: 0 0.45rem;
+}
+
+.page-item:first-child,
+.page-item:last-child {
+  .page-link {
+    border-radius: 5px;
+  }
+}

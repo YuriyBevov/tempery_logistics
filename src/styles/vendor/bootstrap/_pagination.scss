@@ -1,0 +1,32 @@
+// Pagination
+
+// scss-docs-start pagination-variables
+$pagination-color:                  $link-color !default;
+
+$pagination-bg:                     transparent;
+
+$pagination-border-width:           1px;
+$pagination-border-radius:          0;
+
+$pagination-margin-start:           -$pagination-border-width;
+$pagination-border-color:           transparent;
+
+$pagination-focus-color:            $black;
+$pagination-focus-bg:               transparent;
+
+$pagination-hover-color:            $black;
+$pagination-hover-bg:               transparent;
+$pagination-hover-border-color:     $purple;
+
+$pagination-active-color:           $black;
+$pagination-active-bg:              transparent;
+$pagination-active-border-color:    $purple;
+
+$pagination-disabled-color:         $gray-200;
+$pagination-disabled-bg:            transparent;
+$pagination-disabled-border-color:  transparent;
+
+$pagination-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
+
+// scss-docs-end pagination-variables
+
