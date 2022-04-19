@@ -1,0 +1,9 @@
+mixin breadcrumbs(arr)
+  .breadcrumbs
+    each breadcrumb in arr
+      if breadcrumb.url
+        a(href= breadcrumb.url).fw-light.text-purple=breadcrumb.name
+
+      else
+        span.color-gray.fw-light= breadcrumb.name
+

@@ -1,0 +1,21 @@
+.breadcrumbs {
+  padding-top: 1.25rem;
+  margin-bottom: 2.375rem;
+
+  a {
+    position: relative;
+    padding-right: 30px;
+    text-decoration: underline;
+
+    &:after {
+      position: absolute;
+      top: 0;
+      right: 10px;
+      content: '/';
+    }
+
+    @include media-breakpoint-down(md) {
+      font-size: 0.875rem;
+    }
+  }
+}

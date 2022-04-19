@@ -1,0 +1,15 @@
+.view-all-btn {
+  width: fit-content;
+  min-width: 8.75rem;
+
+  @include media-breakpoint-down(lg) {
+    position: absolute;
+    left: 50%;
+    bottom: 90px;
+    transform: translateX(-50%);
+  }
+
+  @include media-breakpoint-down(md) {
+    bottom: 65px;
+  }
+}

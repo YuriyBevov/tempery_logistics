@@ -1,14 +1,42 @@
 //
   opt {
-    type: 'full || short',
+    type: 'full || short || mini',
     cls,
   }
 
 mixin card(opt)
-  .card.rounded-0.border-0.h-100(class= opt.type === 'full' ? 'position-relative' : null)
-    if opt.img
-      img(src= opt.img alt= opt.title class= opt.type === 'full' ? 'card-img-fluid' : 'card-img-top').card-img.rounded-0
-    .card-body.d-flex.flex-column.p-4(class= opt.type === 'full' ? 'position-absolute bottom-0' : null)
-      h3.card-title(class= opt.type === 'full' ? 'text-white' : null)= opt.title
-      p.card-text.fw-light.fs-4(class= opt.type === 'full' ? 'text-white' : 'text-gray')= opt.desc
-      include ../components/_read-more-link
+  if opt.type === 'full'
+    .card.rounded-0.border-0.h-100.position-relative
+      img(src= opt.img alt= opt.title).card-img-full.card-img.rounded-0
+
+      .card-body.d-flex.flex-column.p-4.position-absolute.bottom-0
+        if opt.badgeText
+          span.full-card-badge.badge.fw-normal= opt.badgeText
+
+        h3.card-title.text-white= opt.title
+        p.card-text.fw-light.text-white= opt.desc
+        include ../components/_read-more-link
+
+  if opt.type === 'short'
+    .card.rounded-0.border-0.h-100.position-relative
+      .position-relative
+        img(src= opt.img alt= opt.title).card-img-top.card-img.rounded-0
+
+        if opt.badgeText
+          span.short-card-badge.badge.fw-normal= opt.badgeText
+      .card-body.d-flex.flex-column.p-4(class= opt.cardBodyColor ? `bg-${opt.cardBodyColor}` : 'bg-white')
+
+        h3.card-title= opt.title
+        p.card-text.fw-light.text-gray= opt.desc
+        include ../components/_read-more-link
+
+  if opt.type === 'mini'
+    .card.rounded-0.border-0.h-100.position-relative
+      .card-body.d-flex.flex-column.p-4(class= opt.cardBodyColor ? `bg-${opt.cardBodyColor}` : 'bg-white')
+        if opt.badgeText
+          span.mini-card-badge.badge.fw-normal= opt.badgeText
+        h3.card-title= opt.title
+        p.card-text.fw-light.text-gray= opt.desc
+        include ../components/_read-more-link
+
+

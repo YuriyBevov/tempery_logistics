@@ -1,0 +1,112 @@
+include ../../mixins/_card
+
+-
+  cards = [
+    {
+      type: 'short',
+      badgeText: '18.12.2021',
+      img: '../assets/img/publ_1@1x.jpg',
+      title: 'Gasification of Bulgarian mined coals',
+      desc: 'Apply for funding Senior specialist Nikolay Smakovskiy...'
+    },
+
+    {
+      type: 'short',
+      badgeText: '18.12.2021',
+      img: '../assets/img/publ_2@1x.jpg',
+      title: 'Gasification of Bulgarian mined coals',
+      desc: 'Apply for funding Senior specialist Nikolay Smakovskiy...'
+    },
+
+    {
+      type: 'short',
+      badgeText: '18.12.2021',
+      img: '../assets/img/publ_1@1x.jpg',
+      title: 'Gasification of Bulgarian mined coals',
+      desc: 'Apply for funding Senior specialist Nikolay Smakovskiy...'
+    },
+
+    {
+      type: 'short',
+      badgeText: '18.12.2021',
+      img: '../assets/img/publ_2@1x.jpg',
+      title: 'Gasification of Bulgarian mined coals',
+      desc: 'Apply for funding Senior specialist Nikolay Smakovskiy...'
+    },
+
+    {
+      type: 'short',
+      badgeText: '18.12.2021',
+      img: '../assets/img/publ_1@1x.jpg',
+      title: 'Gasification of Bulgarian mined coals',
+      desc: 'Apply for funding Senior specialist Nikolay Smakovskiy...'
+    },
+
+    {
+      type: 'short',
+      badgeText: '18.12.2021',
+      img: '../assets/img/publ_2@1x.jpg',
+      title: 'Gasification of Bulgarian mined coals',
+      desc: 'Apply for funding Senior specialist Nikolay Smakovskiy...'
+    },
+
+    {
+      type: 'short',
+      badgeText: '18.12.2021',
+      img: '../assets/img/publ_1@1x.jpg',
+      title: 'Gasification of Bulgarian mined coals',
+      desc: 'Apply for funding Senior specialist Nikolay Smakovskiy...'
+    },
+
+    {
+      type: 'short',
+      badgeText: '18.12.2021',
+      img: '../assets/img/publ_2@1x.jpg',
+      title: 'Gasification of Bulgarian mined coals',
+      desc: 'Apply for funding Senior specialist Nikolay Smakovskiy...'
+    }
+  ]
+
+section.projects.bg-lightgray.pb-5
+  .section-header.d-flex.flex-column.align-items-start.flex-md-row.align-items-md-center
+    h1.me-auto.pe-3 Projects
+    .select-box.d-flex.align-items-center
+      span.me-2 Sort&nbsp;By:
+      <select class="form-select form-select-lg" aria-label="Publication date">
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+
+  .row
+    .col-12.col-lg-4.col-xxl-6.mb-4
+      +card({
+        type: 'full',
+        badgeText: '18.12.2021',
+        img: '../assets/img/publ_1@1x.jpg',
+        title: 'Gasification of Bulgarian mined coals',
+        desc: 'Apply for funding Senior specialist Nikolay Smakovskiy...'
+      })
+
+    each card in cards
+      .col-12.col-md-6.col-lg-4.col-xxl-3.mb-4
+        +card(card)
+
+    .row
+      <ul class="pagination px-4">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+

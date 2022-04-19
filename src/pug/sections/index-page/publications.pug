@@ -1,2 +1,43 @@
-.publications
-  h2 publications
+include ../../mixins/_main-link
+include ../../mixins/_card
+
+section.publications.section
+  .container.container-test.p-0
+    .row
+      .col-12.col-xxl-3.d-flex.flex-xxl-column.align-items-center.align-items-xxl-start.mb-4.mb-md-5.mb-xxl-0
+        h2.section-title.mb-0.mx-auto.mx-lg-0.me-lg-auto.me-xxl-0 publications
+        +main-link({
+          cls: 'mt-0 mt-xxl-auto btn-outline-purple view-all-btn',
+          text:  'View all',
+          url:  'publications.html'
+        })
+
+      .col-12.col-lg-4.col-xxl-3.mb-4.mb-lg-0
+        +card({
+          type: 'full',
+          badgeText: '18.12.2021',
+          img: '../assets/img/publ_1@1x.jpg',
+          title: 'Gasification of Bulgarian mined coals',
+          desc: 'Apply for funding Senior specialist Nikolay Smakovskiy...'
+        })
+
+      .col-12.col-md-6.col-lg-4.col-xxl-3.mb-4.mb-md-0
+        +card({
+          type: 'short',
+          badgeText: '18.12.2021',
+          cardBodyColor: 'lightgray',
+          img: '../assets/img/publ_2@1x.jpg',
+          title: 'Complex wood processing in Bulgaria',
+          desc: 'Apply for funding Senior specialist Sergey Todor...'
+        })
+
+      .col-12.col-md-6.col-lg-4.col-xxl-3
+        +card({
+          type: 'short',
+          badgeText: '18.12.2021',
+          cardBodyColor: 'lightgray',
+          img: '../assets/img/publ_3@1x.jpg',
+          title: 'Optimization of traffic flows by land and water transport in Bulgaria and the Balkans',
+          desc: 'Ph.D. Borys Levit...'
+        })
+

@@ -4,7 +4,7 @@
     cls, text, url, isIconEnabled, iconName, iconWidth, iconHeight
   }
 mixin main-link(opt)
-  a(href= opt.url class= opt.cls).main-button= opt.text
+  a(href= opt.url class= opt.cls).main-btn.btn.btn-outline-purple.rounded-0.px-4.py-3.text-uppercase= opt.text
     if opt.isIconEnebled
       svg(width= opt.iconWidth height= opt.iconHeight)
         use(xlink:href= '#' + opt.iconName)

@@ -1,0 +1,61 @@
+.card {
+  min-height: 287px;
+
+  &-title {
+    line-height: 31px;
+    @include media-breakpoint-down(xxl) {
+      font-size: 1.25rem;
+      line-height: 28px;
+    }
+
+    @include media-breakpoint-down(md) {
+      font-size: 1.125rem;
+      line-height: 25px;
+    }
+  }
+
+  &-text {
+    font-size: 1.125rem;
+
+    @include media-breakpoint-down(xxl) {
+      font-size: 1rem;
+    }
+
+    @include media-breakpoint-down(md) {
+      font-size: 0.9375rem;
+    }
+  }
+
+  &-img {
+    object-fit: cover;
+    &-top {
+      height: 195px;
+
+      @include media-breakpoint-up(md) {
+        height: 215px;
+      }
+    }
+
+    &-full {
+      height: 363px;
+
+      @include media-breakpoint-up(md) {
+        height: 417px;
+      }
+
+      @include media-breakpoint-up(lg) {
+        height: 437px;
+      }
+    }
+  }
+}
+
+/*.centered-content {
+  @include media-breakpoint-down(lg) {
+    & > .card-body {
+      h3, p {
+        margin-top: auto;
+      }
+    }
+  }
+} */
