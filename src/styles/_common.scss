@@ -8,18 +8,6 @@ footer {
   margin-top: auto;
 }
 
-/*.head-title {
-  margin-bottom: 50px;
-
-  @include media-breakpoint-down(lg) {
-    margin-bottom: 40px;
-  }
-
-  @include media-breakpoint-down(md) {
-    margin-bottom: 15px;
-  }
-}*/
-
 .section {
   position: relative;
   padding: 120px 0;
@@ -75,16 +63,29 @@ footer {
     font-size: 1.875rem;
   }
 
-  @include media-breakpoint-up(xxl) {
-    &::before {
-      position: absolute;
-      left: 0;
-      bottom: -30px;
-      content: '';
-      width: 60px;
-      height: 5px;
+  &::before {
+    position: absolute;
+    left: 0;
+    bottom: -30px;
+    content: '';
+    width: 60px;
+    height: 5px;
 
-      background-color: $purple;
+    background-color: $purple;
+  }
+
+  &-centered {
+    &::before {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  @include media-breakpoint-down(xxl) {
+    &:not(&-centered) {
+      &::before {
+        display: none;
+      }
     }
   }
 }

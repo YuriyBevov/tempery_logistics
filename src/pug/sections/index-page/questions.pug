@@ -1,2 +1,40 @@
-.questions
-  h2 quest
+include ../../mixins/_main-link
+include ../../mixins/_accordion
+
+-
+  const accordionOptions = {
+    id: 'question_accordion',
+    items: [
+      {
+        headerID: 'headingOne',
+        buttonText: 'How can I view the Resource base',
+        targetID: 'collapseOne',
+        bodyText: ' You can view the resource base by downloading the PDF file to your device using this link — ',
+        linkText: 'Download PDF (0,25 Mb)',
+        ariaExpanded: true,
+        show: true
+      },
+
+      {
+        headerID: 'headingTwo',
+        buttonText: 'Where to explore the Resource base for Bulgaria',
+        targetID: 'collapseTwo',
+        bodyText: ' You can view the resource base by downloading the PDF file to your device using this link — <a href="#" class="text-purple fw-semi">Download PDF (0,25 Mb)</a>',
+        ariaExpanded: false
+      },
+    ]
+  }
+section.questions.section
+  .container
+    .row
+      .col-lg-8.mx-auto.d-flex.flex-column
+        h2.text-center.section-title.section-title-centered.mb-5 Frequently asked questions
+
+        .accordion-container.pt-4.mb-5
+          +accordion(accordionOptions)
+
+        +main-link({
+          cls: 'mx-auto mt-4 btn-outline-purple view-all-btn',
+          text:  'View all',
+          url:  'announcement.html'
+        })

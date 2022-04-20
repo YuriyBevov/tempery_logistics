@@ -1,5 +1,10 @@
 .card {
   min-height: 287px;
+  /*max-height: 417px;
+
+  @include media-breakpoint-up(lg) {
+    max-height: 437px;
+  }*/
 
   &-title {
     line-height: 31px;
@@ -27,24 +32,26 @@
   }
 
   &-img {
+    height: 100%;
     object-fit: cover;
+
     &-top {
-      height: 195px;
+      max-height: 195px;
 
       @include media-breakpoint-up(md) {
-        height: 215px;
+        max-height: 215px;
       }
     }
 
     &-full {
-      height: 363px;
+      max-height: 363px;
 
       @include media-breakpoint-up(md) {
-        height: 417px;
+        max-height: 417px;
       }
 
       @include media-breakpoint-up(lg) {
-        height: 437px;
+        max-height: 437px;
       }
     }
   }

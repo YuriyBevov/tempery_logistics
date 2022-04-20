@@ -2,6 +2,7 @@
 $body-bg: #ffffff;
 $body-color: #111111;
 $purple     :#664599;
+$purple-light: #8152CC;
 
 /*$blue       :   #8EB3F5;
 $darkblue   :   #44678D;
@@ -28,6 +29,9 @@ $gray       :   #666666;
 $gray-200   : #F2F2F2;
 $black      :   #000000;
 
+$primary:       $purple;
+$primary-light:       $purple-light;
+
 $colors: (
   "purple" : $purple,
   "black" : $black,
@@ -37,53 +41,11 @@ $colors: (
 );
 
 $theme-colors: (
+  "primary":    $primary,
+  "primary-light":    $primary-light,
   "purple" : $purple,
   "black": $black,
   "gray" : $gray,
   "lightgray" : $gray-200,
   "main" : $body-color,
 ) !default;
-
-/*$colors: (
-    "blue"        : $blue,
-    "green"       : $green,
-    "red"         : $red,
-    "purple"      : $purple,
-    "deep-purple" : $purple-900,
-    "yellow"      : $yellow,
-    "pink"        : $pink,
-    "fire"        : $fire,
-    "darkblue"    : $darkblue,
-);
-
-$primary      : $green;
-$secondary    : $gray-800;
-$warning      : $yellow;
-$raspberry    : $lightred;
-$danger       : $red;
-$ocean        : $blue;
-$light-gray   : $gray-100;
-$gray         : $gray-300;
-$dark-gray    : $gray-600;
-$pink         : $pink;
-$purple       : $purple;
-$deep-purple  : $purple-900;
-$darkblue     : $darkblue;
-$black        : $gray-900;
-
-$theme-colors: (
-  "ocean"           :    $ocean,
-  "raspberry"       :    $lightred,
-  "primary"         :    $primary,
-  "success"         :    $primary,
-  "info"            :    $blue,
-  "secondary"       :    $secondary,
-  "warning"         :    $warning,
-  "danger"          :    $danger,
-  "fire"            :    $fire,
-  "pink"            :    $pink,
-  "purple"          :    $purple,
-  "deep-purple"     :    $deep-purple,
-  "black"           :    $black,
-  "light"           :    $gray-400,
-) !default;*/

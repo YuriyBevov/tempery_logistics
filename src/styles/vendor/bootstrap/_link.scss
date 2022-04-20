@@ -2,3 +2,8 @@ $link-decoration: none;
 $link-color: $black !default;
 $link-shade-percentage: 20% !default;
 $link-hover-color: shift-color($link-color, $link-shade-percentage) !default;
+
+
+// Links
+//$link-color: $primary !default;
+//$link-hover-color: $primary-light !default;
