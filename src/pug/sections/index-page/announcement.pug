@@ -1,39 +1,39 @@
-include ../../mixins/_main-link
-include ../../mixins/_card
+include ../../mixins/_main-card-section
 
-section.announcement.bg-lightgray.section
-  .container
-    .row
-      .col-12.col-xxl-3.d-flex.flex-xxl-column.align-items-center.align-items-xxl-start.mb-4.mb-md-5.mb-xxl-0
-        h2.section-title.mb-0.mx-auto.mx-lg-0.me-lg-auto.me-xxl-0 announcement
-        +main-link({
-          cls: 'mt-0 mt-xxl-auto btn-outline-purple view-all-btn',
-          text:  'View all',
-          url:  'announcement.html'
-        })
+-
+  const announcementsData = {
+    sectionClass: 'announcement',
+    sectionTitle: 'Announcement',
+    linkUrl: 'announcement.html',
 
-      .col-12.col-lg-4.col-xxl-3.mb-4.mb-lg-0
-        +card({
-          type: 'mini',
-          badgeText: '18.12.2021',
-          title: 'Our company is looking for an industrial building',
-          desc: 'Our company is looking for an industrial building for a sewing workshop in Varna...'
-        })
+    headCard: {
+      type: 'mini',
+      isBadgesEnabled: true,
+      dateBadge: '18.12.2021',
+      title: 'Our company is looking for an industrial building',
+      desc: 'Our company is looking for an industrial building for a sewing workshop in Varna...',
+      url: 'announcement-article.html'
+    },
 
-      .col-12.col-sm-6.col-lg-4.col-xxl-3.mb-4.mb-sm-0
-        +card({
-          type: 'mini',
-          badgeText: '18.12.2021',
-          title: 'We are looking for warehousing ',
-          desc: 'We are looking for warehousing and production premises for the production of refractories in Varna or Burgas area...'
-        })
+    cards: [
+      {
+        type: 'mini',
+        isBadgesEnabled: true,
+        dateBadge: '18.12.2021',
+        title: 'We are looking for warehousing ',
+        desc: 'We are looking for warehousing and production premises for the production of refractories in Varna or Burgas area...',
+        url: 'announcement-article.html'
+      },
 
-      .col-12.col-sm-6.col-lg-4.col-xxl-3
-        +card({
-          type: 'mini',
-          badgeText: '18.12.2021',
-          title: 'Temperi Logistics is ready and would like to have an operating manufacturing business',
-          desc: 'Temperi Logistics is ready and would like to have an operating manufacturing...'
-        })
+      {
+        type: 'mini',
+        isBadgesEnabled: true,
+        dateBadge: '18.12.2021',
+        title: 'Temperi Logistics is ready and would like to have an operating manufacturing business',
+        desc: 'Temperi Logistics is ready and would like to have an operating manufacturing...',
+        url: 'announcement-article.html'
+      }
+    ]
+  }
 
-
++main-card-section(announcementsData)

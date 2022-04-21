@@ -8,7 +8,7 @@ block variables
     const keywords = ""
 
 block content
-  .publications-page
+  .announcement-page
     .container
       +breadcrumbs([
         {
@@ -17,10 +17,10 @@ block content
         },
 
         {
-          name: 'Publications'
+          name: 'Announcement'
         }
       ])
-      include ./sections/publications-page/publications
+      include ./sections/announcement-page/announcement
 
 block modals
   //include ./modals/...

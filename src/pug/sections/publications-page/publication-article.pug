@@ -1,0 +1,55 @@
+include ../../mixins/_article-page-view
+include ../../mixins/_show-more-section-view
+
+-
+  showMoreData = {
+    sectionTitle: 'Other publications',
+
+    cards: [
+      {
+        type: 'short',
+        img: './assets/img/publ_4@1x.jpg',
+        isBadgesEnabled: true,
+        dateBadge: '18.12.2021',
+        title: 'Gasification of Bulgarian mined coals',
+        desc: 'Apply for funding Senior specialist Nikolay Smakovskiy...',
+        url: 'publication-article.html'
+      },
+
+      {
+        type: 'short',
+        img: './assets/img/publ_5@1x.jpg',
+        dateBadge: '18.12.2021',
+        title: 'Transport package trading and producing',
+        desc: 'Apply for funding Senior specialist Sergey Todor...',
+        url: 'publication-article.html'
+      },
+
+      {
+        type: 'short',
+        img: './assets/img/publ_6@1x.jpg',
+        dateBadge: '18.12.2021',
+        title: 'Optimization of traffic flows by land and water transport in Bulgaria and the Balkans',
+        desc: 'Ph.D. Borys Levit...',
+        url: 'publication-article.html'
+      },
+
+      {
+        type: 'short',
+        img: './assets/img/publ_7@1x.jpg',
+        isBadgesEnabled: true,
+        dateBadge: '18.12.2021',
+        title: 'Gasification of Bulgarian mined coals',
+        desc: 'Apply for funding Senior specialist Nikolay Smakovskiy...',
+        url: 'publication-article.html'
+      },
+    ]
+  }
+
+-
+  articleData = {
+
+  }
+
++article-page-view(articleData)
++show-more-section-view(showMoreData)

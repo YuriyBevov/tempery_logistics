@@ -1,0 +1,15 @@
+.download-btn {
+  svg {
+    width: 34px;
+    padding-left: 10px;
+    fill: $purple;
+    transition: fill .15s ease-in-out;
+  }
+
+  &:hover,
+  &:focus {
+    svg {
+      fill: $white;
+    }
+  }
+}

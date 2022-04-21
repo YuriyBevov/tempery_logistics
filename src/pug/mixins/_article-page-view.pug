@@ -1,0 +1,17 @@
+include ./_download-btn
+
+mixin article-page-view(data)
+  section.article
+    .row
+      .article-header
+        img(src="./assets/img/project-article@1x.jpg" alt="Railway and marine forwarding")
+        .article-header-content
+          h1.article-title.text-white Railway and marine forwarding
+          .article-badges
+            span.badge.fw-medium.me-3 18.12.2021
+            span.badge.fw-medium.bg-lightgray.text-white Author: Liliya Seropyan
+
+    +download-btn({
+      isIconEnabled: true,
+      btnText: 'download specification'
+    })

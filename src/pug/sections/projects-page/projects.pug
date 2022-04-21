@@ -1,5 +1,13 @@
-include ../../mixins/_card
-include ../../mixins/_main-select
+include ../../mixins/_inner-page-view
+
+-
+  headCard = {
+    type: 'full',
+    img: './assets/img/projects_1@1x.jpg',
+    title: 'Railway and marine forwarding',
+    desc: 'Railway and marine forwarding. 3.5 mln tones, average distance 4800 km. Railway and marine forwarding. 3.5 mln tones, average distance 4800 km...',
+    url: 'project-article.html'
+  }
 
 -
   cards = [
@@ -8,97 +16,90 @@ include ../../mixins/_main-select
       type: 'short',
       img: './assets/img/projects_2@1x.jpg',
       title: 'Coal trading, 250 000 tones',
-      desc: 'Coal trading, 250 000 tones.Coal trading, 250 000 tones...'
+      desc: 'Coal trading, 250 000 tones.Coal trading, 250 000 tones...',
+      url: 'project-article.html'
     },
 
     {
       type: 'short',
       img: './assets/img/projects_3@1x.jpg',
       title: 'Transport package trading and producing',
-      desc: 'Transport package trading and producing...'
+      desc: 'Transport package trading and producing...',
+      url: 'project-article.html'
     },
 
     {
       type: 'short',
       img: './assets/img/projects_4@1x.jpg',
       title: 'Constructing materials trading',
-      desc: 'Innovation in building materials is an unceasing reality of our construction ...'
+      desc: 'Innovation in building materials is an unceasing reality of our construction ...',
+      url: 'project-article.html'
     },
 
     {
       type: 'short',
       img: './assets/img/projects_5@1x.jpg',
       title: 'Engineering research',
-      desc: 'Engineering research seeks improvements in theory and practice in fields such as ...'
+      desc: 'Engineering research seeks improvements in theory and practice in fields such as ...',
+      url: 'project-article.html'
     },
 
     {
       type: 'short',
       img: './assets/img/projects_6@1x.jpg',
       title: 'Marketing research',
-      desc: 'The systematic gathering, recording, and analysis of qualitative and quantitative ...'
+      desc: 'The systematic gathering, recording, and analysis of qualitative and quantitative ...',
+      url: 'project-article.html'
     },
 
     {
       type: 'short',
       img: './assets/img/projects_7@1x.jpg',
       title: 'Agricultural products trading and processing',
-      desc: 'Many agricultural commodities trade on stock and derivatives markets. We show ...'
+      desc: 'Many agricultural commodities trade on stock and derivatives markets. We show ...',
+      url: 'project-article.html'
     },
 
     {
       type: 'short',
       img: './assets/img/projects_8@1x.jpg',
       title: 'Complex timber processing',
-      desc: 'Innovation in building materials is an unceasing reality of our construction ...'
+      desc: 'Innovation in building materials is an unceasing reality of our construction ...',
+      url: 'project-article.html'
     },
 
     {
       type: 'short',
       img: './assets/img/projects_9@1x.jpg',
       title: 'Big logistics data processing',
-      desc: 'Engineering research seeks improvements in theory and practice in fields such as ...'
+      desc: 'Engineering research seeks improvements in theory and practice in fields such as ...',
+      url: 'project-article.html'
     },
 
     {
       type: 'short',
       img: './assets/img/projects_10@1x.jpg',
       title: 'Coal trading, 250 000 tones',
-      desc: 'The systematic gathering, recording, and analysis of qualitative and quantitative ...'
+      desc: 'The systematic gathering, recording, and analysis of qualitative and quantitative ...',
+      url: 'project-article.html'
     },
 
     {
       type: 'short',
       img: './assets/img/projects_11@1x.jpg',
       title: 'Transport package trading and producing',
-      desc: 'Many agricultural commodities trade on stock and derivatives markets. We show ...'
+      desc: 'Many agricultural commodities trade on stock and derivatives markets. We show ...',
+      url: 'project-article.html'
     },
   ]
 
-section.projects.bg-lightgray.pb-5
-  .section-header.d-flex.flex-column.align-items-start.flex-md-row.align-items-md-center
-    h1.me-auto.pe-3 Projects
-    .select-box.d-flex.align-items-center
-      span.me-2.fw-light Sort&nbsp;By:
-      +main-select({
-        label: 'Sort by',
-        selected: 'Publication date',
-        options: ['Publication date', 'Two', 'Three']
-      })
+-
+  const data = {
+    headCard,
+    cards,
+    pageTitle: 'Projects',
+    pageClass: 'projects'
+  }
 
-  .row
-    .col-12.col-lg-4.col-xxl-6.mb-4
-      +card({
-        type: 'full',
-        img: './assets/img/projects_1@1x.jpg',
-        title: 'Railway and marine forwarding',
-        desc: 'Railway and marine forwarding. 3.5 mln tones, average distance 4800 km. Railway and marine forwarding. 3.5 mln tones, average distance 4800 km...'
-      })
-
-    each card in cards
-      .col-12.col-sm-6.col-lg-4.col-xxl-3.mb-4
-        +card(card)
-
-  .row.pt-5.mb-5
-    include ../../components/_pagination
++inner-page-view(data)
 

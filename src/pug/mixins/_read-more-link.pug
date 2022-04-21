@@ -1,0 +1,4 @@
+mixin readMoreLink(opt)
+  a(href= opt.url class= opt && opt.color ? `text-${opt.color}` : 'text-purple').read-more.d-flex.align-items-center Read more
+    //svg(width="12" height="12")
+      use(xlink:href="./assets/svg-sprite.svg#icon-plus")

@@ -2,6 +2,15 @@
   padding-top: 1.25rem;
   margin-bottom: 2.375rem;
 
+
+  @include media-breakpoint-down(lg) {
+    margin-bottom: 1.375rem;
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: 0.875rem;
+  }
+
   a {
     position: relative;
     padding-right: 30px;

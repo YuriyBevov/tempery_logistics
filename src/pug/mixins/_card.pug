@@ -4,39 +4,57 @@
     cls,
   }
 
+include ./_read-more-link
+
 mixin card(opt)
+
   if opt.type === 'full'
     .card.rounded-0.border-0.h-100.position-relative
+
       img(src= opt.img alt= opt.title).card-img-full.card-img.rounded-0
 
       .card-body.d-flex.flex-column.p-4.position-absolute.bottom-0
-        if opt.badgeText
-          span.full-card-badge.badge.fw-normal= opt.badgeText
+        if opt.isBadgesEnabled
+          .badges-container.d-flex.align-items-center.mb-2
+            span.full-card-badge.badge.fw-medium= opt.dateBadge
 
         h3.card-title.text-white= opt.title
         p.card-text.fw-light.text-white= opt.desc
-        include ../components/_read-more-link
+        +readMoreLink({url: opt.url})
 
   if opt.type === 'short'
     .card.rounded-0.border-0.h-100.position-relative
       .position-relative
         img(src= opt.img alt= opt.title).card-img-top.card-img.rounded-0
 
-        if opt.badgeText
-          span.short-card-badge.badge.fw-normal= opt.badgeText
+        if opt.isBadgesEnabled
+          .badges-container.d-flex.align-items-center
+            span.short-card-badge.badge.fw-medium= opt.dateBadge
       .card-body.d-flex.flex-column.p-4(class= opt.cardBodyColor ? `bg-${opt.cardBodyColor}` : 'bg-white')
 
         h3.card-title= opt.title
         p.card-text.fw-light.text-gray= opt.desc
-        include ../components/_read-more-link
+        +readMoreLink({url: opt.url})
 
   if opt.type === 'mini'
     .card.rounded-0.border-0.h-100.position-relative
       .card-body.d-flex.flex-column.p-4(class= opt.cardBodyColor ? `bg-${opt.cardBodyColor}` : 'bg-white')
-        if opt.badgeText
-          span.mini-card-badge.badge.fw-normal= opt.badgeText
+        if opt.isBadgesEnabled
+          .badges-container.d-flex.align-items-center.mb-2
+            span.mini-card-badge.badge.fw-medium= opt.dateBadge
         h3.card-title= opt.title
         p.card-text.fw-light.text-gray= opt.desc
-        include ../components/_read-more-link
+        +readMoreLink({url: opt.url})
+
+  if opt.type === 'important'
+    .card.rounded-0.border-0.h-100.position-relative
+      .card-body.d-flex.flex-column.p-4.bg-purple
+        if opt.isBadgesEnabled
+          .badges-container.d-flex.align-items-center.mb-2
+            span.mini-card-badge.badge.fw-medium.text-white= opt.dateBadge
+            span.badge.fw-medium.text-black.bg-warning Important
+        h3.card-title.text-white= opt.title
+        p.card-text.fw-light.text-white!= opt.desc
+        +readMoreLink({ color: 'white', url: opt.url})
 
 

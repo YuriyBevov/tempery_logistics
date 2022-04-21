@@ -2,10 +2,10 @@ mixin accordion(opt)
   .accordion(id= opt.id)
     each item in opt.items
       .accordion-item
-        h2.accordion-header(id= item.headerID)
-          button(type="button" data-bs-toggle="collapse" data-bs-target="#" + item.targetID aria-expanded= item.ariaExpanded aria-controls= item.targetID).accordion-button.fw-medium.fs-3= item.buttonText
-        .accordion-collapse.collapse(aria-labelledby= item.headerID data-bs-parent="#" + opt.id class= item.isShow ? true : false id= item.targetID)
-          .accordion-body
-            p.fw-light.fs-4= item.bodyText
-              if item.linkText
-                a(href="#").text-purple.fw-semi= item.linkText
+        h2(id= item.headerID).accordion-header
+          button(type="button" data-bs-toggle="collapse" data-bs-target="#" + item.targetID aria-expanded= item.ariaExpanded aria-controls= item.targetID class= !item.collapsed ? 'collapsed' : '').accordion-button.fw-medium.fs-3
+            span.pe-5= item.buttonText
+        .accordion-collapse.collapse(aria-labelledby= item.headerID data-bs-parent="#" + opt.id class= item.collapsed ? 'show' : '' id= item.targetID)
+          .accordion-body.fw-light!= item.bodyText
+            if item.linkText
+              a(href= item.linkUrl).text-purple.fw-semi.d-inline-block= item.linkText

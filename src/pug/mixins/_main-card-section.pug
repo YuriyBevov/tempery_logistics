@@ -1,0 +1,23 @@
+include ./_main-link
+include ./_card
+
+mixin main-card-section(data)
+  section.section(class= data.sectionClass)
+    .container
+      .row
+        .col-12.col-xxl-3.d-flex.flex-xxl-column.align-items-center.align-items-xxl-start.mb-4.mb-md-5.mb-xxl-0
+          h2.section-title.mb-0.mx-auto.mx-lg-0.me-lg-auto.me-xxl-0= data.sectionTitle
+          +main-link({
+            cls: 'mt-0 mt-xxl-auto btn-outline-purple view-all-btn',
+            text:  'View all',
+            url:  data.linkUrl
+          })
+
+        .col-12.col-lg-4.col-xxl-3.mb-4.mb-lg-0
+          +card(data.headCard)
+
+        .col-12.col-sm-6.col-lg-4.col-xxl-3.mb-4.mb-sm-0
+          +card(data.cards[0])
+
+        .col-12.col-sm-6.col-lg-4.col-xxl-3
+          +card(data.cards[1])

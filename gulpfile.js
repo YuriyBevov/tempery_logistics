@@ -200,18 +200,18 @@ const sprite = () => {
         },
       })
     )
-    /*.pipe(
+    .pipe(
       cheerio({
         run: function ($) {
           $('[fill]').removeAttr('fill');
-          $('[stroke]').removeAttr('stroke');
-          $('[style]').removeAttr('style');
+          //$('[stroke]').removeAttr('stroke');
+          //$('[style]').removeAttr('style');
         },
         parserOptions: {
           xmlMode: true
         },
       })
-    )*/
+    )
     .pipe(replace('&gt;', '>'))
     .pipe(plumber())
     .pipe(svgSprite({

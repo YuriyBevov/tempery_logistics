@@ -1,0 +1,10 @@
+include ./_card
+
+mixin show-more-section-view(data)
+  section.more
+    h2.mb-4= data.sectionTitle
+    .row
+      each card in data.cards
+        .col-12.col-sm-6.col-lg-4.col-xxl-3.mb-4
+          +card(card)
+

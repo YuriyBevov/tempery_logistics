@@ -9,7 +9,7 @@ include ../../mixins/_accordion
         headerID: 'heading_1',
         buttonText: 'How can I view the Resource base',
         targetID: 'collapse_1',
-        bodyText: '<p>You can view the resource base by downloading the PDF file to your device using this link</p>',
+        bodyText: '<p>Fusce justo nibh, porttitor vel maximus vestibulum, porta at neque.Integer eget lobortis tortor. Duis nec cursus nisl. Quisque maximus arcu at magna rhoncus pulvinar. Curabitur euismod porttitor mauris vitae eleifend. Donec vestibulum sodales sagittis. Sed tempus, diam ut efficitur consectetur, erat risus condimentum turpis, vitae tempor metus arcu nec neque.</p> <p>Etiam luctus neque ac justo vehicula, porta auctor neque aliquet. Donec lobortis blandit venenatis. Sed id lorem non tortor maximus auctor. Phasellus fermentum semper tristique. Vestibulum bibendum auctor blandit. In dapibus cursus orci, nec efficitur dui ultricies in. Nulla a nisl ex. Maecenas at fringilla neque. </p>You can view the resource base by downloading the PDF file to your device using this link',
         linkUrl: '#',
         linkText: '— Download PDF (0,25 Mb)',
         ariaExpanded: true,
@@ -55,17 +55,9 @@ include ../../mixins/_accordion
     ]
   }
 
-section.questions.section.bg-white
-  .container
-    .row
-      .col-lg-8.mx-auto.d-flex.flex-column
-        h2.text-center.section-title.section-title-centered.mb-5 Frequently asked questions
-
-        .accordion-container.pt-4.mb-5
-          +accordion(accordionOptions)
-
-        +main-link({
-          cls: 'mx-auto mt-4 btn-outline-purple view-all-btn',
-          text:  'View all',
-          url:  'questions.html'
-        })
+section.questions
+  h1.mb-4.mb-md-5 Frequently asked questions
+  .row
+    .col-lg-8.mx-auto.d-flex.flex-column
+      .accordion-container.pt-4.mb-5
+        +accordion(accordionOptions)
