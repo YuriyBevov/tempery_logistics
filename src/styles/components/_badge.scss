@@ -7,16 +7,24 @@
 
 .short-card-badge {
   position: absolute;
-  left: 24px;
+  left: 20px;
   bottom: 20px;
-}
-
-.full-card-badge {
   background-color: $purple;
+  color: $white;
 }
 
 .mini-card-badge {
   padding-left: 0;
   background-color: transparent;
   color: $purple;
+}
+
+.author-badge {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.attention-badge {
+  background-color: $warning;
+  color: $black;
 }

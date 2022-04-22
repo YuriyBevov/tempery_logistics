@@ -1,0 +1,74 @@
+include ../../mixins/_customer-block-view
+
+-
+  const arcelor = {
+    title: 'РJSC “ArcelorMittal Kryvyi Rih”',
+    linkText: 'www.ukraine.arcelormittal.com',
+    linkUrl: '#',
+    logo: 'arcelor-logo@1x.png',
+    logoWidth: '170',
+    logoHeight: '76',
+    cards: [
+      {
+        title: 'product name 1',
+        img: 'arcelor-product_1@1x.jpg'
+      },
+      {
+        title: 'product name 2',
+        img: 'arcelor-product_2@1x.jpg'
+      },
+      {
+        title: 'product name 3',
+        img: 'arcelor-product_3@1x.jpg'
+      },
+    ],
+
+    desc: [
+      'Vivamus efficitur mi a tellus ultrices mollis. Aliquam erat volutpat. Vestibulum sit amet tellus at tellus bibendum mattis. Maecenas nunc sapien, auctor vel nisl vitae, porttitor pharetra dui. Praesent id lacus in enim mattis blandit a at sem. Aenean nec nibh dictum, ullamcorper metus vel, iaculis dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus accumsan diam et imperdiet volutpat. Fusce dapibus tellus nec ullamcorper pulvinar. Integer et consequat sem, eget scelerisque tortor. Integer volutpat consequat pharetra. In risus metus, sollicitudin eu tellus quis, pulvinar dapibus nisi. Nam nunc leo, sollicitudin eu eros a, convallis imperdiet nunc. Maecenas tristique quam est.'
+    ]
+  }
+
+-
+  const evraz = {
+    title: 'EVRAZ trading company',
+    linkText: 'www.evraz.com',
+    linkUrl: '#',
+    logo: 'evraz-logo@1x.png',
+    logoWidth: '170',
+    logoHeight: '76',
+    cards: [
+      {
+        title: 'product name 1',
+        img: 'evraz-product_1@1x.jpg'
+      },
+      {
+        title: 'product name 2',
+        img: 'evraz-product_2@1x.jpg'
+      },
+      {
+        title: 'product name 3',
+        img: 'evraz-product_3@1x.jpg'
+      },
+    ]
+  }
+
+-
+  const sibcoal = {
+    title: 'Sibcoal sp. z o.o.',
+    linkText: 'www.sibcoal.eu',
+    linkUrl: '#',
+    logo: 'sibcoal-logo@1x.png',
+    logoWidth: '170',
+    logoHeight: '140',
+    desc: [
+      'Cras tincidunt mi at nibh ullamcorper, id molestie est fringilla. Praesent suscipit libero nisl, vel commodo sapien finibus eget. Nam mauris augue, pulvinar quis tempor a, maximus sit amet felis. Pellentesque malesuada nulla vitae est luctus cursus. Fusce dignissim et purus sit amet pellentesque.',
+      'Cras finibus nibh libero, eu blandit ante dapibus a. Sed dictum tellus et dapibus venenatis. Pellentesque eget arcu nec dolor ullamcorper maximus eu vitae nisl. In gravida magna et elit elementum, nec condimentum velit eleifend.'
+    ]
+  }
+
+section.customers
+  h1.mb-4.mb-md-5 Products of our customers & contractors
+
+  +customer-block-view(arcelor)
+  +customer-block-view(evraz)
+  +customer-block-view(sibcoal)

@@ -34,6 +34,24 @@ footer {
   }
 }
 
+table {
+  th {
+    width: 200px;
+
+    @include media-breakpoint-down(xxl) {
+      width: 175px;
+    }
+
+    @include media-breakpoint-down(lg) {
+      width: 155px;
+    }
+
+    @include media-breakpoint-down(md) {
+      width: 120px;
+    }
+  }
+}
+
 .section-header {
   margin-bottom: 3.125rem;
 
@@ -88,4 +106,10 @@ footer {
       }
     }
   }
+}
+
+.main-link {
+  font-weight: 500;
+  text-decoration-line: underline;
+  color: $purple;
 }

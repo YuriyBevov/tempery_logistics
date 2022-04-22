@@ -1,0 +1,6 @@
+mixin product-card(card)
+  .card.rounded-0.border-0.h-100
+      img(src= `./assets/img/${card.img}` alt= card.title).card-img.rounded-0
+
+      .card-body.d-flex.flex-column.p-4.bg-lightgray
+        h3=card.title

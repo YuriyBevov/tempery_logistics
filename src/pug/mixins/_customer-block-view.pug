@@ -1,0 +1,20 @@
+include ./_product-card
+
+-
+  const commonMb = 'mb-4 mb-md-5'
+
+mixin customer-block-view(data)
+  .customer-info.bg-white.pt-4.pb-4.pb-md-5.px-4.px-lg-5.mb-3.mb-md-4
+    img(src=`./assets/img/${data.logo}` alt= data.title width= data.logoWidth height= data.logoHeight)
+    h2.mb-3=data.title
+    a(href= data.linkUrl class= commonMb).d-block.text-purple.fw-medium.fs-4= data.linkText
+
+    if data.cards
+      .row(class= commonMb)
+        each card in data.cards
+          .col-12.col-md-3.mb-3.mb-md-0
+            +product-card(card)
+
+    if data.desc
+      each desc in data.desc
+        p.fw-light= desc

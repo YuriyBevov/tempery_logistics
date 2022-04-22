@@ -1,0 +1,7 @@
+mixin article-include(opt)
+  .article-include(class= opt.cls)
+    svg(width="24" height="24")
+      use(xlink:href=`./assets/svg-sprite.svg#${opt.icon}`)
+
+    a(href= opt.linkUrl).main-link.d-block.mb-1= opt.linkText
+    span.fw-light.d-block= opt.text

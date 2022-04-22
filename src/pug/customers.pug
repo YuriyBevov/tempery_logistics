@@ -1,0 +1,26 @@
+extends layouts/main-layout.pug
+include ./mixins/_breadcrumbs
+
+block variables
+  -
+    const title = ""
+    const desc = ""
+    const keywords = ""
+
+block content
+  .customers-page
+    .container
+      +breadcrumbs([
+        {
+          url: 'index.html',
+          name: 'Home'
+        },
+
+        {
+          name: 'Products of our customers & contractors'
+        }
+      ])
+      include ./sections/customers-page/customers
+
+block modals
+  //include ./modals/...

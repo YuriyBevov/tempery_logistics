@@ -1,0 +1,6 @@
+mixin video-container(opt)
+  .video-container.h-100
+    .play-btn.btn.rounded-pill.bg-purple
+      svg(width="17" height="18")
+        use(xlink:href="./assets/svg-sprite.svg#icon-play")
+    img(src=`./assets/img/${opt.img}` alt= opt.title width= opt.imgWidth height= opt.imgHeight)

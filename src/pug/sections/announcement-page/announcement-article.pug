@@ -1,5 +1,6 @@
-//include ../../mixins/_article-page-view
 include ../../mixins/_show-more-section-view
+include ../../mixins/_badge
+include ../../mixins/_download-btn
 
 -
   showMoreData = {
@@ -44,10 +45,78 @@ include ../../mixins/_show-more-section-view
     ]
   }
 
-//-
-  articleData = {
+-
+  parameters = [
+      {
+        name: 'District:', value: 'western and northern industrial zones in Varna;'
+      },
 
-  }
+      {
+        name: 'Building:', value: '150–200 meters;'
+      },
 
-//+article-page-view(articleData)
+      {
+        name: 'Ground floor:', value: 'at least 100 meters;'
+      },
+
+      {
+        name: 'Network power:', value: '20–30 kW;'
+      },
+
+      {
+        name: 'Ceilings:', value: 'from 2.0 meters to 3.0 meters;'
+      },
+
+      {
+        name: 'Ventilation:', value: 'is not essential;'
+      },
+
+      {
+        name: 'Sewerage and water:', value: 'are needed;'
+      },
+
+      {
+        name: 'Warehouse:', value: '50–100 meters;'
+      },
+
+      {
+        name: 'Office:', value: '2–3 rooms;'
+      }
+    ]
+
+section.announcement-item.border-bottom.mb-5
+  .row
+    .col-lg-8.mx-auto.mb-4
+      h1.article-title.mb-4 Our company is looking for an industrial building
+
+      .d-flex.align-items-center.mb-4.mb-md-5
+        +badge({
+          cls: 'fw-medium me-3',
+          text: '19.08.2022'
+        })
+        +badge({
+          cls: 'fw-semi attention-badge',
+          text: 'Important'
+        })
+
+      h2.article-strong.mb-4.mb-md-5 Our company is looking for an industrial building for a sewing workshop in Varna.
+
+      p.article-strong.fw-medium.mb-3 Parameters
+
+      table.table.table-sm.table-borderless
+        tbody
+          each param in parameters
+            tr
+              th.fw-light.article-text= param.name
+              td.fw-light.article-text= param.value
+
+      p.article-strong.fw-medium.mb-5 There must be <span class="text-uppercase text-purple"> a permit </span> for production on the project.
+
+      +download-btn({
+        isIconEnabled: true,
+        btnText: 'download',
+        cls: 'download-btn--full-width mb-5'
+      })
+
+
 +show-more-section-view(showMoreData)

@@ -1,5 +1,5 @@
 mixin download-btn(opt)
-  a(href="#").btn.btn-outline-purple.px-4.py-3.rounded-0.text-uppercase.fw-medium.download-btn= opt.btnText
+  a(href="#" class= opt.cls ? opt.cls : '').btn.btn-outline-purple.px-2.px-sm-4.py-3.rounded-0.text-uppercase.fw-medium.download-btn= opt.btnText
     if opt.isIconEnabled
       svg(width="24" height="24")
         use(xlink:href="./assets/svg-sprite.svg#icon-download2")

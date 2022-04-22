@@ -1,10 +1,5 @@
-//
-  opt {
-    type: 'full || short || mini',
-    cls,
-  }
-
 include ./_read-more-link
+include ./_badge
 
 mixin card(opt)
 
@@ -16,7 +11,10 @@ mixin card(opt)
       .card-body.d-flex.flex-column.p-4.position-absolute.bottom-0
         if opt.isBadgesEnabled
           .badges-container.d-flex.align-items-center.mb-2
-            span.full-card-badge.badge.fw-medium= opt.dateBadge
+            +badge({
+              cls: 'fw-medium',
+              text: opt.dateBadge
+            })
 
         h3.card-title.text-white= opt.title
         p.card-text.fw-light.text-white= opt.desc
@@ -29,7 +27,10 @@ mixin card(opt)
 
         if opt.isBadgesEnabled
           .badges-container.d-flex.align-items-center
-            span.short-card-badge.badge.fw-medium= opt.dateBadge
+            +badge({
+              cls: 'fw-medium short-card-badge',
+              text: opt.dateBadge
+            })
       .card-body.d-flex.flex-column.p-4(class= opt.cardBodyColor ? `bg-${opt.cardBodyColor}` : 'bg-white')
 
         h3.card-title= opt.title
@@ -41,7 +42,10 @@ mixin card(opt)
       .card-body.d-flex.flex-column.p-4(class= opt.cardBodyColor ? `bg-${opt.cardBodyColor}` : 'bg-white')
         if opt.isBadgesEnabled
           .badges-container.d-flex.align-items-center.mb-2
-            span.mini-card-badge.badge.fw-medium= opt.dateBadge
+            +badge({
+              cls: 'fw-medium mini-card-badge',
+              text: opt.dateBadge
+            })
         h3.card-title= opt.title
         p.card-text.fw-light.text-gray= opt.desc
         +readMoreLink({url: opt.url})
@@ -52,7 +56,14 @@ mixin card(opt)
         if opt.isBadgesEnabled
           .badges-container.d-flex.align-items-center.mb-2
             span.mini-card-badge.badge.fw-medium.text-white= opt.dateBadge
-            span.badge.fw-medium.text-black.bg-warning Important
+            +badge({
+              cls: 'fw-medium mini-card-badge text-white',
+              text: opt.dateBadge
+            })
+            +badge({
+              cls: 'fw-medium attention-badge',
+              text: 'Important'
+            })
         h3.card-title.text-white= opt.title
         p.card-text.fw-light.text-white!= opt.desc
         +readMoreLink({ color: 'white', url: opt.url})
