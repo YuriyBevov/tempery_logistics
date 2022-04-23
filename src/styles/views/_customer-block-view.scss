@@ -1,0 +1,79 @@
+.customer {
+  position: relative;
+
+  @include media-breakpoint-down(md) {
+    &::before,
+    &::after {
+      position: absolute;
+      top: 0;
+      content: '';
+      width: $container-padding-x;
+      height: 100%;
+
+      background-color: $white;
+      z-index: -1;
+    }
+
+    &::before {
+      left: -$container-padding-x;
+    }
+
+    &::after {
+      right: -$container-padding-x;
+    }
+  }
+  &-title {
+    font-size: 26px;
+    line-height: 120%;
+
+    @include media-breakpoint-down(xxl) {
+      font-size: 24px;
+    }
+
+    @include media-breakpoint-down(lg) {
+      font-size: 22px;
+    }
+
+    @include media-breakpoint-down(md) {
+      font-size: 18px;
+    }
+  }
+
+  &-text {
+    font-size: 20px;
+    line-height: 170%;
+
+    @include media-breakpoint-down(xxl) {
+      font-size: 18px;
+    }
+
+    @include media-breakpoint-down(md) {
+      font-size: 16px;
+    }
+  }
+
+  &-link {
+    font-size: 18px;
+    line-height: 120%;
+    text-decoration: underline;
+
+    @include media-breakpoint-down(md) {
+      font-size: 16px;
+    }
+  }
+
+  &-info {
+    border-left: 1px solid $border-color;
+
+    @include media-breakpoint-down(md) {
+      border-left: none;
+    }
+  }
+
+
+  @include media-breakpoint-up(xxl) {
+    &-content {
+      padding-left: 219px;
+    }
+  }
+}

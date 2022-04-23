@@ -1,0 +1,12 @@
+.customer-product-title {
+  font-size: 22px;
+  line-height: 140%;
+
+  @include media-breakpoint-down(xxl) {
+    font-size: 20px;
+  }
+
+  @include media-breakpoint-down(lg) {
+    font-size: 17px;
+  }
+}

@@ -12959,6 +12959,21 @@ table th {
   fill: #ffffff;
 }
 
+.customer-product-title {
+  font-size: 22px;
+  line-height: 140%;
+}
+@media (max-width: 1599.98px) {
+  .customer-product-title {
+    font-size: 20px;
+  }
+}
+@media (max-width: 991.98px) {
+  .customer-product-title {
+    font-size: 17px;
+  }
+}
+
 /* Views */
 .article-header {
   position: relative;
@@ -13146,6 +13161,83 @@ table th {
   max-height: inherit;
   -o-object-fit: cover;
   object-fit: cover;
+}
+
+.customer {
+  position: relative;
+}
+@media (max-width: 767.98px) {
+  .customer::before, .customer::after {
+    position: absolute;
+    top: 0;
+    content: "";
+    width: 0.75rem;
+    height: 100%;
+    background-color: #ffffff;
+    z-index: -1;
+  }
+  .customer::before {
+    left: -0.75rem;
+  }
+  .customer::after {
+    right: -0.75rem;
+  }
+}
+.customer-title {
+  font-size: 26px;
+  line-height: 120%;
+}
+@media (max-width: 1599.98px) {
+  .customer-title {
+    font-size: 24px;
+  }
+}
+@media (max-width: 991.98px) {
+  .customer-title {
+    font-size: 22px;
+  }
+}
+@media (max-width: 767.98px) {
+  .customer-title {
+    font-size: 18px;
+  }
+}
+.customer-text {
+  font-size: 20px;
+  line-height: 170%;
+}
+@media (max-width: 1599.98px) {
+  .customer-text {
+    font-size: 18px;
+  }
+}
+@media (max-width: 767.98px) {
+  .customer-text {
+    font-size: 16px;
+  }
+}
+.customer-link {
+  font-size: 18px;
+  line-height: 120%;
+  text-decoration: underline;
+}
+@media (max-width: 767.98px) {
+  .customer-link {
+    font-size: 16px;
+  }
+}
+.customer-info {
+  border-left: 1px solid #dee2e6;
+}
+@media (max-width: 767.98px) {
+  .customer-info {
+    border-left: none;
+  }
+}
+@media (min-width: 1600px) {
+  .customer-content {
+    padding-left: 219px;
+  }
 }
 
 /* Модальные окна */
