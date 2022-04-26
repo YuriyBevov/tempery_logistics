@@ -1,5 +1,22 @@
 .form-select {
   cursor: pointer;
+  width: fit-content;
+}
+
+.lang-select {
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid $purple;
+  border-radius: 4px;
+  padding: 10px;
+  padding-right: 30px;
+  color: $black;
+  background-size: 14px 24px;
+  background-image: url("../assets/img/icon-arr-down.png");
+  background-position: calc(100% - 10px) 45%;
+}
+
+.dashed-select {
   padding-left: 4px;
   border: 0;
   border-bottom: 1px dashed $purple;

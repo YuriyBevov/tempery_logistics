@@ -11,8 +11,44 @@
     <script defer="defer" src="./assets/bundle.js"></script>
   </head>
   <body>
-    <header>
-      <p>header</p>
+    <header class="main-header bg-lightblack">
+      <nav class="navbar navbar-light navbar-expand-lg bg-white fixed-top">
+        <div class="container"><a class="navbar-brand" href="index.html"><img src="./assets/img/logotype_black@1x.png" alt="Temperi Logistics Ltd." width="242" height="37"></a>
+          <button class="navbar-toggler bg-purple" type="button" data-bs-toggle="offcanvas" data-bs-target="#site_nav" aria-controls="offcanvasNavbar">
+            <svg width="24" height="24">
+              <use xlink:href="./assets/svg-sprite.svg#icon-burger"></use>
+            </svg>
+          </button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="site_nav" aria-labelledby="site_nav_label">
+            <div class="offcanvas-header">
+              <h4 class="offcanvas-title" id="site_nav_label">Menu</h4>
+              <button class="btn-close text-reset" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav d-inline-flex mb-2 mb-lg-0 mx-auto">
+                <li class="nav-item me-0 me-xl-4"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item me-0 me-xl-4"><a class="nav-link" href="about.html">About us</a></li>
+                <li class="nav-item me-0 me-xl-4"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item me-0 me-xl-4"><a class="nav-link" href="projects.html">Projects</a></li>
+                <li class="nav-item me-0 me-xl-4"><a class="nav-link" href="publications.html">Publications</a></li>
+                <li class="nav-item me-0 me-xl-4"><a class="nav-link" href="announcement.html">Аnnouncement</a></li>
+                <li class="nav-item me-0 me-xl-4"><a class="nav-link" href="faq.html">FAQ</a></li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle navbar-dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="#">Link 1</a></li>
+                    <li><a class="dropdown-item" href="#">Link 2</a></li>
+                    <li><a class="dropdown-item" href="#">Link 3</a></li>
+                  </ul>
+                </li>
+              </ul>
+                  <select class="lang-select form-select">
+                    <option value="EN" selected>EN</option>
+                    <option value="BLG">BLG</option>
+                  </select>
+            </div>
+          </div>
+        </div>
+      </nav>
     </header>
     <main>
       <div class="reporting-page">
@@ -170,9 +206,70 @@
         </div>
       </div>
     </main>
-    <footer>
-      <p>footer</p>
-    </footer>
+    <!--footer.pt-4.bg-lightblack.text-white
+    .container
+      .row
+        .col-12.col-md
+          img(src="./assets/img/logo@1x.png" alt="Temperi Logostics, Ltd." width="272" height="42").d-inline-block.mb-3
+    
+          .ms-5
+            p Company Registration Number: <br/> 206032947
+            p VAT Number:<br/> BG206032947
+    
+        .col-6.col-md.pt-2
+          h5 Address
+    
+          address
+            p 9000 Bulgaria, Varna, 9 Vladislav Varnenchik Blv., fl. 2, office-showroom
+            p Temperi Logistics Ltd.
+            a(href="#").btn.btn-outline-primary See on the map
+    
+        .col-6.col-md.pt-2
+          h5 Contacts
+    
+          ul.nav.flex-column
+            li.nav-item.mb-1
+              | Tel/WhatsApp: <a class="nav-link" href="tel:+359878877365">+359 878877365</a>
+            li.nav-item.mb-1
+              | Skype: <a class="nav-link main-link" href="#">Temperi Logistics</a>
+            li.nav-item.mb-1
+              | E-mail: <a class="nav-link main-link" href="mailto:temperilogistics.bg@gmail.com">temperilogistics.bg@gmail.com</a>
+          h6.mt-3 Branches
+            ul.nav.flex-column
+              li.nav-item.mb-1
+                | Budapest: <a class="nav-link" href="tel:+3617009016">+361 700 90 16</a>
+              li.nav-item.mb-1
+                | Tel Aviv-Yafo: <a class="nav-link" href="tel:+97233761079">+972 3 376 1079</a>
+    
+        .col-6.col-md.pt-2
+          h5 Company
+    
+          ul.nav.flex-column
+            li.nav-item.mb-2
+              a(href="#") Home
+            li.nav-item.mb-2
+              a(href="#") About us
+            li.nav-item.mb-2
+              a(href="#") Projects
+            li.nav-item.mb-2
+              a(href="#") Publications
+            li.nav-item.mb-2
+              a(href="#") Аnnouncement
+            li.nav-item.mb-2
+              a(href="#") FAQ
+    
+      .copyrights
+        .container
+          .row
+            .col-4.col-md.text-muted
+              p.d-inline-flex.my-auto.ms-0.me-auto © 2022 Temperi Logistics Ltd.
+    
+            .col-4.col-md
+              a(href="#").text-muted Privacy Policy
+    
+            .col-4.col-md
+              a(href="#" target="_blank" title="Created by W.D.M.Group, Ukraine").d-inline-flex.my-auto.ms-auto.me-0.text-muted W.D.M.Group, Ukraine
+    -->
     <!--include ./modals/...-->
     <!--script(src="./js/bundle.js")-->
   </body>

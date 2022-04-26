@@ -6,7 +6,7 @@ mixin accordion(opt)
       .accordion-item(class= opt.isLined ? 'lined' : null)
         h2(id= item.headerID).accordion-header
           button(type="button" data-bs-toggle="collapse" data-bs-target="#" + item.targetID aria-expanded= item.ariaExpanded aria-controls= item.targetID class= !item.collapsed ? 'collapsed' : '').accordion-button.fw-medium.fs-3
-            span.pe-5(class= opt.id === 'reporting_accordion' ? 'fs-2' : opt.id === 'about_accordion' && index === 0 ? 'fade-in-btn' : null)= item.buttonText
+            span.pe-5(class= opt.id === 'reporting_accordion' ? 'fs-2' : opt.id === 'about_accordion' && index === 0 ? 'fade-in-btn' : null)!= item.buttonText
         .accordion-collapse.collapse(aria-labelledby= item.headerID data-bs-parent="#" + opt.id class= item.collapsed ? 'show' : '' id= item.targetID)
           .accordion-body.fw-light!= item.bodyText
 

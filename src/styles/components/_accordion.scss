@@ -38,7 +38,6 @@
 }
 
 .accordion-item.lined {
-
   & >.accordion-header>.accordion-button {
     padding: 25px 50px;
     position: relative;
@@ -107,9 +106,21 @@
   .accordion-button .fade-in-btn {
     transition: opacity 0.3s linear;
   }
+
   .accordion-button:not(.collapsed) .fade-in-btn {
     opacity: 0;
   }
+
+  .accordion-body {
+    p {
+      margin-bottom: 0;
+    }
+
+    a {
+      @extend .main-link;
+    }
+  }
+
   .accordion-collapse .animated-body {
     margin-top: 0;
     transition: margin 0.3s linear;
@@ -117,5 +128,21 @@
 
   .accordion-collapse.show .animated-body {
     margin-top: -37px;
+  }
+}
+
+.vakancies-accordion {
+  .accordion-button svg {
+    fill: white;
+  }
+
+  .accordion-body {
+    p {
+      margin-bottom: 0;
+    }
+
+    a {
+      @extend .main-link;
+    }
   }
 }

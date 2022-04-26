@@ -1,4 +1,4 @@
 mixin main-select(obj)
-  select(aria-label= obj.label).form-select
+  select(aria-label= obj.label class= obj.cls ? obj.cls : null).form-select
     each option in obj.options
       option(value= option selected= obj.selected === option ? true : false)= option

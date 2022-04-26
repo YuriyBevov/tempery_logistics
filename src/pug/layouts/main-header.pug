@@ -1,2 +1,40 @@
-header
-  p header
+include ../mixins/_main-select
+include ../data/main-nav-data
+
+header.main-header.bg-lightblack
+  nav.navbar.navbar-light.navbar-expand-lg.bg-white.fixed-top
+    .container
+      a(href="index.html").navbar-brand
+        img(src="./assets/img/logotype_black@1x.png" alt="Temperi Logistics Ltd." width="242" height="37")
+
+      button(type="button" data-bs-toggle="offcanvas" data-bs-target="#site_nav" aria-controls="offcanvasNavbar").navbar-toggler.bg-purple
+        svg(width="24" height="24")
+          use(xlink:href="./assets/svg-sprite.svg#icon-burger")
+
+      .offcanvas.offcanvas-end(tabindex="-1" id="site_nav" aria-labelledby="site_nav_label")
+        .offcanvas-header
+          h4.offcanvas-title#site_nav_label Menu
+          button(type="button" data-bs-dismiss="offcanvas" aria-label="Close").btn-close.text-reset
+
+        .offcanvas-body
+          ul.navbar-nav.d-inline-flex.mb-2.mb-lg-0.mx-auto
+            each link in _mainNavData
+              li.nav-item.me-0.me-xl-4
+                a(href= link.url).nav-link=link.name
+
+            li.nav-item.dropdown
+              a(href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false").nav-link.dropdown-toggle.navbar-dropdown-toggle More
+
+              ul(aria-labelledby="navbarDropdownMenuLink").dropdown-menu
+                li
+                  a(href="#").dropdown-item Link 1
+                li
+                  a(href="#").dropdown-item Link 2
+                li
+                  a(href="#").dropdown-item Link 3
+
+          +main-select({
+            selected: 'EN',
+            options: ['EN', 'BLG',],
+            cls: 'lang-select'
+          })

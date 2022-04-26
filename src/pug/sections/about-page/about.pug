@@ -17,12 +17,13 @@ include ../../mixins/_accordion
 
             <div class="d-flex flex-column">
               <span class="accordion-button-title mb-1">OWNER of the company capital</span>
-              <span class="fs-4 fw-medium mb-3">Borys Levit</span>
 
-              <p class="mb-3">Ph.D. of Engineering Sciences since 1995 transport processes economic and mathematical modeling</p>
+              <h3>Borys Levit</h3>
 
-              <a href="#" class="main-link d-block">boryslevit@temperi-logistics.com</a>
-              <a href="#" class="main-link d-block">temperilogistics.bg@gmail.com</a>
+              <p>Ph.D. of Engineering Sciences since 1995 transport processes economic and mathematical modeling</p>
+              </br>
+              <p><a href="#">boryslevit@temperi-logistics.com</a></p>
+              <p><a href="#">temperilogistics.bg@gmail.com</a></p>
             </div>
           </div>
         `,
@@ -65,6 +66,33 @@ include ../../mixins/_accordion
     ]
   }
 
+-
+  aboutVacanciesOptions = {
+    id: 'vakancies_accordion',
+    cls: 'vakancies-accordion mb-5',
+
+    items: [
+      {
+        headerID: 'vacancies',
+        buttonText: `
+          <svg width="32" height="32" class="me-2 me-md-3">
+            <use xlink:href="./assets/svg-sprite.svg#icon-vakancies"></use>
+          </svg>
+          VACANCIES of the company
+        `,
+        targetID: 'collapse_vacancies',
+        bodyText: `
+          <p>Coal Product Manager</p>
+          <p>Timber Manager</p>
+          <p>Specialist on the shipping</p>
+          <p>Director of the Department of the Agricultural Products Transportation</p>
+
+          <p><a href="#">hr.temperilogistics@gmail.com</a></p>
+        `
+      }
+    ]
+  }
+
 section.about
   h1.mb-4.mb-md-5 About Temperi Logistics Ltd
 
@@ -79,8 +107,7 @@ section.about
         isIconEnabled: true,
         cls: 'fit'
       })
+
   .row
     .col-8.mx-auto.py-4
-      h2.mb-5.fs-2 Organizational Structure
-
-      +accordion(aboutAccOptions)
+      +accordion(aboutVacanciesOptions)
