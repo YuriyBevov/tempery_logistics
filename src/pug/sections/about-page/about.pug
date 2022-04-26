@@ -2,7 +2,7 @@ include ../../mixins/_download-btn
 include ../../mixins/_accordion
 
 -
-  accordionOptions = {
+  aboutAccOptions = {
     id: 'about_accordion',
     cls: 'about-accordion mb-5',
 
@@ -13,7 +13,7 @@ include ../../mixins/_accordion
         targetID: 'collapse_owner',
         bodyText: `
           <div class="d-flex flex-column flex-md-row align-items-center animated-body mb-5 pe-5">
-            <img src="../assets/img/owner@1x.jpg" alt="Borys Levit" width="212" height="283" class="me-5"/>
+            <img src="./assets/img/owner@1x.jpg" alt="Borys Levit" width="212" height="283" class="me-5"/>
 
             <div class="d-flex flex-column">
               <span class="accordion-button-title mb-1">OWNER of the company capital</span>
@@ -72,10 +72,15 @@ section.about
     .col-8.mx-auto.py-4
       h2.mb-5.fs-2 Organizational Structure
 
-      +accordion(accordionOptions)
+      +accordion(aboutAccOptions)
 
       +download-btn({
         btnText: 'Download structure',
         isIconEnabled: true,
         cls: 'fit'
       })
+  .row
+    .col-8.mx-auto.py-4
+      h2.mb-5.fs-2 Organizational Structure
+
+      +accordion(aboutAccOptions)
