@@ -7,8 +7,10 @@
   box-shadow: none;
 }
 
-.accordion-button span {
+.accordion-button span,
+.accordion-button-title {
   font-size: 26px;
+  font-weight: 500;
 
   @include media-breakpoint-down(xxl) {
     font-size: 24px;
@@ -32,5 +34,88 @@
 
   @include media-breakpoint-down(md) {
     font-size: 16px;
+  }
+}
+
+.accordion-item.lined {
+
+  & >.accordion-header>.accordion-button {
+    padding: 25px 50px;
+    position: relative;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 2px;
+      height: 0;
+      content: '';
+      background-color: $purple;
+      transition: height 0.3s ease-in;
+    }
+
+    @include media-breakpoint-down(lg) {
+      padding: 25px;
+    }
+  }
+
+  & >.accordion-header>.accordion-button:not(.collapsed)::before {
+    height: 100%;
+  }
+
+  & > .accordion-collapse {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 2px;
+      height: 0;
+      content: '';
+      background-color: $purple;
+      transition: height 0.3s ease-in;
+    }
+  }
+
+  & > .accordion-collapse.show::before {
+    height: 100%;
+  }
+}
+
+.reporting-accordion {
+  .accordion-item:not(.accordion-item-inner) {
+    border: 0;
+    margin-bottom: 10px;
+  }
+
+  .accordion-header {
+    background-color: $white;
+    margin-bottom: 2px;
+  }
+
+  .accordion-collapse {
+    background-color: $white;
+  }
+
+  .accordion-collapse-inner {
+    border-top: 1px solid $accordion-border-color;
+  }
+}
+
+.about-accordion {
+  .accordion-button .fade-in-btn {
+    transition: opacity 0.3s linear;
+  }
+  .accordion-button:not(.collapsed) .fade-in-btn {
+    opacity: 0;
+  }
+  .accordion-collapse .animated-body {
+    margin-top: 0;
+    transition: margin 0.3s linear;
+  }
+
+  .accordion-collapse.show .animated-body {
+    margin-top: -37px;
   }
 }

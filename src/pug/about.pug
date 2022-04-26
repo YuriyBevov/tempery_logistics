@@ -1,0 +1,26 @@
+extends layouts/main-layout.pug
+include ./mixins/_breadcrumbs
+
+block variables
+  -
+    const title = ""
+    const desc = ""
+    const keywords = ""
+
+block content
+  .about-page
+    .container
+      +breadcrumbs([
+        {
+          url: 'index.html',
+          name: 'Home'
+        },
+
+        {
+          name: 'About us'
+        }
+      ])
+      include ./sections/about-page/about
+
+block modals
+  //include ./modals/...

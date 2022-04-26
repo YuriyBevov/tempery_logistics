@@ -1,0 +1,95 @@
+include ../../mixins/_accordion
+
+-
+  const accordionOptions = {
+    id: 'reporting_accordion',
+    isLined: true,
+    cls: 'reporting-accordion',
+
+    items: [
+      {
+        headerID: 'report_2021',
+        buttonText: '2021',
+        targetID: 'collapse_report_2021',
+        bodyText: '',
+        ariaExpanded: true,
+        collapsed: true,
+
+        innerAccordion: {
+          id: 'report_2021_accordion',
+
+          items: [
+            {
+              headerID: 'financial_2021',
+              buttonText: 'Financial Reporting',
+              targetID: 'collapse_financial_2021',
+              ariaExpanded: true,
+              collapsed: true,
+
+              bodyContent: [
+                'Annual Report for the year 2020-2021 (PDF)',
+                '2021 - 2022 Financial Presentation - Q3 Results 21, January | 2022',
+                '2021 - 2022 Financial Presentation - Q2 Results 22, October | 2021',
+                '2021 - 2022 Financial Presentation - Q1 Results 23, July | 2021',
+                'Financial performance for the quarter/nine months ended 31 Dec, 2021'
+              ]
+            },
+
+            {
+              headerID: 'shareholders_2021',
+              buttonText: "Shareholders' Information",
+              targetID: 'collapse_shareholders_2021',
+              ariaExpanded: false,
+              collapsed: false,
+
+              bodyContent: [
+                'Annual Report for the year 2020-2021 (PDF)',
+                '2021 - 2022 Financial Presentation - Q3 Results 21, January | 2022',
+                '2021 - 2022 Financial Presentation - Q2 Results 22, October | 2021',
+                '2021 - 2022 Financial Presentation - Q1 Results 23, July | 2021',
+                'Financial performance for the quarter/nine months ended 31 Dec, 2021'
+              ]
+            },
+          ]
+        }
+      },
+
+      {
+        headerID: 'report_2020',
+        buttonText: '2020',
+        targetID: 'collapse_report_2020',
+        bodyText: '',
+        ariaExpanded: false,
+        collapsed: false,
+
+        innerAccordion: {
+          id: 'report_2020_accordion',
+
+          items: [
+            {
+              headerID: 'financial_2020',
+              buttonText: 'Financial Reporting',
+              targetID: 'collapse_financial_2020',
+              ariaExpanded: false,
+              collapsed: false,
+
+              bodyContent: [
+                'Annual Report for the year 2019-2020 (PDF)',
+                '2020 - 2021 Financial Presentation - Q3 Results 21, January | 2021',
+                '2020 - 2021 Financial Presentation - Q2 Results 22, October | 2020',
+                '2020 - 2021 Financial Presentation - Q1 Results 23, July | 2020',
+                'Financial performance for the quarter/nine months ended 31 Dec, 2020'
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+
+section.reporting
+  h1.mb-4.mb-md-5 Reporting
+  .row
+    .mx-auto.d-flex.flex-column
+      .accordion-container.mb-5
+        +accordion(accordionOptions)

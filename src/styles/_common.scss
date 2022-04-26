@@ -28,10 +28,8 @@ footer {
   }
 }
 
-.container-test {
-  @include media-breakpoint-down(md) {
-    max-width: calc(100% - 40px);
-  }
+svg {
+  fill: $purple;
 }
 
 table {
@@ -112,4 +110,9 @@ table {
   font-weight: 500;
   text-decoration-line: underline;
   color: $purple;
+}
+
+.fit {
+  width: 100%;
+  max-width: fit-content;
 }

@@ -12549,10 +12549,8 @@ footer {
   }
 }
 
-@media (max-width: 767.98px) {
-  .container-test {
-    max-width: calc(100% - 40px);
-  }
+svg {
+  fill: #664599;
 }
 
 table th {
@@ -12634,6 +12632,13 @@ table th {
   color: #664599;
 }
 
+.fit {
+  width: 100%;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+
 /* Компоненты */
 .accordion-item {
   border-left: none;
@@ -12645,21 +12650,26 @@ table th {
   box-shadow: none;
 }
 
-.accordion-button span {
+.accordion-button span,
+.accordion-button-title {
   font-size: 26px;
+  font-weight: 500;
 }
 @media (max-width: 1599.98px) {
-  .accordion-button span {
+  .accordion-button span,
+.accordion-button-title {
     font-size: 24px;
   }
 }
 @media (max-width: 991.98px) {
-  .accordion-button span {
+  .accordion-button span,
+.accordion-button-title {
     font-size: 20px;
   }
 }
 @media (max-width: 767.98px) {
-  .accordion-button span {
+  .accordion-button span,
+.accordion-button-title {
     font-size: 18px;
   }
 }
@@ -12676,6 +12686,82 @@ table th {
   .accordion-body {
     font-size: 16px;
   }
+}
+
+.accordion-item.lined > .accordion-header > .accordion-button {
+  padding: 25px 50px;
+  position: relative;
+}
+.accordion-item.lined > .accordion-header > .accordion-button::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 0;
+  content: "";
+  background-color: #664599;
+  -webkit-transition: height 0.3s ease-in;
+  -o-transition: height 0.3s ease-in;
+  transition: height 0.3s ease-in;
+}
+@media (max-width: 991.98px) {
+  .accordion-item.lined > .accordion-header > .accordion-button {
+    padding: 25px;
+  }
+}
+.accordion-item.lined > .accordion-header > .accordion-button:not(.collapsed)::before {
+  height: 100%;
+}
+.accordion-item.lined > .accordion-collapse {
+  position: relative;
+}
+.accordion-item.lined > .accordion-collapse::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 0;
+  content: "";
+  background-color: #664599;
+  -webkit-transition: height 0.3s ease-in;
+  -o-transition: height 0.3s ease-in;
+  transition: height 0.3s ease-in;
+}
+.accordion-item.lined > .accordion-collapse.show::before {
+  height: 100%;
+}
+
+.reporting-accordion .accordion-item:not(.accordion-item-inner) {
+  border: 0;
+  margin-bottom: 10px;
+}
+.reporting-accordion .accordion-header {
+  background-color: #ffffff;
+  margin-bottom: 2px;
+}
+.reporting-accordion .accordion-collapse {
+  background-color: #ffffff;
+}
+.reporting-accordion .accordion-collapse-inner {
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.about-accordion .accordion-button .fade-in-btn {
+  -webkit-transition: opacity 0.3s linear;
+  -o-transition: opacity 0.3s linear;
+  transition: opacity 0.3s linear;
+}
+.about-accordion .accordion-button:not(.collapsed) .fade-in-btn {
+  opacity: 0;
+}
+.about-accordion .accordion-collapse .animated-body {
+  margin-top: 0;
+  -webkit-transition: margin 0.3s linear;
+  -o-transition: margin 0.3s linear;
+  transition: margin 0.3s linear;
+}
+.about-accordion .accordion-collapse.show .animated-body {
+  margin-top: -37px;
 }
 
 .form-select {
@@ -12920,7 +13006,6 @@ table th {
 .download-btn svg {
   width: 34px;
   padding-left: 10px;
-  fill: #664599;
   -webkit-transition: fill 0.15s ease-in-out;
   -o-transition: fill 0.15s ease-in-out;
   transition: fill 0.15s ease-in-out;
@@ -12931,6 +13016,21 @@ table th {
 @media (max-width: 575.98px) {
   .download-btn--full-width {
     width: 100%;
+  }
+}
+
+.download-link {
+  font-size: 20px;
+  line-height: 160%;
+}
+@media (max-width: 991.98px) {
+  .download-link {
+    font-size: 18px;
+  }
+}
+@media (max-width: 767.98px) {
+  .download-link {
+    font-size: 16px;
   }
 }
 
