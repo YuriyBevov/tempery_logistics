@@ -25,7 +25,7 @@ function limitStr( str, n ) {
 }
 
 // запрет скролла у body
-bodyLocker = (bool) => {
+function bodyLocker(bool) {
   let body = document.querySelector('body');
   let paddingOffset = window.innerWidth - document.body.offsetWidth + 'px';
 

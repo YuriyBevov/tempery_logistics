@@ -1,0 +1,18 @@
+include ../data/main-nav-data
+
+nav.d-none.d-xl-block.mx-auto.main-nav
+  ul.nav
+    each link in _mainNavData
+      li.nav-item.me-0.me-xl-4.me-xxl-5
+        a(href= link.url class= link.isActive ? 'active' : null aria-current= link.isActive ? 'true' : null).nav-link.px-0.fs-4.fw-medium=link.name
+
+    li.nav-item.dropdown
+      a(href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false").nav-link.px-0.fs-4.fw-medium.dropdown-toggle.navbar-dropdown-toggle More
+
+      ul(aria-labelledby="navbarDropdownMenuLink").dropdown-menu
+        li
+          a(href="#").dropdown-item.fs-4.fw-medium Link 1
+        li
+          a(href="#").dropdown-item.fs-4.fw-medium Link 2
+        li
+          a(href="#").dropdown-item.fs-4.fw-medium Link 3

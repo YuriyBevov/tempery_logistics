@@ -4,6 +4,14 @@ body {
   min-height: 100vh;
 }
 
+header {
+  min-height: 100px;
+
+  @include media-breakpoint-down(md) {
+    min-height: 70px;
+  }
+}
+
 footer {
   margin-top: auto;
 }

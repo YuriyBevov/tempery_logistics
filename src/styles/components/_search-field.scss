@@ -1,0 +1,15 @@
+.search-field {
+  button {
+    height: 40px;
+  }
+
+  button svg {
+    fill: none;
+    stroke: $purple;
+    stroke-width: 2px;
+  }
+
+  input {
+    display: none;
+  }
+}

@@ -1,2 +1,69 @@
-section.intro
-  p intro
+include ../../mixins/_main-link
+
+-
+  partners = [
+    { name: 'ArcelorMittal', img: 'partner_1@1x.png' },{ name: 'SibCoal', img: 'partner_2@1x.png' },{ name: 'Evraz', img: 'partner_3@1x.png' },
+    { name: 'Cotecna', img: 'partner_4@1x.png' },{ name: 'Jobs.bg', img: 'partner_5@1x.png' },{ name: 'IBS', img: 'partner_6@1x.png' },
+    { name: 'IBU Trage KFT', img: 'partner_7@1x.png' },{ name: 'TR', img: 'partner_8@1x.png' },{ name: 'OKD', img: 'partner_9@1x.png' },
+    { name: 'SZIP', img: 'partner_10@1x.png' },{ name: 'Portinvest Logistics', img: 'partner_11@1x.png' },{ name: 'Vivacom', img: 'partner_12@1x.png' },
+  ]
+.swiper.main-swiper
+  .swiper-wrapper
+    .swiper-slide
+      section.intro
+        .swiper.inner-swiper
+          .swiper-wrapper
+            include ../../components/_intro-slide@1
+            include ../../components/_intro-slide@2
+            include ../../components/_intro-slide@3
+            include ../../components/_intro-slide@4
+            include ../../components/_intro-slide@5
+
+            //.swiper-slide(style=`background-image: url('./assets/img/${'intro_3@1x.jpg'}')`)
+              .container.h-100
+                .row.my-auto.h-100
+                  .slide-content.col-4.d-flex.flex-column.my-auto.pe-3
+                    h2.mb-4.text-white.col-10 Contracts Portfolio
+                    p.mb-5.text-white.col-10 Our partners and customers
+
+                    +main-link({
+                      text: 'More Details',
+                      cls: 'border-white text-white fit'
+                    })
+
+                  .slide-side.d-flex.flex-wrap.my-auto.col-8
+                    each partner in partners
+                      .col-4.mb-2
+                        img(src=`./assets/img/${partner.img}` alt= partner.name).partner-logo
+
+
+            //.swiper-slide(style=`background-image: url('./assets/img/${'intro_4@1x.jpg'}')`)
+              .container.h-100
+                .row.my-auto.h-100
+                  .slide-content.col-4.d-flex.flex-column.my-auto.pe-3
+                    h2.mb-4.text-white.col-10 Expectation
+                    p.mb-5.text-white.col-10 Varna, near See Port, Expectation photo Temperi Logistics ltd 2021
+
+                  .slide-side.d-flex.flex-wrap.my-auto.col-8
+                    .col-3.collage-part
+                      img(src=`./assets/img/${'collage-part_1@1x.jpg'}` alt="1")
+                    .col-3.collage-part
+                      img(src=`./assets/img/${'intro_2@1x.jpg'}` alt="1")
+                    .col-6.collage-part
+                      img(src=`./assets/img/${'collage-part_3@1x.jpg'}` alt="1")
+
+    .swiper-slide
+      section.about
+        .swiper.inner-swiper
+          .swiper-wrapper
+            .swiper-slide(style="background-image: url('./assets/img/about_1@1x.jpg')")
+              p 1
+            .swiper-slide
+              p 1
+            .swiper-slide
+              p 1
+            .swiper-slide(style="background-image: url('./assets/img/about_1@1x.jpg')")
+              p 1
+            .swiper-slide
+
+

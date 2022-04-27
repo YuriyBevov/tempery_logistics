@@ -1,8 +1,9 @@
 /* stylelint-disable */
 //@import "./vendor/normalize";
+//@import "./vendor/swiper";
 @import "./vendor/bootstrap/bootstrap-custom";
 @import  "../../node_modules/bootstrap/scss/bootstrap";
 
 // Стили для swiper.js
-//@import "../../node_modules/swiper/swiper-bundle.min";
+@import "../../node_modules/swiper/swiper-bundle.min";
 

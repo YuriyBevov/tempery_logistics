@@ -1,0 +1,34 @@
+mixin main-intro-slide-view(opt)
+  .swiper-slide(style=`background-image: url('./assets/img/${opt.bg}')`)
+    .container.h-100
+      .row.my-auto.h-100
+        .slide-content.d-flex.flex-column.my-auto.pe-3(class= opt.slideContentCls ? opt.slideContentCls : null)
+          h2.mb-4.text-white.col-10!= opt.title
+          p.mb-5.text-white.col-10!= opt.desc
+
+          if opt.btnText
+            +main-link({
+              text: opt.btnText,
+              cls: 'border-white text-white fit'
+            })
+
+        if opt.type === 'main'
+          .slide-side.d-flex.flex-column.align-items-end.my-auto.col-6
+            each item in opt.sideItems
+              .slide-side-card(class = item.cls ? item.cls : null)
+                .d-flex.align-items-end.mb-3
+                  p.fs-1.me-2.lh-1.mb-0= item.titleCount
+                  span.fs-3.lh-1.mb-2!= item.titleText
+                span.fs-4.fw-light= item.desc
+
+        if opt.type === 'partners'
+          .slide-side.d-flex.flex-wrap.my-auto.col-8
+            each partner in opt.partners
+              .col-4.mb-2
+                img(src=`./assets/img/${partner.img}` alt= partner.name).partner-logo
+
+        if opt.type === 'collage'
+          .slide-side.d-flex.flex-wrap.my-auto.col-8
+            each part in opt.collageItems
+              .collage-part(class= part.cls ? part.cls : null)
+                img(src=`./assets/img/${part.img}` alt= part.alt)

@@ -11,40 +11,95 @@
     <script defer="defer" src="./assets/bundle.js"></script>
   </head>
   <body>
-    <header class="main-header bg-lightblack">
-      <nav class="navbar navbar-light navbar-expand-lg bg-white fixed-top">
-        <div class="container"><a class="navbar-brand" href="index.html"><img src="./assets/img/logotype_black@1x.png" alt="Temperi Logistics Ltd." width="242" height="37"></a>
-          <button class="navbar-toggler bg-purple" type="button" data-bs-toggle="offcanvas" data-bs-target="#site_nav" aria-controls="offcanvasNavbar">
+    <header class="main-header">
+      <nav class="main-navbar navbar fixed-top py-0 main-navbar-white-theme">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="index.html"><img class="main-logo" src="./assets/img/logotype_black@1x.png" alt="Temperi Logistics Ltd." width="242" height="37">
+            <svg class="secondary-logo" width="242" height="37">
+              <use xlink:href="./assets/svg-sprite.svg#icon-logotype"></use>
+            </svg></a>
+          <nav class="d-none d-xl-block mx-auto main-nav">
+            <ul class="nav">
+              <li class="nav-item me-0 me-xl-4 me-xxl-5"><a class="active nav-link px-0 fs-4 fw-medium" href="index.html" aria-current="true">Home</a></li>
+              <li class="nav-item me-0 me-xl-4 me-xxl-5"><a class="nav-link px-0 fs-4 fw-medium" href="about.html">About us</a></li>
+              <li class="nav-item me-0 me-xl-4 me-xxl-5"><a class="nav-link px-0 fs-4 fw-medium" href="projects.html">Projects</a></li>
+              <li class="nav-item me-0 me-xl-4 me-xxl-5"><a class="nav-link px-0 fs-4 fw-medium" href="publications.html">Publications</a></li>
+              <li class="nav-item me-0 me-xl-4 me-xxl-5"><a class="nav-link px-0 fs-4 fw-medium" href="announcement.html">Аnnouncement</a></li>
+              <li class="nav-item me-0 me-xl-4 me-xxl-5"><a class="nav-link px-0 fs-4 fw-medium" href="faq.html">FAQ</a></li>
+              <li class="nav-item dropdown"><a class="nav-link px-0 fs-4 fw-medium dropdown-toggle navbar-dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item fs-4 fw-medium" href="#">Link 1</a></li>
+                  <li><a class="dropdown-item fs-4 fw-medium" href="#">Link 2</a></li>
+                  <li><a class="dropdown-item fs-4 fw-medium" href="#">Link 3</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+          <div class="ms-auto align-items-center d-none d-md-flex">
+            <div class="search-field">
+              <form class="d-flex me-2" action="#">
+                <input class="for-control me-2" type="search" placeholder="Start your search..." aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">
+                  <svg width="23" height="22">
+                    <use xlink:href="./assets/svg-sprite.svg#icon-search"></use>
+                  </svg>
+                </button>
+              </form>
+            </div>
+                <select class="lang-select me-4 form-select">
+                  <option value="EN" selected>EN</option>
+                  <option value="BLG">BLG</option>
+                </select>
+          </div>
+          <button class="navbar-toggler bg-purple order-2 order-xl-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#site_nav" aria-controls="offcanvasNavbar">
             <svg width="24" height="24">
               <use xlink:href="./assets/svg-sprite.svg#icon-burger"></use>
             </svg>
           </button>
-          <div class="offcanvas offcanvas-end" tabindex="-1" id="site_nav" aria-labelledby="site_nav_label">
-            <div class="offcanvas-header">
-              <h4 class="offcanvas-title" id="site_nav_label">Menu</h4>
-              <button class="btn-close text-reset" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          <div class="offcanvas offcanvas-end bg-lightblack" tabindex="-1" id="site_nav" aria-labelledby="site_nav_label">
+            <div class="offcanvas-header py-4">
+              <h5 class="offcanvas-title ms-auto me-2 opacity-50" id="site_nav_label">Close</h5>
+              <button class="btn-close text-reset bg-purple me-1" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-              <ul class="navbar-nav d-inline-flex mb-2 mb-lg-0 mx-auto">
-                <li class="nav-item me-0 me-xl-4"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item me-0 me-xl-4"><a class="nav-link" href="about.html">About us</a></li>
-                <li class="nav-item me-0 me-xl-4"><a class="nav-link" href="#">Home</a></li>
-                <li class="nav-item me-0 me-xl-4"><a class="nav-link" href="projects.html">Projects</a></li>
-                <li class="nav-item me-0 me-xl-4"><a class="nav-link" href="publications.html">Publications</a></li>
-                <li class="nav-item me-0 me-xl-4"><a class="nav-link" href="announcement.html">Аnnouncement</a></li>
-                <li class="nav-item me-0 me-xl-4"><a class="nav-link" href="faq.html">FAQ</a></li>
-                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle navbar-dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="#">Link 1</a></li>
-                    <li><a class="dropdown-item" href="#">Link 2</a></li>
-                    <li><a class="dropdown-item" href="#">Link 3</a></li>
-                  </ul>
+              <ul class="navbar-nav pb-4">
+                <li class="nav-item mb-4">
+                  <div class="accordion" id="offcanvas-home-acc">
+                    <div class="accordion-item border-0">
+                      <h3 class="accordion-header" id="home">
+                        <button class="fs-4 fw-medium p-0 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHome" aria-expanded="true" aria-controls="collapseHome">Home</button>
+                      </h3>
+                      <div class="accordion-collapse collapse" id="collapseHome" aria-labelledby="home" data-bs-parent="#offcanvas-home-acc">
+                        <div class="accordion-body pt-4 ps-3"><a class="fs-4 fw-medium d-block mb-3" href="#">Sale of anthracite, coal, coke products</a><a class="fs-4 fw-medium d-block mb-3" href="#">Trade in building materials</a><a class="fs-4 fw-medium d-block mb-3" href="#">Bulgarian gloves</a><a class="fs-4 fw-medium d-block mb-3" href="#">Contracts Portfolio</a><a class="fs-4 fw-medium d-block" href="#">Expectation</a></div>
+                      </div>
+                    </div>
+                  </div>
+                  <li class="nav-item mb-4">
+                    <div class="accordion" id="offcanvas-about-acc">
+                      <div class="accordion-item border-0">
+                        <h3 class="accordion-header" id="about">
+                          <button class="fs-4 fw-medium p-0 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAbout" aria-expanded="true" aria-controls="collapseAbout">About us</button>
+                        </h3>
+                        <div class="accordion-collapse collapse" id="collapseAbout" aria-labelledby="about" data-bs-parent="#offcanvas-about-acc">
+                          <div class="accordion-body pt-4 ps-3"><a class="fs-4 fw-medium d-block mb-3" href="#">Organization Structure</a><a class="fs-4 fw-medium d-block mb-3" href="#">Reporting</a><a class="fs-4 fw-medium d-block" href="#">Products of our customers & contractors</a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="nav-item mb-4"><a class="fs-4 fw-medium d-block" href="projects.html">Projects</a></li>
+                  <li class="nav-item mb-4"><a class="fs-4 fw-medium d-block" href="publications.html">Publications</a></li>
+                  <li class="nav-item mb-4"><a class="fs-4 fw-medium d-block" href="announcement.html">Аnnouncement</a></li>
+                  <li class="nav-item mb-4"><a class="fs-4 fw-medium d-block" href="FAQ.html">FAQ</a></li>
                 </li>
               </ul>
-                  <select class="lang-select form-select">
-                    <option value="EN" selected>EN</option>
-                    <option value="BLG">BLG</option>
-                  </select>
+              <div class="mb-4 mt-4 pt-4">
+                <h3 class="mb-3 fw-semi fs-4">Main office</h3>
+                <p class="fs-4 fw-light">Tel/WhatsApp: <a href="tel:+359878877365" class="text-purple main-link">+359 878877365</a></p>
+              </div>
+              <div class="mb-4">
+                <h3 class="mb-3 fw-semi fs-4">Branch</h3>
+                <p class="fs-4 fw-light">Budapest: <a href="tel:+3617009016" class="text-purple main-link">+361 700 90 16</a></p>
+                <p class="fs-4 fw-light">Tel Aviv-Yafo: <a href="tel:+97233761079" class="text-purple main-link">+972 3 376 1079</a></p>
+              </div>
             </div>
           </div>
         </div>

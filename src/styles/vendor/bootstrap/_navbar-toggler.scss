@@ -1,2 +1,7 @@
 // scss-docs-start navbar-variables
-$navbar-toggler-padding-x:          .25rem !default;
+$navbar-toggler-padding-x:          .25rem;
+$btn-close-width:            24px;
+$btn-close-height:           $btn-close-width;
+$btn-close-padding-x:        0;
+$btn-close-padding-y:        $btn-close-padding-x;
+$btn-close-color:            $white;

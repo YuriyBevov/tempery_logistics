@@ -1,0 +1,70 @@
+.main-navbar {
+  min-height: inherit;
+
+  .secondary-logo {
+    display: none;
+    fill: $white;
+  }
+}
+
+.main-navbar-white-theme {
+    background-color: $white;
+}
+
+.main-navbar-black-theme {
+  background-color: $lightblack; // transparent
+
+  .main-logo {
+    display: none;
+  }
+
+  .secondary-logo {
+    display: block;
+  }
+
+  .nav-link,
+  .lang-select {
+    color: $white;
+  }
+
+  .search-field svg {
+    stroke: $white;
+  }
+}
+
+.main-nav {
+  .nav-link {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      position: absolute;
+      bottom: 0;
+      left: -100%;
+      content: '';
+      width: 100%;
+      height: 2px;
+      background-color: $purple;
+
+      transition: left 0.3s 0.1s ease-in;
+    }
+
+    &.active,
+    &:hover,
+    &:focus,
+    &:active {
+      &::before {
+        left: 0;
+      }
+    }
+  }
+}
+
+.navbar-toggler {
+  width: 40px;
+  height: 40px;
+
+  svg {
+    fill: $white;
+  }
+}

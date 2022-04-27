@@ -8,10 +8,14 @@
 @import "common";
 
 /* Компоненты */
+
+@import "./components/slide-side-card";
+@import "./components/swiper-slider";
 @import "./components/accordion";
 @import "./components/select";
 @import "./components/dropdown-toggle";
-@import "./components/navbar-toggler";
+@import "./components/navbar";
+@import "./components/offcanvas";
 @import "./components/pagination";
 @import "./components/breadcrumbs";
 @import "./components/card";
@@ -23,6 +27,7 @@
 @import "./components/download-link";
 @import "./components/video-container";
 @import "./components/customer-product-card";
+@import "./components/search-field";
 
 /* Views */
 

@@ -1,0 +1,62 @@
+-
+  linkClass = 'fs-4 fw-medium d-block'
+-
+  accordionItemClass = 'border-0'
+-
+  accordionBtnClass = 'fs-4 fw-medium p-0'
+-
+  accordionBodyClass = 'pt-4 ps-3'
+
+button(type="button" data-bs-toggle="offcanvas" data-bs-target="#site_nav" aria-controls="offcanvasNavbar").navbar-toggler.bg-purple.order-2.order-xl-1
+  svg(width="24" height="24")
+    use(xlink:href="./assets/svg-sprite.svg#icon-burger")
+
+.offcanvas.offcanvas-end(tabindex="-1" id="site_nav" aria-labelledby="site_nav_label").bg-lightblack
+  .offcanvas-header.py-4
+    h5.offcanvas-title#site_nav_label.ms-auto.me-2.opacity-50 Close
+    button(type="button" data-bs-dismiss="offcanvas" aria-label="Close").btn-close.text-reset.bg-purple.me-1
+
+  .offcanvas-body
+    ul.navbar-nav.pb-4
+      li.nav-item.mb-4
+        .accordion#offcanvas-home-acc
+          .accordion-item(class= accordionItemClass)
+            h3.accordion-header#home
+              button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseHome" aria-expanded="true" aria-controls="collapseHome" class= accordionBtnClass).accordion-button.collapsed Home
+            #collapseHome.accordion-collapse.collapse(aria-labelledby="home" data-bs-parent="#offcanvas-home-acc")
+              .accordion-body(class= accordionBodyClass)
+                a(href="#" class= linkClass).mb-3 Sale of anthracite, coal, coke products
+                a(href="#" class= linkClass).mb-3 Trade in building materials
+                a(href="#" class= linkClass).mb-3 Bulgarian gloves
+                a(href="#" class= linkClass).mb-3 Contracts Portfolio
+                a(href="#" class= linkClass) Expectation
+
+        li.nav-item.mb-4
+          .accordion#offcanvas-about-acc
+            .accordion-item(class= accordionItemClass)
+              h3.accordion-header#about
+                button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseAbout" aria-expanded="true" aria-controls="collapseAbout" class= accordionBtnClass).accordion-button.collapsed About us
+              #collapseAbout.accordion-collapse.collapse(aria-labelledby="about" data-bs-parent="#offcanvas-about-acc")
+                .accordion-body(class= accordionBodyClass)
+                  a(href="#" class= linkClass).mb-3 Organization Structure
+                  a(href="#" class= linkClass).mb-3 Reporting
+                  a(href="#" class= linkClass) Products of our customers & contractors
+
+        li.nav-item.mb-4
+          a(href="projects.html" class= linkClass) Projects
+        li.nav-item.mb-4
+          a(href="publications.html" class= linkClass) Publications
+        li.nav-item.mb-4
+          a(href="announcement.html" class= linkClass) Аnnouncement
+        li.nav-item.mb-4
+          a(href="FAQ.html" class= linkClass) FAQ
+
+    .mb-4.mt-4.pt-4
+      h3.mb-3.fw-semi.fs-4 Main office
+      p.fs-4.fw-light Tel/WhatsApp: <a href="tel:+359878877365" class="text-purple main-link">+359 878877365</a>
+
+    .mb-4
+      h3.mb-3.fw-semi.fs-4 Branch
+
+      p.fs-4.fw-light Budapest: <a href="tel:+3617009016" class="text-purple main-link">+361 700 90 16</a>
+      p.fs-4.fw-light Tel Aviv-Yafo: <a href="tel:+97233761079" class="text-purple main-link">+972 3 376 1079</a>

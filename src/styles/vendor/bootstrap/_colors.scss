@@ -6,7 +6,7 @@ $white      :   #ffffff;
 $gray       :   #666666;
 $gray-200   :   #F2F2F2;
 $black      :   #000000;
-$footer-bg  :   #292B33;
+$lightblack  :   #292B33;
 
 $primary:       $purple;
 
@@ -14,21 +14,23 @@ $body-color: #111111;
 $body-bg: $gray-200;
 
 $colors: (
+  "white"   : $white,
   "warning" : $yellow,
   "purple" : $purple,
   "black" : $black,
-  "lightblack" : $footer-bg,
+  "lightblack" : $lightblack,
   "gray" : $gray,
   "lightgray" : $gray-200,
   "main" : $body-color,
 );
 
 $theme-colors: (
+  "white"   : $white,
   "primary":    $primary,
   "warning" : $yellow,
   "purple" : $purple,
   "black": $black,
-  "lightblack" : $footer-bg,
+  "lightblack" : $lightblack,
   "gray" : $gray,
   "lightgray" : $gray-200,
   "main" : $body-color,

@@ -1,0 +1,53 @@
+
+.link-underline-hover {
+  position: relative;
+  width: fit-content;
+  overflow: hidden;
+
+  &::after {
+    position: absolute;
+    bottom: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    content: '';
+    background-color: $purple;
+    transition: left 0.3s 0.1s linear;
+  }
+
+  &:hover,
+  &:focus {
+    &::after {
+      left: 0;
+    }
+  }
+}
+
+.offcanvas {
+  p,a,h1,h2,h3,h4,h5,h6,button,
+  .accordion-button:not(.collapsed) {
+    color: $white;
+  }
+
+  .nav-item a,
+  .accordion-body a {
+
+    @extend .link-underline-hover;
+  }
+}
+
+.navbar-nav {
+  border-bottom: 1px solid rgba(255,255,255, 0.05);
+
+  .accordion-header {
+    width: fit-content;
+  }
+
+  .accordion-button::after {
+    margin-left: 10px;
+    width: 14px;
+    height: 24px;
+    background-size: contain;
+    background-image: url("../assets/img/icon-arr-down.png");
+  }
+}

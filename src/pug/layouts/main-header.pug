@@ -1,40 +1,30 @@
 include ../mixins/_main-select
-include ../data/main-nav-data
 
-header.main-header.bg-lightblack
-  nav.navbar.navbar-light.navbar-expand-lg.bg-white.fixed-top
+header.main-header
+  nav.main-navbar.navbar.fixed-top.py-0.main-navbar-white-theme
     .container
-      a(href="index.html").navbar-brand
-        img(src="./assets/img/logotype_black@1x.png" alt="Temperi Logistics Ltd." width="242" height="37")
+      a(href="index.html").navbar-brand.d-flex.align-items-center
+        img(src="./assets/img/logotype_black@1x.png" alt="Temperi Logistics Ltd." width="242" height="37").main-logo
 
-      button(type="button" data-bs-toggle="offcanvas" data-bs-target="#site_nav" aria-controls="offcanvasNavbar").navbar-toggler.bg-purple
-        svg(width="24" height="24")
-          use(xlink:href="./assets/svg-sprite.svg#icon-burger")
+        svg(width="242" height="37").secondary-logo
+          use(xlink:href="./assets/svg-sprite.svg#icon-logotype")
 
-      .offcanvas.offcanvas-end(tabindex="-1" id="site_nav" aria-labelledby="site_nav_label")
-        .offcanvas-header
-          h4.offcanvas-title#site_nav_label Menu
-          button(type="button" data-bs-dismiss="offcanvas" aria-label="Close").btn-close.text-reset
+      include ../components/_nav
 
-        .offcanvas-body
-          ul.navbar-nav.d-inline-flex.mb-2.mb-lg-0.mx-auto
-            each link in _mainNavData
-              li.nav-item.me-0.me-xl-4
-                a(href= link.url).nav-link=link.name
+      .ms-auto.align-items-center.d-none.d-md-flex
+        .search-field
+          form(action="#").d-flex.me-2
+            input.for-control.me-2(type="search" placeholder="Start your search..." aria-label="Search")
+            button(type="submit").btn.btn-outline-success
+              svg(width="23" height="22")
+                use(xlink:href="./assets/svg-sprite.svg#icon-search")
 
-            li.nav-item.dropdown
-              a(href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false").nav-link.dropdown-toggle.navbar-dropdown-toggle More
+        +main-select({
+          selected: 'EN',
+          options: ['EN', 'BLG',],
+          cls: 'lang-select me-4'
+        })
 
-              ul(aria-labelledby="navbarDropdownMenuLink").dropdown-menu
-                li
-                  a(href="#").dropdown-item Link 1
-                li
-                  a(href="#").dropdown-item Link 2
-                li
-                  a(href="#").dropdown-item Link 3
+      include ../components/_offcanvas
 
-          +main-select({
-            selected: 'EN',
-            options: ['EN', 'BLG',],
-            cls: 'lang-select'
-          })
+

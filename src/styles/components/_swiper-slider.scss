@@ -1,0 +1,47 @@
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.main-swiper {
+  min-height: 770px;
+  max-height: calc(100vh - 100px);
+
+  section {
+    height: inherit;
+  }
+}
+
+.inner-swiper {
+  height: 100%;
+  width: 100%;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.slide-side {
+  .partner-logo {
+    width: 100%;
+    height: 100%;
+    max-width: 220px;
+    max-height: 170px;
+    object-fit: contain;
+  }
+
+  .collage-part {
+    &:not(:last-child) {
+      padding-right: 30px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left;
+    }
+  }
+}
