@@ -18,14 +18,54 @@ var aboutCarousel = document.querySelector('#aboutCarousel');
 
 if (aboutCarousel) {
   aboutCarousel.style.maxHeight = "calc(100vh - ".concat(initialHeaderHeight, "px)");
-  var aboutCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default().Carousel)(aboutCarousel);
+  var aboutCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default().Carousel)(aboutCarousel, {
+    interval: false
+  });
 }
 
 var introCarousel = document.querySelector('#introCarousel');
 
 if (introCarousel) {
   introCarousel.style.maxHeight = "calc(100vh - ".concat(initialHeaderHeight, "px)");
-  var introCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default().Carousel)(introCarousel);
+  var introCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default().Carousel)(introCarousel, {
+    interval: false
+  });
+  var nextBtn = introCarousel.querySelector('.carousel-control-next');
+  var _thisBtn = null;
+  introCarousel.addEventListener('slid.bs.carousel', function () {
+    console.log('test', introCarouselInstance);
+
+    var onClickScrollDown = function onClickScrollDown(evt) {
+      evt.preventDefault(); //introCarouselInstance.pause();
+
+      scrollTo({
+        top: 850,
+        behavior: 'smooth'
+      });
+
+      _thisBtn.removeEventListener('click', onClickScrollDown);
+    };
+    /*if(introCarouselInstance._activeElement === introCarouselInstance._items[introCarouselInstance._items.length - 2]) {
+      introCarouselInstance.pause();
+    } */
+
+
+    if (introCarouselInstance._activeElement === introCarouselInstance._items[introCarouselInstance._items.length - 1]) {
+      console.log('the last one'); //onClickScrollDown()
+
+      _thisBtn = nextBtn;
+
+      _thisBtn.addEventListener('click', onClickScrollDown);
+    } else {
+      console.log(_thisBtn);
+
+      if (_thisBtn !== null) {
+        _thisBtn.removeEventListener('click', onClickScrollDown);
+      }
+
+      console.log(introCarouselInstance._activeElement, introCarouselInstance._items[introCarouselInstance._items.length - 1]);
+    }
+  });
 }
 
 var onResizeSetCarouselHeight = function onResizeSetCarouselHeight() {
