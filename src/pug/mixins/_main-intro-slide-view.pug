@@ -1,5 +1,5 @@
 mixin main-intro-slide-view(opt)
-  .swiper-slide(style=`background-image: url('./assets/img/${opt.bg}')`)
+  .carousel-item(style=`background-image: url('./assets/img/${opt.bg}')` class= opt.isActive ? 'active' : null)
     .container.h-100
       .row.my-auto.h-100
         .slide-content.d-flex.flex-column.my-auto.pe-3(class= opt.slideContentCls ? opt.slideContentCls : null)

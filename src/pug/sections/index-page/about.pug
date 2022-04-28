@@ -1,24 +1,26 @@
-.swiper.main-swiper
-  .swiper-wrapper
-    .swiper-slide
-      section.about
-        .swiper.inner-swiper
-          .swiper-wrapper
-            .swiper-slide
-              p about-1
-            .swiper-slide
-              p about-2
-            .swiper-slide
-              p about-3
+include ../../mixins/_main-link
 
-    .swiper-slide
-      section.intro
-        .swiper.inner-swiper
-          .swiper-wrapper
-            .swiper-slide
-              p intro-1
-            .swiper-slide
-              p intro-2
-            .swiper-slide
-              p intro-3
+#aboutCarousel.carousel.slide(data-bs-ride="carousel")
+  .carousel-indicators
+    button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1").active
+    button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="1" aria-label="Slide 2")
+    button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="2" aria-label="Slide 3")
+    button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="3" aria-label="Slide 4")
+    button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="4" aria-label="Slide 5")
+
+  .carousel-inner
+    include ../../components/_intro-slide@1
+    include ../../components/_intro-slide@2
+    include ../../components/_intro-slide@3
+    include ../../components/_intro-slide@4
+    include ../../components/_intro-slide@5
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#aboutCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
 
