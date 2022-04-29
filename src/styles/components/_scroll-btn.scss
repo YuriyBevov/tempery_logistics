@@ -1,0 +1,12 @@
+.scroll-btn {
+  display: flex;
+  justify-content: center;
+  padding-top: 24px;
+  width: 60px;
+  height: 120px;
+  background-color: $purple;
+
+  svg {
+    fill: white;
+  }
+}

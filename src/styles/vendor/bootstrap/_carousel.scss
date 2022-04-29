@@ -1,0 +1,32 @@
+$carousel-control-color:             $white;
+$carousel-control-width:             15%;
+$carousel-control-opacity:           .5;
+$carousel-control-hover-opacity:     .9;
+$carousel-control-transition:        opacity .15s ease;
+
+$carousel-indicator-width:           26px;
+$carousel-indicator-height:          26px;
+
+$carousel-indicator-hit-area-height: 10px;
+$carousel-indicator-spacer:          3px;
+$carousel-indicator-opacity:         .5;
+$carousel-indicator-active-bg:       transparent;
+$carousel-indicator-active-opacity:  1;
+$carousel-indicator-transition:      opacity .6s ease;
+
+$carousel-caption-width:             70%;
+$carousel-caption-color:             $white;
+$carousel-caption-padding-y:         1.25rem;
+$carousel-caption-spacer:            1.25rem;
+
+$carousel-control-icon-width:        2rem;
+
+$carousel-control-prev-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#{$carousel-control-color}'><path d='M0.875999 11.4071L4.755 7.52911C4.94253 7.34164 5.19684 7.23633 5.462 7.23633C5.72716 7.23633 5.98147 7.34164 6.169 7.52911C6.35647 7.71664 6.46179 7.97095 6.46179 8.23611C6.46179 8.50128 6.35647 8.75559 6.169 8.94311L2.614 12.5001H23C23.2652 12.5001 23.5196 12.6055 23.7071 12.793C23.8946 12.9805 24 13.2349 24 13.5001V13.5001C24 13.7653 23.8946 14.0197 23.7071 14.2072C23.5196 14.3948 23.2652 14.5001 23 14.5001H2.553L6.169 18.1151C6.26198 18.208 6.33574 18.3183 6.38606 18.4397C6.43638 18.5611 6.46229 18.6912 6.46229 18.8226C6.46229 18.954 6.43638 19.0842 6.38606 19.2056C6.33574 19.327 6.26198 19.4372 6.169 19.5301C5.98147 19.7176 5.72716 19.8229 5.462 19.8229C5.19684 19.8229 4.94253 19.7176 4.755 19.5301L0.875 15.6511C0.314062 15.0873 -0.000743866 14.3242 -0.000556946 13.5289C-0.000370026 12.7336 0.314796 11.9707 0.875999 11.4071Z'/></svg>");
+$carousel-control-next-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#{$carousel-control-color}'><path d='M23.124 11.4071L19.245 7.52911C19.0575 7.34164 18.8032 7.23633 18.538 7.23633C18.2728 7.23633 18.0185 7.34164 17.831 7.52911C17.6435 7.71664 17.5382 7.97095 17.5382 8.23611C17.5382 8.50128 17.6435 8.75559 17.831 8.94311L21.386 12.5001H1C0.734784 12.5001 0.48043 12.6055 0.292893 12.793C0.105357 12.9805 0 13.2349 0 13.5001H0C0 13.7653 0.105357 14.0197 0.292893 14.2072C0.48043 14.3948 0.734784 14.5001 1 14.5001H21.447L17.831 18.1151C17.738 18.208 17.6643 18.3183 17.6139 18.4397C17.5636 18.5611 17.5377 18.6912 17.5377 18.8226C17.5377 18.954 17.5636 19.0842 17.6139 19.2056C17.6643 19.327 17.738 19.4372 17.831 19.5301C18.0185 19.7176 18.2728 19.8229 18.538 19.8229C18.8032 19.8229 19.0575 19.7176 19.245 19.5301L23.125 15.6511C23.6859 15.0873 24.0007 14.3242 24.0006 13.5289C24.0004 12.7336 23.6852 11.9707 23.124 11.4071Z'/></svg>");
+
+$carousel-transition-duration:       .6s;
+$carousel-transition:                transform $carousel-transition-duration ease-in-out; // Define transform transition first if using multiple transitions (e.g., `transform 2s ease, opacity .5s ease-out`)
+
+$carousel-dark-indicator-active-bg:  $black;
+$carousel-dark-caption-color:        $black;
+$carousel-dark-control-icon-filter:  invert(1) grayscale(100);
