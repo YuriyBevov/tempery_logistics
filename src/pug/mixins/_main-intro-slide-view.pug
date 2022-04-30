@@ -1,10 +1,10 @@
 mixin main-intro-slide-view(opt)
   .carousel-item(style=`background-image: url('./assets/img/${opt.bg}')` class= opt.isActive ? 'active' : null)
     .container.h-100
-      .row.my-auto.h-100
-        .slide-content.d-flex.flex-column.align-items-center.align-items-lg-start.my-auto.pe-3(class= opt.slideContentCls ? opt.slideContentCls : null)
+      .row.my-auto.align-items-center.h-100
+        .slide-content.d-flex.flex-column.align-items-center.align-items-lg-start.my-lg-auto.pe-3(class= opt.slideContentCls ? opt.slideContentCls : null)
           h2.mb-4.text-white.col-lg-10.text-center.text-lg-start!= opt.title
-          p.mb-5.text-white.col-lg-10!= opt.desc
+          p.slide-content-desc.mb-4.mb-md-5.text-white!= opt.desc
 
           if opt.btnText
             +main-link({
@@ -13,22 +13,22 @@ mixin main-intro-slide-view(opt)
             })
 
         if opt.type === 'main'
-          .slide-side.d-flex.flex-column.flex-md-row.flex-lg-column.align-items-start.align-items-lg-end.my-auto.col-12.col-lg-4
+          .slide-side.d-flex.flex-column.flex-md-row.flex-lg-column.align-items-start.align-items-lg-end.my-0.my-lg-auto.col-12.col-lg-4
             each item in opt.sideItems
               .slide-side-card(class = item.cls ? item.cls : null)
-                .d-flex.align-items-end.mb-3
-                  p.fs-1.me-2.lh-1.mb-0= item.titleCount
-                  span.fs-3.lh-1.mb-1.mb-md-2!= item.titleText
-                span.fs-4.fw-light.d-none.d-md-block= item.desc
+                .d-flex.align-items-end.mb-0.mb-md-3.slide-side-title
+                  p.me-2.lh-1.mb-0= item.titleCount
+                  span.lh-1.mb-1.mb-md-2!= item.titleText
+                span.slide-side-desc.fw-light= item.desc
 
         if opt.type === 'partners'
-          .slide-side.d-flex.flex-wrap.my-auto.col-8
+          .slide-side.d-flex.flex-wrap.my-auto.col-12.col-lg-8
             each partner in opt.partners
-              .col-4.mb-2
+              .col-4.col-md-3.col-lg-4.mb-2.d-flex.justify-content-center
                 img(src=`./assets/img/${partner.img}` alt= partner.name).partner-logo
 
         if opt.type === 'collage'
-          .slide-side.d-flex.flex-wrap.my-auto.col-8
+          .slide-side.d-flex.flex-wrap.my-auto.col-12.col-lg-8
             each part in opt.collageItems
               .collage-part(class= part.cls ? part.cls : null)
                 img(src=`./assets/img/${part.img}` alt= part.alt)

@@ -1,26 +1,40 @@
 include ../../mixins/_main-link
 
-//#aboutCarousel.carousel.slide(data-bs-ride="carousel")
+#aboutCarousel.carousel.slide(data-bs-ride="carousel")
   .carousel-indicators
-    button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1").active
-    button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="1" aria-label="Slide 2")
-    button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="2" aria-label="Slide 3")
-    button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="3" aria-label="Slide 4")
-    button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="4" aria-label="Slide 5")
+    button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1").indicator.active
+      .indicator-inner
+    button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="1" aria-label="Slide 2").indicator
+      .indicator-inner
+    button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="2" aria-label="Slide 3").indicator
+      .indicator-inner
+    button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="3" aria-label="Slide 4").indicator
+      .indicator-inner
+    button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="4" aria-label="Slide 5").indicator
+      .indicator-inner
 
   .carousel-inner
-    include ../../components/_intro-slide@1
-    include ../../components/_intro-slide@2
-    include ../../components/_intro-slide@3
+    include ../../components/_about-slide@1
+    include ../../components/_about-slide@2
+    include ../../components/_about-slide@3
     include ../../components/_intro-slide@4
     include ../../components/_intro-slide@5
 
-    <button class="carousel-control-prev" type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#aboutCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+  .controls
+    .container.position-relative
+      a(href="#" aria-label="Next carousel").scroll-btn
+        svg(width="18" height="32")
+          use(xlink:href="./assets/svg-sprite.svg#icon-select-indicator")
+      .col-12.col-xl-10.col-xxl-8.d-flex.mx-auto.justify-content-between
+        button(type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev").control.control-prev.ps-4.ps-xl-0
+          svg(width="24" height="24")
+            use(xlink:href="./assets/svg-sprite.svg#icon-carousel-prev")
+          span.fw-medium Sale of anthracite, coal, coke products
+          span.visually-hidden Previous
+
+        button(type="button" data-bs-target="#aboutCarousel" data-bs-slide="next").control.control-next.pe-4.pe-xl-0
+          span.fw-medium Sale of anthracite, coal, coke products
+          svg(width="24" height="24")
+            use(xlink:href="./assets/svg-sprite.svg#icon-carousel-next")
+          span.visually-hidden Next
 

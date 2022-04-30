@@ -1,4 +1,5 @@
 .main-btn {
+  min-width: 200px;
   @include media-breakpoint-down(xxl) {
     font-size: 15px;
   }

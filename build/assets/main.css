@@ -13629,6 +13629,15 @@ table th {
   }
 }
 
+@media (max-width: 767.98px) {
+  .main-logo {
+    width: 199px;
+    height: 30px;
+    -o-object-fit: contain;
+    object-fit: contain;
+  }
+}
+
 .main-link, .vakancies-accordion .accordion-body a, .about-accordion .accordion-body a {
   font-weight: 500;
   -webkit-text-decoration-line: underline;
@@ -13644,6 +13653,44 @@ table th {
 }
 
 /* Компоненты */
+.slide-content-desc {
+  position: relative;
+  font-size: 32px;
+  padding-left: 80px;
+}
+.slide-content-desc::before {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  content: "";
+  background-color: #ffffff;
+}
+@media (max-width: 1599.98px) {
+  .slide-content-desc {
+    font-size: 24px;
+  }
+  .slide-content-desc::before {
+    top: 18px;
+  }
+}
+@media (max-width: 991.98px) {
+  .slide-content-desc {
+    font-size: 18px;
+    padding-left: 0;
+    padding-top: 30px;
+    text-align: center;
+  }
+  .slide-content-desc::before {
+    top: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+}
+
 .slide-side-card {
   max-width: 378px;
 }
@@ -13654,10 +13701,41 @@ table th {
   }
 }
 
+.slide-side-title p {
+  font-size: 64px;
+}
+@media (max-width: 1599.98px) {
+  .slide-side-title p {
+    font-size: 50px;
+  }
+}
+.slide-side-title span {
+  font-size: 22px;
+}
+@media (max-width: 1199.98px) {
+  .slide-side-title span {
+    font-size: 18px;
+  }
+}
+
+.slide-side-desc {
+  font-size: 18px;
+}
+@media (max-width: 1199.98px) {
+  .slide-side-desc {
+    font-size: 15px;
+  }
+}
+@media (max-width: 767.98px) {
+  .slide-side-desc {
+    display: none;
+  }
+}
+
 .carousel {
   width: 100%;
   height: 100%;
-  min-height: 770px;
+  min-height: 720px;
 }
 .carousel section {
   height: inherit;
@@ -13759,16 +13837,49 @@ table th {
   -o-object-fit: contain;
   object-fit: contain;
 }
+@media (max-width: 1199.98px) {
+  .slide-side .partner-logo {
+    max-height: 130px;
+  }
+}
+@media (max-width: 991.98px) {
+  .slide-side .partner-logo {
+    max-height: 100px;
+  }
+}
+@media (max-width: 767.98px) {
+  .slide-side .partner-logo {
+    max-height: 70px;
+  }
+}
 .slide-side .collage-part:not(:last-child) {
   padding-right: 30px;
 }
 .slide-side .collage-part img {
   width: 100%;
   height: 100%;
+  max-height: 350px;
   -o-object-fit: cover;
   object-fit: cover;
   -o-object-position: left;
   object-position: left;
+}
+@media (max-width: 767.98px) {
+  .slide-side .collage-part img {
+    max-height: 200px;
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 767.98px) {
+  .slide-side .collage-part:not(:last-child) {
+    padding-right: 0;
+  }
+  .slide-side .collage-part:nth-child(1) {
+    padding-right: 10px;
+  }
+  .slide-side .collage-part:nth-child(2) {
+    padding-left: 10px;
+  }
 }
 
 .accordion-item {
@@ -14205,6 +14316,9 @@ table th {
   color: #000000;
 }
 
+.main-btn {
+  min-width: 200px;
+}
 @media (max-width: 1599.98px) {
   .main-btn {
     font-size: 15px;

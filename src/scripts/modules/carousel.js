@@ -16,14 +16,16 @@ if(aboutCarousel) {
 const introCarousel = document.querySelector('#introCarousel');
 if(introCarousel) {
   introCarousel.style.maxHeight = `calc(100vh - ${initialHeaderHeight}px)`;
+
   const introCarouselInstance = new bootstrap.Carousel(introCarousel,{
     interval: false
   });
+
   const nextBtn = introCarousel.querySelector('.carousel-control-next');
 
-  let _thisBtn = null;
+  //let _thisBtn = null;
   introCarousel.addEventListener('slid.bs.carousel', function () {
-    console.log('test',  introCarouselInstance)
+    /*console.log('test',  introCarouselInstance)
 
     const onClickScrollDown = (evt) => {
       evt.preventDefault();
@@ -34,7 +36,7 @@ if(introCarousel) {
         behavior: 'smooth'
       })
       _thisBtn.removeEventListener('click', onClickScrollDown);
-    }
+    }*/
 
 
 
@@ -42,7 +44,7 @@ if(introCarousel) {
       introCarouselInstance.pause();
     } */
 
-    if(introCarouselInstance._activeElement === introCarouselInstance._items[introCarouselInstance._items.length - 1]) {
+    /*if(introCarouselInstance._activeElement === introCarouselInstance._items[introCarouselInstance._items.length - 1]) {
       console.log('the last one');
 
 
@@ -56,7 +58,7 @@ if(introCarousel) {
         _thisBtn.removeEventListener('click', onClickScrollDown);
       }
       console.log(introCarouselInstance._activeElement, introCarouselInstance._items[introCarouselInstance._items.length - 1])
-    }
+    }*/
   })
 }
 
