@@ -1,7 +1,7 @@
 .carousel {
   width: 100%;
   height: 100%;
-  min-height: 720px;
+  min-height: 780px;
 
   section {
     height: inherit;
@@ -19,7 +19,7 @@
   min-height: inherit;
   max-height: inherit;
   width: 100%;
-  padding-bottom: 50px;
+  //padding-bottom: 50px;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -46,6 +46,21 @@
 
       & .indicator-inner {
         background-color: $purple;
+      }
+    }
+
+    &-purple {
+      .indicator-inner {
+        background-color: #664599;
+        opacity: 0.5;
+      }
+    }
+
+    &-purple.active {
+      border-color: #664599;
+
+      .indicator-inner {
+        opacity: 1;
       }
     }
   }
@@ -94,6 +109,12 @@
 
     svg {
       fill: $white;
+    }
+
+    &-purple {
+      svg {
+        fill: $black
+      }
     }
   }
 }

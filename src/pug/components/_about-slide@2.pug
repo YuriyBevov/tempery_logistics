@@ -1,32 +1,27 @@
-include ../mixins/_main-intro-slide-view
+include ../mixins/_main-about-slide-view
 
-+main-intro-slide-view({
-  bg: 'about_2@1x.jpg',
-  title: 'Temperi Logistics Ltd — freight forwarding services',
-  desc: 'Sale of anthracite, coal, coke products',
-  btnText: 'More Details',
-  slideContentCls: 'col-12 col-lg-8',
+//+main-about-slide-view({
+  bg: 'about_1@1x.jpg',
+  title: ' testOrganization structure Temperi Logistics Ltd',
+  sideImg: 'book@1x.png',
+  desc: '',
+  btnText: 'More Info',
+  slideContentCls: 'col-12 col-lg-6',
   type: 'main',
   isActive: true,
+  })*/
 
-  sideItems: [
-    {
-      cls: 'bg-purple p-3 p-md-4 text-white mb-3 mb-md-0 mb-lg-3 me-0 me-md-3 me-lg-0',
-      titleCount: '4',
-      titleText: 'million <br/> tons per year',
-      desc: 'Organizing the delivery of raw materials by rail transport'
-    },
-    {
-       cls: 'bg-purple p-3 p-md-4 text-white mb-3 mb-md-0 mb-lg-3 me-0 me-md-3 me-lg-0',
-      titleCount: '300',
-      titleText: 'thousand <br/> tons per year',
-      desc: 'Wholesale supplies of raw materials and solid fuels'
-    },
-    {
-      cls: 'bg-purple p-3 p-md-4 text-white',
-      titleCount: '2,5',
-      titleText: 'million <br/> square kilometers',
-      desc: 'Operational activity covers the territory of Europe and Asia'
-    },
-  ]
-})
+.carousel-item(style="background-image: url('./assets/img/about_1@1x.jpg')")
+  .container.h-100
+    .row.h-100
+      .col-6.py-5.my-auto
+        h2.mb-5 Reporting Temperi Logistics Ltd
+
+        +main-link({
+          text: 'more info',
+          cls: 'border-purple bg-purple text-white fit text-uppercase'
+        })
+
+      .col-6
+        img(src='./assets/img/clipboard@1x.png' alt="Декорация").about-side-img
+

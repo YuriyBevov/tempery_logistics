@@ -1,3 +1,7 @@
+.outline {
+  outline: 1px solid red;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -76,6 +80,7 @@ table {
 
 .section-title {
   position: relative;
+  padding-bottom: 30px;
   text-transform: capitalize;
   font-size: $h2-font-size;
 
@@ -90,7 +95,7 @@ table {
   &::before {
     position: absolute;
     left: 0;
-    bottom: -30px;
+    bottom: 5px;
     content: '';
     width: 60px;
     height: 5px;

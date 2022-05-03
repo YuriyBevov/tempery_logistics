@@ -1,0 +1,18 @@
+.slide-side {
+
+}
+
+.about-side-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-slide-bg {
+  background-image: url('../assets/img/about_1@1x.jpg');
+
+  @include media-breakpoint-down(xl) {
+    //background-image: url('../assets/img/about_1-tablet@1x.jpg');
+  }
+
+}

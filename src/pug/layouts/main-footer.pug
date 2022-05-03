@@ -1,64 +1,60 @@
-//footer.pt-4.bg-lightblack.text-white
+footer.main-footer.pt-5.bg-lightblack.text-white
   .container
-    .row
-      .col-12.col-md
-        img(src="./assets/img/logo@1x.png" alt="Temperi Logostics, Ltd." width="272" height="42").d-inline-block.mb-3
+    .row.mb-5
+      .col-12.col-md-6.col-xl.mb-5.mb-xl-0
+        img(src="./assets/img/logo@1x.png" alt="Temperi Logostics, Ltd." width="272" height="42")
 
-        .ms-5
-          p Company Registration Number: <br/> 206032947
-          p VAT Number:<br/> BG206032947
+        .my-4
+          p.fw-light Company Registration Number: <br/> 206032947
+          p.fw-light VAT Number:<br/> BG206032947
 
-      .col-6.col-md.pt-2
-        h5 Address
+        .d-flex.align-items-center
+          img(src="./assets/img/logo-dun@1x.png" alt="Стара загора" width="80" height="68").me-4
+          img(src="./assets/img/logo-dt@1x.png" alt="Duns Registered" width="91" height="68").ms-2
 
-        address
-          p 9000 Bulgaria, Varna, 9 Vladislav Varnenchik Blv., fl. 2, office-showroom
-          p Temperi Logistics Ltd.
-          a(href="#").btn.btn-outline-primary See on the map
+      .col-12.col-md-6.col-xl.mb-5.mb-xl-0.d-none.d-md-block
+        h3.section-title.mb-3.mt-2 Address
+        include ../components/_footer-address
 
-      .col-6.col-md.pt-2
-        h5 Contacts
+      .col-12.col-md-6.col-xl.d-none.d-md-block
+        h3.section-title.mb-3.mt-2 Contacts
 
-        ul.nav.flex-column
-          li.nav-item.mb-1
-            | Tel/WhatsApp: <a class="nav-link" href="tel:+359878877365">+359 878877365</a>
-          li.nav-item.mb-1
-            | Skype: <a class="nav-link main-link" href="#">Temperi Logistics</a>
-          li.nav-item.mb-1
-            | E-mail: <a class="nav-link main-link" href="mailto:temperilogistics.bg@gmail.com">temperilogistics.bg@gmail.com</a>
-        h6.mt-3 Branches
-          ul.nav.flex-column
-            li.nav-item.mb-1
-              | Budapest: <a class="nav-link" href="tel:+3617009016">+361 700 90 16</a>
-            li.nav-item.mb-1
-              | Tel Aviv-Yafo: <a class="nav-link" href="tel:+97233761079">+972 3 376 1079</a>
+        include ../components/_footer-contacts
 
-      .col-6.col-md.pt-2
-        h5 Company
+      .col-12.col-md-6.col-xl.d-none.d-md-block
+        h3.section-title.mb-3.mt-2 Company
+        include ../components/_footer-nav
 
-        ul.nav.flex-column
-          li.nav-item.mb-2
-            a(href="#") Home
-          li.nav-item.mb-2
-            a(href="#") About us
-          li.nav-item.mb-2
-            a(href="#") Projects
-          li.nav-item.mb-2
-            a(href="#") Publications
-          li.nav-item.mb-2
-            a(href="#") Аnnouncement
-          li.nav-item.mb-2
-            a(href="#") FAQ
+      .mobile-footer.d-md-none.mb-4
+        .accordion#footerAcc
+          .accordion-item
+            h2.accordion-header#footerAccContacts
+              button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseFooterContacts" aria-expanded="true" aria-controls="collapseFooterContacts").accordion-button.text-white.fs-3.fw-semi Contacts
+            .accordion-collapse.collapse.show#collapseFooterContacts(aria-labelledby="footerAccContacts" data-bs-parent="#footerAcc")
+              include ../components/_footer-contacts
 
-    .copyrights
-      .container
-        .row
-          .col-4.col-md.text-muted
-            p.d-inline-flex.my-auto.ms-0.me-auto © 2022 Temperi Logistics Ltd.
+          .accordion-item
+            h2.accordion-header#footerAccAddress
+              button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseFooterAddress" aria-expanded="true" aria-controls="collapseFooterAddress").accordion-button.text-white.fs-3.fw-semi Address
+            .accordion-collapse.collapse#collapseFooterAddress(aria-labelledby="footerAccAddress" data-bs-parent="#footerAcc")
+              include ../components/_footer-address
 
-          .col-4.col-md
-            a(href="#").text-muted Privacy Policy
+          .accordion-item
+            h2.accordion-header#footerAccCompany
+              button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseFooterCompany" aria-expanded="true" aria-controls="collapseFooterCompany").accordion-button.text-white.fs-3.fw-semi Company
+            .accordion-collapse.collapse#collapseFooterCompany(aria-labelledby="footerAccCompany" data-bs-parent="#footerAcc")
+              include ../components/_footer-nav
 
-          .col-4.col-md
-            a(href="#" target="_blank" title="Created by W.D.M.Group, Ukraine").d-inline-flex.my-auto.ms-auto.me-0.text-muted W.D.M.Group, Ukraine
 
+  .copyrights
+    .container
+      .row.py-2
+        .col-12.col-md.d-flex.mb-2.mb-md-0
+          p.my-auto.mx-auto.mx-md-0.me-md-auto.fw-light.text-muted © 2022 Temperi Logistics Ltd.
+
+        .col-12.col-md.d-flex.mb-4.mb-md-0
+          a(href="#").d-inline-flex.align-items-center.mx-auto.text-decoration-underline.fw-light.text-muted Privacy Policy
+
+        .col-12.col-md.d-flex
+          a(href="#" target="_blank").my-auto.mx-auto.mx-md-0.ms-md-auto
+            img(src="./assets/img/wdmg-logo@1x.png" alt="Created by W.D.M.Group, Ukraine")

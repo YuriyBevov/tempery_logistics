@@ -13504,6 +13504,10 @@ button.swiper-pagination-bullet {
   background-color: transparent;
 }
 
+.outline {
+  outline: 1px solid red;
+}
+
 body {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -13595,6 +13599,7 @@ table th {
 
 .section-title {
   position: relative;
+  padding-bottom: 30px;
   text-transform: capitalize;
   font-size: 3.375rem;
 }
@@ -13611,7 +13616,7 @@ table th {
 .section-title::before {
   position: absolute;
   left: 0;
-  bottom: -30px;
+  bottom: 5px;
   content: "";
   width: 60px;
   height: 5px;
@@ -13691,6 +13696,16 @@ table th {
   }
 }
 
+.about-side-img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.about-slide-bg {
+  background-image: url("../assets/img/about_1@1x.jpg");
+}
 .slide-side-card {
   max-width: 378px;
 }
@@ -13735,7 +13750,7 @@ table th {
 .carousel {
   width: 100%;
   height: 100%;
-  min-height: 720px;
+  min-height: 780px;
 }
 .carousel section {
   height: inherit;
@@ -13752,7 +13767,6 @@ table th {
   min-height: inherit;
   max-height: inherit;
   width: 100%;
-  padding-bottom: 50px;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -13775,6 +13789,16 @@ table th {
 }
 .carousel-indicators .indicator.active .indicator-inner {
   background-color: #664599;
+}
+.carousel-indicators .indicator-purple .indicator-inner {
+  background-color: #664599;
+  opacity: 0.5;
+}
+.carousel-indicators .indicator-purple.active {
+  border-color: #664599;
+}
+.carousel-indicators .indicator-purple.active .indicator-inner {
+  opacity: 1;
 }
 
 .controls {
@@ -13827,6 +13851,9 @@ table th {
 }
 .controls .control svg {
   fill: #ffffff;
+}
+.controls .control-purple svg {
+  fill: #000000;
 }
 
 .slide-side .partner-logo {
@@ -14015,6 +14042,30 @@ table th {
 .vakancies-accordion .accordion-body p {
   margin-bottom: 0;
 }
+.main-footer .section-title {
+  font-size: 22px;
+  padding-bottom: 15px;
+}
+.main-footer .section-title::before {
+  height: 2px;
+}
+@media (max-width: 1599.98px) {
+  .main-footer .section-title::before {
+    display: block;
+  }
+}
+.main-footer .nav-item a {
+  color: #ffffff;
+}
+
+.mobile-footer .accordion-item {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.copyrights {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
 .form-select {
   cursor: pointer;
   width: -webkit-fit-content;

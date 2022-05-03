@@ -1,0 +1,28 @@
+include ../mixins/_main-about-slide-view
+
+//+main-about-slide-view({
+  bg: 'about_1@1x.jpg',
+  title: ' testOrganization structure Temperi Logistics Ltd',
+  sideImg: 'book@1x.png',
+  desc: '',
+  btnText: 'More Info',
+  slideContentCls: 'col-12 col-lg-6',
+  type: 'main',
+  isActive: true,
+  })*/
+
+.carousel-item.active.about-slide-bg
+  .container.h-100
+    .row.h-100
+      .d-flex.flex-column.align-items-center.align-items-xl-start.col-12.col-xl-6.py-5.my-auto
+        h2.mb-5.text-center.text-xl-start Organization structure Temperi Logistics Ltd
+
+        +main-link({
+          text: 'more info',
+          cls: 'border-purple bg-purple text-white fit text-uppercase'
+        })
+
+      .col-12.col-xl-6
+        //img(src='./assets/img/book@1x.png' alt="Декорация").about-side-img
+        .d-block.d-xl-none.bg-purple.h-50.w-100
+

@@ -1,0 +1,18 @@
+mixin main-about-slide-view(opt)
+  .carousel-item(style=`background-image: url('./assets/img/${opt.bg}')` class= opt.isActive ? 'active' : null)
+    .container.h-100
+      .row.my-auto.align-items-center.h-100
+        .slide-content.d-flex.flex-column.align-items-center.align-items-lg-start.my-lg-auto.pe-3(class= opt.slideContentCls ? opt.slideContentCls : null)
+          h2.mb-4.col-lg-10.text-center.text-lg-start!= opt.title
+          if opt.desc
+            p.slide-content-desc.mb-4.mb-md-5!= opt.desc
+
+          if opt.btnText
+            +main-link({
+              text: opt.btnText,
+              cls: 'border-purple bg-purple text-white fit'
+            })
+
+        if opt.type === 'main'
+          .slide-side.h-100.col-6
+            img(src=`./assets/img/${opt.sideImg}` alt="Декорация").about-side-img

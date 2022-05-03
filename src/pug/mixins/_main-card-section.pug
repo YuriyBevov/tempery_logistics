@@ -2,7 +2,7 @@ include ./_main-link
 include ./_card
 
 mixin main-card-section(data)
-  section.section(class= data.sectionClass)
+  section.section(class= data.sectionClass id= data.sectionId ? data.sectionId : null)
     .container
       .row
         .col-12.col-xxl-3.d-flex.flex-xxl-column.align-items-center.align-items-xxl-start.mb-4.mb-md-5.mb-xxl-0

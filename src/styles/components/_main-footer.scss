@@ -1,0 +1,24 @@
+.main-footer {
+  .section-title {
+    font-size: 22px;
+    padding-bottom: 15px;
+
+    &::before {
+      height: 2px;
+
+      @include media-breakpoint-down(xxl) {
+        display: block;
+      }
+    }
+  }
+
+  .nav-item a {
+    color: $white;
+  }
+}
+
+.mobile-footer {
+  .accordion-item {
+    border-color: rgba(255,255,255,0.05);
+  }
+}
