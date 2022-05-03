@@ -1,27 +1,17 @@
 include ../mixins/_main-about-slide-view
 
-//+main-about-slide-view({
-  bg: 'about_1@1x.jpg',
-  title: ' testOrganization structure Temperi Logistics Ltd',
-  sideImg: 'book@1x.png',
-  desc: '',
-  btnText: 'More Info',
-  slideContentCls: 'col-12 col-lg-6',
-  type: 'main',
-  isActive: true,
-  })*/
-
-.carousel-item(style="background-image: url('./assets/img/about_1@1x.jpg')")
+.carousel-item.h-100.about-slide-item.slide-bg
+  picture
+    source(srcset="./assets/img/about_3-tablet@1x.jpg" media="(max-width: 1200px)")
+    img(src="./assets/img/about_3@1x.jpg" alt="clipboard-bg")
   .container.h-100
     .row.h-100
-      .col-6.py-5.my-auto
-        h2.mb-5 Reporting Temperi Logistics Ltd
+      .col.col-xl-6.py-5.my-xl-auto.outline.d-flex.flex-column
+        h2.mb-5.text-center.text-xl-start Reporting Temperi Logistics Ltd
 
         +main-link({
           text: 'more info',
-          cls: 'border-purple bg-purple text-white fit text-uppercase'
+          cls: 'border-purple bg-purple text-white fit text-uppercase  mx-auto mx-xl-0'
         })
 
-      .col-6
-        img(src='./assets/img/clipboard@1x.png' alt="Декорация").about-side-img
 

@@ -13,11 +13,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0__);
 
 var header = document.querySelector('header');
+var main = document.querySelector('main');
 var initialHeaderHeight = header.getBoundingClientRect().height;
 var aboutCarousel = document.querySelector('#aboutCarousel');
 
 if (aboutCarousel) {
-  aboutCarousel.style.maxHeight = "calc(100vh - ".concat(initialHeaderHeight, "px)");
+  main.style.marginTop = "".concat(initialHeaderHeight, "px");
+  aboutCarousel.style.height = "calc(100vh - ".concat(initialHeaderHeight, "px)");
   var aboutCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default().Carousel)(aboutCarousel, {
     interval: false
   });
@@ -26,7 +28,8 @@ if (aboutCarousel) {
 var introCarousel = document.querySelector('#introCarousel');
 
 if (introCarousel) {
-  introCarousel.style.maxHeight = "calc(100vh - ".concat(initialHeaderHeight, "px)");
+  main.style.marginTop = "".concat(initialHeaderHeight, "px");
+  introCarousel.style.height = "calc(100vh - ".concat(initialHeaderHeight, "px)");
   var introCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default().Carousel)(introCarousel, {
     interval: false
   });
@@ -41,11 +44,13 @@ var onResizeSetCarouselHeight = function onResizeSetCarouselHeight() {
 
   if (currentHeaderHeight !== initialHeaderHeight) {
     if (aboutCarousel) {
-      aboutCarousel.style.maxHeight = "calc(100vh - ".concat(currentHeaderHeight, "px)");
+      main.style.marginTop = "".concat(currentHeaderHeight, "px");
+      aboutCarousel.style.height = "calc(100vh - ".concat(currentHeaderHeight, "px)");
     }
 
     if (introCarousel) {
-      introCarousel.style.maxHeight = "calc(100vh - ".concat(currentHeaderHeight, "px)");
+      main.style.marginTop = "".concat(currentHeaderHeight, "px");
+      introCarousel.style.height = "calc(100vh - ".concat(currentHeaderHeight, "px)");
     }
 
     initialHeaderHeight = currentHeaderHeight;

@@ -11,18 +11,18 @@ include ../../mixins/_main-link
     button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="3" aria-label="Slide 4").indicator.indicator-purple
       .indicator-inner
 
-  .carousel-inner
-    include ../../components/_about-slide@1
-    include ../../components/_about-slide@2
+  .carousel-inner.d-flex
+    //include ../../components/_about-slide@1
+    //include ../../components/_about-slide@2
     include ../../components/_about-slide@3
-    include ../../components/_about-slide@4
+    //include ../../components/_about-slide@4
 
   .controls
     .container.position-relative
       .row
         a(href="#projects" aria-label="Next carousel").scroll-btn
-          svg(width="18" height="32")
-            use(xlink:href="./assets/svg-sprite.svg#icon-select-indicator")
+          svg(width="24" height="32")
+            use(xlink:href="./assets/svg-sprite.svg#icon-arrow-down")
         .col-12.col-xl-10.col-xxl-8.d-flex.mx-auto.justify-content-between
           button(type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev").control.control-purple.control-prev.ps-4.ps-xl-0
             svg(width="24" height="24")

@@ -1,11 +1,40 @@
 include ../mixins/_main-about-slide-view
+include ../mixins/_product-card
 
-+main-about-slide-view({
-  bg: 'about_1@1x.jpg',
-  title: 'Reporting Temperi Logistics Ltd',
-  sideImg: 'clipboard@1x.png',
-  desc: '',
-  btnText: 'More Info',
-  slideContentCls: 'col-12 col-lg-8',
-  type: 'main'
-})
+.carousel-item.h-100.bg-white
+  .container.h-100
+    .row.h-100
+      .col-12.col-xl-6.outline.d-flex.flex-column.my-auto
+        h2.mb-5.text-center.text-xl-start Products of our customers & contractors
+
+        +main-link({
+          text: 'more info',
+          cls: 'border-purple bg-purple text-white fit text-uppercase mx-auto mx-xl-0'
+        })
+
+      .col-12.col-xl-6.outline.my-auto
+        .row.mt-5
+          .col-6.outline.mb-3
+            .card.slider-card.rounded-0.border-0.h-100
+              img(src= `./assets/img/evraz-product_1@1x.jpg` alt="").card-img.rounded-0
+              .card-body.d-flex.flex-column.p-3.p-md-4.bg-lightgray
+                h3.customer-product-title.fw-medium.mb-0 Anthracite grade ASH
+                p.fw-light.mt-1 Size 1-6 mm
+          .col-6.outline.mb-3
+            .card.slider-card.rounded-0.border-0.h-100
+              img(src= `./assets/img/evraz-product_1@1x.jpg` alt="").card-img.rounded-0
+              .card-body.d-flex.flex-column.p-3.p-md-4.bg-lightgray
+                h3.customer-product-title.fw-medium.mb-0 Anthracite grade ASH
+                p.fw-light.mt-1 Size 1-6 mm
+          .col-6.outline.mb-3
+            .card.slider-card.rounded-0.border-0.h-100
+              img(src= `./assets/img/evraz-product_1@1x.jpg` alt="").card-img.rounded-0
+              .card-body.d-flex.flex-column.p-3.p-md-4.bg-lightgray
+                h3.customer-product-title.fw-medium.mb-0 Anthracite grade ASH
+                p.fw-light.mt-1 Size 1-6 mm
+          .col-6.outline.mb-3
+            .card.slider-card.rounded-0.border-0.h-100
+              img(src= `./assets/img/evraz-product_1@1x.jpg` alt="").card-img.rounded-0
+              .card-body.d-flex.flex-column.p-3.p-md-4.bg-lightgray
+                h3.customer-product-title.fw-medium.mb-0 Anthracite grade ASH
+                p.fw-light.mt-1 Size 1-6 mm

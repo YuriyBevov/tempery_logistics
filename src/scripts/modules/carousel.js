@@ -1,12 +1,14 @@
 import bootstrap from  '../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
 
 const header = document.querySelector('header');
+const main = document.querySelector('main');
 let initialHeaderHeight = header.getBoundingClientRect().height;
 
 const aboutCarousel = document.querySelector('#aboutCarousel');
 
 if(aboutCarousel) {
-  aboutCarousel.style.maxHeight = `calc(100vh - ${initialHeaderHeight}px)`;
+  main.style.marginTop = `${initialHeaderHeight}px`;
+  aboutCarousel.style.height = `calc(100vh - ${initialHeaderHeight}px)`;
 
   const aboutCarouselInstance = new bootstrap.Carousel(aboutCarousel, {
     interval: false
@@ -15,7 +17,8 @@ if(aboutCarousel) {
 
 const introCarousel = document.querySelector('#introCarousel');
 if(introCarousel) {
-  introCarousel.style.maxHeight = `calc(100vh - ${initialHeaderHeight}px)`;
+  main.style.marginTop = `${initialHeaderHeight}px`;
+  introCarousel.style.height = `calc(100vh - ${initialHeaderHeight}px)`;
 
   const introCarouselInstance = new bootstrap.Carousel(introCarousel,{
     interval: false
@@ -32,10 +35,12 @@ const onResizeSetCarouselHeight = () => {
   let currentHeaderHeight = header.getBoundingClientRect().height;
   if(currentHeaderHeight !== initialHeaderHeight) {
     if(aboutCarousel) {
-      aboutCarousel.style.maxHeight = `calc(100vh - ${currentHeaderHeight}px)`;
+      main.style.marginTop = `${currentHeaderHeight}px`;
+      aboutCarousel.style.height = `calc(100vh - ${currentHeaderHeight}px)`;
     }
     if(introCarousel) {
-      introCarousel.style.maxHeight = `calc(100vh - ${currentHeaderHeight}px)`;
+      main.style.marginTop = `${currentHeaderHeight}px`;
+      introCarousel.style.height = `calc(100vh - ${currentHeaderHeight}px)`;
     }
     initialHeaderHeight = currentHeaderHeight
   }
