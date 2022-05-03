@@ -8,7 +8,7 @@ mixin accordion(opt)
           button(type="button" data-bs-toggle="collapse" data-bs-target="#" + item.targetID aria-expanded= item.ariaExpanded aria-controls= item.targetID class= !item.collapsed ? 'collapsed' : '').accordion-button.fw-medium.fs-3
             span.pe-5(class= opt.id === 'reporting_accordion' ? 'fs-2' : opt.id === 'about_accordion' && index === 0 ? 'fade-in-btn' : null)!= item.buttonText
         .accordion-collapse.collapse(aria-labelledby= item.headerID data-bs-parent="#" + opt.id class= item.collapsed ? 'show' : '' id= item.targetID)
-          .accordion-body.fw-light!= item.bodyText
+          .accordion-body.fw-light.py-3!= item.bodyText
 
           if opt.id === 'reporting_accordion'
             .accordion(id= item.innerAccordion.id).col-10.col-md-8.mx-auto.py-3
@@ -17,14 +17,15 @@ mixin accordion(opt)
                   h2(id= innerItem.headerID).accordion-header
                     button(type="button" data-bs-toggle="collapse" data-bs-target="#" + innerItem.targetID aria-expanded= innerItem.ariaExpanded aria-controls= innerItem.targetID class= !innerItem.collapsed ? 'collapsed' : '').accordion-button.fw-medium.fs-3
                       span.pe-2.pe-md-5= innerItem.buttonText
+
                   .accordion-collapse.accordion-collapse-inner.collapse(aria-labelledby= innerItem.headerID data-bs-parent="#" + innerItem.id class= innerItem.collapsed ? 'show' : '' id= innerItem.targetID)
                     .accordion-body.accordion-body-inner.fw-light.my-3.px-md-4
                       each content in innerItem.bodyContent
                         .accordion-body-field.d-flex.align-items-center.flex-wrap.py-3
-                          p.mb-0.pe-2=content
+                          p=content
 
                           +download-link({
                             isIconEnabled: true,
                             btnText: 'Download PDF',
-                            cls:'text-purple fw-medium d-block'
+                            cls:'fw-medium'
                           })

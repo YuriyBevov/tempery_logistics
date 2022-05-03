@@ -1,5 +1,5 @@
 mixin download-link(opt)
-  a(href="#" class= opt.cls ? opt.cls : '')= opt.btnText
+  a(href="#" class= opt.cls ? opt.cls : '').text-decoration-none.ms-2= opt.btnText
     if opt.isIconEnabled
-      svg(width="24" height="24")
+      svg(width="24" height="24").ms-2
         use(xlink:href="./assets/svg-sprite.svg#icon-download2")

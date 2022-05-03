@@ -9,9 +9,7 @@ include ../../mixins/_accordion
         headerID: 'heading_1',
         buttonText: 'How can I view the Resource base',
         targetID: 'collapse_1',
-        bodyText: '<p>You can view the resource base by downloading the PDF file to your device using this link</p>',
-        linkUrl: '#',
-        linkText: '— Download PDF (0,25 Mb)',
+        bodyText: `<p>You can view the resource base by downloading the PDF file to your device using this link <a href="#" class="text-decoration-none"> — Download PDF (0,25 Mb)</a></p>`,
         ariaExpanded: true,
         collapsed: true
       },
@@ -60,6 +58,7 @@ section.questions.section.bg-white
     .row
       .col-lg-8.mx-auto.d-flex.flex-column
         h2.text-center.section-title.section-title-centered.mb-5 Frequently asked questions
+          <i class="bi-alarm"></i>
 
         .accordion-container.pt-4.mb-5
           +accordion(accordionOptions)
@@ -67,5 +66,5 @@ section.questions.section.bg-white
         +main-link({
           cls: 'mx-auto mt-4 btn-outline-purple view-all-btn',
           text:  'View all',
-          url:  'questions.html'
+          url:  'faq.html'
         })
