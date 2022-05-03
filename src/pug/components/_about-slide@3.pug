@@ -3,11 +3,12 @@ include ../mixins/_download-btn
 .carousel-item.active.my-auto
   .container
     .row
-      .col-7.outline
+      .col-12.col-xl-7.outline
         h2.section-title.mb-3 About us
         p.about-slide-desc The company was established in 2020, but the team has 30 years of hands-on experience in these areas.
         p.about-slide-text Operational activity of the company covers the region of 2.5 million square kilometers of land in Europe and Asia. Conducts and supports marketing and engineering studies related to special cargo transportation conditions and processing of large data sets. The company is interested in investment projects related to <span>job creation in Bulgaria</span>.
-        .row.mb-4
+
+        .row.mb-4.d-none.d-xl-flex
           .col
             svg(width="75" height="46").mb-3
               use(xlink:href="./assets/svg-sprite.svg#icon-ship")
@@ -25,25 +26,33 @@ include ../mixins/_download-btn
               use(xlink:href="./assets/svg-sprite.svg#icon-ship")
             p.about-slide-text Wholesale supplies of raw materials and solid fuels <span>300,000 tons</span> per year. Main markets: EU (Bulgaria, Poland, Romania)
 
-        .mb-3.d-flex.align-items-center
+        .mb-3.d-flex.flex-column.flex-lg-row.align-items-center
           +download-btn({
-            cls: "me-4 about-slide-btn",
+            cls: "me-0 me-lg-4 about-slide-btn mb-3 mb-xl-0 ",
             isIconEnabled: true,
             btnText: 'download BUSINESS ETHICS POLICY'
           })
-          a(href="#").btn.btn-purple.rounded-0.about-slide-btn More info
 
-      .col-5.outline(style="background-color: #664599").p-5
+          a(href="#").btn.btn-purple.rounded-0.about-slide-btn.mb-3.mb-xl-0  More info
+
+          +download-btn({
+            cls: "mb-3 mb-lg-0 about-slide-btn d-lg-none",
+            isIconEnabled: true,
+            btnText: 'download questionnaire'
+          })
+
+      .col-12.col-xl-5.outline(style="background-color: #664599").p-5.d-none.d-lg-flex.flex-xl-column
         img( src="./assets/img/logo-symbol@1x.png" width="169" height="209").mb-3
 
-        h3.text-white.mb-3 We offer
+        .wrapper
+          h3.text-white.mb-3 We offer
 
-        p.about-slide-desc.fw-light.text-white a wide range of PCI coal products, power-generating coal (long-flame D, long-flame D/gas G), coking coals (gas G, gas fat GZh, gas fat lean GZhO, coking K, coking fat KZh, coking lean KO, coking sinter KS, low-caking SS, forge OS), anthracite.
+          p.about-slide-desc.fw-light.text-white a wide range of PCI coal products, power-generating coal (long-flame D, long-flame D/gas G), coking coals (gas G, gas fat GZh, gas fat lean GZhO, coking K, coking fat KZh, coking lean KO, coking sinter KS, low-caking SS, forge OS), anthracite.
 
-        p.about-slide-text.mb-3.text-white If you are interested in deliveries, please fill out the questionnaire:
+          p.about-slide-text.mb-3.text-white If you are interested in deliveries, please fill out the questionnaire:
 
-        +download-btn({
-          cls: "me-4 text-white border-white about-slide-btn about-slide-btn-purple",
-          isIconEnabled: true,
-          btnText: 'download questionnaire'
-        })
+          +download-btn({
+            cls: "me-4 text-white border-white about-slide-btn about-slide-btn-purple",
+            isIconEnabled: true,
+            btnText: 'download questionnaire'
+          })

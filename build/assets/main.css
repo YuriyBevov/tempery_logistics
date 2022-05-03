@@ -13778,6 +13778,11 @@ table th {
   max-width: fit-content;
   text-transform: uppercase;
 }
+@media (max-width: 991.98px) {
+  .about-slide-btn {
+    max-width: 100%;
+  }
+}
 .about-slide-btn-purple svg {
   fill: #ffffff;
 }

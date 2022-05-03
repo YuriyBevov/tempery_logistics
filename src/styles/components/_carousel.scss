@@ -118,6 +118,9 @@
     height: 48px;
     width: 100%;
     max-width: fit-content;
+    @include media-breakpoint-down(lg) {
+      max-width: 100%;
+    }
 
     text-transform: uppercase;
 
