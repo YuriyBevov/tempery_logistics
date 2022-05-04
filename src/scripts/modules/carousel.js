@@ -8,7 +8,7 @@ let aboutCarouselInner = null;
 
 if(aboutCarousel) {
   aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner');
-  aboutCarouselInner.style.paddingTop = `${initialHeaderHeight}px`;
+  //aboutCarouselInner.style.paddingTop = `${initialHeaderHeight}px`;
 
   const aboutCarouselInstance = new bootstrap.Carousel(aboutCarousel, {
     interval: false
@@ -38,7 +38,7 @@ let introCarouselInner = null;
 
 if(introCarousel) {
   introCarouselInner = introCarousel.querySelector('.carousel-inner');
-  introCarouselInner.style.paddingTop = `${initialHeaderHeight}px`;
+  //introCarouselInner.style.paddingTop = `${initialHeaderHeight}px`;
 
   const introCarouselInstance = new bootstrap.Carousel(introCarousel,{
     interval: false
@@ -65,4 +65,4 @@ const onResizeSetCarouselHeight = () => {
   }
 }
 
-window.addEventListener('resize', onResizeSetCarouselHeight);
+//window.addEventListener('resize', onResizeSetCarouselHeight);

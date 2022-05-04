@@ -18,8 +18,8 @@ var aboutCarousel = document.querySelector('#aboutCarousel');
 var aboutCarouselInner = null;
 
 if (aboutCarousel) {
-  aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner');
-  aboutCarouselInner.style.paddingTop = "".concat(initialHeaderHeight, "px");
+  aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner'); //aboutCarouselInner.style.paddingTop = `${initialHeaderHeight}px`;
+
   var aboutCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default().Carousel)(aboutCarousel, {
     interval: false
   });
@@ -44,8 +44,8 @@ var introCarousel = document.querySelector('#introCarousel');
 var introCarouselInner = null;
 
 if (introCarousel) {
-  introCarouselInner = introCarousel.querySelector('.carousel-inner');
-  introCarouselInner.style.paddingTop = "".concat(initialHeaderHeight, "px");
+  introCarouselInner = introCarousel.querySelector('.carousel-inner'); //introCarouselInner.style.paddingTop = `${initialHeaderHeight}px`;
+
   var introCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default().Carousel)(introCarousel, {
     interval: false
   });
@@ -69,9 +69,50 @@ var onResizeSetCarouselHeight = function onResizeSetCarouselHeight() {
 
     initialHeaderHeight = currentHeaderHeight;
   }
+}; //window.addEventListener('resize', onResizeSetCarouselHeight);
+
+/***/ }),
+
+/***/ "./src/scripts/modules/header.js":
+/*!***************************************!*\
+  !*** ./src/scripts/modules/header.js ***!
+  \***************************************/
+/***/ (() => {
+
+var main = document.querySelector('main');
+var header = document.querySelector('header');
+var pagePosY = main.getBoundingClientRect().top;
+var introSlider = document.querySelector('#introCarousel');
+console.log(introSlider);
+/*console.log(pagePosY);
+
+const onScrollManipulateHeader = () => {
+  pagePosY = main.getBoundingClientRect().top;
+
+  console.log(pagePosY);
+}
+
+window.addEventListener('scroll', onScrollManipulateHeader);*/
+
+var observer = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    if (entry.isIntersecting) {
+      if (pagePosY < -50) {
+        console.log('Убрать шапку');
+      } else {
+        console.log('Не убирать шапку, пока < 50пх');
+      }
+    }
+  });
+});
+
+var onScrollManipulateHeader = function onScrollManipulateHeader() {
+  pagePosY = main.getBoundingClientRect().top;
+  console.log(pagePosY);
 };
 
-window.addEventListener('resize', onResizeSetCarouselHeight);
+window.addEventListener('scroll', onScrollManipulateHeader);
+observer.observe(introSlider);
 
 /***/ }),
 
@@ -6972,10 +7013,13 @@ var __webpack_exports__ = {};
   !*** ./src/scripts/main.js ***!
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_carousel_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/carousel.js */ "./src/scripts/modules/carousel.js");
+/* harmony import */ var _modules_header_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/header.js */ "./src/scripts/modules/header.js");
+/* harmony import */ var _modules_header_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_header_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modules_carousel_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/carousel.js */ "./src/scripts/modules/carousel.js");
 //import './modules/module.js';
 //import "./vue/main.js";
 //import '../../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
+
 
 })();
 
