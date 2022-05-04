@@ -86,9 +86,19 @@
 
 .carousel {
   &-inner {
-    min-height: 840px;
-    height: calc(100vh - 100px);
-    padding-top: 25px;
+    min-height: 934px;
+    //height: calc(100vh - 100px);
+
+    @include media-breakpoint-down(lg) {
+      min-height: 874px;
+    }
+
+    @include media-breakpoint-down(lg) {
+      min-height: 847px;
+    }
+
+    height: 100vh;
+    /*padding-top: 15px;
     padding-bottom: 125px;
 
     @include media-breakpoint-down(xl) {
@@ -96,9 +106,18 @@
     }
 
     @include media-breakpoint-down(lg) {
-      min-height: 774px;
+      //min-height: 774px;
+    }*/
+  }
+
+  &-item {
+    padding-top: 25px;
+    padding-bottom: 125px;
+
+    @include media-breakpoint-down(xl) {
       padding-bottom: 50px;
     }
+
   }
 }
 
@@ -176,6 +195,24 @@
         opacity: 1;
       }
     }
+
+    /* &-lg-white {
+      @include media-breakpoint-down(lg) {
+        .indicator-inner {
+          background-color: rgba(255, 255, 255, 0.5);
+        }
+      }
+    }
+
+    &-lg-white.active {
+      @include media-breakpoint-down(lg) {
+        border-color: rgba(255, 255, 255, 0.5);
+
+        & .indicator-inner {
+          background-color: $purple;
+        }
+      }
+    } */
   }
 }
 
@@ -233,20 +270,26 @@
 }
 
 .about-slide-item {
-  &.slide-bg {
-    picture {
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: block;
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    img {
       width: 100%;
       height: 100%;
-      z-index: -1;
+      object-fit: cover;
+      object-position: center right;
 
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+      @include media-breakpoint-down(xl) {
         object-position: center;
       }
     }

@@ -1,15 +1,19 @@
 include ../mixins/_main-about-slide-view
 
-.carousel-item.active.h-100.about-slide-item.slide-bg
+.carousel-item.active.h-100.about-slide-item
   picture
-    source(srcset="./assets/img/about_2-tablet@1x.jpg" media="(max-width: 1200px)")
-    img(src="./assets/img/about_2@1x.jpg" alt="book-bg")
+    source(srcset="./assets/img/about_1-1-tablet@1x.png" media="(max-width: 1200px)")
+    img(src="./assets/img/about_1-1@1x.png" alt="book-bg")
+
   .container.h-100
     .row.h-100
-      .col.col-xl-6.py-5.my-xl-auto.outline.d-flex.flex-column
-        h2.mb-5.text-center.text-xl-start Organization structure Temperi Logistics Ltd
+      .col-12.col-xl-6.mb-auto.my-xl-auto.outline.d-flex.flex-column
+        h2.mb-4.text-center.text-xl-start Organization structure Temperi Logistics Ltd
 
         +main-link({
           text: 'more info',
           cls: 'border-purple bg-purple text-white fit text-uppercase mx-auto mx-xl-0'
         })
+
+      //.col-12.col-xl-6.mt-auto.outline.p-0
+        //img(src="../assets/img/book@1x.png" alt="").img-fluid.decor-img
