@@ -85,15 +85,20 @@
 }*/
 
 .carousel {
-  min-height: 667px;
-
   &-inner {
-    height: inherit;
-  }
-
-  &-item {
+    min-height: 840px;
+    height: calc(100vh - 100px);
     padding-top: 25px;
     padding-bottom: 125px;
+
+    @include media-breakpoint-down(xl) {
+      padding-bottom: 50px;
+    }
+
+    @include media-breakpoint-down(lg) {
+      min-height: 774px;
+      padding-bottom: 50px;
+    }
   }
 }
 
@@ -118,6 +123,7 @@
     height: 48px;
     width: 100%;
     max-width: fit-content;
+
     @include media-breakpoint-down(lg) {
       max-width: 100%;
     }
@@ -248,6 +254,23 @@
 }
 
 .about-slide-card {
+  min-height: initial;
+
+  img {
+    max-height: 215px;
+
+    @include media-breakpoint-down(xl) {
+      max-height: 150px;
+    }
+
+    @include media-breakpoint-down(md) {
+      max-height: 100px;
+    }
+  }
+
+}
+
+/*.about-slide-card {
   max-height: 240px;
   .card {
     min-height: initial;
@@ -257,9 +280,9 @@
   @include media-breakpoint-down(md) {
     max-height: 200px;
   }
-}
+} */
 
-.card-test {
+/*.card-test {
   height: 30vh;
 
   img {
@@ -281,4 +304,4 @@
       font-size: 1.5vh;
     }
   }
-}
+} */

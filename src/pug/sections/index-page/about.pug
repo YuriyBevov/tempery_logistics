@@ -1,6 +1,6 @@
 include ../../mixins/_main-link
 
-#aboutCarousel.carousel.slide(data-bs-ride="aboutCarousel")
+#aboutCarousel.carousel.bg-white.slide(data-bs-ride="aboutCarousel")
   .carousel-indicators
     button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1").indicator.indicator-purple.active
       .indicator-inner
@@ -11,11 +11,11 @@ include ../../mixins/_main-link
     button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="3" aria-label="Slide 4").indicator.indicator-purple
       .indicator-inner
 
-  .carousel-inner.d-flex
-    //include ../../components/_about-slide@1
-    //include ../../components/_about-slide@2
+  .carousel-inner.d-flex.outline
+    include ../../components/_about-slide@1
+    include ../../components/_about-slide@2
     include ../../components/_about-slide@3
-    //include ../../components/_about-slide@4
+    include ../../components/_about-slide@4
 
   .controls
     .container.position-relative

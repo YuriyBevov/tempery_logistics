@@ -8,7 +8,7 @@ const aboutCarousel = document.querySelector('#aboutCarousel');
 
 if(aboutCarousel) {
   main.style.marginTop = `${initialHeaderHeight}px`;
-  aboutCarousel.style.height = `calc(100vh - ${initialHeaderHeight}px)`;
+  //aboutCarousel.style.height = `calc(100vh - ${initialHeaderHeight}px)`;
 
   const aboutCarouselInstance = new bootstrap.Carousel(aboutCarousel, {
     interval: false
@@ -18,7 +18,7 @@ if(aboutCarousel) {
 const introCarousel = document.querySelector('#introCarousel');
 if(introCarousel) {
   main.style.marginTop = `${initialHeaderHeight}px`;
-  introCarousel.style.height = `calc(100vh - ${initialHeaderHeight}px)`;
+  //introCarousel.style.height = `calc(100vh - ${initialHeaderHeight}px)`;
 
   const introCarouselInstance = new bootstrap.Carousel(introCarousel,{
     interval: false
@@ -46,4 +46,4 @@ const onResizeSetCarouselHeight = () => {
   }
 }
 
-window.addEventListener('resize', onResizeSetCarouselHeight);
+//window.addEventListener('resize', onResizeSetCarouselHeight);
