@@ -12,28 +12,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js */ "./node_modules/bootstrap/dist/js/bootstrap.bundle.js");
 /* harmony import */ var _node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0__);
 
-var header = document.querySelector('header'); //const main = document.querySelector('main');
-
+var header = document.querySelector('header');
 var initialHeaderHeight = header.getBoundingClientRect().height;
 var aboutCarousel = document.querySelector('#aboutCarousel');
 var aboutCarouselInner = null;
 
 if (aboutCarousel) {
-  aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner'); //main.style.marginTop = `${initialHeaderHeight}px`;
-  //aboutCarouselInner.style.height = `calc(100vh - ${initialHeaderHeight}px)`;
-
+  aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner');
   aboutCarouselInner.style.paddingTop = "".concat(initialHeaderHeight, "px");
   var aboutCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default().Carousel)(aboutCarousel, {
     interval: false
   });
+  aboutCarousel.addEventListener('slide.bs.carousel', function (evt) {
+    var indicators = aboutCarousel.querySelectorAll('.indicator');
+
+    if (evt.to === 1 && window.innerWidth < 1200 || evt.to === 2 && window.innerWidth < 1200) {
+      indicators.forEach(function (ind) {
+        ind.querySelector('.indicator-inner').style.backgroundColor = '#ffffff';
+        ind.classList.contains('indicator-purple') ? ind.classList.remove('indicator-purple') : null;
+      });
+    } else {
+      indicators.forEach(function (ind) {
+        ind.querySelector('.indicator-inner').style.backgroundColor = '#664599';
+        !ind.classList.contains('indicator-purple') ? ind.classList.add('indicator-purple') : null;
+      });
+    }
+  });
 }
 
-var introCarousel = document.querySelector('#introCarousel'); //let introCarouselInner = null;
+var introCarousel = document.querySelector('#introCarousel');
+var introCarouselInner = null;
 
 if (introCarousel) {
-  //introCarouselInner = introCarousel.querySelector('.carousel-inner');
-  //main.style.marginTop = `${initialHeaderHeight}px`;
-  //introCarouselInner.style.height = `calc(100vh - ${initialHeaderHeight}px)`;
+  introCarouselInner = introCarousel.querySelector('.carousel-inner');
+  introCarouselInner.style.paddingTop = "".concat(initialHeaderHeight, "px");
   var introCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default().Carousel)(introCarousel, {
     interval: false
   });
@@ -48,14 +60,11 @@ var onResizeSetCarouselHeight = function onResizeSetCarouselHeight() {
 
   if (currentHeaderHeight !== initialHeaderHeight) {
     if (aboutCarousel) {
-      //main.style.marginTop = `${currentHeaderHeight}px`;
-      //aboutCarouselInner.style.height = `calc(100vh - ${currentHeaderHeight}px)`;
-      console.log('resize');
       aboutCarouselInner.style.paddingTop = "".concat(currentHeaderHeight, "px");
     }
 
-    if (introCarousel) {//main.style.marginTop = `${currentHeaderHeight}px`;
-      //introCarouselInner.style.height = `calc(100vh - ${currentHeaderHeight}px)`;
+    if (introCarousel) {
+      introCarouselInner.style.paddingTop = "".concat(currentHeaderHeight, "px");
     }
 
     initialHeaderHeight = currentHeaderHeight;

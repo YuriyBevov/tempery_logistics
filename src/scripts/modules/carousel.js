@@ -1,32 +1,44 @@
 import bootstrap from  '../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
 
 const header = document.querySelector('header');
-//const main = document.querySelector('main');
 let initialHeaderHeight = header.getBoundingClientRect().height;
 
 const aboutCarousel = document.querySelector('#aboutCarousel');
 let aboutCarouselInner = null;
 
-
 if(aboutCarousel) {
   aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner');
-  //main.style.marginTop = `${initialHeaderHeight}px`;
-  //aboutCarouselInner.style.height = `calc(100vh - ${initialHeaderHeight}px)`;
-
   aboutCarouselInner.style.paddingTop = `${initialHeaderHeight}px`;
 
   const aboutCarouselInstance = new bootstrap.Carousel(aboutCarousel, {
     interval: false
   });
+
+  aboutCarousel.addEventListener('slide.bs.carousel', function (evt) {
+    let indicators = aboutCarousel.querySelectorAll('.indicator');
+
+    if(evt.to === 1 && window.innerWidth < 1200 || evt.to === 2 && window.innerWidth < 1200 ) {
+      indicators.forEach(ind => {
+        ind.querySelector('.indicator-inner').style.backgroundColor = '#ffffff';
+        ind.classList.contains('indicator-purple') ?
+        ind.classList.remove('indicator-purple') : null;
+      })
+    } else {
+      indicators.forEach(ind => {
+        ind.querySelector('.indicator-inner').style.backgroundColor = '#664599';
+        !ind.classList.contains('indicator-purple') ?
+        ind.classList.add('indicator-purple') : null;
+      })
+    }
+  })
 }
 
 const introCarousel = document.querySelector('#introCarousel');
-//let introCarouselInner = null;
+let introCarouselInner = null;
 
 if(introCarousel) {
-  //introCarouselInner = introCarousel.querySelector('.carousel-inner');
-  //main.style.marginTop = `${initialHeaderHeight}px`;
-  //introCarouselInner.style.height = `calc(100vh - ${initialHeaderHeight}px)`;
+  introCarouselInner = introCarousel.querySelector('.carousel-inner');
+  introCarouselInner.style.paddingTop = `${initialHeaderHeight}px`;
 
   const introCarouselInstance = new bootstrap.Carousel(introCarousel,{
     interval: false
@@ -44,14 +56,10 @@ const onResizeSetCarouselHeight = () => {
 
   if(currentHeaderHeight !== initialHeaderHeight) {
     if(aboutCarousel) {
-      //main.style.marginTop = `${currentHeaderHeight}px`;
-      //aboutCarouselInner.style.height = `calc(100vh - ${currentHeaderHeight}px)`;
-      console.log('resize')
       aboutCarouselInner.style.paddingTop = `${currentHeaderHeight}px`;
     }
     if(introCarousel) {
-      //main.style.marginTop = `${currentHeaderHeight}px`;
-      //introCarouselInner.style.height = `calc(100vh - ${currentHeaderHeight}px)`;
+      introCarouselInner.style.paddingTop = `${currentHeaderHeight}px`;
     }
     initialHeaderHeight = currentHeaderHeight
   }
