@@ -1,39 +1,59 @@
 const main = document.querySelector('main');
-const header = document.querySelector('header');
-let pagePosY = main.getBoundingClientRect().top;
-const introSlider = document.querySelector('#introCarousel');
-console.log(introSlider);
+const header = document.querySelector('.main-header');
 
-/*console.log(pagePosY);
+if(header) {
+  const nav = header.querySelector('.navbar');
+  let pagePosY = main.getBoundingClientRect().top;
+  let isHeaderChanged = false;
 
-const onScrollManipulateHeader = () => {
-  pagePosY = main.getBoundingClientRect().top;
+  const animateHeader = () => {
+    setTimeout(() => {
+      header.classList.add('showing');
+      header.classList.remove('hidding');
+      setTimeout(() => {
+        header.classList.remove('showing');
+      }, 500);
+    }, 300);
+  }
 
-  console.log(pagePosY);
+  const setHeaderStyle = (style) => {
+    header.classList.add('hidding');
+    setTimeout(() => {
+      if(style === 'white') {
+        nav.classList.remove('main-navbar-black-theme');
+        nav.classList.add('main-navbar-white-theme');
+      }
+
+      if(style === 'transparent') {
+        nav.classList.remove('main-navbar-white-theme');
+        nav.classList.add('main-navbar-black-theme');
+      }
+
+      animateHeader();
+    }, 400);
+  }
+
+  if(pagePosY > -50) {
+    nav.classList.remove('main-navbar-white-theme');
+    nav.classList.add('main-navbar-black-theme');
+    isHeaderChanged = false;
+  } else if (pagePosY < -50) {
+    nav.classList.remove('main-navbar-black-theme');
+    nav.classList.add('main-navbar-white-theme');
+    isHeaderChanged = true
+  }
+
+  const onScrollManipulateHeader = () => {
+    pagePosY = main.getBoundingClientRect().top;
+
+    if(pagePosY < -50 && !isHeaderChanged) {
+      setHeaderStyle('white');
+      isHeaderChanged = true;
+    } else if (pagePosY > -50 && isHeaderChanged) {
+      setHeaderStyle('transparent');
+      isHeaderChanged = false
+    }
+  }
+
+  window.addEventListener('scroll', onScrollManipulateHeader);
 }
-
-window.addEventListener('scroll', onScrollManipulateHeader);*/
-
-let observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-
-        if(entry.isIntersecting) {
-            if(pagePosY < -50 ) {
-                console.log('Убрать шапку')
-            } else {
-              console.log('Не убирать шапку, пока < 50пх')
-            }
-        }
-
-    });
-});
-
-const onScrollManipulateHeader = () => {
-  pagePosY = main.getBoundingClientRect().top;
-  console.log(pagePosY);
-}
-
-window.addEventListener('scroll', onScrollManipulateHeader);
-
-observer.observe(introSlider);
-

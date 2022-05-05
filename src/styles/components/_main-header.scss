@@ -1,0 +1,31 @@
+.main-header {
+
+  &.hidding {
+    animation: headerHidding 0.3s 0.1s ease-in forwards;
+  }
+
+  &.showing {
+    transform: translateY(-110%);
+    animation: headerShowing 0.3s 0.1s ease-in forwards;
+  }
+
+  @keyframes headerHidding {
+    0% {
+      transform: translateY(0);
+    }
+
+    100% {
+      transform: translateY(-110%);
+    }
+  }
+
+  @keyframes headerShowing {
+    0% {
+      transform: translateY(-110%);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+}

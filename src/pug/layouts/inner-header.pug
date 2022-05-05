@@ -1,0 +1,27 @@
+include ../mixins/_main-select
+
+header.inner-header.fixed-top
+  nav.main-navbar.navbar.py-0.main-navbar-white-theme
+    .container
+      a(href="index.html").navbar-brand.d-flex.align-items-center
+        img(src="./assets/img/logotype_black@1x.png" alt="Temperi Logistics Ltd." width="242" height="37").main-logo
+
+      include ../components/_nav
+
+      .ms-auto.align-items-center.d-none.d-md-flex
+        .search-field
+          form(action="#").d-flex.me-2
+            input.for-control.me-2(type="search" placeholder="Start your search..." aria-label="Search")
+            button(type="submit").btn.btn-outline-success
+              svg(width="23" height="22")
+                use(xlink:href="./assets/svg-sprite.svg#icon-search")
+
+        +main-select({
+          selected: 'EN',
+          options: ['EN', 'BLG',],
+          cls: 'lang-select me-4'
+        })
+
+      include ../components/_offcanvas
+
+

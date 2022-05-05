@@ -1,39 +1,40 @@
 include ../../mixins/_main-link
 
-#aboutCarousel.carousel.bg-white.slide(data-bs-ride="aboutCarousel")
-  .carousel-indicators
-    button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1").indicator.indicator-purple.active
-      .indicator-inner
-    button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="1" aria-label="Slide 2").indicator.indicator-purple
-      .indicator-inner
-    button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="2" aria-label="Slide 3").indicator.indicator-purple
-      .indicator-inner
-    button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="3" aria-label="Slide 4").indicator.indicator-purple
-      .indicator-inner
+section.about
+  #aboutCarousel.carousel.bg-white.slide(data-bs-ride="aboutCarousel")
+    .carousel-indicators
+      button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1").indicator.indicator-purple.active
+        .indicator-inner
+      button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="1" aria-label="Slide 2").indicator.indicator-purple
+        .indicator-inner
+      button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="2" aria-label="Slide 3").indicator.indicator-purple
+        .indicator-inner
+      button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="3" aria-label="Slide 4").indicator.indicator-purple
+        .indicator-inner
 
-  .carousel-inner.d-flex.outline
+    .carousel-inner.d-flex
 
-    include ../../components/_about-slide@1
-    include ../../components/_about-slide@2
-    include ../../components/_about-slide@3
-    include ../../components/_about-slide@4
+      include ../../components/_about-slide@1
+      include ../../components/_about-slide@2
+      include ../../components/_about-slide@3
+      include ../../components/_about-slide@4
 
-  .controls
-    .container.position-relative
-      .row
-        a(href="#projects" aria-label="Next carousel").scroll-btn
-          svg(width="24" height="32")
-            use(xlink:href="./assets/svg-sprite.svg#icon-arrow-down")
-        .col-12.col-xl-10.col-xxl-8.d-flex.mx-auto.justify-content-between
-          button(type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev").control.control-purple.control-prev.ps-4.ps-xl-0
-            svg(width="24" height="24")
-              use(xlink:href="./assets/svg-sprite.svg#icon-carousel-prev")
-            span.fw-medium.text-lightblack About us
-            span.visually-hidden Previous
+    .controls
+      .container.position-relative
+        .row
+          a(href="#projects" aria-label="Next carousel").scroll-btn
+            svg(width="24" height="32")
+              use(xlink:href="./assets/svg-sprite.svg#icon-arrow-down")
+          .col-12.col-xl-10.col-xxl-8.d-flex.mx-auto.justify-content-between
+            button(type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev").control.control-purple.control-prev.ps-4.ps-xl-0
+              svg(width="24" height="24")
+                use(xlink:href="./assets/svg-sprite.svg#icon-carousel-prev")
+              span.fw-medium.text-lightblack About us
+              span.visually-hidden Previous
 
-          button(type="button" data-bs-target="#aboutCarousel" data-bs-slide="next").control.control-purple.control-next.pe-4.pe-xl-0
-            span.fw-medium.text-lightblack Sale of anthracite, coal, coke products
-            svg(width="24" height="24")
-              use(xlink:href="./assets/svg-sprite.svg#icon-carousel-next")
-            span.visually-hidden Next
+            button(type="button" data-bs-target="#aboutCarousel" data-bs-slide="next").control.control-purple.control-next.pe-4.pe-xl-0
+              span.fw-medium.text-lightblack Sale of anthracite, coal, coke products
+              svg(width="24" height="24")
+                use(xlink:href="./assets/svg-sprite.svg#icon-carousel-next")
+              span.visually-hidden Next
 

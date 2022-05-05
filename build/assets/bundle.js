@@ -80,39 +80,92 @@ var onResizeSetCarouselHeight = function onResizeSetCarouselHeight() {
 /***/ (() => {
 
 var main = document.querySelector('main');
-var header = document.querySelector('header');
-var pagePosY = main.getBoundingClientRect().top;
-var introSlider = document.querySelector('#introCarousel');
-console.log(introSlider);
-/*console.log(pagePosY);
+var header = document.querySelector('.main-header');
 
-const onScrollManipulateHeader = () => {
-  pagePosY = main.getBoundingClientRect().top;
+if (header) {
+  var nav = header.querySelector('.navbar');
+  var pagePosY = main.getBoundingClientRect().top;
+  var isHeaderChanged = false;
 
-  console.log(pagePosY);
+  var animateHeader = function animateHeader() {
+    setTimeout(function () {
+      header.classList.add('showing');
+      header.classList.remove('hidding');
+      setTimeout(function () {
+        header.classList.remove('showing');
+      }, 500);
+    }, 300);
+  };
+
+  var setHeaderStyle = function setHeaderStyle(style) {
+    header.classList.add('hidding');
+    setTimeout(function () {
+      if (style === 'white') {
+        nav.classList.remove('main-navbar-black-theme');
+        nav.classList.add('main-navbar-white-theme');
+      }
+
+      if (style === 'transparent') {
+        nav.classList.remove('main-navbar-white-theme');
+        nav.classList.add('main-navbar-black-theme');
+      }
+
+      animateHeader();
+    }, 400);
+  };
+
+  if (pagePosY > -50) {
+    nav.classList.remove('main-navbar-white-theme');
+    nav.classList.add('main-navbar-black-theme');
+    isHeaderChanged = false;
+  } else if (pagePosY < -50) {
+    nav.classList.remove('main-navbar-black-theme');
+    nav.classList.add('main-navbar-white-theme');
+    isHeaderChanged = true;
+  }
+
+  var onScrollManipulateHeader = function onScrollManipulateHeader() {
+    pagePosY = main.getBoundingClientRect().top;
+
+    if (pagePosY < -50 && !isHeaderChanged) {
+      setHeaderStyle('white');
+      isHeaderChanged = true;
+    } else if (pagePosY > -50 && isHeaderChanged) {
+      setHeaderStyle('transparent');
+      isHeaderChanged = false;
+    }
+  };
+
+  window.addEventListener('scroll', onScrollManipulateHeader);
 }
 
-window.addEventListener('scroll', onScrollManipulateHeader);*/
+/***/ }),
 
-var observer = new IntersectionObserver(function (entries) {
-  entries.forEach(function (entry) {
-    if (entry.isIntersecting) {
-      if (pagePosY < -50) {
-        console.log('Убрать шапку');
-      } else {
-        console.log('Не убирать шапку, пока < 50пх');
-      }
+/***/ "./src/scripts/modules/pageOffset.js":
+/*!*******************************************!*\
+  !*** ./src/scripts/modules/pageOffset.js ***!
+  \*******************************************/
+/***/ (() => {
+
+var header = document.querySelector('.inner-header');
+var main = document.querySelector('main.page-offset');
+
+if (header) {
+  var headerInitialHeight = header.getBoundingClientRect().height;
+  console.log(headerInitialHeight);
+  main.style.marginTop = "".concat(headerInitialHeight, "px");
+
+  var onResizeSetPageOffset = function onResizeSetPageOffset() {
+    var currentHeaderHeight = header.getBoundingClientRect().height;
+
+    if (currentHeaderHeight !== headerInitialHeight) {
+      main.style.marginTop = "".concat(currentHeaderHeight, "px");
+      headerInitialHeight = currentHeaderHeight;
     }
-  });
-});
+  };
 
-var onScrollManipulateHeader = function onScrollManipulateHeader() {
-  pagePosY = main.getBoundingClientRect().top;
-  console.log(pagePosY);
-};
-
-window.addEventListener('scroll', onScrollManipulateHeader);
-observer.observe(introSlider);
+  window.addEventListener('resize', onResizeSetPageOffset);
+}
 
 /***/ }),
 
@@ -7013,12 +7066,15 @@ var __webpack_exports__ = {};
   !*** ./src/scripts/main.js ***!
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_header_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/header.js */ "./src/scripts/modules/header.js");
-/* harmony import */ var _modules_header_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_header_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _modules_carousel_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/carousel.js */ "./src/scripts/modules/carousel.js");
+/* harmony import */ var _modules_pageOffset_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/pageOffset.js */ "./src/scripts/modules/pageOffset.js");
+/* harmony import */ var _modules_pageOffset_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_pageOffset_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modules_header_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/header.js */ "./src/scripts/modules/header.js");
+/* harmony import */ var _modules_header_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modules_header_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _modules_carousel_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/carousel.js */ "./src/scripts/modules/carousel.js");
 //import './modules/module.js';
 //import "./vue/main.js";
 //import '../../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
+
 
 
 })();

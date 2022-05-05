@@ -1,39 +1,40 @@
 include ../../mixins/_main-link
 
-#introCarousel.carousel.slide(data-bs-ride="carousel")
-  .carousel-indicators
-    button(type="button" data-bs-target="#introCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1").indicator.active
-      .indicator-inner
-    button(type="button" data-bs-target="#introCarousel" data-bs-slide-to="1" aria-label="Slide 2").indicator
-      .indicator-inner
-    button(type="button" data-bs-target="#introCarousel" data-bs-slide-to="2" aria-label="Slide 3").indicator
-      .indicator-inner
-    button(type="button" data-bs-target="#introCarousel" data-bs-slide-to="3" aria-label="Slide 4").indicator
-      .indicator-inner
-    button(type="button" data-bs-target="#introCarousel" data-bs-slide-to="4" aria-label="Slide 5").indicator
-      .indicator-inner
+section.intro
+  #introCarousel.carousel.slide(data-bs-ride="carousel")
+    .carousel-indicators
+      button(type="button" data-bs-target="#introCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1").indicator.active
+        .indicator-inner
+      button(type="button" data-bs-target="#introCarousel" data-bs-slide-to="1" aria-label="Slide 2").indicator
+        .indicator-inner
+      button(type="button" data-bs-target="#introCarousel" data-bs-slide-to="2" aria-label="Slide 3").indicator
+        .indicator-inner
+      button(type="button" data-bs-target="#introCarousel" data-bs-slide-to="3" aria-label="Slide 4").indicator
+        .indicator-inner
+      button(type="button" data-bs-target="#introCarousel" data-bs-slide-to="4" aria-label="Slide 5").indicator
+        .indicator-inner
 
-  .carousel-inner
-    include ../../components/_intro-slide@1
-    include ../../components/_intro-slide@2
-    include ../../components/_intro-slide@3
-    include ../../components/_intro-slide@4
-    include ../../components/_intro-slide@5
+    .carousel-inner
+      include ../../components/_intro-slide@1
+      include ../../components/_intro-slide@2
+      include ../../components/_intro-slide@3
+      include ../../components/_intro-slide@4
+      include ../../components/_intro-slide@5
 
-  .controls
-    .container.position-relative
-      a(href="#aboutCarousel" aria-label="Next carousel").scroll-btn
-        svg(width="24" height="32")
-          use(xlink:href="./assets/svg-sprite.svg#icon-arrow-down")
-      .col-12.col-xl-10.col-xxl-8.d-flex.mx-auto.justify-content-between
-        button(type="button" data-bs-target="#introCarousel" data-bs-slide="prev").control.control-prev.ps-4.ps-xl-0
-          svg(width="24" height="24")
-            use(xlink:href="./assets/svg-sprite.svg#icon-carousel-prev")
-          span.fw-medium Sale of anthracite, coal, coke products
-          span.visually-hidden Previous
+    .controls
+      .container.position-relative
+        a(href="#aboutCarousel" aria-label="Next carousel").scroll-btn
+          svg(width="24" height="32")
+            use(xlink:href="./assets/svg-sprite.svg#icon-arrow-down")
+        .col-12.col-xl-10.col-xxl-8.d-flex.mx-auto.justify-content-between
+          button(type="button" data-bs-target="#introCarousel" data-bs-slide="prev").control.control-prev.ps-4.ps-xl-0
+            svg(width="24" height="24")
+              use(xlink:href="./assets/svg-sprite.svg#icon-carousel-prev")
+            span.fw-medium Sale of anthracite, coal, coke products
+            span.visually-hidden Previous
 
-        button(type="button" data-bs-target="#introCarousel" data-bs-slide="next").control.control-next.pe-4.pe-xl-0
-          span.fw-medium Sale of anthracite, coal, coke products
-          svg(width="24" height="24")
-            use(xlink:href="./assets/svg-sprite.svg#icon-carousel-next")
-          span.visually-hidden Next
+          button(type="button" data-bs-target="#introCarousel" data-bs-slide="next").control.control-next.pe-4.pe-xl-0
+            span.fw-medium Sale of anthracite, coal, coke products
+            svg(width="24" height="24")
+              use(xlink:href="./assets/svg-sprite.svg#icon-carousel-next")
+            span.visually-hidden Next
