@@ -13933,7 +13933,7 @@ table th {
   color: #ffffff;
 }
 .main-navbar-black-theme .search-field svg {
-  stroke: #ffffff;
+  fill: #ffffff;
 }
 
 .main-nav .nav-link {
@@ -14324,11 +14324,35 @@ table th {
   }
 }
 
+.search-field {
+  position: relative;
+}
 .search-field button {
   height: 40px;
 }
 .search-field input {
   display: none;
+  position: absolute;
+  left: -400px;
+  bottom: -120%;
+  width: 360px;
+  border: 1px solid #664599;
+  /*&::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    content: '';
+    width: 20px;
+    height: 11px;
+
+    background-color: red;
+    //border-width: 0 10px 11px 10px;
+    //border-color: transparent transparent $white transparent;
+  } */
+}
+.search-field input.js-active {
+  display: block;
 }
 
 .slide-content-desc {
