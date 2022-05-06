@@ -5,3 +5,4 @@ import './modules/pageOffset.js';
 import './modules/header.js';
 import './modules/carousel.js';
 import './modules/searchField.js';
+import './modules/scrollBtn.js';

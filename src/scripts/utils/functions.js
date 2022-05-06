@@ -73,4 +73,10 @@ function getBoundingClientRect(elem, side) {
   }
 }
 
-export  { limitStr, addClass, removeClass, checkClass, toggleClass, bodyLocker, getBoundingClientRect }
+function getHeaderHeight() {
+  //const header = document.querySelector('header').getBoundingClientRect().height;
+  return getBoundingClientRect(document.querySelector('header'), 'height');
+
+}
+
+export  { limitStr, addClass, removeClass, checkClass, toggleClass, bodyLocker, getBoundingClientRect, getHeaderHeight }

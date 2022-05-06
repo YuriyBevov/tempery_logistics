@@ -1,6 +1,6 @@
 include ../../mixins/_main-link
 
-section.about
+section.about.carousel-section
   #aboutCarousel.carousel.bg-white.slide(data-bs-ride="aboutCarousel")
     .carousel-indicators
       button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1").indicator.indicator-purple.active
@@ -22,7 +22,7 @@ section.about
     .controls
       .container.position-relative
         .row
-          a(href="#projects" aria-label="Next carousel").scroll-btn
+          a(href="#" aria-label="Next carousel").scroll-btn
             svg(width="24" height="32")
               use(xlink:href="./assets/svg-sprite.svg#icon-arrow-down")
           .col-12.col-xl-10.col-xxl-8.d-flex.mx-auto.justify-content-between

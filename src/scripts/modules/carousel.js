@@ -1,13 +1,17 @@
+import { getHeaderHeight } from "../utils/functions";
 import bootstrap from  '../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
 
-const header = document.querySelector('header');
-let initialHeaderHeight = header.getBoundingClientRect().height;
-
+//let headerHeight = getHeaderHeight();
 const aboutCarousel = document.querySelector('#aboutCarousel');
 let aboutCarouselInner = null;
 
 if(aboutCarousel) {
   aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner');
+  const previousAnchor = document.querySelector('.intro');
+  //const previousAnchorPosition = ;
+
+  const nextAnchor = document.querySelector('.projects');
+  //let nextAnchorPosition = nextAnchor.offsetTop;
 
   const aboutCarouselInstance = new bootstrap.Carousel(aboutCarousel, {
     interval: false
@@ -29,6 +33,26 @@ if(aboutCarousel) {
         ind.classList.add('indicator-purple') : null;
       })
     }
+
+
+    if(evt.direction === 'right' && evt.from === 0) {
+      evt.preventDefault();
+
+      scrollTo({
+        top: previousAnchor.offsetTop,
+        behavior: 'smooth'
+      })
+    }
+
+    if(evt.direction === 'left' && evt.to === 0) {
+      evt.preventDefault();
+
+      scrollTo({
+        top: nextAnchor.offsetTop - getHeaderHeight(),
+        behavior: 'smooth'
+      })
+    }
+
   })
 }
 
@@ -37,6 +61,8 @@ let introCarouselInner = null;
 
 if(introCarousel) {
   introCarouselInner = introCarousel.querySelector('.carousel-inner');
+  let anchor = document.querySelector('.about');
+  //let anchorPosition = ;
 
   const introCarouselInstance = new bootstrap.Carousel(introCarousel,{
     interval: false
@@ -44,23 +70,21 @@ if(introCarousel) {
 
   const nextBtn = introCarousel.querySelector('.carousel-control-next');
 
-  introCarousel.addEventListener('slid.bs.carousel', function () {
-    console.log('slide')
+  introCarousel.addEventListener('slide.bs.carousel', function (evt) {
+    console.log('slide', evt.from, evt.to, evt.direction)
+    if(evt.direction === 'right' && evt.from === 0) {
+      console.log('RIGHT asdf')
+      evt.preventDefault();
+    }
+
+    if(evt.direction === 'left' && evt.to === 0) {
+      console.log('LEFT end')
+      evt.preventDefault();
+
+      scrollTo({
+        top: anchor.offsetTop,
+        behavior: 'smooth'
+      })
+    }
   })
 }
-
-const onResizeSetCarouselHeight = () => {
-  let currentHeaderHeight = header.getBoundingClientRect().height;
-
-  if(currentHeaderHeight !== initialHeaderHeight) {
-    if(aboutCarousel) {
-      aboutCarouselInner.style.paddingTop = `${currentHeaderHeight}px`;
-    }
-    if(introCarousel) {
-      introCarouselInner.style.paddingTop = `${currentHeaderHeight}px`;
-    }
-    initialHeaderHeight = currentHeaderHeight
-  }
-}
-
-//window.addEventListener('resize', onResizeSetCarouselHeight);

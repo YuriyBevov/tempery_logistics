@@ -9,17 +9,22 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js */ "./node_modules/bootstrap/dist/js/bootstrap.bundle.js");
-/* harmony import */ var _node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/functions */ "./src/scripts/utils/functions.js");
+/* harmony import */ var _node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js */ "./node_modules/bootstrap/dist/js/bootstrap.bundle.js");
+/* harmony import */ var _node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_1__);
 
-var header = document.querySelector('header');
-var initialHeaderHeight = header.getBoundingClientRect().height;
+ //let headerHeight = getHeaderHeight();
+
 var aboutCarousel = document.querySelector('#aboutCarousel');
 var aboutCarouselInner = null;
 
 if (aboutCarousel) {
   aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner');
-  var aboutCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default().Carousel)(aboutCarousel, {
+  var previousAnchor = document.querySelector('.intro'); //const previousAnchorPosition = ;
+
+  var nextAnchor = document.querySelector('.projects'); //let nextAnchorPosition = nextAnchor.offsetTop;
+
+  var aboutCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_1___default().Carousel)(aboutCarousel, {
     interval: false
   });
   aboutCarousel.addEventListener('slide.bs.carousel', function (evt) {
@@ -36,6 +41,22 @@ if (aboutCarousel) {
         !ind.classList.contains('indicator-purple') ? ind.classList.add('indicator-purple') : null;
       });
     }
+
+    if (evt.direction === 'right' && evt.from === 0) {
+      evt.preventDefault();
+      scrollTo({
+        top: previousAnchor.offsetTop,
+        behavior: 'smooth'
+      });
+    }
+
+    if (evt.direction === 'left' && evt.to === 0) {
+      evt.preventDefault();
+      scrollTo({
+        top: nextAnchor.offsetTop - (0,_utils_functions__WEBPACK_IMPORTED_MODULE_0__.getHeaderHeight)(),
+        behavior: 'smooth'
+      });
+    }
   });
 }
 
@@ -44,30 +65,30 @@ var introCarouselInner = null;
 
 if (introCarousel) {
   introCarouselInner = introCarousel.querySelector('.carousel-inner');
-  var introCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default().Carousel)(introCarousel, {
+  var anchor = document.querySelector('.about'); //let anchorPosition = ;
+
+  var introCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_1___default().Carousel)(introCarousel, {
     interval: false
   });
   var nextBtn = introCarousel.querySelector('.carousel-control-next');
-  introCarousel.addEventListener('slid.bs.carousel', function () {
-    console.log('slide');
+  introCarousel.addEventListener('slide.bs.carousel', function (evt) {
+    console.log('slide', evt.from, evt.to, evt.direction);
+
+    if (evt.direction === 'right' && evt.from === 0) {
+      console.log('RIGHT asdf');
+      evt.preventDefault();
+    }
+
+    if (evt.direction === 'left' && evt.to === 0) {
+      console.log('LEFT end');
+      evt.preventDefault();
+      scrollTo({
+        top: anchor.offsetTop,
+        behavior: 'smooth'
+      });
+    }
   });
 }
-
-var onResizeSetCarouselHeight = function onResizeSetCarouselHeight() {
-  var currentHeaderHeight = header.getBoundingClientRect().height;
-
-  if (currentHeaderHeight !== initialHeaderHeight) {
-    if (aboutCarousel) {
-      aboutCarouselInner.style.paddingTop = "".concat(currentHeaderHeight, "px");
-    }
-
-    if (introCarousel) {
-      introCarouselInner.style.paddingTop = "".concat(currentHeaderHeight, "px");
-    }
-
-    initialHeaderHeight = currentHeaderHeight;
-  }
-}; //window.addEventListener('resize', onResizeSetCarouselHeight);
 
 /***/ }),
 
@@ -166,6 +187,29 @@ if (header) {
 
 /***/ }),
 
+/***/ "./src/scripts/modules/scrollBtn.js":
+/*!******************************************!*\
+  !*** ./src/scripts/modules/scrollBtn.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/functions */ "./src/scripts/utils/functions.js");
+
+var btns = document.querySelectorAll('.scroll-btn');
+var carouselSections = document.querySelectorAll('.carousel-section');
+var lastCarouselSection = carouselSections[carouselSections.length - 1];
+btns[btns.length - 1].addEventListener('click', function (evt) {
+  evt.preventDefault();
+  scrollTo({
+    top: lastCarouselSection.nextElementSibling.offsetTop - (0,_utils_functions__WEBPACK_IMPORTED_MODULE_0__.getHeaderHeight)(),
+    behavior: 'smooth'
+  });
+});
+
+/***/ }),
+
 /***/ "./src/scripts/modules/searchField.js":
 /*!********************************************!*\
   !*** ./src/scripts/modules/searchField.js ***!
@@ -192,6 +236,108 @@ if (searchForm) {
 
   searchBtn.addEventListener('click', onClickShowSearchField);
 }
+
+/***/ }),
+
+/***/ "./src/scripts/utils/functions.js":
+/*!****************************************!*\
+  !*** ./src/scripts/utils/functions.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "addClass": () => (/* binding */ addClass),
+/* harmony export */   "bodyLocker": () => (/* binding */ bodyLocker),
+/* harmony export */   "checkClass": () => (/* binding */ checkClass),
+/* harmony export */   "getBoundingClientRect": () => (/* binding */ getBoundingClientRect),
+/* harmony export */   "getHeaderHeight": () => (/* binding */ getHeaderHeight),
+/* harmony export */   "limitStr": () => (/* binding */ limitStr),
+/* harmony export */   "removeClass": () => (/* binding */ removeClass),
+/* harmony export */   "toggleClass": () => (/* binding */ toggleClass)
+/* harmony export */ });
+// работа с классами эл-та
+function addClass(el, cl) {
+  el.classList.add(cl);
+}
+
+function removeClass(el, cl) {
+  el.classList.remove(cl);
+}
+
+function checkClass(el, cl) {
+  return el.classList.contains(cl);
+}
+
+function toggleClass(el, cl) {
+  el.classList.toggle(cl);
+} // Ограничение длины текста по кол-ву символов
+
+
+function limitStr(str, n) {
+  if (str.length > n) {
+    return str.slice(0, n) + '...';
+  } else {
+    return str;
+  }
+} // запрет скролла у body
+
+
+function bodyLocker(bool) {
+  var body = document.querySelector('body');
+  var paddingOffset = window.innerWidth - document.body.offsetWidth + 'px';
+
+  if (bool) {
+    body.style.overflow = 'hidden';
+    body.style.paddingRight = paddingOffset;
+  } else {
+    body.style.overflow = 'auto';
+    body.style.paddingRight = '0px';
+  }
+} // вычисление поз-и/размеров эл-та
+
+
+function getBoundingClientRect(elem, side) {
+  if (side === 'height') {
+    return elem.getBoundingClientRect().height;
+  }
+
+  if (side === 'width') {
+    return elem.getBoundingClientRect().width;
+  }
+
+  if (side === 'top') {
+    return elem.getBoundingClientRect().top;
+  }
+
+  if (side === 'bottom') {
+    return elem.getBoundingClientRect().bottom;
+  }
+
+  if (side === 'left') {
+    return elem.getBoundingClientRect().left;
+  }
+
+  if (side === 'right') {
+    return elem.getBoundingClientRect().right;
+  }
+
+  if (side === 'x') {
+    return elem.getBoundingClientRect().x;
+  }
+
+  if (side === 'y') {
+    return elem.getBoundingClientRect().y;
+  }
+}
+
+function getHeaderHeight() {
+  //const header = document.querySelector('header').getBoundingClientRect().height;
+  return getBoundingClientRect(document.querySelector('header'), 'height');
+}
+
+
 
 /***/ }),
 
@@ -7099,9 +7245,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_carousel_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/carousel.js */ "./src/scripts/modules/carousel.js");
 /* harmony import */ var _modules_searchField_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/searchField.js */ "./src/scripts/modules/searchField.js");
 /* harmony import */ var _modules_searchField_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_modules_searchField_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _modules_scrollBtn_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/scrollBtn.js */ "./src/scripts/modules/scrollBtn.js");
 //import './modules/module.js';
 //import "./vue/main.js";
 //import '../../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
+
 
 
 
