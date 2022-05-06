@@ -17,7 +17,71 @@ __webpack_require__.r(__webpack_exports__);
 var aboutCarousel = document.querySelector('#aboutCarousel');
 var aboutCarouselInner = null;
 var introCarousel = document.querySelector('#introCarousel');
-var introCarouselInner = null;
+var introCarouselInner = null; // отрисовка названий на кнопках слайдера
+
+function fillControlsTitle(obj) {
+  var hideBtn = function hideBtn(btn, bool) {
+    if (bool) {
+      btn.style.opacity = 0;
+      btn.style.zIndex = -1;
+    } else {
+      btn.style.opacity = 1;
+      btn.style.zIndex = 3;
+    }
+  };
+
+  var prevTitleNode = obj.prevControl.querySelector('span');
+  var nextTitleNode = obj.nextControl.querySelector('span');
+
+  if (obj.prevControlTitle !== '') {
+    prevTitleNode.innerHTML = obj.prevControlTitle;
+    hideBtn(obj.prevControl, false);
+  } else {
+    hideBtn(obj.prevControl, true);
+  }
+
+  nextTitleNode.innerHTML = obj.nextControlTitle;
+} // смена названий на кнопках слайдера
+
+
+function setControlsTitle(obj) {
+  if (obj.evt.to < obj.items.length - 1 && obj.evt.from !== obj.items.length - 1 && obj.evt.direction === 'left') {
+    fillControlsTitle({
+      nextControl: obj.nextControl,
+      prevControl: obj.prevControl,
+      nextControlTitle: obj.items[obj.evt.to + 1].getAttribute("data-title"),
+      prevControlTitle: obj.items[obj.evt.to - 1].getAttribute("data-title")
+    });
+  }
+
+  if (obj.evt.to === obj.items.length - 1 && obj.evt.direction === 'left') {
+    fillControlsTitle({
+      nextControl: obj.nextControl,
+      prevControl: obj.prevControl,
+      nextControlTitle: 'Scroll down',
+      prevControlTitle: obj.items[obj.evt.to - 1].getAttribute("data-title")
+    });
+  } // влево
+
+
+  if (obj.evt.from !== 0 && obj.evt.to > 0 && obj.evt.direction === 'right') {
+    fillControlsTitle({
+      nextControl: obj.nextControl,
+      prevControl: obj.prevControl,
+      nextControlTitle: obj.items[obj.evt.to + 1].getAttribute("data-title"),
+      prevControlTitle: obj.items[obj.evt.to - 1].getAttribute("data-title")
+    });
+  }
+
+  if (obj.evt.to === 0 && obj.evt.direction === 'right') {
+    fillControlsTitle({
+      nextControl: obj.nextControl,
+      prevControl: obj.prevControl,
+      nextControlTitle: obj.items[obj.evt.to + 1].getAttribute("data-title"),
+      prevControlTitle: obj.isPrevNodeEnabled ? 'Scroll up' : ''
+    });
+  }
+}
 
 if (aboutCarousel) {
   aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner');
@@ -25,22 +89,19 @@ if (aboutCarousel) {
   var nextAnchor = document.querySelector('.projects');
   var aboutCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_1___default().Carousel)(aboutCarousel, {
     interval: false
+  }); // текст на кнопках
+
+  var carouselItems = aboutCarouselInner.querySelectorAll('.carousel-item');
+  var prevControl = aboutCarousel.querySelector('.control-prev');
+  var nextControl = aboutCarousel.querySelector('.control-next');
+  fillControlsTitle({
+    nextControl: nextControl,
+    prevControl: prevControl,
+    nextControlTitle: carouselItems[1].getAttribute("data-title"),
+    prevControlTitle: 'Scroll down'
   });
-  /*const carouselItems = aboutCarouselInner.querySelectorAll('.carousel-item');
-   const prevControl = aboutCarousel.querySelector('.control-prev');
-  /*prevControl.style.opacity = 0;
-  prevControl.style.zIndex = -1; */
-
-  /*const prevControlTitle = prevControl.querySelector('span')
-   const nextControl = aboutCarousel.querySelector('.control-next');
-  const nextControlTitle = nextControl.querySelector('span')
-   prevControlTitle.innerHTML = 'UP';
-  nextControlTitle.innerHTML = carouselItems[1].getAttribute("data-title");
-  console.log(aboutCarouselInstance) */
-  //setCarouselControlTitle(carouselItems, 0, 1);
-
   aboutCarousel.addEventListener('slide.bs.carousel', function (evt) {
-    var indicators = aboutCarousel.querySelectorAll('.indicator');
+    var indicators = aboutCarousel.querySelectorAll('.indicator'); // смена цвета индикаторов
 
     if (evt.to === 1 && window.innerWidth < 1200 || evt.to === 2 && window.innerWidth < 1200) {
       indicators.forEach(function (ind) {
@@ -52,7 +113,8 @@ if (aboutCarousel) {
         ind.querySelector('.indicator-inner').style.backgroundColor = '#664599';
         !ind.classList.contains('indicator-purple') ? ind.classList.add('indicator-purple') : null;
       });
-    }
+    } // отмена смены слайда и скролл в другой блок
+
 
     if (evt.direction === 'right' && evt.from === 0) {
       evt.preventDefault();
@@ -61,18 +123,6 @@ if (aboutCarousel) {
         behavior: 'smooth'
       });
     }
-    /*else {
-      if(evt.from === 1) {
-        console.log(evt.from, 'LAST')
-        prevControlTitle.innerHTML = 'up';
-        nextControlTitle.innerHTML = carouselItems[evt.from].getAttribute("data-title");
-      } else {
-        console.log('not last', evt.from, evt.to);
-        prevControlTitle.innerHTML = carouselItems[evt.from].getAttribute("data-title");
-        nextControlTitle.innerHTML = carouselItems[evt.from].getAttribute("data-title");
-      }
-    }*/
-
 
     if (evt.direction === 'left' && evt.to === 0) {
       evt.preventDefault();
@@ -80,16 +130,20 @@ if (aboutCarousel) {
         top: nextAnchor.offsetTop - (0,_utils_functions__WEBPACK_IMPORTED_MODULE_0__.getHeaderHeight)(),
         behavior: 'smooth'
       });
-    }
-    /*else {
-    if(evt.to + 1 < carouselItems.length) {
-      prevControlTitle.innerHTML = carouselItems[evt.from].getAttribute("data-title");
-      nextControlTitle.innerHTML = carouselItems[evt.to + 1].getAttribute("data-title");
-    } else if (evt.to + 1 === carouselItems.length) {
-      nextControlTitle.innerHTML = 'Our projects';
-    }
-    }*/
+    } // текст на кнопках
 
+
+    setControlsTitle({
+      items: carouselItems,
+      nextControl: nextControl,
+      prevControl: prevControl,
+      isPrevNodeEnabled: true,
+      evt: {
+        to: evt.to,
+        from: evt.from,
+        direction: evt.direction
+      }
+    });
   });
 }
 
@@ -99,8 +153,22 @@ if (introCarousel) {
   var introCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_1___default().Carousel)(introCarousel, {
     interval: false
   });
-  var nextBtn = introCarousel.querySelector('.carousel-control-next');
+  var nextBtn = introCarousel.querySelector('.carousel-control-next'); // текст на кнопках
+
+  var _carouselItems = introCarouselInner.querySelectorAll('.carousel-item');
+
+  var _prevControl = introCarousel.querySelector('.control-prev');
+
+  var _nextControl = introCarousel.querySelector('.control-next');
+
+  fillControlsTitle({
+    nextControl: _nextControl,
+    prevControl: _prevControl,
+    nextControlTitle: _carouselItems[1].getAttribute("data-title"),
+    prevControlTitle: ''
+  });
   introCarousel.addEventListener('slide.bs.carousel', function (evt) {
+    // отмена смены слайда и скролл в другой блок
     if (evt.direction === 'right' && evt.from === 0) {
       evt.preventDefault();
     }
@@ -111,7 +179,19 @@ if (introCarousel) {
         top: anchor.offsetTop,
         behavior: 'smooth'
       });
-    }
+    } // текст на кнопках
+
+
+    setControlsTitle({
+      items: _carouselItems,
+      nextControl: _nextControl,
+      prevControl: _prevControl,
+      evt: {
+        to: evt.to,
+        from: evt.from,
+        direction: evt.direction
+      }
+    });
   });
 }
 

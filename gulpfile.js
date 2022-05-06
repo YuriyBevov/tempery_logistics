@@ -186,11 +186,6 @@ const js = () => {
     .pipe(browserSync.stream());
 }
 
-const resources = () => {
-    return src(PATHS.resources.src)
-      .pipe(dest(PATHS.resources.dest))
-}
-
 const sprite = () => {
   return src(PATHS.sprite.src)
     .pipe(
@@ -296,6 +291,6 @@ const refresh = (done) => {
     done();
 }
 
-exports.start = series(clean, fonts, isPugEnabled ? pug : html, styles, js, resources, sprite, images, toWebp, svg, server);
-exports.build = series(toProd, clean, fonts, isPugEnabled ? pug : html, styles, js, resources, sprite, images, toWebp, svg);
-exports.buildMinAll = series(htmlMinify, toProd, clean, fonts, isPugEnabled ? pug : html, styles, js, resources, sprite, images, toWebp, svg);
+exports.start = series(clean, fonts, isPugEnabled ? pug : html, styles, js, prite, images, toWebp, svg, server);
+exports.build = series(toProd, clean, fonts, isPugEnabled ? pug : html, styles, js, sprite, images, toWebp, svg);
+exports.buildMinAll = series(htmlMinify, toProd, clean, fonts, isPugEnabled ? pug : html, styles, js, sprite, images, toWebp, svg);

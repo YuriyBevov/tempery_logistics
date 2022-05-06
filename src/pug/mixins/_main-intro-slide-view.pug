@@ -1,5 +1,5 @@
 mixin main-intro-slide-view(opt)
-  .carousel-item(style=`background-image: url('./assets/img/${opt.bg}')` class= opt.cls ? opt.cls : null)
+  .carousel-item(style=`background-image: url('./assets/img/${opt.bg}')` class= opt.cls ? opt.cls : null data-title= opt.dataTitle ? opt.dataTitle : '')
     .container.h-100
       .row.my-auto.align-items-center.h-100
         .slide-content.d-flex.flex-column.align-items-center.align-items-lg-start.my-lg-auto.pe-3(class= opt.slideContentCls ? opt.slideContentCls : null)
