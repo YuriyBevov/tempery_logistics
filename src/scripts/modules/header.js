@@ -17,7 +17,7 @@ if(header) {
   }
 
   const setHeaderStyle = (style) => {
-    header.classList.add('hidding');
+    //header.classList.add('hidding');
     setTimeout(() => {
       if(style === 'white') {
         nav.classList.remove('main-navbar-black-theme');
@@ -29,7 +29,7 @@ if(header) {
         nav.classList.add('main-navbar-black-theme');
       }
 
-      animateHeader();
+      //animateHeader();
     }, 400);
   }
 

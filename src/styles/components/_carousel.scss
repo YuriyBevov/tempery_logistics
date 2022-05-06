@@ -68,6 +68,8 @@
   &-item {
     padding-top: 115px;
     padding-bottom: 125px;
+    background-size: cover;
+    background-position: center;
 
     @include media-breakpoint-down(xl) {
       padding-bottom: 50px;

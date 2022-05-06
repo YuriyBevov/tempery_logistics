@@ -1,3 +1,5 @@
+$transition-rule: all 0.3s ease-in-out;
+
 .main-navbar {
   min-height: inherit;
 
@@ -9,10 +11,12 @@
 
 .main-navbar-white-theme {
     background-color: $white;
+    transition: $transition-rule;
 }
 
 .main-navbar-black-theme {
   background-color: transparent;
+  transition: $transition-rule;
 
   .main-logo {
     display: none;

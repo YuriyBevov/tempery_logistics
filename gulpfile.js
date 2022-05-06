@@ -204,7 +204,7 @@ const sprite = () => {
       cheerio({
         run: function ($) {
           $('[fill]').removeAttr('fill');
-          $('[stroke]').removeAttr('stroke');
+          //$('[stroke]').removeAttr('stroke');
           //$('[style]').removeAttr('style');
         },
         parserOptions: {

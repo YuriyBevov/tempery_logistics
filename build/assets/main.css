@@ -13658,6 +13658,11 @@ table th {
 }
 
 /* Компоненты */
+.accordion ul {
+  list-style: none;
+  padding: 0;
+}
+
 .accordion-item {
   border-left: none;
   border-right: none;
@@ -13917,10 +13922,16 @@ table th {
 
 .main-navbar-white-theme {
   background-color: #ffffff;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .main-navbar-black-theme {
   background-color: transparent;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .main-navbar-black-theme .main-logo {
   display: none;
@@ -14514,6 +14525,8 @@ table th {
 .carousel-item {
   padding-top: 115px;
   padding-bottom: 125px;
+  background-size: cover;
+  background-position: center;
 }
 @media (max-width: 1199.98px) {
   .carousel-item {

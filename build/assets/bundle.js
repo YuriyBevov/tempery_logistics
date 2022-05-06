@@ -13,20 +13,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js */ "./node_modules/bootstrap/dist/js/bootstrap.bundle.js");
 /* harmony import */ var _node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_1__);
 
- //let headerHeight = getHeaderHeight();
 
 var aboutCarousel = document.querySelector('#aboutCarousel');
 var aboutCarouselInner = null;
+var introCarousel = document.querySelector('#introCarousel');
+var introCarouselInner = null;
 
 if (aboutCarousel) {
   aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner');
-  var previousAnchor = document.querySelector('.intro'); //const previousAnchorPosition = ;
-
-  var nextAnchor = document.querySelector('.projects'); //let nextAnchorPosition = nextAnchor.offsetTop;
-
+  var previousAnchor = document.querySelector('.intro');
+  var nextAnchor = document.querySelector('.projects');
   var aboutCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_1___default().Carousel)(aboutCarousel, {
     interval: false
   });
+  /*const carouselItems = aboutCarouselInner.querySelectorAll('.carousel-item');
+   const prevControl = aboutCarousel.querySelector('.control-prev');
+  /*prevControl.style.opacity = 0;
+  prevControl.style.zIndex = -1; */
+
+  /*const prevControlTitle = prevControl.querySelector('span')
+   const nextControl = aboutCarousel.querySelector('.control-next');
+  const nextControlTitle = nextControl.querySelector('span')
+   prevControlTitle.innerHTML = 'UP';
+  nextControlTitle.innerHTML = carouselItems[1].getAttribute("data-title");
+  console.log(aboutCarouselInstance) */
+  //setCarouselControlTitle(carouselItems, 0, 1);
+
   aboutCarousel.addEventListener('slide.bs.carousel', function (evt) {
     var indicators = aboutCarousel.querySelectorAll('.indicator');
 
@@ -49,6 +61,18 @@ if (aboutCarousel) {
         behavior: 'smooth'
       });
     }
+    /*else {
+      if(evt.from === 1) {
+        console.log(evt.from, 'LAST')
+        prevControlTitle.innerHTML = 'up';
+        nextControlTitle.innerHTML = carouselItems[evt.from].getAttribute("data-title");
+      } else {
+        console.log('not last', evt.from, evt.to);
+        prevControlTitle.innerHTML = carouselItems[evt.from].getAttribute("data-title");
+        nextControlTitle.innerHTML = carouselItems[evt.from].getAttribute("data-title");
+      }
+    }*/
+
 
     if (evt.direction === 'left' && evt.to === 0) {
       evt.preventDefault();
@@ -57,30 +81,31 @@ if (aboutCarousel) {
         behavior: 'smooth'
       });
     }
+    /*else {
+    if(evt.to + 1 < carouselItems.length) {
+      prevControlTitle.innerHTML = carouselItems[evt.from].getAttribute("data-title");
+      nextControlTitle.innerHTML = carouselItems[evt.to + 1].getAttribute("data-title");
+    } else if (evt.to + 1 === carouselItems.length) {
+      nextControlTitle.innerHTML = 'Our projects';
+    }
+    }*/
+
   });
 }
 
-var introCarousel = document.querySelector('#introCarousel');
-var introCarouselInner = null;
-
 if (introCarousel) {
   introCarouselInner = introCarousel.querySelector('.carousel-inner');
-  var anchor = document.querySelector('.about'); //let anchorPosition = ;
-
+  var anchor = document.querySelector('.about');
   var introCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_1___default().Carousel)(introCarousel, {
     interval: false
   });
   var nextBtn = introCarousel.querySelector('.carousel-control-next');
   introCarousel.addEventListener('slide.bs.carousel', function (evt) {
-    console.log('slide', evt.from, evt.to, evt.direction);
-
     if (evt.direction === 'right' && evt.from === 0) {
-      console.log('RIGHT asdf');
       evt.preventDefault();
     }
 
     if (evt.direction === 'left' && evt.to === 0) {
-      console.log('LEFT end');
       evt.preventDefault();
       scrollTo({
         top: anchor.offsetTop,
@@ -117,7 +142,7 @@ if (header) {
   };
 
   var setHeaderStyle = function setHeaderStyle(style) {
-    header.classList.add('hidding');
+    //header.classList.add('hidding');
     setTimeout(function () {
       if (style === 'white') {
         nav.classList.remove('main-navbar-black-theme');
@@ -127,9 +152,8 @@ if (header) {
       if (style === 'transparent') {
         nav.classList.remove('main-navbar-white-theme');
         nav.classList.add('main-navbar-black-theme');
-      }
+      } //animateHeader();
 
-      animateHeader();
     }, 400);
   };
 
