@@ -84,13 +84,48 @@ function setControlsTitle(obj) {
       prevControlTitle: obj.isPrevNodeEnabled ? 'Scroll up' : ''
     });
   }
+} // swipe
+
+
+function swipeCarousel(carousel, carouselInstance) {
+  var entryPosX = null;
+
+  var onMouseUpRemoveListeners = function onMouseUpRemoveListeners() {
+    window.removeEventListener('mousemove', onMouseMoveChangeSlide);
+  };
+
+  var onMouseMoveChangeSlide = function onMouseMoveChangeSlide(evt) {
+    evt.preventDefault();
+    var posX = evt.screenX;
+
+    if (entryPosX - posX > 75) {
+      carouselInstance.next();
+    } else if (posX - entryPosX > 75) {
+      carouselInstance.prev();
+    }
+
+    window.addEventListener('mouseup', onMouseUpRemoveListeners);
+  };
+
+  var onMouseDownListenMouseMove = function onMouseDownListenMouseMove(evt) {
+    entryPosX = evt.screenX;
+
+    if (carousel.contains(evt.target)) {
+      window.addEventListener('mousemove', onMouseMoveChangeSlide);
+      window.addEventListener('mouseup', onMouseUpRemoveListeners);
+    }
+  };
+
+  window.addEventListener('mousedown', onMouseDownListenMouseMove);
 }
 
 if (aboutCarousel) {
   aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner');
   var aboutCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default().Carousel)(aboutCarousel, {
     interval: false
-  }); // текст на кнопках
+  }); // swipe
+
+  swipeCarousel(aboutCarousel, aboutCarouselInstance); // текст на кнопках
 
   var carouselItems = aboutCarouselInner.querySelectorAll('.carousel-item');
   var prevControl = aboutCarousel.querySelector('.control-prev');
@@ -154,7 +189,9 @@ if (introCarousel) {
   introCarouselInner = introCarousel.querySelector('.carousel-inner');
   var introCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default().Carousel)(introCarousel, {
     interval: false
-  }); // текст на кнопках
+  }); // swipe
+
+  swipeCarousel(introCarousel, introCarouselInstance); // текст на кнопках
 
   var _carouselItems = introCarouselInner.querySelectorAll('.carousel-item');
 

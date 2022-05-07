@@ -73,12 +73,48 @@ function setControlsTitle(obj) {
   }
 }
 
+// swipe
+function swipeCarousel(carousel, carouselInstance) {
+  let entryPosX = null;
+
+  const onMouseUpRemoveListeners = () => {
+    window.removeEventListener('mousemove', onMouseMoveChangeSlide);
+  }
+
+  const onMouseMoveChangeSlide = (evt) => {
+    evt.preventDefault();
+    let posX = evt.screenX;
+
+    if(entryPosX - posX > 75) {
+      carouselInstance.next();
+    } else if (posX - entryPosX > 75){
+      carouselInstance.prev();
+    }
+
+    window.addEventListener('mouseup', onMouseUpRemoveListeners);
+  }
+
+  const onMouseDownListenMouseMove = (evt) => {
+    entryPosX = evt.screenX;
+
+    if(carousel.contains(evt.target)) {
+      window.addEventListener('mousemove', onMouseMoveChangeSlide);
+      window.addEventListener('mouseup', onMouseUpRemoveListeners);
+    }
+  }
+
+  window.addEventListener('mousedown', onMouseDownListenMouseMove);
+}
+
 if(aboutCarousel) {
   aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner');
 
   const aboutCarouselInstance = new bootstrap.Carousel(aboutCarousel, {
     interval: false
   });
+
+  // swipe
+  swipeCarousel(aboutCarousel, aboutCarouselInstance);
 
    // текст на кнопках
    const carouselItems = aboutCarouselInner.querySelectorAll('.carousel-item');
@@ -147,6 +183,9 @@ if(introCarousel) {
     interval: false
   });
 
+  // swipe
+  swipeCarousel(introCarousel, introCarouselInstance);
+
   // текст на кнопках
   const carouselItems = introCarouselInner.querySelectorAll('.carousel-item');
   const prevControl = introCarousel.querySelector('.control-prev');
@@ -158,6 +197,7 @@ if(introCarousel) {
     nextControlTitle: carouselItems[1].getAttribute("data-title"),
     prevControlTitle: ''
   });
+
 
   introCarousel.addEventListener('slide.bs.carousel', function (evt) {
     // отмена смены слайда и скролл в другой блок
