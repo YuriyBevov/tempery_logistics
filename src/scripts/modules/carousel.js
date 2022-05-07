@@ -1,5 +1,7 @@
-import { getHeaderHeight } from "../utils/functions";
 import bootstrap from  '../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
+
+import { getHeaderHeight } from "../utils/functions";
+import { scrollIntoView, scrollBy } from "seamless-scroll-polyfill";
 
 const aboutCarousel = document.querySelector('#aboutCarousel');
 let aboutCarouselInner = null;
@@ -74,9 +76,6 @@ function setControlsTitle(obj) {
 if(aboutCarousel) {
   aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner');
 
-  const previousAnchor = document.querySelector('.intro');
-  const nextAnchor = document.querySelector('.projects');
-
   const aboutCarouselInstance = new bootstrap.Carousel(aboutCarousel, {
     interval: false
   });
@@ -90,7 +89,7 @@ if(aboutCarousel) {
      nextControl,
      prevControl,
      nextControlTitle: carouselItems[1].getAttribute("data-title"),
-     prevControlTitle: 'Scroll down'
+     prevControlTitle: 'Scroll up'
    });
 
   aboutCarousel.addEventListener('slide.bs.carousel', function (evt) {
@@ -114,18 +113,15 @@ if(aboutCarousel) {
     // отмена смены слайда и скролл в другой блок
     if(evt.direction === 'right' && evt.from === 0) {
       evt.preventDefault();
-      scrollTo({
-        top: previousAnchor.offsetTop,
-        behavior: 'smooth'
-      })
+      scrollIntoView(introCarousel, { behavior: "smooth", block: "start"});
     }
 
     if(evt.direction === 'left' && evt.to === 0) {
       evt.preventDefault();
-      scrollTo({
-        top: nextAnchor.offsetTop - getHeaderHeight(),
-        behavior: 'smooth'
-      })
+      const nextAnchor = document.querySelector('#carousel-off-section');
+      const nextAnchorCoord = nextAnchor.offsetTop - window.pageYOffset - getHeaderHeight();
+
+      scrollBy(window, { behavior: "smooth", top: nextAnchorCoord });
     }
 
     // текст на кнопках
@@ -146,13 +142,10 @@ if(aboutCarousel) {
 
 if(introCarousel) {
   introCarouselInner = introCarousel.querySelector('.carousel-inner');
-  const anchor = document.querySelector('.about');
 
   const introCarouselInstance = new bootstrap.Carousel(introCarousel,{
     interval: false
   });
-
-  const nextBtn = introCarousel.querySelector('.carousel-control-next');
 
   // текст на кнопках
   const carouselItems = introCarouselInner.querySelectorAll('.carousel-item');
@@ -174,11 +167,7 @@ if(introCarousel) {
 
     if(evt.direction === 'left' && evt.to === 0) {
       evt.preventDefault();
-
-      scrollTo({
-        top: anchor.offsetTop,
-        behavior: 'smooth'
-      })
+      scrollIntoView(aboutCarousel, { behavior: "smooth", block: "start"});
     }
 
     // текст на кнопках
@@ -192,6 +181,5 @@ if(introCarousel) {
         direction: evt.direction
       }
     })
-
   })
 }

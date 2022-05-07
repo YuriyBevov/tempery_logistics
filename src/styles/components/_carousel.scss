@@ -75,6 +75,10 @@
       padding-bottom: 50px;
     }
 
+    @include media-breakpoint-down(md) {
+      padding-top: 80px;
+    }
+
   }
 }
 
@@ -166,6 +170,7 @@
     position: absolute;
     bottom: -1rem;
     left: var(--bs-gutter-x, 0.75rem);
+    z-index: 5;
 
     @include media-breakpoint-down(xl) {
       display: none;
@@ -179,7 +184,7 @@
     flex-wrap: nowrap;
     align-items: center;
     width: fit-content;
-    max-width: 360px;
+    //max-width: 360px;
     z-index: 3;
     color: $white;
 

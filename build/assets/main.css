@@ -13845,6 +13845,12 @@ table th {
   }
 }
 
+header.sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+
 .main-footer .section-title {
   font-size: 22px;
   padding-bottom: 15px;
@@ -14533,6 +14539,11 @@ table th {
     padding-bottom: 50px;
   }
 }
+@media (max-width: 767.98px) {
+  .carousel-item {
+    padding-top: 80px;
+  }
+}
 
 .about-slide-desc {
   font-size: 22px;
@@ -14604,6 +14615,7 @@ table th {
   position: absolute;
   bottom: -1rem;
   left: var(--bs-gutter-x, 0.75rem);
+  z-index: 5;
 }
 @media (max-width: 1199.98px) {
   .controls .scroll-btn {
@@ -14623,7 +14635,6 @@ table th {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  max-width: 360px;
   z-index: 3;
   color: #ffffff;
 }
