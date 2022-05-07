@@ -84,10 +84,10 @@ function setControlsTitle(obj) {
       prevControlTitle: obj.isPrevNodeEnabled ? 'Scroll up' : ''
     });
   }
-} // swipe
+} // смена слайдов по свайпу
 
 
-function swipeCarousel(carousel, carouselInstance) {
+function onSwipeSlideCarousel(carouselNode, carouselInstance) {
   var entryPosX = null;
 
   var onMouseUpRemoveListeners = function onMouseUpRemoveListeners() {
@@ -110,13 +110,83 @@ function swipeCarousel(carousel, carouselInstance) {
   var onMouseDownListenMouseMove = function onMouseDownListenMouseMove(evt) {
     entryPosX = evt.screenX;
 
-    if (carousel.contains(evt.target)) {
+    if (carouselNode.contains(evt.target)) {
       window.addEventListener('mousemove', onMouseMoveChangeSlide);
       window.addEventListener('mouseup', onMouseUpRemoveListeners);
     }
   };
 
   window.addEventListener('mousedown', onMouseDownListenMouseMove);
+} //- observer
+
+/*const carouselOffSection = document.querySelector('#carousel-off-section');
+/*carouselOffSection.style.marginTop = '1px'; // без маргина блок попадает в зону видимости
+
+let isObserve = false;
+
+if(carouselOffSection) {
+  let observer = new IntersectionObserver(entries => {
+    entries.forEach( entry => {
+      if(entry.isIntersecting) {
+        isObserve = true;
+      }
+    });
+  });
+
+  observer.observe(carouselOffSection);
+}*/
+//-
+
+
+var isPageScrolled = false;
+var aboutCarouselPosY = null;
+
+if (aboutCarousel) {
+  aboutCarouselPosY = aboutCarousel.offsetTop;
+  window.addEventListener('resize', function () {
+    aboutCarouselPosY = aboutCarousel.offsetTop;
+  });
+}
+
+window.addEventListener('scroll', function (evt) {
+  isPageScrolled = true;
+
+  if (window.pageYOffset === aboutCarouselPosY) {
+    isPageScrolled = false;
+  }
+}); // смена слайдов по скроллу
+
+function onScrollSlideCarousel(carouselNode, carouselInstance) {
+  var onMouseWheelChangeSlide = function onMouseWheelChangeSlide(evt) {
+    var windowHeight = document.documentElement.clientHeight;
+    var sliderHeight = carouselNode.getBoundingClientRect().height;
+    var isEqualHeight = windowHeight === sliderHeight ? true : false;
+
+    if (carouselNode.contains(evt.target)
+    /*&& !isObserve*/
+    && isEqualHeight && !isPageScrolled) {
+      evt.preventDefault();
+
+      if (evt.deltaY > 0) {
+        carouselInstance.next();
+      } else {
+        carouselInstance.prev();
+      }
+    }
+
+    if (
+    /*isObserve &&*/
+    window.pageYOffset === 0) {
+      //isObserve = false;
+      isPageScrolled = false;
+      console.log(isPageScrolled); //body.style.overflow = 'hidden';
+      //bodyLocker(true);
+    }
+  };
+
+  window.addEventListener('mousewheel', onMouseWheelChangeSlide, {
+    passive: false
+  });
 }
 
 if (aboutCarousel) {
@@ -125,7 +195,8 @@ if (aboutCarousel) {
     interval: false
   }); // swipe
 
-  swipeCarousel(aboutCarousel, aboutCarouselInstance); // текст на кнопках
+  onSwipeSlideCarousel(aboutCarousel, aboutCarouselInstance);
+  onScrollSlideCarousel(aboutCarousel, aboutCarouselInstance); // текст на кнопках
 
   var carouselItems = aboutCarouselInner.querySelectorAll('.carousel-item');
   var prevControl = aboutCarousel.querySelector('.control-prev');
@@ -191,7 +262,8 @@ if (introCarousel) {
     interval: false
   }); // swipe
 
-  swipeCarousel(introCarousel, introCarouselInstance); // текст на кнопках
+  onSwipeSlideCarousel(introCarousel, introCarouselInstance);
+  onScrollSlideCarousel(introCarousel, introCarouselInstance); // текст на кнопках
 
   var _carouselItems = introCarouselInner.querySelectorAll('.carousel-item');
 
@@ -217,6 +289,8 @@ if (introCarousel) {
         behavior: "smooth",
         block: "start"
       });
+      isPageScrolled = false;
+      console.log('ISPS', isPageScrolled);
     } // текст на кнопках
 
 
