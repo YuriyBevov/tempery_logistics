@@ -9,7 +9,17 @@ let aboutCarouselInner = null;
 const introCarousel = document.querySelector('#introCarousel');
 let introCarouselInner = null;
 
-//const body = document.querySelector('#aboutCarousel');
+const carouselOffSection = document.querySelector('#carousel-off-section');
+carouselOffSection.style.marginTop = '1px'; // без маргина блок попадает в зону видимости
+
+const nav = document.querySelector('.navbar');
+const aboutSection = document.querySelector('.about-carousel-section');
+const introSection = document.querySelector('.intro-carousel-section');
+
+// при загрузке страницы блокирую скролл
+document.addEventListener('DOMContentLoaded', () => {
+  showFakeScroll();
+})
 
 // отрисовка названий на кнопках слайдера
 function fillControlsTitle(opt) {
@@ -108,59 +118,76 @@ function onSwipeSlideCarousel(carouselNode, carouselInstance) {
   window.addEventListener('mousedown', onMouseDownListenMouseMove);
 }
 
-let isPageScrolled = false;
-/*let aboutCarouselPosY = null;
+//анимация слайдеров
+function animateSection(destSection) {
+  if(destSection === 'about') {
+    aboutSection.classList.add('transition-on');
+    aboutSection.classList.add('active');
+    aboutSection.style.position = 'absolute';
+    aboutSection.style.zIndex = '3';
+    aboutSection.style.top = '0';
 
-if(aboutCarousel) {
-  aboutCarouselPosY = aboutCarousel.offsetTop;
+    setTimeout(() => {
+      debounce = false
 
-  window.addEventListener('resize', () => {
-    aboutCarouselPosY = aboutCarousel.offsetTop;
-  })
-} */
+      aboutSection.style.position = 'relative';
+      aboutSection.style.zIndex = '1';
+      aboutSection.classList.remove('transition-on');
 
-const header = document.querySelector('header');
+      introSection.style.zIndex  = '-1';
+      introSection.style.position = 'absolute';
+      introSection.style.top = '105vh';
 
-window.addEventListener('scroll', (evt) => {
-  isPageScrolled = true;
-
-  if(window.scrollY === 0 && isPageScrolled) {
-    showFakeScroll();
-    isPageScrolled = false;
+    }, 1000);
   }
-})
+
+  if(destSection === 'intro') {
+    introSection.style.position = 'absolute';
+    aboutSection.classList.remove('active');
+    introSection.classList.add('transition-on');
+    introSection.style.zIndex = '3';
+    introSection.style.top = '0';
+
+    setTimeout(() => {
+      debounce = false;
+      introSection.style.position = 'relative';
+      introSection.style.zIndex = '1';
+      introSection.classList.remove('transition-on');
+      aboutSection.style.zIndex  = '-1';
+      aboutSection.style.position = 'absolute';
+      aboutSection.style.top = '105vh';
+    }, 1000);
+
+    setTimeout(() => {
+      nav.classList.remove('main-navbar-white-theme');
+      nav.classList.add('main-navbar-black-theme');
+    }, 700);
+  }
+}
+
+//установка паддингов абсолютным блокам, чтобы не прыгал экран
+const header = document.querySelector('header');
+function setPaddings(isActive) {
+  let paddingOffset = window.innerWidth - document.body.offsetWidth + 'px';
+
+  header.style.paddingRight = isActive ? paddingOffset : '0';
+  aboutSection.style.paddingRight = isActive ? paddingOffset : '0';
+  introSection.style.paddingRight = isActive ? paddingOffset : '0';
+}
 
 function showFakeScroll() {
-  header.style.paddingRight = '12px';
-  aboutSection.style.paddingRight = '12px';
-  introSection.style.paddingRight = '12px';
+  setPaddings(true);
   document.getElementById('scrollbar').style.display = 'block';
   document.body.style.overflow = 'hidden';
 }
 
 function hideFakeScroll() {
-  header.style.paddingRight = '0';
-  aboutSection.style.paddingRight = '0';
-  introSection.style.paddingRight = '0';
+  setPaddings(false);
   document.getElementById('scrollbar').style.display = 'none';
   document.body.style.overflow = 'auto';
 }
 
-/*if(window.scrollY === 0) {
-  //showFakeScroll();
-
-  window.addEventListener('scroll', (evt) => {
-    //console.log(evt)
-
-    console.log(window.scrollY)
-    if(window.scrollY === 0) {
-
-    }
-  })
-} */
-
 // смена слайдов по скроллу
-
 function onScrollSlideCarousel(carouselNode, carouselInstance) {
 
   const onMouseWheelChangeSlide = (evt) => {
@@ -168,8 +195,6 @@ function onScrollSlideCarousel(carouselNode, carouselInstance) {
     let windowHeight = document.documentElement.clientHeight;
     let sliderHeight = carouselNode.getBoundingClientRect().height;
     let isEqualHeight = windowHeight === sliderHeight || sliderHeight - windowHeight === 7 ? true : false;
-
-    //console.log(carouselNode.contains(evt.target), isEqualHeight, !isPageScrolled, windowHeight, sliderHeight)
 
     if(carouselNode.contains(evt.target) && !isObserve /* && isEqualHeight && !isPageScrolled */) {
       evt.preventDefault();
@@ -184,33 +209,25 @@ function onScrollSlideCarousel(carouselNode, carouselInstance) {
         }
       }
     }
-
-    /* if(window.scrollY === 0) {
-      isPageScrolled = false;
-    } */
   }
 
   window.addEventListener('wheel', onMouseWheelChangeSlide, { passive: false });
 }
 
-const carouselOffSection = document.querySelector('#carousel-off-section');
+// убераю скролл, если вернулся в блок со слайдером
+let isPageScrolled = false;
+window.addEventListener('scroll', (evt) => {
+  isPageScrolled = true;
 
-carouselOffSection.style.marginTop = '1px'; // без маргина блок попадает в зону видимости
-
-const nav = document.querySelector('.navbar');
-let debounce = false;
-const aboutSection = document.querySelector('.about');
-const introSection = document.querySelector('.intro');
-
-document.addEventListener('DOMContentLoaded', () => {
-  showFakeScroll();
-  console.log('showFake')
+  if(window.scrollY === 0 && isPageScrolled) {
+    showFakeScroll();
+    isPageScrolled = false;
+  }
 })
 
+// наблюдаю, попал ли блок идущий за слайдерами во вьюпорт
 let isObserve = false;
-
 if(carouselOffSection) {
-
   let observer = new IntersectionObserver(entries => {
     entries.forEach( entry => {
       if(entry.isIntersecting) {
@@ -220,11 +237,10 @@ if(carouselOffSection) {
       }
     });
   });
-
   observer.observe(carouselOffSection);
 }
 
-
+let debounce = false;
 if(aboutCarousel) {
   aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner');
   const aboutCarouselInstance = new bootstrap.Carousel(aboutCarousel, {
@@ -266,45 +282,18 @@ if(aboutCarousel) {
     // отмена смены слайда и скролл в другой блок
     if(evt.direction === 'right' && evt.from === 0) {
       evt.preventDefault();
-      //scrollIntoView(introCarousel, { behavior: "smooth", block: "start"});
 
       // переход к intro слайдеру
       if(!debounce) {
         debounce = true;
-
-        introSection.style.position = 'absolute';
-        aboutSection.classList.remove('active');
-        //introSection.style.paddingRight = '12px';
-        introSection.classList.add('transition-on');
-        introSection.style.zIndex = '3';
-        introSection.style.top = '0';
-
-        setTimeout(() => {
-          debounce = false;
-          console.log('to intro')
-          introSection.style.position = 'relative';
-          //introSection.style.paddingRight = '0';
-          introSection.style.zIndex = '1';
-          introSection.classList.remove('transition-on');
-          aboutSection.style.zIndex  = '-1';
-          aboutSection.style.position = 'absolute';
-          //aboutSection.style.paddingRight = '12px';
-          aboutSection.style.top = '105vh';
-        }, 1000);
-
-        setTimeout(() => {
-          nav.classList.remove('main-navbar-white-theme');
-          nav.classList.add('main-navbar-black-theme');
-        }, 700);
+        animateSection('intro');
       }
     }
 
     // переход к projects
     if(evt.direction === 'left' && evt.to === 0) {
       evt.preventDefault();
-      const nextAnchor = document.querySelector('#carousel-off-section');
-      const nextAnchorCoord = nextAnchor.offsetTop - window.scrollY - getHeaderHeight();
-      //aboutSection.style.paddingRight = '0'; // если есть скролл
+      const nextAnchorCoord = carouselOffSection.offsetTop - window.scrollY - getHeaderHeight();
       scrollBy(window, { behavior: "smooth", top: nextAnchorCoord });
       hideFakeScroll();
     }
@@ -355,39 +344,14 @@ if(introCarousel) {
     //переход к about слайдеру
     if(evt.direction === 'left' && evt.to === 0) {
       evt.preventDefault();
-      //scrollIntoView(aboutCarousel, { behavior: "smooth", block: "start"});
 
       if(!debounce) {
         debounce = true;
-        console.log('to about')
-        aboutSection.classList.add('transition-on');
-        aboutSection.classList.add('active');
-        aboutSection.style.position = 'absolute';
-        //aboutSection.style.paddingRight = '12px';
-        aboutSection.style.zIndex = '3';
-        aboutSection.style.top = '0';
-
-        //aboutSection.style.top = '0';
-        //aboutSection.classList.add('active');
-
-        setTimeout(() => {
-          debounce = false
-          aboutSection.style.position = 'relative';
-          //aboutSection.style.paddingRight = '0';
-          aboutSection.style.zIndex = '1';
-          aboutSection.classList.remove('transition-on');
-
-          introSection.style.zIndex  = '-1';
-          introSection.style.position = 'absolute';
-          //introSection.style.paddingRight = '12px';
-          introSection.style.top = '105vh';
-
-        }, 1000);
+        animateSection('about');
       }
 
       nav.classList.remove('main-navbar-black-theme');
       nav.classList.add('main-navbar-white-theme');
-      //isPageScrolled = false;
     }
 
     // текст на кнопках

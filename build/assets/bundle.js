@@ -19,8 +19,17 @@ __webpack_require__.r(__webpack_exports__);
 var aboutCarousel = document.querySelector('#aboutCarousel');
 var aboutCarouselInner = null;
 var introCarousel = document.querySelector('#introCarousel');
-var introCarouselInner = null; //const body = document.querySelector('#aboutCarousel');
-// отрисовка названий на кнопках слайдера
+var introCarouselInner = null;
+var carouselOffSection = document.querySelector('#carousel-off-section');
+carouselOffSection.style.marginTop = '1px'; // без маргина блок попадает в зону видимости
+
+var nav = document.querySelector('.navbar');
+var aboutSection = document.querySelector('.about-carousel-section');
+var introSection = document.querySelector('.intro-carousel-section'); // при загрузке страницы блокирую скролл
+
+document.addEventListener('DOMContentLoaded', function () {
+  showFakeScroll();
+}); // отрисовка названий на кнопках слайдера
 
 function fillControlsTitle(opt) {
   var hideBtn = function hideBtn(btn, bool) {
@@ -117,64 +126,77 @@ function onSwipeSlideCarousel(carouselNode, carouselInstance) {
   };
 
   window.addEventListener('mousedown', onMouseDownListenMouseMove);
-}
+} //анимация слайдеров
 
-var isPageScrolled = false;
-/*let aboutCarouselPosY = null;
 
-if(aboutCarousel) {
-  aboutCarouselPosY = aboutCarousel.offsetTop;
+function animateSection(destSection) {
+  if (destSection === 'about') {
+    aboutSection.classList.add('transition-on');
+    aboutSection.classList.add('active');
+    aboutSection.style.position = 'absolute';
+    aboutSection.style.zIndex = '3';
+    aboutSection.style.top = '0';
+    setTimeout(function () {
+      debounce = false;
+      aboutSection.style.position = 'relative';
+      aboutSection.style.zIndex = '1';
+      aboutSection.classList.remove('transition-on');
+      introSection.style.zIndex = '-1';
+      introSection.style.position = 'absolute';
+      introSection.style.top = '105vh';
+    }, 1000);
+  }
 
-  window.addEventListener('resize', () => {
-    aboutCarouselPosY = aboutCarousel.offsetTop;
-  })
-} */
+  if (destSection === 'intro') {
+    introSection.style.position = 'absolute';
+    aboutSection.classList.remove('active');
+    introSection.classList.add('transition-on');
+    introSection.style.zIndex = '3';
+    introSection.style.top = '0';
+    setTimeout(function () {
+      debounce = false;
+      introSection.style.position = 'relative';
+      introSection.style.zIndex = '1';
+      introSection.classList.remove('transition-on');
+      aboutSection.style.zIndex = '-1';
+      aboutSection.style.position = 'absolute';
+      aboutSection.style.top = '105vh';
+    }, 1000);
+    setTimeout(function () {
+      nav.classList.remove('main-navbar-white-theme');
+      nav.classList.add('main-navbar-black-theme');
+    }, 700);
+  }
+} //установка паддингов абсолютным блокам, чтобы не прыгал экран
+
 
 var header = document.querySelector('header');
-window.addEventListener('scroll', function (evt) {
-  isPageScrolled = true;
 
-  if (window.scrollY === 0 && isPageScrolled) {
-    showFakeScroll();
-    isPageScrolled = false;
-  }
-});
+function setPaddings(isActive) {
+  var paddingOffset = window.innerWidth - document.body.offsetWidth + 'px';
+  header.style.paddingRight = isActive ? paddingOffset : '0';
+  aboutSection.style.paddingRight = isActive ? paddingOffset : '0';
+  introSection.style.paddingRight = isActive ? paddingOffset : '0';
+}
 
 function showFakeScroll() {
-  header.style.paddingRight = '12px';
-  aboutSection.style.paddingRight = '12px';
-  introSection.style.paddingRight = '12px';
+  setPaddings(true);
   document.getElementById('scrollbar').style.display = 'block';
   document.body.style.overflow = 'hidden';
 }
 
 function hideFakeScroll() {
-  header.style.paddingRight = '0';
-  aboutSection.style.paddingRight = '0';
-  introSection.style.paddingRight = '0';
+  setPaddings(false);
   document.getElementById('scrollbar').style.display = 'none';
   document.body.style.overflow = 'auto';
-}
-/*if(window.scrollY === 0) {
-  //showFakeScroll();
-
-  window.addEventListener('scroll', (evt) => {
-    //console.log(evt)
-
-    console.log(window.scrollY)
-    if(window.scrollY === 0) {
-
-    }
-  })
-} */
-// смена слайдов по скроллу
+} // смена слайдов по скроллу
 
 
 function onScrollSlideCarousel(carouselNode, carouselInstance) {
   var onMouseWheelChangeSlide = function onMouseWheelChangeSlide(evt) {
     var windowHeight = document.documentElement.clientHeight;
     var sliderHeight = carouselNode.getBoundingClientRect().height;
-    var isEqualHeight = windowHeight === sliderHeight || sliderHeight - windowHeight === 7 ? true : false; //console.log(carouselNode.contains(evt.target), isEqualHeight, !isPageScrolled, windowHeight, sliderHeight)
+    var isEqualHeight = windowHeight === sliderHeight || sliderHeight - windowHeight === 7 ? true : false;
 
     if (carouselNode.contains(evt.target) && !isObserve
     /* && isEqualHeight && !isPageScrolled */
@@ -191,28 +213,24 @@ function onScrollSlideCarousel(carouselNode, carouselInstance) {
         }
       }
     }
-    /* if(window.scrollY === 0) {
-      isPageScrolled = false;
-    } */
-
   };
 
   window.addEventListener('wheel', onMouseWheelChangeSlide, {
     passive: false
   });
-}
+} // убераю скролл, если вернулся в блок со слайдером
 
-var carouselOffSection = document.querySelector('#carousel-off-section');
-carouselOffSection.style.marginTop = '1px'; // без маргина блок попадает в зону видимости
 
-var nav = document.querySelector('.navbar');
-var debounce = false;
-var aboutSection = document.querySelector('.about');
-var introSection = document.querySelector('.intro');
-document.addEventListener('DOMContentLoaded', function () {
-  showFakeScroll();
-  console.log('showFake');
-});
+var isPageScrolled = false;
+window.addEventListener('scroll', function (evt) {
+  isPageScrolled = true;
+
+  if (window.scrollY === 0 && isPageScrolled) {
+    showFakeScroll();
+    isPageScrolled = false;
+  }
+}); // наблюдаю, попал ли блок идущий за слайдерами во вьюпорт
+
 var isObserve = false;
 
 if (carouselOffSection) {
@@ -227,6 +245,8 @@ if (carouselOffSection) {
   });
   observer.observe(carouselOffSection);
 }
+
+var debounce = false;
 
 if (aboutCarousel) {
   aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner');
@@ -264,42 +284,18 @@ if (aboutCarousel) {
 
 
     if (evt.direction === 'right' && evt.from === 0) {
-      evt.preventDefault(); //scrollIntoView(introCarousel, { behavior: "smooth", block: "start"});
-      // переход к intro слайдеру
+      evt.preventDefault(); // переход к intro слайдеру
 
       if (!debounce) {
         debounce = true;
-        introSection.style.position = 'absolute';
-        aboutSection.classList.remove('active'); //introSection.style.paddingRight = '12px';
-
-        introSection.classList.add('transition-on');
-        introSection.style.zIndex = '3';
-        introSection.style.top = '0';
-        setTimeout(function () {
-          debounce = false;
-          console.log('to intro');
-          introSection.style.position = 'relative'; //introSection.style.paddingRight = '0';
-
-          introSection.style.zIndex = '1';
-          introSection.classList.remove('transition-on');
-          aboutSection.style.zIndex = '-1';
-          aboutSection.style.position = 'absolute'; //aboutSection.style.paddingRight = '12px';
-
-          aboutSection.style.top = '105vh';
-        }, 1000);
-        setTimeout(function () {
-          nav.classList.remove('main-navbar-white-theme');
-          nav.classList.add('main-navbar-black-theme');
-        }, 700);
+        animateSection('intro');
       }
     } // переход к projects
 
 
     if (evt.direction === 'left' && evt.to === 0) {
       evt.preventDefault();
-      var nextAnchor = document.querySelector('#carousel-off-section');
-      var nextAnchorCoord = nextAnchor.offsetTop - window.scrollY - (0,_utils_functions__WEBPACK_IMPORTED_MODULE_1__.getHeaderHeight)(); //aboutSection.style.paddingRight = '0'; // если есть скролл
-
+      var nextAnchorCoord = carouselOffSection.offsetTop - window.scrollY - (0,_utils_functions__WEBPACK_IMPORTED_MODULE_1__.getHeaderHeight)();
       (0,seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_2__.scrollBy)(window, {
         behavior: "smooth",
         top: nextAnchorCoord
@@ -354,34 +350,15 @@ if (introCarousel) {
 
 
     if (evt.direction === 'left' && evt.to === 0) {
-      evt.preventDefault(); //scrollIntoView(aboutCarousel, { behavior: "smooth", block: "start"});
+      evt.preventDefault();
 
       if (!debounce) {
         debounce = true;
-        console.log('to about');
-        aboutSection.classList.add('transition-on');
-        aboutSection.classList.add('active');
-        aboutSection.style.position = 'absolute'; //aboutSection.style.paddingRight = '12px';
-
-        aboutSection.style.zIndex = '3';
-        aboutSection.style.top = '0'; //aboutSection.style.top = '0';
-        //aboutSection.classList.add('active');
-
-        setTimeout(function () {
-          debounce = false;
-          aboutSection.style.position = 'relative'; //aboutSection.style.paddingRight = '0';
-
-          aboutSection.style.zIndex = '1';
-          aboutSection.classList.remove('transition-on');
-          introSection.style.zIndex = '-1';
-          introSection.style.position = 'absolute'; //introSection.style.paddingRight = '12px';
-
-          introSection.style.top = '105vh';
-        }, 1000);
+        animateSection('about');
       }
 
       nav.classList.remove('main-navbar-black-theme');
-      nav.classList.add('main-navbar-white-theme'); //isPageScrolled = false;
+      nav.classList.add('main-navbar-white-theme');
     } // текст на кнопках
 
 

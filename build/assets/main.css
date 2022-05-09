@@ -13522,7 +13522,7 @@ button.swiper-pagination-bullet {
   top: 0;
   right: 0;
   display: none;
-  width: 12px;
+  width: 1rem;
   height: 100%;
   position: fixed;
   z-index: 100005;
@@ -13545,7 +13545,7 @@ body {
 } */
 ::-webkit-scrollbar {
   background-color: #666666;
-  width: 12px;
+  width: 1rem;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -14728,26 +14728,26 @@ header.sticky {
   }
 }
 
-.about {
+.about-carousel-section {
   position: absolute;
   left: 0;
   top: 105vh;
   width: 100%;
   z-index: -1;
 }
-.about.transition-on {
+.about-carousel-section.transition-on {
   -webkit-transition: top 0.7s ease-in;
   -o-transition: top 0.7s ease-in;
   transition: top 0.7s ease-in;
 }
 
-.intro {
+.intro-carousel-section {
   position: relative;
   width: 100%;
   top: 0;
   left: 0;
 }
-.intro.transition-on {
+.intro-carousel-section.transition-on {
   -webkit-transition: top 0.7s ease-in;
   -o-transition: top 0.7s ease-in;
   transition: top 0.7s ease-in;
