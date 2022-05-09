@@ -15,7 +15,7 @@ btns.forEach(btn => {
 
       scrollIntoView(target, { behavior: "smooth", block: "start"});
     } else {
-      const scrollCoord = lastCarouselSection.nextElementSibling.offsetTop - window.pageYOffset - getHeaderHeight();
+      const scrollCoord = lastCarouselSection.nextElementSibling.offsetTop - window.scrollY - getHeaderHeight();
 
       scrollBy(window, { behavior: "smooth", top: scrollCoord });
     }

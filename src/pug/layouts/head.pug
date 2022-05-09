@@ -7,4 +7,5 @@ mixin head(title, desc, keywords)
     meta(name="keywords" content=`${keywords}`)
     title!= title
     link(rel="stylesheet" href="./assets/main.css")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js")
     script(defer src="./assets/bundle.js")

@@ -1,5 +1,6 @@
 const main = document.querySelector('main');
 const header = document.querySelector('.main-header');
+const aboutSection = document.querySelector('.about');
 
 if(header) {
   const nav = header.querySelector('.navbar');
@@ -24,7 +25,7 @@ if(header) {
         nav.classList.add('main-navbar-white-theme');
       }
 
-      if(style === 'transparent') {
+      if(style === 'transparent' && !aboutSection.classList.contains('active')) {
         nav.classList.remove('main-navbar-white-theme');
         nav.classList.add('main-navbar-black-theme');
       }
