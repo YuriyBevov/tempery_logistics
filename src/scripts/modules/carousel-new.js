@@ -109,7 +109,7 @@ function onSwipeSlideCarousel(carouselNode, carouselInstance) {
 }
 
 let isPageScrolled = false;
-let aboutCarouselPosY = null;
+/*let aboutCarouselPosY = null;
 
 if(aboutCarousel) {
   aboutCarouselPosY = aboutCarousel.offsetTop;
@@ -117,33 +117,47 @@ if(aboutCarousel) {
   window.addEventListener('resize', () => {
     aboutCarouselPosY = aboutCarousel.offsetTop;
   })
-}
+} */
+
+const header = document.querySelector('header');
 
 window.addEventListener('scroll', (evt) => {
   isPageScrolled = true;
 
-  if(window.scrollY === aboutCarouselPosY) {
+  if(window.scrollY === 0 && isPageScrolled) {
+    showFakeScroll();
     isPageScrolled = false;
   }
 })
 
 function showFakeScroll() {
+  header.style.paddingRight = '12px';
+  aboutSection.style.paddingRight = '12px';
+  introSection.style.paddingRight = '12px';
   document.getElementById('scrollbar').style.display = 'block';
   document.body.style.overflow = 'hidden';
 }
 
 function hideFakeScroll() {
+  header.style.paddingRight = '0';
+  aboutSection.style.paddingRight = '0';
+  introSection.style.paddingRight = '0';
   document.getElementById('scrollbar').style.display = 'none';
   document.body.style.overflow = 'auto';
 }
 
-if(window.scrollY === 0) {
+/*if(window.scrollY === 0) {
   //showFakeScroll();
 
   window.addEventListener('scroll', (evt) => {
-    console.log(evt)
+    //console.log(evt)
+
+    console.log(window.scrollY)
+    if(window.scrollY === 0) {
+
+    }
   })
-}
+} */
 
 // смена слайдов по скроллу
 
@@ -171,9 +185,9 @@ function onScrollSlideCarousel(carouselNode, carouselInstance) {
       }
     }
 
-    if(window.scrollY === 0) {
+    /* if(window.scrollY === 0) {
       isPageScrolled = false;
-    }
+    } */
   }
 
   window.addEventListener('wheel', onMouseWheelChangeSlide, { passive: false });
@@ -189,7 +203,7 @@ const aboutSection = document.querySelector('.about');
 const introSection = document.querySelector('.intro');
 
 document.addEventListener('DOMContentLoaded', () => {
-  // showFakeScroll();
+  showFakeScroll();
   console.log('showFake')
 })
 
@@ -203,15 +217,13 @@ if(carouselOffSection) {
         isObserve = true;
       } else {
         isObserve = false;
-        //showFakeScroll();
-        //aboutSection.style.paddingRight = '0';
-        //introSection.style.paddingRight = '0';
       }
     });
   });
 
   observer.observe(carouselOffSection);
 }
+
 
 if(aboutCarousel) {
   aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner');
@@ -375,7 +387,7 @@ if(introCarousel) {
 
       nav.classList.remove('main-navbar-black-theme');
       nav.classList.add('main-navbar-white-theme');
-      isPageScrolled = false;
+      //isPageScrolled = false;
     }
 
     // текст на кнопках
