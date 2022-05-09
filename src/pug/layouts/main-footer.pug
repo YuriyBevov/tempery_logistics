@@ -8,9 +8,11 @@ footer.main-footer.pt-5.bg-lightblack.text-white
           p.fw-light Company Registration Number: <br/> 206032947
           p.fw-light VAT Number:<br/> BG206032947
 
-        .d-flex.align-items-center
-          img(src="./assets/img/logo-dun@1x.png" alt="Стара загора" width="80" height="68").me-4
-          img(src="./assets/img/logo-dt@1x.png" alt="Duns Registered" width="91" height="68").ms-2
+        .d-flex.align-items-center.main-footer-logos
+          svg(width="80" height="68" aria-label="Стара загора").me-4
+            use(xlink:href="./assets/svg-sprite.svg#icon-logo-dun")
+          svg(width="90" height="68" aria-label="Duns Registered")
+            use(xlink:href="./assets/svg-sprite.svg#icon-logo-dt")
 
       .col-12.col-md-6.col-xl.mb-5.mb-xl-0.d-none.d-md-block
         h3.section-title.mb-3.mt-2 Address

@@ -12,6 +12,10 @@ $transition-rule: all 0.3s ease-in-out;
 .main-navbar-white-theme {
     background-color: $white;
     transition: $transition-rule;
+
+    .search-field svg {
+      fill: $purple;
+    }
 }
 
 .main-navbar-black-theme {

@@ -21,3 +21,11 @@
   background-color: transparent;
 }
 
+.opacity-hover {
+  transition: opacity 0.3s ease-in;
+
+  &:hover,
+  &:focus {
+    opacity: 0.7;
+  }
+}

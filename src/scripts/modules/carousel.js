@@ -10,7 +10,7 @@ const introCarousel = document.querySelector('#introCarousel');
 let introCarouselInner = null;
 
 // отрисовка названий на кнопках слайдера
-function fillControlsTitle(obj) {
+function fillControlsTitle(opt) {
   const hideBtn = (btn, bool) => {
     if(bool) {
       btn.style.opacity = 0;
@@ -21,54 +21,54 @@ function fillControlsTitle(obj) {
     }
   }
 
-  let prevTitleNode = obj.prevControl.querySelector('span');
-  let nextTitleNode = obj.nextControl.querySelector('span');
+  let prevTitleNode = opt.prevControl.querySelector('span');
+  let nextTitleNode = opt.nextControl.querySelector('span');
 
-  if(obj.prevControlTitle !== '') {
-    prevTitleNode.innerHTML = obj.prevControlTitle;
-    hideBtn(obj.prevControl, false);
+  if(opt.prevControlTitle !== '') {
+    prevTitleNode.innerHTML = opt.prevControlTitle;
+    hideBtn(opt.prevControl, false);
   } else {
-    hideBtn(obj.prevControl, true);
+    hideBtn(opt.prevControl, true);
   }
-  nextTitleNode.innerHTML = obj.nextControlTitle;
+  nextTitleNode.innerHTML = opt.nextControlTitle;
 }
 
 // смена названий на кнопках слайдера
-function setControlsTitle(obj) {
-  if(obj.evt.to < obj.items.length - 1 && obj.evt.from !== obj.items.length - 1 && obj.evt.direction === 'left') {
+function setControlsTitle(opt) {
+  if(opt.evt.to < opt.items.length - 1 && opt.evt.from !== opt.items.length - 1 && opt.evt.direction === 'left') {
     fillControlsTitle({
-      nextControl: obj.nextControl,
-      prevControl: obj.prevControl,
-      nextControlTitle: obj.items[obj.evt.to + 1].getAttribute("data-title"),
-      prevControlTitle: obj.items[obj.evt.to - 1].getAttribute("data-title"),
+      nextControl: opt.nextControl,
+      prevControl: opt.prevControl,
+      nextControlTitle: opt.items[opt.evt.to + 1].getAttribute("data-title"),
+      prevControlTitle: opt.items[opt.evt.to - 1].getAttribute("data-title"),
     })
   }
 
-  if(obj.evt.to === obj.items.length - 1 && obj.evt.direction === 'left') {
+  if(opt.evt.to === opt.items.length - 1 && opt.evt.direction === 'left') {
     fillControlsTitle({
-      nextControl: obj.nextControl,
-      prevControl: obj.prevControl,
+      nextControl: opt.nextControl,
+      prevControl: opt.prevControl,
       nextControlTitle: 'Scroll down',
-      prevControlTitle: obj.items[obj.evt.to - 1].getAttribute("data-title"),
+      prevControlTitle: opt.items[opt.evt.to - 1].getAttribute("data-title"),
     })
   }
 
   // влево
-  if(obj.evt.from !== 0 && obj.evt.to > 0 && obj.evt.direction === 'right') {
+  if(opt.evt.from !== 0 && opt.evt.to > 0 && opt.evt.direction === 'right') {
     fillControlsTitle({
-      nextControl: obj.nextControl,
-      prevControl: obj.prevControl,
-      nextControlTitle: obj.items[obj.evt.to + 1].getAttribute("data-title"),
-      prevControlTitle: obj.items[obj.evt.to - 1].getAttribute("data-title"),
+      nextControl: opt.nextControl,
+      prevControl: opt.prevControl,
+      nextControlTitle: opt.items[opt.evt.to + 1].getAttribute("data-title"),
+      prevControlTitle: opt.items[opt.evt.to - 1].getAttribute("data-title"),
     })
   }
 
-  if(obj.evt.to === 0 && obj.evt.direction === 'right') {
+  if(opt.evt.to === 0 && opt.evt.direction === 'right') {
     fillControlsTitle({
-      nextControl: obj.nextControl,
-      prevControl: obj.prevControl,
-      nextControlTitle: obj.items[obj.evt.to + 1].getAttribute("data-title"),
-      prevControlTitle: obj.isPrevNodeEnabled ? 'Scroll up' : '',
+      nextControl: opt.nextControl,
+      prevControl: opt.prevControl,
+      nextControlTitle: opt.items[opt.evt.to + 1].getAttribute("data-title"),
+      prevControlTitle: opt.isPrevNodeEnabled ? 'Scroll up' : '',
     })
   }
 }
@@ -107,22 +107,27 @@ function onSwipeSlideCarousel(carouselNode, carouselInstance) {
 }
 
 //- observer
-/*const carouselOffSection = document.querySelector('#carousel-off-section');
-/*carouselOffSection.style.marginTop = '1px'; // без маргина блок попадает в зону видимости
+/* carouselOffSection.style.marginTop = '1px'; // без маргина блок попадает в зону видимости
 
 let isObserve = false;
 
 if(carouselOffSection) {
+
   let observer = new IntersectionObserver(entries => {
     entries.forEach( entry => {
       if(entry.isIntersecting) {
         isObserve = true;
+        enableScroll();
+      } else {
+        isObserve = false;
+        disableScroll();
       }
     });
   });
 
   observer.observe(carouselOffSection);
-}*/
+} */
+
 
 //-
 let isPageScrolled = false;
@@ -145,16 +150,53 @@ window.addEventListener('scroll', (evt) => {
   }
 })
 
+/* function showFakeScroll() {
+  document.getElementById('scrollbar').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function hideFakeScroll() {
+  document.getElementById('scrollbar').style.display = 'none';
+  document.body.style.overflow = 'auto';
+} */
+
+/*const carouselOffSection = document.querySelector('#carousel-off-section');
+
+let carouselOffSectionOffset = carouselOffSection.offsetTop;
+console.log('carouselOffSectionOffset: ', carouselOffSectionOffset);
+
+const onScrollDisableAutoScroll = () => {
+  if(window.pageYOffset >= carouselOffSectionOffset - 100) {
+    console.log('projects top - отменить авто скролл, вернуть возможность скролла и следить за скроллом вверх');
+
+    window.removeEventListener('scroll', onScrollDisableAutoScroll);
+    window.addEventListener('scroll', onScrollEnableAutoScroll);
+  }
+}
+
+const onScrollEnableAutoScroll = () => {
+  if(window.pageYOffset < carouselOffSectionOffset - 200) {
+    console.log('прокрутить до about  и вернуть автоскролл');
+
+    scrollIntoView(aboutCarousel, { behavior: "smooth", block: "start"});
+
+    window.removeEventListener('scroll', onScrollEnableAutoScroll);
+    window.addEventListener('scroll', onScrollDisableAutoScroll);
+  }
+}
+
+window.addEventListener('scroll', onScrollDisableAutoScroll); */
+
 // смена слайдов по скроллу
 
-function onScrollSlideCarousel(carouselNode, carouselInstance) {
+ function onScrollSlideCarousel(carouselNode, carouselInstance) {
 
   const onMouseWheelChangeSlide = (evt) => {
     let windowHeight = document.documentElement.clientHeight;
     let sliderHeight = carouselNode.getBoundingClientRect().height;
     let isEqualHeight = windowHeight === sliderHeight ? true : false;
 
-    if(carouselNode.contains(evt.target) /*&& !isObserve*/ && isEqualHeight && !isPageScrolled ) {
+    if(carouselNode.contains(evt.target) && isEqualHeight && !isPageScrolled ) {
       evt.preventDefault();
 
       if(evt.deltaY > 0) {
@@ -164,21 +206,87 @@ function onScrollSlideCarousel(carouselNode, carouselInstance) {
       }
     }
 
-    if(/*isObserve &&*/ window.pageYOffset === 0) {
-
-      //isObserve = false;
+    if(window.pageYOffset === 0) {
       isPageScrolled = false;
       console.log(isPageScrolled)
-      //body.style.overflow = 'hidden';
-      //bodyLocker(true);
     }
   }
-
-
 
   window.addEventListener('mousewheel', onMouseWheelChangeSlide, { passive: false });
 }
 
+//--
+  //--- scroll disabling
+
+  // left: 37, up: 38, right: 39, down: 40,
+  // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+  /*var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+
+  function preventDefault(e) {
+    e = e || window.event;
+    if (e.preventDefault) {
+      e.preventDefault();
+    }
+    e.returnValue = false;
+  }
+
+  function preventDefaultForScrollKeys(e) {
+      if (keys[e.keyCode]) {
+          preventDefault(e);
+          return false;
+      }
+  }
+
+  function disableScroll() {
+    if (window.addEventListener) {// older FF
+      window.addEventListener('DOMMouseScroll', preventDefault, {passive: false});
+    }
+
+    document.addEventListener('wheel', preventDefault, {passive: false}); // Disable scrolling in Chrome
+    window.onwheel = preventDefault; // modern standard
+    window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+    window.ontouchmove  = preventDefault; // mobile
+    document.onkeydown  = preventDefaultForScrollKeys;
+  }
+
+  function enableScroll() {
+      if (window.removeEventListener) {
+        window.removeEventListener('DOMMouseScroll', preventDefault, {passive: false});
+      }
+      document.removeEventListener('wheel', preventDefault, {passive: false}); // Enable scrolling in Chrome
+      window.onmousewheel = document.onmousewheel = null;
+      window.onwheel = null;
+      window.ontouchmove = null;
+      document.onkeydown = null;
+  }*/
+
+  //--- scroll disabling
+
+/*function onScrollSlideCarousel(carouselNode, carouselInstance) {
+  const onMouseWheelChangeSlide = (evt) => {
+    let windowHeight = document.documentElement.clientHeight;
+    let sliderHeight = carouselNode.getBoundingClientRect().height;
+    let isEqualHeight = windowHeight === sliderHeight ? true : false;
+
+    if(carouselNode.contains(evt.target) && isEqualHeight && !isPageScrolled ) {
+      evt.preventDefault();
+
+      if(evt.deltaY > 0) {
+        carouselInstance.next();
+      } else {
+        carouselInstance.prev();
+      }
+    }
+
+    if(window.pageYOffset === 0) {
+      isPageScrolled = false;
+    }
+  }
+
+  window.addEventListener('mousewheel', onMouseWheelChangeSlide, { passive: false });
+} */
+
+//--
 if(aboutCarousel) {
   aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner');
 
@@ -203,7 +311,7 @@ if(aboutCarousel) {
     prevControlTitle: 'Scroll up'
   });
 
-  aboutCarousel.addEventListener('slide.bs.carousel', function (evt) {
+  const onSlideChangeHandler = (evt) => {
     const indicators = aboutCarousel.querySelectorAll('.indicator');
 
     // смена цвета индикаторов
@@ -224,6 +332,7 @@ if(aboutCarousel) {
     // отмена смены слайда и скролл в другой блок
     if(evt.direction === 'right' && evt.from === 0) {
       evt.preventDefault();
+
       scrollIntoView(introCarousel, { behavior: "smooth", block: "start"});
     }
 
@@ -248,7 +357,9 @@ if(aboutCarousel) {
         direction: evt.direction
       }
     })
-  })
+  }
+
+  aboutCarousel.addEventListener('slide.bs.carousel', onSlideChangeHandler)
 }
 
 if(introCarousel) {
@@ -275,7 +386,7 @@ if(introCarousel) {
     prevControlTitle: ''
   });
 
-  introCarousel.addEventListener('slide.bs.carousel', function (evt) {
+  const onSlideChangeHandler = (evt) => {
     // отмена смены слайда и скролл в другой блок
     if(evt.direction === 'right' && evt.from === 0) {
       evt.preventDefault();
@@ -285,7 +396,6 @@ if(introCarousel) {
       evt.preventDefault();
       scrollIntoView(aboutCarousel, { behavior: "smooth", block: "start"});
       isPageScrolled = false;
-      console.log('ISPS', isPageScrolled)
     }
 
     // текст на кнопках
@@ -299,5 +409,7 @@ if(introCarousel) {
         direction: evt.direction
       }
     })
-  })
+  }
+
+  introCarousel.addEventListener('slide.bs.carousel', onSlideChangeHandler)
 }

@@ -12,8 +12,20 @@
     }
   }
 
+  &-logos {
+    svg {
+      fill: $white;
+    }
+  }
+
   .nav-item a {
     color: $white;
+
+    @extend .opacity-hover;
+  }
+
+  .contacts-list a {
+    @extend .opacity-hover;
   }
 }
 

@@ -13504,8 +13504,26 @@ button.swiper-pagination-bullet {
   background-color: transparent;
 }
 
+.opacity-hover, .main-footer .contacts-list a, .main-footer .nav-item a {
+  -webkit-transition: opacity 0.3s ease-in;
+  -o-transition: opacity 0.3s ease-in;
+  transition: opacity 0.3s ease-in;
+}
+.opacity-hover:hover, .main-footer .contacts-list a:hover, .main-footer .nav-item a:hover, .opacity-hover:focus, .main-footer .contacts-list a:focus, .main-footer .nav-item a:focus {
+  opacity: 0.7;
+}
+
 .outline {
   outline: 1px solid red;
+}
+
+#scrollbar {
+  overflow-y: scroll;
+  top: 0;
+  right: 0;
+  display: none;
+  height: 100%;
+  position: fixed;
 }
 
 body {
@@ -13563,10 +13581,6 @@ footer {
     padding: 60px 0;
     padding-bottom: 156px;
   }
-}
-
-svg {
-  fill: #664599;
 }
 
 table th {
@@ -13871,10 +13885,12 @@ header.sticky {
     display: block;
   }
 }
+.main-footer-logos svg {
+  fill: #ffffff;
+}
 .main-footer .nav-item a {
   color: #ffffff;
 }
-
 .mobile-footer .accordion-item {
   border-color: rgba(255, 255, 255, 0.05);
 }
@@ -13898,10 +13914,11 @@ header.sticky {
   padding: 10px;
   padding-right: 30px;
   height: 40px;
+  width: 75px;
   color: #000000;
   background-size: 14px 24px;
   background-image: url("../assets/img/icon-arr-down.png");
-  background-position: calc(100% - 10px) 50%;
+  background-position: calc(100% - 10px) 55%;
 }
 
 .dashed-select {
@@ -13939,6 +13956,9 @@ header.sticky {
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+}
+.main-navbar-white-theme .search-field svg {
+  fill: #664599;
 }
 
 .main-navbar-black-theme {
@@ -14244,6 +14264,7 @@ header.sticky {
   -o-transition: transform 0.3s 0.1s ease-in;
   transition: transform 0.3s 0.1s ease-in;
   transition: transform 0.3s 0.1s ease-in, -webkit-transform 0.3s 0.1s ease-in;
+  fill: #664599;
 }
 .read-more:hover svg, .read-more:focus svg {
   -webkit-transform: rotate(90deg);
@@ -14284,6 +14305,7 @@ header.sticky {
   -webkit-transition: fill 0.15s ease-in-out;
   -o-transition: fill 0.15s ease-in-out;
   transition: fill 0.15s ease-in-out;
+  fill: #664599;
 }
 .download-btn:hover svg, .download-btn:focus svg {
   fill: #ffffff;
@@ -14362,19 +14384,6 @@ header.sticky {
   bottom: -120%;
   width: 360px;
   border: 1px solid #664599;
-  /*&::after {
-    position: absolute;
-    top: 0;
-    right: 0;
-
-    content: '';
-    width: 20px;
-    height: 11px;
-
-    background-color: red;
-    //border-width: 0 10px 11px 10px;
-    //border-color: transparent transparent $white transparent;
-  } */
 }
 .search-field input.js-active {
   display: block;

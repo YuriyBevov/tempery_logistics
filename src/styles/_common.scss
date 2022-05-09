@@ -2,6 +2,10 @@
   outline: 1px solid red;
 }
 
+#scrollbar {
+  overflow-y: scroll; top: 0; right: 0; display: none; height: 100%; position: fixed;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -50,7 +54,7 @@ footer {
 }
 
 svg {
-  fill: $purple;
+  //fill: $purple;
 }
 
 table {
