@@ -166,7 +166,7 @@ function animateSection(destSection) {
 }
 
 //установка паддингов абсолютным блокам, чтобы не прыгал экран
-const header = document.querySelector('header');
+const header = document.querySelector('.main-header');
 function setPaddings(isActive) {
   let paddingOffset = window.innerWidth - document.body.offsetWidth + 'px';
 
