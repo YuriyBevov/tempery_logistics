@@ -98,9 +98,9 @@ function onSwipeSlideCarousel(carouselNode, carouselInstance) {
     evt.preventDefault();
     var posX = evt.screenX;
 
-    if (entryPosX - posX > 75) {
+    if (entryPosX - posX > 75 && !isObserve) {
       carouselInstance.next();
-    } else if (posX - entryPosX > 75) {
+    } else if (posX - entryPosX > 75 && !isObserve) {
       carouselInstance.prev();
     }
 

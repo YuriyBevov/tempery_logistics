@@ -48,6 +48,7 @@ footer {
 .section {
   position: relative;
   padding: 120px 0;
+  z-index: 5;
 
   @include media-breakpoint-down(xxl) {
     padding: 100px 0;
