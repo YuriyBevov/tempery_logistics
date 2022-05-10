@@ -19,8 +19,11 @@ const introSection = document.querySelector('.intro-carousel-section');
 let windowHeight = document.documentElement.clientHeight;
 let sliderHeight = introCarousel.getBoundingClientRect().height;
 let isEqualHeight = windowHeight === sliderHeight || sliderHeight - windowHeight === 7 ? true : false;
-console.log(isEqualHeight)
-if(isEqualHeight) {
+let windowWidth = getWindowWidth();
+
+let isFullScreen = isEqualHeight && windowWidth > 1200 ? true : false;
+
+if(isFullScreen) {
   aboutSection.classList.add('full-height');
   introSection.classList.add('full-height');
 }
@@ -138,11 +141,11 @@ const btns = document.querySelectorAll('.scroll-btn');
 
 function onScrollBtnHandler(carouselNode) {
   const onClickChangeActiveCarousel = (evt) => {
-    if(carouselNode.contains(evt.target) && activeSlider !== aboutSection && isEqualHeight) {
+    if(carouselNode.contains(evt.target) && activeSlider !== aboutSection && isFullScreen) {
       animateSection('about');
     }
 
-    if(carouselNode.contains(evt.target) && activeSlider !== introSection && isEqualHeight) {
+    if(carouselNode.contains(evt.target) && activeSlider !== introSection && isFullScreen) {
       animateSection('intro');
     }
   }
@@ -345,7 +348,7 @@ const fakeScrollbar = document.getElementById('scrollbar');
 let isScrollActive = true;
 function showFakeScroll() {
   console.log('showFakeScroll');
-  if(fakeScrollbar.style.display !== 'block' && isEqualHeight ) {
+  if(fakeScrollbar.style.display !== 'block' && isFullScreen ) {
     isScrollActive = false;
     setPaddings(true);
     fakeScrollbar.style.display = 'block';
@@ -357,10 +360,11 @@ function hideFakeScroll() {
   console.log('hideFakeScroll');
   if(fakeScrollbar.style.display !== 'none') {
 
-    isScrollActive = true;
+
     setPaddings(false);
     fakeScrollbar.style.display = 'none';
     document.body.style.overflow = 'auto';
+    isScrollActive = true;
   }
 }
 // смена слайдов по скроллу
@@ -369,9 +373,9 @@ function onScrollSlideCarousel(carouselNode, carouselInstance) {
   const onMouseWheelChangeSlide = (evt) => {
     //let windowHeight = document.documentElement.clientHeight;
     //let sliderHeight = carouselNode.getBoundingClientRect().height;
-    // let isEqualHeight = windowHeight === sliderHeight || sliderHeight - windowHeight === 7 ? true : false;
+    // let isFullScreen = windowHeight === sliderHeight || sliderHeight - windowHeight === 7 ? true : false;
 
-    if(carouselNode.contains(evt.target) && !isObserve) {
+    if(carouselNode.contains(evt.target) && !isObserve ) {
       if(evt.deltaY > 0 && !isScrollActive) {
         evt.preventDefault();
         if(!debounce) {
@@ -412,12 +416,12 @@ if(aboutCarousel) {
     interval: false
   });
   // swipe
-  isEqualHeight ?
+  isFullScreen ?
   onSwipeSlideCarousel(aboutCarousel, aboutCarouselInstance) : null;
   // scroll
-  isEqualHeight ?
+  isFullScreen ?
   onScrollSlideCarousel(aboutCarousel, aboutCarouselInstance) : null;
-  isEqualHeight ?
+  isFullScreen ?
   keyboardNavigation(aboutCarousel, aboutCarouselInstance) : null;
   //tabNavigation(aboutCarousel, aboutCarouselInstance);
 
@@ -456,7 +460,7 @@ if(aboutCarousel) {
     if(evt.direction === 'right' && evt.from === 0) {
       evt.preventDefault();
       // переход к intro слайдеру
-      if(!debounce && isEqualHeight) {
+      if(!debounce && isFullScreen) {
         animateSection('intro');
       } else {
         scrollIntoView(introCarousel, { behavior: "smooth", block: "start"});
@@ -471,7 +475,7 @@ if(aboutCarousel) {
     if(evt.direction === 'left' && evt.to === 0) {
       evt.preventDefault();
 
-      if(!isEqualHeight) {
+      if(!isFullScreen) {
         const nextAnchor = document.querySelector('#carousel-off-section');
         const nextAnchorCoord = nextAnchor.offsetTop - window.scrollY - getHeaderHeight();
         scrollBy(window, { behavior: "smooth", top: nextAnchorCoord });
@@ -506,11 +510,11 @@ if(introCarousel) {
     interval: false
   });
   // swipe
-  isEqualHeight ?
+  isFullScreen ?
   onSwipeSlideCarousel(introCarousel, introCarouselInstance) : null;
-  isEqualHeight ?
+  isFullScreen ?
   onScrollSlideCarousel(introCarousel, introCarouselInstance) : null;
-  isEqualHeight ?
+  isFullScreen ?
   keyboardNavigation(introCarousel, introCarouselInstance) : null;
   // tabNavigation(introCarousel, introCarouselInstance);
 
@@ -536,7 +540,7 @@ if(introCarousel) {
     if(evt.direction === 'left' && evt.to === 0) {
       evt.preventDefault();
 
-      if(!debounce && isEqualHeight) {
+      if(!debounce && isFullScreen) {
         animateSection('about');
       } else {
         scrollIntoView(aboutCarousel, { behavior: "smooth", block: "start"});

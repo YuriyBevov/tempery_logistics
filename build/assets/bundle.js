@@ -30,9 +30,10 @@ var introSection = document.querySelector('.intro-carousel-section');
 var windowHeight = document.documentElement.clientHeight;
 var sliderHeight = introCarousel.getBoundingClientRect().height;
 var isEqualHeight = windowHeight === sliderHeight || sliderHeight - windowHeight === 7 ? true : false;
-console.log(isEqualHeight);
+var windowWidth = (0,_utils_functions__WEBPACK_IMPORTED_MODULE_1__.getWindowWidth)();
+var isFullScreen = isEqualHeight && windowWidth > 1200 ? true : false;
 
-if (isEqualHeight) {
+if (isFullScreen) {
   aboutSection.classList.add('full-height');
   introSection.classList.add('full-height');
 } // при загрузке страницы блокирую скролл
@@ -149,11 +150,11 @@ var btns = document.querySelectorAll('.scroll-btn');
 
 function onScrollBtnHandler(carouselNode) {
   var onClickChangeActiveCarousel = function onClickChangeActiveCarousel(evt) {
-    if (carouselNode.contains(evt.target) && activeSlider !== aboutSection && isEqualHeight) {
+    if (carouselNode.contains(evt.target) && activeSlider !== aboutSection && isFullScreen) {
       animateSection('about');
     }
 
-    if (carouselNode.contains(evt.target) && activeSlider !== introSection && isEqualHeight) {
+    if (carouselNode.contains(evt.target) && activeSlider !== introSection && isFullScreen) {
       animateSection('intro');
     }
   };
@@ -353,7 +354,7 @@ var isScrollActive = true;
 function showFakeScroll() {
   console.log('showFakeScroll');
 
-  if (fakeScrollbar.style.display !== 'block' && isEqualHeight) {
+  if (fakeScrollbar.style.display !== 'block' && isFullScreen) {
     isScrollActive = false;
     setPaddings(true);
     fakeScrollbar.style.display = 'block';
@@ -365,10 +366,10 @@ function hideFakeScroll() {
   console.log('hideFakeScroll');
 
   if (fakeScrollbar.style.display !== 'none') {
-    isScrollActive = true;
     setPaddings(false);
     fakeScrollbar.style.display = 'none';
     document.body.style.overflow = 'auto';
+    isScrollActive = true;
   }
 } // смена слайдов по скроллу
 
@@ -377,7 +378,7 @@ function onScrollSlideCarousel(carouselNode, carouselInstance) {
   var onMouseWheelChangeSlide = function onMouseWheelChangeSlide(evt) {
     //let windowHeight = document.documentElement.clientHeight;
     //let sliderHeight = carouselNode.getBoundingClientRect().height;
-    // let isEqualHeight = windowHeight === sliderHeight || sliderHeight - windowHeight === 7 ? true : false;
+    // let isFullScreen = windowHeight === sliderHeight || sliderHeight - windowHeight === 7 ? true : false;
     if (carouselNode.contains(evt.target) && !isObserve) {
       if (evt.deltaY > 0 && !isScrollActive) {
         evt.preventDefault();
@@ -424,10 +425,10 @@ if (aboutCarousel) {
     interval: false
   }); // swipe
 
-  isEqualHeight ? onSwipeSlideCarousel(aboutCarousel, aboutCarouselInstance) : null; // scroll
+  isFullScreen ? onSwipeSlideCarousel(aboutCarousel, aboutCarouselInstance) : null; // scroll
 
-  isEqualHeight ? onScrollSlideCarousel(aboutCarousel, aboutCarouselInstance) : null;
-  isEqualHeight ? keyboardNavigation(aboutCarousel, aboutCarouselInstance) : null; //tabNavigation(aboutCarousel, aboutCarouselInstance);
+  isFullScreen ? onScrollSlideCarousel(aboutCarousel, aboutCarouselInstance) : null;
+  isFullScreen ? keyboardNavigation(aboutCarousel, aboutCarouselInstance) : null; //tabNavigation(aboutCarousel, aboutCarouselInstance);
 
   onScrollBtnHandler(aboutCarousel); // текст на кнопках
 
@@ -460,7 +461,7 @@ if (aboutCarousel) {
     if (evt.direction === 'right' && evt.from === 0) {
       evt.preventDefault(); // переход к intro слайдеру
 
-      if (!debounce && isEqualHeight) {
+      if (!debounce && isFullScreen) {
         animateSection('intro');
       } else {
         (0,seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_2__.scrollIntoView)(introCarousel, {
@@ -478,7 +479,7 @@ if (aboutCarousel) {
     if (evt.direction === 'left' && evt.to === 0) {
       evt.preventDefault();
 
-      if (!isEqualHeight) {
+      if (!isFullScreen) {
         var nextAnchor = document.querySelector('#carousel-off-section');
         var nextAnchorCoord = nextAnchor.offsetTop - window.scrollY - (0,_utils_functions__WEBPACK_IMPORTED_MODULE_1__.getHeaderHeight)();
         (0,seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_3__.scrollBy)(window, {
@@ -515,9 +516,9 @@ if (introCarousel) {
     interval: false
   }); // swipe
 
-  isEqualHeight ? onSwipeSlideCarousel(introCarousel, introCarouselInstance) : null;
-  isEqualHeight ? onScrollSlideCarousel(introCarousel, introCarouselInstance) : null;
-  isEqualHeight ? keyboardNavigation(introCarousel, introCarouselInstance) : null; // tabNavigation(introCarousel, introCarouselInstance);
+  isFullScreen ? onSwipeSlideCarousel(introCarousel, introCarouselInstance) : null;
+  isFullScreen ? onScrollSlideCarousel(introCarousel, introCarouselInstance) : null;
+  isFullScreen ? keyboardNavigation(introCarousel, introCarouselInstance) : null; // tabNavigation(introCarousel, introCarouselInstance);
 
   onScrollBtnHandler(introCarousel); // текст на кнопках
 
@@ -544,7 +545,7 @@ if (introCarousel) {
     if (evt.direction === 'left' && evt.to === 0) {
       evt.preventDefault();
 
-      if (!debounce && isEqualHeight) {
+      if (!debounce && isFullScreen) {
         animateSection('about');
       } else {
         (0,seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_2__.scrollIntoView)(aboutCarousel, {
