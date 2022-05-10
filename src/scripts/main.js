@@ -6,5 +6,5 @@ import './modules/header.js';
 import './modules/carousel-new.js';
 //import './modules/carousel.js';
 import './modules/searchField.js';
-import './modules/scrollBtn.js';
+//import './modules/scrollBtn.js';
 

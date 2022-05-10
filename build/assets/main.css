@@ -13540,9 +13540,6 @@ body {
   overflow-x: hidden !important;
 }
 
-/*.projects {
-  background-color: rgb(242,242,242);
-} */
 ::-webkit-scrollbar {
   background-color: #666666;
   width: 1rem;
@@ -14640,7 +14637,7 @@ header.sticky {
   position: absolute;
   bottom: -1rem;
   left: var(--bs-gutter-x, 0.75rem);
-  z-index: 5;
+  z-index: 2;
 }
 @media (max-width: 1199.98px) {
   .controls .scroll-btn {
@@ -14728,26 +14725,31 @@ header.sticky {
   }
 }
 
-.about-carousel-section {
+.about-carousel-section.full-height {
   position: absolute;
   left: 0;
   top: 105vh;
   width: 100%;
   z-index: -1;
 }
-.about-carousel-section.transition-on {
+.about-carousel-section.full-height .scroll-btn svg {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.about-carousel-section.full-height.transition-on {
   -webkit-transition: top 0.7s ease-in;
   -o-transition: top 0.7s ease-in;
   transition: top 0.7s ease-in;
 }
 
-.intro-carousel-section {
+.intro-carousel-section.full-height {
   position: relative;
   width: 100%;
   top: 0;
   left: 0;
 }
-.intro-carousel-section.transition-on {
+.intro-carousel-section.full-height.transition-on {
   -webkit-transition: top 0.7s ease-in;
   -o-transition: top 0.7s ease-in;
   transition: top 0.7s ease-in;

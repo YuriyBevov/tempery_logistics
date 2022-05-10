@@ -170,7 +170,7 @@
     position: absolute;
     bottom: -1rem;
     left: var(--bs-gutter-x, 0.75rem);
-    z-index: 5;
+    z-index: 2;
 
     @include media-breakpoint-down(xl) {
       display: none;
@@ -184,7 +184,6 @@
     flex-wrap: nowrap;
     align-items: center;
     width: fit-content;
-    //max-width: 360px;
     z-index: 3;
     color: $white;
 
@@ -258,7 +257,7 @@
 
 
 
-.about-carousel-section/*.full-height*/ {
+.about-carousel-section.full-height {
   position: absolute;
   left: 0;
   top: 105vh;
@@ -266,12 +265,16 @@
   z-index: -1;
   //padding-right: 12px;
 
+  .scroll-btn svg {
+    transform: rotate(180deg);
+  }
+
   &.transition-on {
     transition: top 0.7s ease-in;
   }
 }
 
-.intro-carousel-section/*.full-height*/ {
+.intro-carousel-section.full-height {
   position: relative;
   width: 100%;
   top: 0;

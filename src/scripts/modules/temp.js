@@ -93,3 +93,69 @@ if(carouselOffSection) {
 
   window.addEventListener('mousewheel', onMouseWheelChangeSlide, { passive: false });
 } */
+
+/*
+
+function keyboardNavigation(carouselNode, carouselInstance) {
+  const onClickNavigatePage = (evt) => {
+    console.log(evt.code)
+    // определить активный слайдер
+    if(activeSlider.contains(carouselNode) && evt.code === 'ArrowRight' && !isObserve) {
+      console.log(activeSlider);
+      carouselInstance.next();
+    }
+
+    if(activeSlider.contains(carouselNode) && evt.code === 'ArrowLeft' && !isObserve) {
+      console.log(activeSlider);
+      carouselInstance.prev();
+    }
+
+    if(activeSlider.contains(carouselNode) && evt.code === 'ArrowUp' && !isObserve) {
+      if(activeSlider !== introSection && !debounce) {
+        //console.log('moveToIntro');
+        activeSlider = introSection;
+        animateSection('intro');
+
+        showFakeScroll();
+        /*window.removeEventListener('keydown', onClickNavigatePage);
+        console.log('listener removed');
+        window.addEventListener('keyup', () => {
+          console.log('listener added');
+          animateSection('intro');
+          activeSlider = introSection;
+          window.addEventListener('keydown', onClickNavigatePage);
+        })*/
+      }
+    }
+
+    if(activeSlider.contains(carouselNode) && evt.code === 'ArrowDown' && !isObserve) {
+      if(activeSlider !== aboutSection && !debounce) {
+
+        activeSlider = aboutSection;
+        animateSection('about');
+      } /* else if (activeSlider === aboutSection && !debounce) {
+          hideFakeScroll();
+      } */
+    }
+
+    if(activeSlider.contains(carouselNode) && evt.code === 'Home') {
+      console.log('Home');
+    }
+
+    if(activeSlider.contains(carouselNode) && evt.code === 'End') {
+      console.log('End');
+    }
+
+    if(activeSlider.contains(carouselNode) && evt.code === 'Tab') {
+      console.log('tab');
+
+      window.addEventListener('keydown', (evt) => {
+        console.log('tab + ', evt.code);
+      });
+    }
+  }
+
+  window.addEventListener('keydown', onClickNavigatePage);
+}
+
+*/

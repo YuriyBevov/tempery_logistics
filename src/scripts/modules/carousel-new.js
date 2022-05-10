@@ -1,6 +1,6 @@
 import bootstrap from  '../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
 
-import { getHeaderHeight, bodyLocker } from "../utils/functions";
+import { getHeaderHeight, bodyLocker, getWindowWidth } from "../utils/functions";
 import { scrollIntoView, scrollBy } from "seamless-scroll-polyfill";
 
 const aboutCarousel = document.querySelector('#aboutCarousel');
@@ -15,6 +15,15 @@ carouselOffSection.style.marginTop = '1px'; // без маргина блок п
 const nav = document.querySelector('.navbar');
 const aboutSection = document.querySelector('.about-carousel-section');
 const introSection = document.querySelector('.intro-carousel-section');
+
+let windowHeight = document.documentElement.clientHeight;
+let sliderHeight = introCarousel.getBoundingClientRect().height;
+let isEqualHeight = windowHeight === sliderHeight || sliderHeight - windowHeight === 7 ? true : false;
+console.log(isEqualHeight)
+if(isEqualHeight) {
+  aboutSection.classList.add('full-height');
+  introSection.classList.add('full-height');
+}
 
 // при загрузке страницы блокирую скролл
 document.addEventListener('DOMContentLoaded', () => {
@@ -42,7 +51,13 @@ function fillControlsTitle(opt) {
   } else {
     hideBtn(opt.prevControl, true);
   }
-  nextTitleNode.innerHTML = opt.nextControlTitle;
+
+  if(opt.nextControlTitle !== '') {
+    nextTitleNode.innerHTML = opt.nextControlTitle;
+    hideBtn(opt.nextControl, false);
+  } else {
+    hideBtn(opt.nextControl, true);
+  }
 }
 
 // смена названий на кнопках слайдера
@@ -60,7 +75,7 @@ function setControlsTitle(opt) {
     fillControlsTitle({
       nextControl: opt.nextControl,
       prevControl: opt.prevControl,
-      nextControlTitle: 'Scroll down',
+      nextControlTitle: !opt.isNextNodeUntitled ? 'Scroll down' : '',
       prevControlTitle: opt.items[opt.evt.to - 1].getAttribute("data-title"),
     })
   }
@@ -118,17 +133,152 @@ function onSwipeSlideCarousel(carouselNode, carouselInstance) {
   window.addEventListener('mousedown', onMouseDownListenMouseMove);
 }
 
+// навигация между слайдерами по кнопкам вверх/вниз
+const btns = document.querySelectorAll('.scroll-btn');
+
+function onScrollBtnHandler(carouselNode) {
+  const onClickChangeActiveCarousel = (evt) => {
+    if(carouselNode.contains(evt.target) && activeSlider !== aboutSection && isEqualHeight) {
+      animateSection('about');
+    }
+
+    if(carouselNode.contains(evt.target) && activeSlider !== introSection && isEqualHeight) {
+      animateSection('intro');
+    }
+  }
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', onClickChangeActiveCarousel);
+  })
+}
+
+//навигация по клавиатуре
+let activeSlider = document.querySelector('.carousel-section.active');
+
+function keyboardNavigation(carouselNode, carouselInstance) {
+  const onClickNavigatePage = (evt) => {
+    evt.preventDefault();
+    //console.log('keyboardNavigation: ', activeSlider, document.activeElement)
+    if(evt.code === 'ArrowUp' && !debounce && !isObserve) {
+      if(activeSlider.contains(carouselNode) && activeSlider !== introSection) {
+        if(activeSlider === aboutSection && !isScrollActive) {
+          animateSection('intro');
+        }
+      }
+    }
+    if(evt.code === 'ArrowDown' && !debounce && !isObserve) {
+      if(activeSlider.contains(carouselNode) && activeSlider !== aboutSection) {
+        animateSection('about');
+      }
+    }
+    if(evt.code === 'ArrowLeft' && !debounce && !isObserve) {
+      //console.log(activeSlider.contains(carouselNode), activeSlider, carouselNode)
+      if(activeSlider.contains(carouselNode)) {
+        carouselInstance.prev();
+      }
+    }
+    if(evt.code === 'ArrowRight' && !debounce && !isObserve) {
+      // console.log(activeSlider.contains(carouselNode), activeSlider, carouselNode)
+      if(activeSlider.contains(carouselNode)) {
+        carouselInstance.next();
+      }
+    }
+    if(evt.code === 'Home' && !debounce && !isScrollActive) {
+      if(activeSlider === aboutSection) {
+        animateSection('intro');
+      }
+    }
+    if(evt.code === 'End' && !debounce && !isObserve) {
+      if(activeSlider === introSection) {
+        animateSection('about');
+      }
+    }
+
+    if(evt.code === 'Tab') {
+      evt.preventDefault();
+      console.log('tab')
+    }
+  }
+
+  window.addEventListener('keyup', onClickNavigatePage);
+};
+
+/*function tabNavigation(carouselNode, carouselInstance) {
+
+  const onTabNavigatePage = (evt) => {
+    if(evt.code === 'Tab' || evt.key === 9) {
+
+      if(activeSlider === introSection) {
+        const lastFocusableElement = introSection.querySelector('.control-next');
+        const firstFocusableElement = nav.querySelector('.navbar-brand');
+
+        if (evt.shiftKey) {
+          if(evt.target === firstFocusableElement) {
+            console.log('first')
+            lastFocusableElement.focus();
+          }
+        } else {
+          if(evt.target === lastFocusableElement) {
+            firstFocusableElement.focus();
+          }
+        }
+      }
+
+      if(activeSlider === aboutSection) {
+        const lastFocusableElement = aboutSection.querySelector('.control-next');
+        const firstFocusableElement = nav.querySelector('.navbar-brand');
+
+        if (evt.shiftKey) {
+          if(evt.target === firstFocusableElement) {
+            console.log('first')
+            lastFocusableElement.focus();
+          }
+        } else {
+          if(evt.target === lastFocusableElement) {
+            firstFocusableElement.focus();
+          }
+        }
+      }
+    }
+  }
+
+  window.addEventListener('keydown', onTabNavigatePage);
+}*/
+
+// убераю фокус с кнопок управления, при смене слайдера
+const controls = document.querySelectorAll('.control');
+const indicators =  document.querySelectorAll('.indicator');
+
+function controlsBlur() {
+  controls.forEach(cntr => {
+    cntr.blur();
+  });
+  indicators.forEach(ind => {
+    ind.blur();
+  });
+}
+
 //анимация слайдеров
 function animateSection(destSection) {
+  debounce = true;
+  console.log('animateSection: ', activeSlider)
   if(destSection === 'about') {
+    if(introSection.classList.contains('active')) {
+      introSection.classList.remove('active');
+      aboutSection.classList.add('active');
+    }
+
     aboutSection.classList.add('transition-on');
+
     aboutSection.classList.add('active');
     aboutSection.style.position = 'absolute';
     aboutSection.style.zIndex = '3';
     aboutSection.style.top = '0';
 
     setTimeout(() => {
-      debounce = false
+      debounce = false;
+      activeSlider = aboutSection;
+      controlsBlur();
 
       aboutSection.style.position = 'relative';
       aboutSection.style.zIndex = '1';
@@ -136,26 +286,41 @@ function animateSection(destSection) {
 
       introSection.style.zIndex  = '-1';
       introSection.style.position = 'absolute';
-      introSection.style.top = '105vh';
+      introSection.style.top = '-105vh';
 
+      //ставлю фокус на активном индикаторе
+      //aboutSection.querySelector('.indicator.active').focus();
     }, 1000);
+
+    nav.classList.remove('main-navbar-black-theme');
+    nav.classList.add('main-navbar-white-theme');
   }
 
   if(destSection === 'intro') {
+    if(aboutSection.classList.contains('active')) {
+      aboutSection.classList.remove('active');
+      introSection.classList.add('active');
+    }
+
     introSection.style.position = 'absolute';
     aboutSection.classList.remove('active');
+
     introSection.classList.add('transition-on');
     introSection.style.zIndex = '3';
     introSection.style.top = '0';
 
     setTimeout(() => {
       debounce = false;
+      activeSlider = introSection;
+      controlsBlur();
       introSection.style.position = 'relative';
       introSection.style.zIndex = '1';
       introSection.classList.remove('transition-on');
       aboutSection.style.zIndex  = '-1';
       aboutSection.style.position = 'absolute';
       aboutSection.style.top = '105vh';
+
+
     }, 1000);
 
     setTimeout(() => {
@@ -175,35 +340,45 @@ function setPaddings(isActive) {
   introSection.style.paddingRight = isActive ? paddingOffset : '0';
 }
 
+// fake scrollbar
+const fakeScrollbar = document.getElementById('scrollbar');
+let isScrollActive = true;
 function showFakeScroll() {
-  setPaddings(true);
-  document.getElementById('scrollbar').style.display = 'block';
-  document.body.style.overflow = 'hidden';
+  console.log('showFakeScroll');
+  if(fakeScrollbar.style.display !== 'block' && isEqualHeight ) {
+    isScrollActive = false;
+    setPaddings(true);
+    fakeScrollbar.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
 }
 
 function hideFakeScroll() {
-  setPaddings(false);
-  document.getElementById('scrollbar').style.display = 'none';
-  document.body.style.overflow = 'auto';
+  console.log('hideFakeScroll');
+  if(fakeScrollbar.style.display !== 'none') {
+
+    isScrollActive = true;
+    setPaddings(false);
+    fakeScrollbar.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
 }
-
 // смена слайдов по скроллу
+
 function onScrollSlideCarousel(carouselNode, carouselInstance) {
-
   const onMouseWheelChangeSlide = (evt) => {
+    //let windowHeight = document.documentElement.clientHeight;
+    //let sliderHeight = carouselNode.getBoundingClientRect().height;
+    // let isEqualHeight = windowHeight === sliderHeight || sliderHeight - windowHeight === 7 ? true : false;
 
-    let windowHeight = document.documentElement.clientHeight;
-    let sliderHeight = carouselNode.getBoundingClientRect().height;
-    let isEqualHeight = windowHeight === sliderHeight || sliderHeight - windowHeight === 7 ? true : false;
-
-    if(carouselNode.contains(evt.target) && !isObserve /* && isEqualHeight && !isPageScrolled */) {
-      evt.preventDefault();
-
-      if(evt.deltaY > 0) {
+    if(carouselNode.contains(evt.target) && !isObserve) {
+      if(evt.deltaY > 0 && !isScrollActive) {
+        evt.preventDefault();
         if(!debounce) {
           carouselInstance.next();
         }
-      } else {
+      } else if (evt.deltaY < 0) {
+        evt.preventDefault();
         if(!debounce) {
           carouselInstance.prev();
         }
@@ -213,17 +388,6 @@ function onScrollSlideCarousel(carouselNode, carouselInstance) {
 
   window.addEventListener('wheel', onMouseWheelChangeSlide, { passive: false });
 }
-
-// убераю скролл, если вернулся в блок со слайдером
-let isPageScrolled = false;
-window.addEventListener('scroll', (evt) => {
-  isPageScrolled = true;
-
-  if(window.scrollY === 0 && isPageScrolled) {
-    showFakeScroll();
-    isPageScrolled = false;
-  }
-})
 
 // наблюдаю, попал ли блок идущий за слайдерами во вьюпорт
 let isObserve = false;
@@ -240,6 +404,7 @@ if(carouselOffSection) {
   observer.observe(carouselOffSection);
 }
 
+
 let debounce = false;
 if(aboutCarousel) {
   aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner');
@@ -247,8 +412,16 @@ if(aboutCarousel) {
     interval: false
   });
   // swipe
-  onSwipeSlideCarousel(aboutCarousel, aboutCarouselInstance);
-  onScrollSlideCarousel(aboutCarousel, aboutCarouselInstance);
+  isEqualHeight ?
+  onSwipeSlideCarousel(aboutCarousel, aboutCarouselInstance) : null;
+  // scroll
+  isEqualHeight ?
+  onScrollSlideCarousel(aboutCarousel, aboutCarouselInstance) : null;
+  isEqualHeight ?
+  keyboardNavigation(aboutCarousel, aboutCarouselInstance) : null;
+  //tabNavigation(aboutCarousel, aboutCarouselInstance);
+
+  onScrollBtnHandler(aboutCarousel);
   // текст на кнопках
   const carouselItems = aboutCarouselInner.querySelectorAll('.carousel-item');
   const prevControl = aboutCarousel.querySelector('.control-prev');
@@ -282,19 +455,30 @@ if(aboutCarousel) {
     // отмена смены слайда и скролл в другой блок
     if(evt.direction === 'right' && evt.from === 0) {
       evt.preventDefault();
-
       // переход к intro слайдеру
-      if(!debounce) {
-        debounce = true;
+      if(!debounce && isEqualHeight) {
         animateSection('intro');
+      } else {
+        scrollIntoView(introCarousel, { behavior: "smooth", block: "start"});
       }
     }
 
     // переход к projects
+    if(evt.direction === 'right' && evt.to !== carouselItems.length - 1 && !isObserve) {
+      showFakeScroll();
+    }
+
     if(evt.direction === 'left' && evt.to === 0) {
       evt.preventDefault();
-      const nextAnchorCoord = carouselOffSection.offsetTop - window.scrollY - getHeaderHeight();
-      scrollBy(window, { behavior: "smooth", top: nextAnchorCoord });
+
+      if(!isEqualHeight) {
+        const nextAnchor = document.querySelector('#carousel-off-section');
+        const nextAnchorCoord = nextAnchor.offsetTop - window.scrollY - getHeaderHeight();
+        scrollBy(window, { behavior: "smooth", top: nextAnchorCoord });
+      }
+    }
+
+    if(evt.direction === 'left' && evt.to === carouselItems.length - 1) {
       hideFakeScroll();
     }
 
@@ -322,8 +506,15 @@ if(introCarousel) {
     interval: false
   });
   // swipe
-  onSwipeSlideCarousel(introCarousel, introCarouselInstance);
-  onScrollSlideCarousel(introCarousel, introCarouselInstance);
+  isEqualHeight ?
+  onSwipeSlideCarousel(introCarousel, introCarouselInstance) : null;
+  isEqualHeight ?
+  onScrollSlideCarousel(introCarousel, introCarouselInstance) : null;
+  isEqualHeight ?
+  keyboardNavigation(introCarousel, introCarouselInstance) : null;
+  // tabNavigation(introCarousel, introCarouselInstance);
+
+  onScrollBtnHandler(introCarousel);
   // текст на кнопках
   const carouselItems = introCarouselInner.querySelectorAll('.carousel-item');
   const prevControl = introCarousel.querySelector('.control-prev');
@@ -345,13 +536,11 @@ if(introCarousel) {
     if(evt.direction === 'left' && evt.to === 0) {
       evt.preventDefault();
 
-      if(!debounce) {
-        debounce = true;
+      if(!debounce && isEqualHeight) {
         animateSection('about');
+      } else {
+        scrollIntoView(aboutCarousel, { behavior: "smooth", block: "start"});
       }
-
-      nav.classList.remove('main-navbar-black-theme');
-      nav.classList.add('main-navbar-white-theme');
     }
 
     // текст на кнопках
@@ -359,6 +548,7 @@ if(introCarousel) {
       items: carouselItems,
       nextControl,
       prevControl,
+      //isNextNodeUntitled: true,
       evt: {
         to: evt.to,
         from: evt.from,

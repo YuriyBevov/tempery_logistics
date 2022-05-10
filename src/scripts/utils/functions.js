@@ -76,7 +76,47 @@ function getBoundingClientRect(elem, side) {
 function getHeaderHeight() {
   //const header = document.querySelector('header').getBoundingClientRect().height;
   return getBoundingClientRect(document.querySelector('header'), 'height');
-
 }
 
-export  { limitStr, addClass, removeClass, checkClass, toggleClass, bodyLocker, getBoundingClientRect, getHeaderHeight }
+function getWindowWidth() {
+  return window.innerWidth;
+}
+
+function focusTrap() {
+    const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+    const firstFocusableElement = node.querySelectorAll(focusableElements)[0];
+    const focusableContent = node.querySelectorAll(focusableElements);
+    const lastFocusableElement = focusableContent[focusableContent.length - 1];
+
+
+    let onBtnClickHandler = (evt) => {
+        let isTabPressed = evt.key === 'Tab' || evt.key === 9;
+
+        if(evt.key === 'Escape') {
+            document.removeEventListener('keydown', onBtnClickHandler);
+        }
+
+        if (!isTabPressed) {
+            return;
+        }
+
+        if (evt.shiftKey) {
+            if (document.activeElement === firstFocusableElement) {
+                lastFocusableElement.focus();
+                evt.preventDefault();
+            }
+        } else {
+            if (document.activeElement === lastFocusableElement) {
+                firstFocusableElement.focus();
+                evt.preventDefault();
+            }
+        }
+    }
+
+    document.addEventListener('keydown', onBtnClickHandler);
+
+    firstFocusableElement.focus();
+}
+
+export  { limitStr, addClass, removeClass, checkClass, toggleClass, bodyLocker, getBoundingClientRect, getHeaderHeight, getWindowWidth, focusTrap }
