@@ -14731,11 +14731,9 @@ header.sticky {
   top: 105vh;
   width: 100%;
   z-index: -1;
-}
-.about-carousel-section.full-height .scroll-btn svg {
-  -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  transform: rotate(180deg);
+  /*.scroll-btn svg {
+    transform: rotate(180deg);
+  } */
 }
 .about-carousel-section.full-height.transition-on {
   -webkit-transition: top 0.7s ease-in;

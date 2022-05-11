@@ -1,22 +1,21 @@
 import bootstrap from  '../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
 
-import { getHeaderHeight, getWindowWidth } from "../utils/functions";
+import { getHeaderHeight } from "../utils/functions";
 import { scrollIntoView, scrollBy } from "seamless-scroll-polyfill";
 
 //carousel-modules
 import { preventAction } from './carousel-modules/debounce.js';
 import { fillControlsTitle } from './carousel-modules/fillControlsTitle.js';
 import { setControlsTitle } from './carousel-modules/setControlsTitle.js';
-import { setPaddings } from './carousel-modules/setPaddings.js';
 import { onSwipeSlideCarousel } from './carousel-modules/swipe.js';
 import { isCarouselOffSectionIntersected } from './carousel-modules/observeCarouselOffSection.js';
-import { isScrollActive, showFakeScroll, hideFakeScroll } from './carousel-modules/fakeScroll.js';
+import { showFakeScroll, hideFakeScroll } from './carousel-modules/fakeScroll.js';
 import { isFullScreenMode } from './carousel-modules/calcScreenMode.js';
-import { controlsBlur } from './carousel-modules/controlsBlur.js';
 import { onScrollSlideCarousel } from './carousel-modules/onScrollSlideCarousel.js';
-import { activeSlider, animateSection } from './carousel-modules/carouselAnimation.js';
+import { animateSection } from './carousel-modules/carouselAnimation.js';
 import { keyboardNavigation } from './carousel-modules/keyboardNavigation.js';
 import { onScrollBtnHandler } from './carousel-modules/scrollBtns.js';
+import { carouselOffSection } from './carousel-modules/carouselSections.js';
 
 const aboutCarousel = document.querySelector('#aboutCarousel');
 let aboutCarouselInner = null;
@@ -54,6 +53,9 @@ if(aboutCarousel) {
 
   const onSlideChangeHandler = (evt) => {
     const indicators = aboutCarousel.querySelectorAll('.indicator');
+    if(!isCarouselOffSectionIntersected) {
+      showFakeScroll();
+    }
 
     // смена цвета индикаторов
     if(evt.to === 1 && window.innerWidth < 1200 || evt.to === 2 && window.innerWidth < 1200 ) {
@@ -89,32 +91,32 @@ if(aboutCarousel) {
       // переход к intro слайдеру
       if(!preventAction && isFullScreenMode) {
         animateSection('intro');
-      } else {
+      } else if ( !isFullScreenMode ) {
         scrollIntoView(introCarousel, { behavior: "smooth", block: "start"});
       }
     }
 
-    // переход к projects
-    if(evt.direction === 'right' && evt.to !== carouselItems.length - 1 && !isCarouselOffSectionIntersected) {
-      showFakeScroll();
+    if(evt.direction === 'right' || evt.direction === 'left') {
+
     }
 
     if(evt.direction === 'left' && evt.to === 0) {
       evt.preventDefault();
-
+      console.log('TO PROJECTS', isFullScreenMode)
       if(!isFullScreenMode) {
-        const nextAnchor = document.querySelector('#carousel-off-section');
-        const nextAnchorCoord = nextAnchor.offsetTop - window.scrollY - getHeaderHeight();
-        scrollBy(window, { behavior: "smooth", top: nextAnchorCoord });
+        const coordY = carouselOffSection.offsetTop - window.scrollY - getHeaderHeight();
+        scrollBy(window, { behavior: "smooth", top: coordY });
       }
-    }
-
-    if(evt.direction === 'left' && evt.to === carouselItems.length - 1) {
-      hideFakeScroll();
     }
   }
 
   aboutCarousel.addEventListener('slide.bs.carousel', onSlideChangeHandler)
+
+  aboutCarousel.addEventListener('slid.bs.carousel', (evt) => {
+    if(evt.direction === 'left' && evt.to === carouselItems.length - 1) {
+      hideFakeScroll();
+    }
+  })
 }
 
 if(introCarousel) {
@@ -171,7 +173,7 @@ if(introCarousel) {
       if(!preventAction && isFullScreenMode) {
         console.log(preventAction)
         animateSection('about');
-      } else {
+      } else if ( !isFullScreenMode ) {
         scrollIntoView(aboutCarousel, { behavior: "smooth", block: "start"});
       }
     }

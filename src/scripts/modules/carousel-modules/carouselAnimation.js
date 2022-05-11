@@ -6,8 +6,9 @@ let activeSlider = document.querySelector('.carousel-section.active');
 const nav = document.querySelector('.navbar');
 
 function animateSection(destSection) {
-  /*debounce = true;*/
+  console.log('activeSlider: ', activeSlider, 'destSection: ', destSection);
   setPreventState(true);
+  console.log(preventAction);
 
   if(destSection === 'about') {
     if(introSection.classList.contains('active')) {
@@ -16,15 +17,14 @@ function animateSection(destSection) {
     }
 
     aboutSection.classList.add('transition-on');
-
     aboutSection.classList.add('active');
     aboutSection.style.position = 'absolute';
     aboutSection.style.zIndex = '3';
     aboutSection.style.top = '0';
 
     setTimeout(() => {
-      /*debounce = false;*/
       setPreventState(false);
+      console.log(preventAction);
       activeSlider = aboutSection;
       controlsBlur();
 
@@ -35,9 +35,6 @@ function animateSection(destSection) {
       introSection.style.zIndex  = '-1';
       introSection.style.position = 'absolute';
       introSection.style.top = '-105vh';
-
-      //ставлю фокус на активном индикаторе
-      //aboutSection.querySelector('.indicator.active').focus();
     }, 1000);
 
     nav.classList.remove('main-navbar-black-theme');
@@ -58,7 +55,6 @@ function animateSection(destSection) {
     introSection.style.top = '0';
 
     setTimeout(() => {
-      /*debounce = false;*/
       setPreventState(false);
       activeSlider = introSection;
       controlsBlur();
@@ -68,8 +64,6 @@ function animateSection(destSection) {
       aboutSection.style.zIndex  = '-1';
       aboutSection.style.position = 'absolute';
       aboutSection.style.top = '105vh';
-
-
     }, 1000);
 
     setTimeout(() => {
