@@ -6,7 +6,7 @@ import { isFullScreenMode } from "./calcScreenMode";
 import { aboutSection, introSection, carouselOffSection } from './carouselSections.js';
 import { hideFakeScroll } from './fakeScroll.js';
 
-// навигация между слайдерами по кнопкам вверх/вниз
+// навигация по кнопкам вверх/вниз
 const btns = document.querySelectorAll('.scroll-btn');
 
 function onScrollBtnHandler(carouselNode) {

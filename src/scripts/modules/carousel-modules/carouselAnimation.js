@@ -1,75 +1,69 @@
 import { controlsBlur } from "./controlsBlur";
 import { aboutSection, introSection } from './carouselSections.js';
-import { preventAction, setPreventState } from './debounce.js';
+import { setPreventState } from './debounce.js';
+// import { focusableElements } from './focusable.js';
 
 let activeSlider = document.querySelector('.carousel-section.active');
 const nav = document.querySelector('.navbar');
 
+const startAnimation = (opt) => {
+  //меняю активный класс между слайдерами
+  if(opt.prevSliderNode.classList.contains('active')) {
+    opt.prevSliderNode.classList.remove('active');
+    opt.currentSliderNode.classList.add('active');
+  }
+  //ставлю класс для анимации с transition в css
+  opt.currentSliderNode.classList.add('transition-on');
+  //задаю стили для активного слайдера
+  opt.currentSliderNode.style.position = 'absolute';
+  opt.currentSliderNode.style.zIndex = '3';
+  opt.currentSliderNode.style.top = '0';
+
+  setTimeout(() => {
+    setPreventState(false);
+    activeSlider = opt.currentSliderNode;
+    controlsBlur();
+    //убераю класс,чтобы в обратную сторону анимация не работала для этого слайдера
+    opt.currentSliderNode.classList.remove('transition-on');
+    //обновляю стили для слайдеров
+    opt.currentSliderNode.style.position = 'relative';
+    opt.currentSliderNode.style.zIndex = '1';
+    opt.prevSliderNode.style.zIndex  = '-1';
+    opt.prevSliderNode.style.position = 'absolute';
+    opt.prevSliderNode.style.top = opt.prevSliderPosY;
+  }, 1000);
+
+  let delayTime = opt.isHeaderChangeDelayed ? 700 : 0;
+  //меняю шапку
+  setTimeout(() => {
+    nav.classList.remove(`main-navbar-${opt.headerPrevStyle}-theme`);
+    nav.classList.add(`main-navbar-${opt.headerCurrentStyle}-theme`);
+  }, delayTime);
+}
+
 function animateSection(destSection) {
-  console.log('activeSlider: ', activeSlider, 'destSection: ', destSection);
   setPreventState(true);
-  console.log(preventAction);
 
   if(destSection === 'about') {
-    if(introSection.classList.contains('active')) {
-      introSection.classList.remove('active');
-      aboutSection.classList.add('active');
-    }
-
-    aboutSection.classList.add('transition-on');
-    aboutSection.classList.add('active');
-    aboutSection.style.position = 'absolute';
-    aboutSection.style.zIndex = '3';
-    aboutSection.style.top = '0';
-
-    setTimeout(() => {
-      setPreventState(false);
-      console.log(preventAction);
-      activeSlider = aboutSection;
-      controlsBlur();
-
-      aboutSection.style.position = 'relative';
-      aboutSection.style.zIndex = '1';
-      aboutSection.classList.remove('transition-on');
-
-      introSection.style.zIndex  = '-1';
-      introSection.style.position = 'absolute';
-      introSection.style.top = '-105vh';
-    }, 1000);
-
-    nav.classList.remove('main-navbar-black-theme');
-    nav.classList.add('main-navbar-white-theme');
+    startAnimation({
+      prevSliderNode: introSection,
+      currentSliderNode: aboutSection,
+      prevSliderPosY: '-105vh',
+      isHeaderChangeDelayed: false,
+      headerPrevStyle: 'black',
+      headerCurrentStyle: 'white',
+    })
   }
 
   if(destSection === 'intro') {
-    if(aboutSection.classList.contains('active')) {
-      aboutSection.classList.remove('active');
-      introSection.classList.add('active');
-    }
-
-    introSection.style.position = 'absolute';
-    aboutSection.classList.remove('active');
-
-    introSection.classList.add('transition-on');
-    introSection.style.zIndex = '3';
-    introSection.style.top = '0';
-
-    setTimeout(() => {
-      setPreventState(false);
-      activeSlider = introSection;
-      controlsBlur();
-      introSection.style.position = 'relative';
-      introSection.style.zIndex = '1';
-      introSection.classList.remove('transition-on');
-      aboutSection.style.zIndex  = '-1';
-      aboutSection.style.position = 'absolute';
-      aboutSection.style.top = '105vh';
-    }, 1000);
-
-    setTimeout(() => {
-      nav.classList.remove('main-navbar-white-theme');
-      nav.classList.add('main-navbar-black-theme');
-    }, 700);
+    startAnimation({
+      prevSliderNode: aboutSection,
+      currentSliderNode: introSection,
+      prevSliderPosY: '105vh',
+      isHeaderChangeDelayed: true,
+      headerPrevStyle: 'white',
+      headerCurrentStyle: 'black',
+    })
   }
 }
 

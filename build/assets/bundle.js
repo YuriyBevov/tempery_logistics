@@ -48,68 +48,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _debounce_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./debounce.js */ "./src/scripts/modules/carousel-modules/debounce.js");
 
 
+ // import { focusableElements } from './focusable.js';
 
 var activeSlider = document.querySelector('.carousel-section.active');
 var nav = document.querySelector('.navbar');
 
+var startAnimation = function startAnimation(opt) {
+  //меняю активный класс между слайдерами
+  if (opt.prevSliderNode.classList.contains('active')) {
+    opt.prevSliderNode.classList.remove('active');
+    opt.currentSliderNode.classList.add('active');
+  } //ставлю класс для анимации с transition в css
+
+
+  opt.currentSliderNode.classList.add('transition-on'); //задаю стили для активного слайдера
+
+  opt.currentSliderNode.style.position = 'absolute';
+  opt.currentSliderNode.style.zIndex = '3';
+  opt.currentSliderNode.style.top = '0';
+  setTimeout(function () {
+    (0,_debounce_js__WEBPACK_IMPORTED_MODULE_2__.setPreventState)(false);
+    activeSlider = opt.currentSliderNode;
+    (0,_controlsBlur__WEBPACK_IMPORTED_MODULE_0__.controlsBlur)(); //убераю класс,чтобы в обратную сторону анимация не работала для этого слайдера
+
+    opt.currentSliderNode.classList.remove('transition-on'); //обновляю стили для слайдеров
+
+    opt.currentSliderNode.style.position = 'relative';
+    opt.currentSliderNode.style.zIndex = '1';
+    opt.prevSliderNode.style.zIndex = '-1';
+    opt.prevSliderNode.style.position = 'absolute';
+    opt.prevSliderNode.style.top = opt.prevSliderPosY;
+  }, 1000);
+  var delayTime = opt.isHeaderChangeDelayed ? 700 : 0; //меняю шапку
+
+  setTimeout(function () {
+    nav.classList.remove("main-navbar-".concat(opt.headerPrevStyle, "-theme"));
+    nav.classList.add("main-navbar-".concat(opt.headerCurrentStyle, "-theme"));
+  }, delayTime);
+};
+
 function animateSection(destSection) {
-  console.log('activeSlider: ', activeSlider, 'destSection: ', destSection);
   (0,_debounce_js__WEBPACK_IMPORTED_MODULE_2__.setPreventState)(true);
-  console.log(_debounce_js__WEBPACK_IMPORTED_MODULE_2__.preventAction);
 
   if (destSection === 'about') {
-    if (_carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.classList.contains('active')) {
-      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.classList.remove('active');
-      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.classList.add('active');
-    }
-
-    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.classList.add('transition-on');
-    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.classList.add('active');
-    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.style.position = 'absolute';
-    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.style.zIndex = '3';
-    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.style.top = '0';
-    setTimeout(function () {
-      (0,_debounce_js__WEBPACK_IMPORTED_MODULE_2__.setPreventState)(false);
-      console.log(_debounce_js__WEBPACK_IMPORTED_MODULE_2__.preventAction);
-      activeSlider = _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection;
-      (0,_controlsBlur__WEBPACK_IMPORTED_MODULE_0__.controlsBlur)();
-      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.style.position = 'relative';
-      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.style.zIndex = '1';
-      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.classList.remove('transition-on');
-      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.style.zIndex = '-1';
-      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.style.position = 'absolute';
-      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.style.top = '-105vh';
-    }, 1000);
-    nav.classList.remove('main-navbar-black-theme');
-    nav.classList.add('main-navbar-white-theme');
+    startAnimation({
+      prevSliderNode: _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection,
+      currentSliderNode: _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection,
+      prevSliderPosY: '-105vh',
+      isHeaderChangeDelayed: false,
+      headerPrevStyle: 'black',
+      headerCurrentStyle: 'white'
+    });
   }
 
   if (destSection === 'intro') {
-    if (_carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.classList.contains('active')) {
-      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.classList.remove('active');
-      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.classList.add('active');
-    }
-
-    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.style.position = 'absolute';
-    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.classList.remove('active');
-    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.classList.add('transition-on');
-    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.style.zIndex = '3';
-    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.style.top = '0';
-    setTimeout(function () {
-      (0,_debounce_js__WEBPACK_IMPORTED_MODULE_2__.setPreventState)(false);
-      activeSlider = _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection;
-      (0,_controlsBlur__WEBPACK_IMPORTED_MODULE_0__.controlsBlur)();
-      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.style.position = 'relative';
-      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.style.zIndex = '1';
-      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.classList.remove('transition-on');
-      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.style.zIndex = '-1';
-      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.style.position = 'absolute';
-      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.style.top = '105vh';
-    }, 1000);
-    setTimeout(function () {
-      nav.classList.remove('main-navbar-white-theme');
-      nav.classList.add('main-navbar-black-theme');
-    }, 700);
+    startAnimation({
+      prevSliderNode: _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection,
+      currentSliderNode: _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection,
+      prevSliderPosY: '105vh',
+      isHeaderChangeDelayed: true,
+      headerPrevStyle: 'white',
+      headerCurrentStyle: 'black'
+    });
   }
 }
 
@@ -510,7 +510,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // навигация между слайдерами по кнопкам вверх/вниз
+ // навигация по кнопкам вверх/вниз
 
 var btns = document.querySelectorAll('.scroll-btn');
 
@@ -802,21 +802,17 @@ if (aboutCarousel) {
           block: "start"
         });
       }
-    }
+    } //переход к projects
 
-    if (evt.direction === 'right' || evt.direction === 'left') {}
 
     if (evt.direction === 'left' && evt.to === 0) {
       evt.preventDefault();
-      console.log('TO PROJECTS', _carousel_modules_calcScreenMode_js__WEBPACK_IMPORTED_MODULE_8__.isFullScreenMode);
-
-      if (!_carousel_modules_calcScreenMode_js__WEBPACK_IMPORTED_MODULE_8__.isFullScreenMode) {
-        var coordY = _carousel_modules_carouselSections_js__WEBPACK_IMPORTED_MODULE_13__.carouselOffSection.offsetTop - window.scrollY - (0,_utils_functions__WEBPACK_IMPORTED_MODULE_1__.getHeaderHeight)();
-        (0,seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_15__.scrollBy)(window, {
-          behavior: "smooth",
-          top: coordY
-        });
-      }
+      (0,_carousel_modules_fakeScroll_js__WEBPACK_IMPORTED_MODULE_7__.hideFakeScroll)();
+      var coordY = _carousel_modules_carouselSections_js__WEBPACK_IMPORTED_MODULE_13__.carouselOffSection.offsetTop - window.scrollY - (0,_utils_functions__WEBPACK_IMPORTED_MODULE_1__.getHeaderHeight)();
+      (0,seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_15__.scrollBy)(window, {
+        behavior: "smooth",
+        top: coordY
+      });
     }
   };
 

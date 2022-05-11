@@ -5,7 +5,6 @@ import { aboutSection, introSection } from './carouselSections.js';
 import { preventAction, setPreventState } from './debounce.js';
 import { scrollIntoView } from "seamless-scroll-polyfill";
 
-
 const footer = document.querySelector('footer');
 
 //навигация по клавиатуре

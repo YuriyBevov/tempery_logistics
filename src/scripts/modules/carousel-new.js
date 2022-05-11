@@ -56,7 +56,6 @@ if(aboutCarousel) {
     if(!isCarouselOffSectionIntersected) {
       showFakeScroll();
     }
-
     // смена цвета индикаторов
     if(evt.to === 1 && window.innerWidth < 1200 || evt.to === 2 && window.innerWidth < 1200 ) {
       indicators.forEach(ind => {
@@ -71,7 +70,6 @@ if(aboutCarousel) {
         ind.classList.add('indicator-purple') : null;
       })
     }
-
     // динамический текст на кнопках
     setControlsTitle({
       items: carouselItems,
@@ -84,7 +82,6 @@ if(aboutCarousel) {
         direction: evt.direction
       }
     })
-
     // отмена смены слайда и скролл в другой блок
     if(evt.direction === 'right' && evt.from === 0) {
       evt.preventDefault();
@@ -95,21 +92,15 @@ if(aboutCarousel) {
         scrollIntoView(introCarousel, { behavior: "smooth", block: "start"});
       }
     }
-
-    if(evt.direction === 'right' || evt.direction === 'left') {
-
-    }
-
+    //переход к projects
     if(evt.direction === 'left' && evt.to === 0) {
       evt.preventDefault();
-      console.log('TO PROJECTS', isFullScreenMode)
-      if(!isFullScreenMode) {
-        const coordY = carouselOffSection.offsetTop - window.scrollY - getHeaderHeight();
-        scrollBy(window, { behavior: "smooth", top: coordY });
-      }
+
+      hideFakeScroll();
+      const coordY = carouselOffSection.offsetTop - window.scrollY - getHeaderHeight();
+      scrollBy(window, { behavior: "smooth", top: coordY });
     }
   }
-
   aboutCarousel.addEventListener('slide.bs.carousel', onSlideChangeHandler)
 
   aboutCarousel.addEventListener('slid.bs.carousel', (evt) => {
