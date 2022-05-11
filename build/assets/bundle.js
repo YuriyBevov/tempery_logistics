@@ -1,6 +1,26 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/scripts/modules/carousel-modules/blurFocusedElement.js":
+/*!********************************************************************!*\
+  !*** ./src/scripts/modules/carousel-modules/blurFocusedElement.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "blurFocusedElement": () => (/* binding */ blurFocusedElement)
+/* harmony export */ });
+// убераю фокус с кнопок управления, при смене слайдера
+function blurFocusedElement() {
+  console.log(document.activeElement); //document.activeElement.blur();
+
+  console.log(document.activeElement);
+}
+
+/***/ }),
+
 /***/ "./src/scripts/modules/carousel-modules/calcScreenMode.js":
 /*!****************************************************************!*\
   !*** ./src/scripts/modules/carousel-modules/calcScreenMode.js ***!
@@ -43,7 +63,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "activeSlider": () => (/* binding */ activeSlider),
 /* harmony export */   "animateSection": () => (/* binding */ animateSection)
 /* harmony export */ });
-/* harmony import */ var _controlsBlur__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./controlsBlur */ "./src/scripts/modules/carousel-modules/controlsBlur.js");
+/* harmony import */ var _blurFocusedElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blurFocusedElement */ "./src/scripts/modules/carousel-modules/blurFocusedElement.js");
 /* harmony import */ var _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./carouselSections.js */ "./src/scripts/modules/carousel-modules/carouselSections.js");
 /* harmony import */ var _debounce_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./debounce.js */ "./src/scripts/modules/carousel-modules/debounce.js");
 
@@ -54,7 +74,8 @@ var activeSlider = document.querySelector('.carousel-section.active');
 var nav = document.querySelector('.navbar');
 
 var startAnimation = function startAnimation(opt) {
-  //меняю активный класс между слайдерами
+  (0,_blurFocusedElement__WEBPACK_IMPORTED_MODULE_0__.blurFocusedElement)(); //меняю активный класс между слайдерами
+
   if (opt.prevSliderNode.classList.contains('active')) {
     opt.prevSliderNode.classList.remove('active');
     opt.currentSliderNode.classList.add('active');
@@ -68,8 +89,7 @@ var startAnimation = function startAnimation(opt) {
   opt.currentSliderNode.style.top = '0';
   setTimeout(function () {
     (0,_debounce_js__WEBPACK_IMPORTED_MODULE_2__.setPreventState)(false);
-    activeSlider = opt.currentSliderNode;
-    (0,_controlsBlur__WEBPACK_IMPORTED_MODULE_0__.controlsBlur)(); //убераю класс,чтобы в обратную сторону анимация не работала для этого слайдера
+    activeSlider = opt.currentSliderNode; //убераю класс,чтобы в обратную сторону анимация не работала для этого слайдера
 
     opt.currentSliderNode.classList.remove('transition-on'); //обновляю стили для слайдеров
 
@@ -133,31 +153,6 @@ __webpack_require__.r(__webpack_exports__);
 var aboutSection = document.querySelector('.about-carousel-section');
 var introSection = document.querySelector('.intro-carousel-section');
 var carouselOffSection = document.querySelector('#carousel-off-section');
-
-/***/ }),
-
-/***/ "./src/scripts/modules/carousel-modules/controlsBlur.js":
-/*!**************************************************************!*\
-  !*** ./src/scripts/modules/carousel-modules/controlsBlur.js ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "controlsBlur": () => (/* binding */ controlsBlur)
-/* harmony export */ });
-// убераю фокус с кнопок управления, при смене слайдера
-var controls = document.querySelectorAll('.control');
-var indicators = document.querySelectorAll('.indicator');
-function controlsBlur() {
-  controls.forEach(function (cntr) {
-    cntr.blur();
-  });
-  indicators.forEach(function (ind) {
-    ind.blur();
-  });
-}
 
 /***/ }),
 
@@ -390,16 +385,54 @@ function keyboardNavigation(carouselNode, carouselInstance) {
         block: "start"
       });
     }
-
-    if (evt.code === 'Tab') {
-      evt.preventDefault();
-      console.log('tab');
-    }
-
-    console.log(evt);
   };
 
   window.addEventListener('keyup', onClickNavigatePage);
+  var firstFocusableElement = document.querySelector('.navbar-brand');
+
+  var onTabClickHandler = function onTabClickHandler(evt) {
+    var lastFocusableElement = _carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider.querySelector('.control-next');
+    var isTabPressed = evt.key === 'Tab' || evt.key === 9;
+
+    if (!isTabPressed) {
+      return;
+    }
+
+    var toggler = document.querySelector('.navbar-toggler');
+
+    if (evt.shiftKey) {
+      var firstIndicatorBtn = _carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider.querySelector(' .indicator');
+
+      if (document.activeElement === firstFocusableElement && _carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider === _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.introSection) {
+        lastFocusableElement.focus();
+        evt.preventDefault();
+      }
+
+      if (document.activeElement === firstIndicatorBtn) {
+        toggler.focus();
+        evt.preventDefault();
+      }
+    } else {
+      var _firstIndicatorBtn = _carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider.querySelector('.indicator');
+
+      if (document.activeElement === lastFocusableElement && _carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider === _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.introSection) {
+        firstFocusableElement.focus();
+        evt.preventDefault();
+      }
+
+      if (document.activeElement === lastFocusableElement && _carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider === _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.aboutSection) {
+        (0,_fakeScroll__WEBPACK_IMPORTED_MODULE_1__.hideFakeScroll)();
+      }
+
+      if (document.activeElement === toggler) {
+        _firstIndicatorBtn.focus();
+
+        evt.preventDefault();
+      }
+    }
+  };
+
+  document.addEventListener('keydown', onTabClickHandler);
 }
 
 ;
@@ -418,7 +451,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "isCarouselOffSectionIntersected": () => (/* binding */ isCarouselOffSectionIntersected)
 /* harmony export */ });
-// наблюдаю, попал ли блок идущий за слайдерами во вьюпорт
+/* harmony import */ var _fakeScroll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./fakeScroll */ "./src/scripts/modules/carousel-modules/fakeScroll.js");
+ // наблюдаю, попал ли блок идущий за слайдерами во вьюпорт
+
 var carouselOffSection = document.querySelector('#carousel-off-section');
 carouselOffSection.style.marginTop = '1px'; // без маргина блок попадает в зону видимости
 
@@ -428,6 +463,7 @@ if (carouselOffSection) {
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
+        (0,_fakeScroll__WEBPACK_IMPORTED_MODULE_0__.hideFakeScroll)();
         isCarouselOffSectionIntersected = true;
         console.log(carouselOffSection);
       } else {
@@ -794,8 +830,17 @@ if (aboutCarousel) {
     if (evt.direction === 'right' && evt.from === 0) {
       evt.preventDefault(); // переход к intro слайдеру
 
-      if (!_carousel_modules_debounce_js__WEBPACK_IMPORTED_MODULE_2__.preventAction && _carousel_modules_calcScreenMode_js__WEBPACK_IMPORTED_MODULE_8__.isFullScreenMode) {
+      if (!_carousel_modules_debounce_js__WEBPACK_IMPORTED_MODULE_2__.preventAction && _carousel_modules_calcScreenMode_js__WEBPACK_IMPORTED_MODULE_8__.isFullScreenMode && !_carousel_modules_fakeScroll_js__WEBPACK_IMPORTED_MODULE_7__.isScrollActive) {
+        console.log(_carousel_modules_calcScreenMode_js__WEBPACK_IMPORTED_MODULE_8__.isFullScreenMode);
         (0,_carousel_modules_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_10__.animateSection)('intro');
+      } else if (!_carousel_modules_debounce_js__WEBPACK_IMPORTED_MODULE_2__.preventAction && _carousel_modules_calcScreenMode_js__WEBPACK_IMPORTED_MODULE_8__.isFullScreenMode && _carousel_modules_fakeScroll_js__WEBPACK_IMPORTED_MODULE_7__.isScrollActive) {
+        (0,seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_14__.scrollIntoView)(introCarousel, {
+          behavior: "smooth",
+          block: "start"
+        });
+        (0,_carousel_modules_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_10__.animateSection)('intro');
+        (0,_carousel_modules_fakeScroll_js__WEBPACK_IMPORTED_MODULE_7__.showFakeScroll)();
+        document.querySelector('.navbar-brand').focus();
       } else if (!_carousel_modules_calcScreenMode_js__WEBPACK_IMPORTED_MODULE_8__.isFullScreenMode) {
         (0,seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_14__.scrollIntoView)(introCarousel, {
           behavior: "smooth",
@@ -905,18 +950,7 @@ if (header) {
   var pagePosY = main.getBoundingClientRect().top;
   var isHeaderChanged = false;
 
-  var animateHeader = function animateHeader() {
-    setTimeout(function () {
-      header.classList.add('showing');
-      header.classList.remove('hidding');
-      setTimeout(function () {
-        header.classList.remove('showing');
-      }, 500);
-    }, 300);
-  };
-
   var setHeaderStyle = function setHeaderStyle(style) {
-    //header.classList.add('hidding');
     setTimeout(function () {
       if (style === 'white') {
         nav.classList.remove('main-navbar-black-theme');
@@ -926,8 +960,7 @@ if (header) {
       if (style === 'transparent' && !aboutSection.classList.contains('active')) {
         nav.classList.remove('main-navbar-white-theme');
         nav.classList.add('main-navbar-black-theme');
-      } //animateHeader();
-
+      }
     }, 400);
   };
 

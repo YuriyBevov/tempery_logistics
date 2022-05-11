@@ -1,4 +1,4 @@
-import {activeSlider, animateSection } from './carouselAnimation.js';
+import { activeSlider, animateSection } from './carouselAnimation.js';
 import { showFakeScroll, hideFakeScroll, isScrollActive } from './fakeScroll';
 import { isCarouselOffSectionIntersected } from './observeCarouselOffSection.js';
 import { aboutSection, introSection } from './carouselSections.js';
@@ -93,16 +93,53 @@ function keyboardNavigation(carouselNode, carouselInstance) {
       hideFakeScroll();
       scrollIntoView(footer, { behavior: "smooth", block: "start"});
     }
-
-    if(evt.code === 'Tab') {
-      evt.preventDefault();
-      console.log('tab')
-    }
-
-    console.log(evt)
   }
 
   window.addEventListener('keyup', onClickNavigatePage);
+
+  let firstFocusableElement = document.querySelector('.navbar-brand');
+
+  const onTabClickHandler = (evt) => {
+
+    let lastFocusableElement = activeSlider.querySelector('.control-next');
+    let isTabPressed = evt.key === 'Tab' || evt.key === 9;
+
+    if (!isTabPressed) {
+        return;
+    }
+
+    let toggler = document.querySelector('.navbar-toggler');
+    if (evt.shiftKey) {
+        let firstIndicatorBtn = activeSlider.querySelector(' .indicator');
+        if (document.activeElement === firstFocusableElement && activeSlider === introSection) {
+            lastFocusableElement.focus();
+            evt.preventDefault();
+        }
+
+        if (document.activeElement === firstIndicatorBtn) {
+          toggler.focus();
+          evt.preventDefault();
+        }
+    } else {
+        let firstIndicatorBtn = activeSlider.querySelector('.indicator');
+
+        if (document.activeElement === lastFocusableElement && activeSlider === introSection) {
+            firstFocusableElement.focus();
+            evt.preventDefault();
+        }
+
+        if (document.activeElement === lastFocusableElement && activeSlider === aboutSection) {
+          hideFakeScroll();
+        }
+
+        if (document.activeElement === toggler) {
+          firstIndicatorBtn.focus();
+          evt.preventDefault();
+        }
+    }
+  }
+
+  document.addEventListener('keydown', onTabClickHandler);
 };
 
 export { keyboardNavigation }

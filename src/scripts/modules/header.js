@@ -7,18 +7,7 @@ if(header) {
   let pagePosY = main.getBoundingClientRect().top;
   let isHeaderChanged = false;
 
-  const animateHeader = () => {
-    setTimeout(() => {
-      header.classList.add('showing');
-      header.classList.remove('hidding');
-      setTimeout(() => {
-        header.classList.remove('showing');
-      }, 500);
-    }, 300);
-  }
-
   const setHeaderStyle = (style) => {
-    //header.classList.add('hidding');
     setTimeout(() => {
       if(style === 'white') {
         nav.classList.remove('main-navbar-black-theme');
@@ -29,8 +18,6 @@ if(header) {
         nav.classList.remove('main-navbar-white-theme');
         nav.classList.add('main-navbar-black-theme');
       }
-
-      //animateHeader();
     }, 400);
   }
 

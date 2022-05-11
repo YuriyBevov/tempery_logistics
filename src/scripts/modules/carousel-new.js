@@ -9,13 +9,13 @@ import { fillControlsTitle } from './carousel-modules/fillControlsTitle.js';
 import { setControlsTitle } from './carousel-modules/setControlsTitle.js';
 import { onSwipeSlideCarousel } from './carousel-modules/swipe.js';
 import { isCarouselOffSectionIntersected } from './carousel-modules/observeCarouselOffSection.js';
-import { showFakeScroll, hideFakeScroll } from './carousel-modules/fakeScroll.js';
+import { showFakeScroll, hideFakeScroll, isScrollActive } from './carousel-modules/fakeScroll.js';
 import { isFullScreenMode } from './carousel-modules/calcScreenMode.js';
 import { onScrollSlideCarousel } from './carousel-modules/onScrollSlideCarousel.js';
 import { animateSection } from './carousel-modules/carouselAnimation.js';
 import { keyboardNavigation } from './carousel-modules/keyboardNavigation.js';
 import { onScrollBtnHandler } from './carousel-modules/scrollBtns.js';
-import { carouselOffSection } from './carousel-modules/carouselSections.js';
+import { carouselOffSection, introSection } from './carousel-modules/carouselSections.js';
 
 const aboutCarousel = document.querySelector('#aboutCarousel');
 let aboutCarouselInner = null;
@@ -86,12 +86,21 @@ if(aboutCarousel) {
     if(evt.direction === 'right' && evt.from === 0) {
       evt.preventDefault();
       // переход к intro слайдеру
-      if(!preventAction && isFullScreenMode) {
+      if(!preventAction && isFullScreenMode && !isScrollActive) {
+        console.log(isFullScreenMode);
         animateSection('intro');
-      } else if ( !isFullScreenMode ) {
+      }
+      else if(!preventAction && isFullScreenMode && isScrollActive) {
+        scrollIntoView(introCarousel, { behavior: "smooth", block: "start"});
+        animateSection('intro');
+        showFakeScroll();
+        document.querySelector('.navbar-brand').focus();
+      }
+      else if ( !isFullScreenMode ) {
         scrollIntoView(introCarousel, { behavior: "smooth", block: "start"});
       }
     }
+
     //переход к projects
     if(evt.direction === 'left' && evt.to === 0) {
       evt.preventDefault();
