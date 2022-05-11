@@ -1,48 +1,248 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/scripts/modules/carousel-new.js":
-/*!*********************************************!*\
-  !*** ./src/scripts/modules/carousel-new.js ***!
-  \*********************************************/
+/***/ "./src/scripts/modules/carousel-modules/calcScreenMode.js":
+/*!****************************************************************!*\
+  !*** ./src/scripts/modules/carousel-modules/calcScreenMode.js ***!
+  \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js */ "./node_modules/bootstrap/dist/js/bootstrap.bundle.js");
-/* harmony import */ var _node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/functions */ "./src/scripts/utils/functions.js");
-/* harmony import */ var seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! seamless-scroll-polyfill */ "./node_modules/seamless-scroll-polyfill/lib/scrollIntoView.js");
-/* harmony import */ var seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! seamless-scroll-polyfill */ "./node_modules/seamless-scroll-polyfill/lib/scroll.js");
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isFullScreenMode": () => (/* binding */ isFullScreenMode)
+/* harmony export */ });
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/functions */ "./src/scripts/utils/functions.js");
+/* harmony import */ var _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./carouselSections.js */ "./src/scripts/modules/carousel-modules/carouselSections.js");
 
 
-
-var aboutCarousel = document.querySelector('#aboutCarousel');
-var aboutCarouselInner = null;
-var introCarousel = document.querySelector('#introCarousel');
-var introCarouselInner = null;
-var carouselOffSection = document.querySelector('#carousel-off-section');
-carouselOffSection.style.marginTop = '1px'; // без маргина блок попадает в зону видимости
-
-var nav = document.querySelector('.navbar');
-var aboutSection = document.querySelector('.about-carousel-section');
-var introSection = document.querySelector('.intro-carousel-section');
 var windowHeight = document.documentElement.clientHeight;
 var sliderHeight = introCarousel.getBoundingClientRect().height;
 var isEqualHeight = windowHeight === sliderHeight || sliderHeight - windowHeight === 7 ? true : false;
-var windowWidth = (0,_utils_functions__WEBPACK_IMPORTED_MODULE_1__.getWindowWidth)();
-var isFullScreen = isEqualHeight && windowWidth > 1200 ? true : false;
+var windowWidth = (0,_utils_functions__WEBPACK_IMPORTED_MODULE_0__.getWindowWidth)();
+var isFullScreenMode = isEqualHeight && windowWidth > 1200 ? true : false;
 
-if (isFullScreen) {
-  aboutSection.classList.add('full-height');
-  introSection.classList.add('full-height');
-} // при загрузке страницы блокирую скролл
+if (isFullScreenMode) {
+  _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.classList.add('full-height');
+  _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.classList.add('full-height');
+}
 
+
+
+/***/ }),
+
+/***/ "./src/scripts/modules/carousel-modules/carouselAnimation.js":
+/*!*******************************************************************!*\
+  !*** ./src/scripts/modules/carousel-modules/carouselAnimation.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "activeSlider": () => (/* binding */ activeSlider),
+/* harmony export */   "animateSection": () => (/* binding */ animateSection)
+/* harmony export */ });
+/* harmony import */ var _controlsBlur__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./controlsBlur */ "./src/scripts/modules/carousel-modules/controlsBlur.js");
+/* harmony import */ var _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./carouselSections.js */ "./src/scripts/modules/carousel-modules/carouselSections.js");
+/* harmony import */ var _debounce_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./debounce.js */ "./src/scripts/modules/carousel-modules/debounce.js");
+
+
+
+var activeSlider = document.querySelector('.carousel-section.active');
+var nav = document.querySelector('.navbar');
+
+function animateSection(destSection) {
+  /*debounce = true;*/
+  (0,_debounce_js__WEBPACK_IMPORTED_MODULE_2__.setPreventState)(true);
+
+  if (destSection === 'about') {
+    if (_carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.classList.contains('active')) {
+      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.classList.remove('active');
+      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.classList.add('active');
+    }
+
+    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.classList.add('transition-on');
+    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.classList.add('active');
+    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.style.position = 'absolute';
+    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.style.zIndex = '3';
+    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.style.top = '0';
+    setTimeout(function () {
+      /*debounce = false;*/
+      (0,_debounce_js__WEBPACK_IMPORTED_MODULE_2__.setPreventState)(false);
+      activeSlider = _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection;
+      (0,_controlsBlur__WEBPACK_IMPORTED_MODULE_0__.controlsBlur)();
+      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.style.position = 'relative';
+      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.style.zIndex = '1';
+      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.classList.remove('transition-on');
+      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.style.zIndex = '-1';
+      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.style.position = 'absolute';
+      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.style.top = '-105vh'; //ставлю фокус на активном индикаторе
+      //aboutSection.querySelector('.indicator.active').focus();
+    }, 1000);
+    nav.classList.remove('main-navbar-black-theme');
+    nav.classList.add('main-navbar-white-theme');
+  }
+
+  if (destSection === 'intro') {
+    if (_carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.classList.contains('active')) {
+      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.classList.remove('active');
+      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.classList.add('active');
+    }
+
+    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.style.position = 'absolute';
+    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.classList.remove('active');
+    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.classList.add('transition-on');
+    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.style.zIndex = '3';
+    _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.style.top = '0';
+    setTimeout(function () {
+      /*debounce = false;*/
+      (0,_debounce_js__WEBPACK_IMPORTED_MODULE_2__.setPreventState)(false);
+      activeSlider = _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection;
+      (0,_controlsBlur__WEBPACK_IMPORTED_MODULE_0__.controlsBlur)();
+      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.style.position = 'relative';
+      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.style.zIndex = '1';
+      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.classList.remove('transition-on');
+      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.style.zIndex = '-1';
+      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.style.position = 'absolute';
+      _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.style.top = '105vh';
+    }, 1000);
+    setTimeout(function () {
+      nav.classList.remove('main-navbar-white-theme');
+      nav.classList.add('main-navbar-black-theme');
+    }, 700);
+  }
+}
+
+
+
+/***/ }),
+
+/***/ "./src/scripts/modules/carousel-modules/carouselSections.js":
+/*!******************************************************************!*\
+  !*** ./src/scripts/modules/carousel-modules/carouselSections.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "aboutSection": () => (/* binding */ aboutSection),
+/* harmony export */   "introSection": () => (/* binding */ introSection)
+/* harmony export */ });
+var aboutSection = document.querySelector('.about-carousel-section');
+var introSection = document.querySelector('.intro-carousel-section');
+
+/***/ }),
+
+/***/ "./src/scripts/modules/carousel-modules/controlsBlur.js":
+/*!**************************************************************!*\
+  !*** ./src/scripts/modules/carousel-modules/controlsBlur.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "controlsBlur": () => (/* binding */ controlsBlur)
+/* harmony export */ });
+// убераю фокус с кнопок управления, при смене слайдера
+var controls = document.querySelectorAll('.control');
+var indicators = document.querySelectorAll('.indicator');
+function controlsBlur() {
+  controls.forEach(function (cntr) {
+    cntr.blur();
+  });
+  indicators.forEach(function (ind) {
+    ind.blur();
+  });
+}
+
+/***/ }),
+
+/***/ "./src/scripts/modules/carousel-modules/debounce.js":
+/*!**********************************************************!*\
+  !*** ./src/scripts/modules/carousel-modules/debounce.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "preventAction": () => (/* binding */ preventAction),
+/* harmony export */   "setPreventState": () => (/* binding */ setPreventState)
+/* harmony export */ });
+var preventAction = false;
+
+function setPreventState(bool) {
+  preventAction = bool;
+}
+
+
+
+/***/ }),
+
+/***/ "./src/scripts/modules/carousel-modules/fakeScroll.js":
+/*!************************************************************!*\
+  !*** ./src/scripts/modules/carousel-modules/fakeScroll.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "hideFakeScroll": () => (/* binding */ hideFakeScroll),
+/* harmony export */   "isScrollActive": () => (/* binding */ isScrollActive),
+/* harmony export */   "showFakeScroll": () => (/* binding */ showFakeScroll)
+/* harmony export */ });
+/* harmony import */ var _calcScreenMode_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./calcScreenMode.js */ "./src/scripts/modules/carousel-modules/calcScreenMode.js");
+/* harmony import */ var _setPaddings_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./setPaddings.js */ "./src/scripts/modules/carousel-modules/setPaddings.js");
+/* harmony import */ var _carouselSections_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./carouselSections.js */ "./src/scripts/modules/carousel-modules/carouselSections.js");
+
+
+ // fake scrollbar
 
 document.addEventListener('DOMContentLoaded', function () {
   showFakeScroll();
-}); // отрисовка названий на кнопках слайдера
+});
+var fakeScrollbar = document.getElementById('scrollbar');
+var isScrollActive = true;
 
+function showFakeScroll() {
+  if (fakeScrollbar.style.display !== 'block' && _calcScreenMode_js__WEBPACK_IMPORTED_MODULE_0__.isFullScreenMode) {
+    console.log('showFakeScroll');
+    isScrollActive = false;
+    (0,_setPaddings_js__WEBPACK_IMPORTED_MODULE_1__.setPaddings)(true, _carouselSections_js__WEBPACK_IMPORTED_MODULE_2__.aboutSection, _carouselSections_js__WEBPACK_IMPORTED_MODULE_2__.introSection);
+    fakeScrollbar.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function hideFakeScroll() {
+  if (fakeScrollbar.style.display !== 'none') {
+    console.log('hideFakeScroll');
+    (0,_setPaddings_js__WEBPACK_IMPORTED_MODULE_1__.setPaddings)(false, _carouselSections_js__WEBPACK_IMPORTED_MODULE_2__.aboutSection, _carouselSections_js__WEBPACK_IMPORTED_MODULE_2__.introSection);
+    fakeScrollbar.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    isScrollActive = true;
+  }
+}
+
+
+
+/***/ }),
+
+/***/ "./src/scripts/modules/carousel-modules/fillControlsTitle.js":
+/*!*******************************************************************!*\
+  !*** ./src/scripts/modules/carousel-modules/fillControlsTitle.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fillControlsTitle": () => (/* binding */ fillControlsTitle)
+/* harmony export */ });
 function fillControlsTitle(opt) {
   var hideBtn = function hideBtn(btn, bool) {
     if (bool) {
@@ -70,12 +270,235 @@ function fillControlsTitle(opt) {
   } else {
     hideBtn(opt.nextControl, true);
   }
-} // смена названий на кнопках слайдера
+}
 
+/***/ }),
+
+/***/ "./src/scripts/modules/carousel-modules/keyboardNavigation.js":
+/*!********************************************************************!*\
+  !*** ./src/scripts/modules/carousel-modules/keyboardNavigation.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "keyboardNavigation": () => (/* binding */ keyboardNavigation)
+/* harmony export */ });
+/* harmony import */ var _carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./carouselAnimation.js */ "./src/scripts/modules/carousel-modules/carouselAnimation.js");
+/* harmony import */ var _fakeScroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./fakeScroll */ "./src/scripts/modules/carousel-modules/fakeScroll.js");
+/* harmony import */ var _observeCarouselOffSection_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./observeCarouselOffSection.js */ "./src/scripts/modules/carousel-modules/observeCarouselOffSection.js");
+/* harmony import */ var _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./carouselSections.js */ "./src/scripts/modules/carousel-modules/carouselSections.js");
+/* harmony import */ var _debounce_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./debounce.js */ "./src/scripts/modules/carousel-modules/debounce.js");
+
+
+
+
+ //навигация по клавиатуре
+
+function keyboardNavigation(carouselNode, carouselInstance) {
+  var onClickNavigatePage = function onClickNavigatePage(evt) {
+    evt.preventDefault(); //console.log('keyboardNavigation: ', activeSlider, document.activeElement)
+
+    if (evt.code === 'ArrowUp' && !_debounce_js__WEBPACK_IMPORTED_MODULE_4__.preventAction && !_observeCarouselOffSection_js__WEBPACK_IMPORTED_MODULE_2__.isCarouselOffSectionIntersected) {
+      if (_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider.contains(carouselNode) && _carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider !== _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.introSection) {
+        if (_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider === _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.aboutSection && !_fakeScroll__WEBPACK_IMPORTED_MODULE_1__.isScrollActive) {
+          (0,_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.animateSection)('intro');
+        }
+      }
+    }
+
+    if (evt.code === 'ArrowDown'
+    /*&& !debounce */
+    && !_observeCarouselOffSection_js__WEBPACK_IMPORTED_MODULE_2__.isCarouselOffSectionIntersected) {
+      if (_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider.contains(carouselNode) && _carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider !== _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.aboutSection) {
+        (0,_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.animateSection)('about');
+      }
+    }
+
+    if (evt.code === 'ArrowLeft'
+    /*&& !debounce */
+    && !_observeCarouselOffSection_js__WEBPACK_IMPORTED_MODULE_2__.isCarouselOffSectionIntersected) {
+      //console.log(activeSlider.contains(carouselNode), activeSlider, carouselNode)
+      if (_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider.contains(carouselNode)) {
+        carouselInstance.prev();
+      }
+    }
+
+    if (evt.code === 'ArrowRight' && !_debounce_js__WEBPACK_IMPORTED_MODULE_4__.preventAction && !_observeCarouselOffSection_js__WEBPACK_IMPORTED_MODULE_2__.isCarouselOffSectionIntersected) {
+      // console.log(activeSlider.contains(carouselNode), activeSlider, carouselNode)
+      if (_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider.contains(carouselNode)) {
+        carouselInstance.next();
+      }
+    }
+
+    if (evt.code === 'Home'
+    /* && !debounce*/
+    && !_fakeScroll__WEBPACK_IMPORTED_MODULE_1__.isScrollActive) {
+      if (_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider === _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.aboutSection) {
+        (0,_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.animateSection)('intro');
+      }
+    }
+
+    if (evt.code === 'End'
+    /*&& !debounce */
+    && !_observeCarouselOffSection_js__WEBPACK_IMPORTED_MODULE_2__.isCarouselOffSectionIntersected) {
+      if (_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider === _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.introSection) {
+        (0,_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.animateSection)('about');
+      }
+    }
+
+    if (evt.code === 'Tab') {
+      evt.preventDefault();
+      console.log('tab');
+    }
+  };
+
+  window.addEventListener('keyup', onClickNavigatePage);
+}
+
+;
+
+
+/***/ }),
+
+/***/ "./src/scripts/modules/carousel-modules/observeCarouselOffSection.js":
+/*!***************************************************************************!*\
+  !*** ./src/scripts/modules/carousel-modules/observeCarouselOffSection.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isCarouselOffSectionIntersected": () => (/* binding */ isCarouselOffSectionIntersected)
+/* harmony export */ });
+// наблюдаю, попал ли блок идущий за слайдерами во вьюпорт
+var carouselOffSection = document.querySelector('#carousel-off-section');
+carouselOffSection.style.marginTop = '1px'; // без маргина блок попадает в зону видимости
+
+var isCarouselOffSectionIntersected = false;
+
+if (carouselOffSection) {
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        isCarouselOffSectionIntersected = true;
+        console.log(carouselOffSection);
+      } else {
+        isCarouselOffSectionIntersected = false;
+        console.log(carouselOffSection);
+      }
+    });
+  });
+  observer.observe(carouselOffSection);
+}
+
+
+
+/***/ }),
+
+/***/ "./src/scripts/modules/carousel-modules/onScrollSlideCarousel.js":
+/*!***********************************************************************!*\
+  !*** ./src/scripts/modules/carousel-modules/onScrollSlideCarousel.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "onScrollSlideCarousel": () => (/* binding */ onScrollSlideCarousel)
+/* harmony export */ });
+/* harmony import */ var _fakeScroll_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./fakeScroll.js */ "./src/scripts/modules/carousel-modules/fakeScroll.js");
+/* harmony import */ var _observeCarouselOffSection_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./observeCarouselOffSection.js */ "./src/scripts/modules/carousel-modules/observeCarouselOffSection.js");
+/* harmony import */ var _debounce_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./debounce.js */ "./src/scripts/modules/carousel-modules/debounce.js");
+
+
+ // смена слайдов по скроллу
+
+function onScrollSlideCarousel(carouselNode, carouselInstance) {
+  var onMouseWheelChangeSlide = function onMouseWheelChangeSlide(evt) {
+    if (carouselNode.contains(evt.target) && !_observeCarouselOffSection_js__WEBPACK_IMPORTED_MODULE_1__.isCarouselOffSectionIntersected) {
+      if (evt.deltaY > 0 && !_fakeScroll_js__WEBPACK_IMPORTED_MODULE_0__.isScrollActive) {
+        evt.preventDefault();
+
+        if (!_debounce_js__WEBPACK_IMPORTED_MODULE_2__.preventAction) {
+          carouselInstance.next();
+        }
+      } else if (evt.deltaY < 0) {
+        evt.preventDefault();
+
+        if (!_debounce_js__WEBPACK_IMPORTED_MODULE_2__.preventAction) {
+          carouselInstance.prev();
+        }
+      }
+    }
+  };
+
+  window.addEventListener('wheel', onMouseWheelChangeSlide, {
+    passive: false
+  });
+}
+
+/***/ }),
+
+/***/ "./src/scripts/modules/carousel-modules/scrollBtns.js":
+/*!************************************************************!*\
+  !*** ./src/scripts/modules/carousel-modules/scrollBtns.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "onScrollBtnHandler": () => (/* binding */ onScrollBtnHandler)
+/* harmony export */ });
+/* harmony import */ var _carouselAnimation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./carouselAnimation */ "./src/scripts/modules/carousel-modules/carouselAnimation.js");
+/* harmony import */ var _calcScreenMode__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./calcScreenMode */ "./src/scripts/modules/carousel-modules/calcScreenMode.js");
+/* harmony import */ var _carouselSections_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./carouselSections.js */ "./src/scripts/modules/carousel-modules/carouselSections.js");
+
+
+ // навигация между слайдерами по кнопкам вверх/вниз
+
+var btns = document.querySelectorAll('.scroll-btn');
+
+function onScrollBtnHandler(carouselNode) {
+  var onClickChangeActiveCarousel = function onClickChangeActiveCarousel(evt) {
+    if (carouselNode.contains(evt.target) && _carouselAnimation__WEBPACK_IMPORTED_MODULE_0__.activeSlider !== _carouselSections_js__WEBPACK_IMPORTED_MODULE_2__.aboutSection && _calcScreenMode__WEBPACK_IMPORTED_MODULE_1__.isFullScreenMode) {
+      (0,_carouselAnimation__WEBPACK_IMPORTED_MODULE_0__.animateSection)('about');
+    }
+
+    if (carouselNode.contains(evt.target) && _carouselAnimation__WEBPACK_IMPORTED_MODULE_0__.activeSlider !== _carouselSections_js__WEBPACK_IMPORTED_MODULE_2__.introSection && _calcScreenMode__WEBPACK_IMPORTED_MODULE_1__.isFullScreenMode) {
+      (0,_carouselAnimation__WEBPACK_IMPORTED_MODULE_0__.animateSection)('intro');
+    }
+  };
+
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', onClickChangeActiveCarousel);
+  });
+}
+
+
+
+/***/ }),
+
+/***/ "./src/scripts/modules/carousel-modules/setControlsTitle.js":
+/*!******************************************************************!*\
+  !*** ./src/scripts/modules/carousel-modules/setControlsTitle.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "setControlsTitle": () => (/* binding */ setControlsTitle)
+/* harmony export */ });
+/* harmony import */ var _fillControlsTitle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./fillControlsTitle */ "./src/scripts/modules/carousel-modules/fillControlsTitle.js");
+ // смена названий на кнопках слайдера
 
 function setControlsTitle(opt) {
   if (opt.evt.to < opt.items.length - 1 && opt.evt.from !== opt.items.length - 1 && opt.evt.direction === 'left') {
-    fillControlsTitle({
+    (0,_fillControlsTitle__WEBPACK_IMPORTED_MODULE_0__.fillControlsTitle)({
       nextControl: opt.nextControl,
       prevControl: opt.prevControl,
       nextControlTitle: opt.items[opt.evt.to + 1].getAttribute("data-title"),
@@ -84,7 +507,7 @@ function setControlsTitle(opt) {
   }
 
   if (opt.evt.to === opt.items.length - 1 && opt.evt.direction === 'left') {
-    fillControlsTitle({
+    (0,_fillControlsTitle__WEBPACK_IMPORTED_MODULE_0__.fillControlsTitle)({
       nextControl: opt.nextControl,
       prevControl: opt.prevControl,
       nextControlTitle: !opt.isNextNodeUntitled ? 'Scroll down' : '',
@@ -94,7 +517,7 @@ function setControlsTitle(opt) {
 
 
   if (opt.evt.from !== 0 && opt.evt.to > 0 && opt.evt.direction === 'right') {
-    fillControlsTitle({
+    (0,_fillControlsTitle__WEBPACK_IMPORTED_MODULE_0__.fillControlsTitle)({
       nextControl: opt.nextControl,
       prevControl: opt.prevControl,
       nextControlTitle: opt.items[opt.evt.to + 1].getAttribute("data-title"),
@@ -103,15 +526,55 @@ function setControlsTitle(opt) {
   }
 
   if (opt.evt.to === 0 && opt.evt.direction === 'right') {
-    fillControlsTitle({
+    (0,_fillControlsTitle__WEBPACK_IMPORTED_MODULE_0__.fillControlsTitle)({
       nextControl: opt.nextControl,
       prevControl: opt.prevControl,
       nextControlTitle: opt.items[opt.evt.to + 1].getAttribute("data-title"),
       prevControlTitle: opt.isPrevNodeEnabled ? 'Scroll up' : ''
     });
   }
-} // смена слайдов по свайпу
+}
 
+/***/ }),
+
+/***/ "./src/scripts/modules/carousel-modules/setPaddings.js":
+/*!*************************************************************!*\
+  !*** ./src/scripts/modules/carousel-modules/setPaddings.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "setPaddings": () => (/* binding */ setPaddings)
+/* harmony export */ });
+//установка паддингов абсолютным блокам, чтобы не прыгал экран
+var header = document.querySelector('.main-header');
+
+function setPaddings(isActive, aboutSection, introSection) {
+  var paddingOffset = window.innerWidth - document.body.offsetWidth + 'px';
+  header.style.paddingRight = isActive ? paddingOffset : '0';
+  aboutSection.style.paddingRight = isActive ? paddingOffset : '0';
+  introSection.style.paddingRight = isActive ? paddingOffset : '0';
+}
+
+
+
+/***/ }),
+
+/***/ "./src/scripts/modules/carousel-modules/swipe.js":
+/*!*******************************************************!*\
+  !*** ./src/scripts/modules/carousel-modules/swipe.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "onSwipeSlideCarousel": () => (/* binding */ onSwipeSlideCarousel)
+/* harmony export */ });
+/* harmony import */ var _observeCarouselOffSection_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./observeCarouselOffSection.js */ "./src/scripts/modules/carousel-modules/observeCarouselOffSection.js");
+ // смена слайдов по свайпу
 
 function onSwipeSlideCarousel(carouselNode, carouselInstance) {
   var entryPosX = null;
@@ -124,9 +587,9 @@ function onSwipeSlideCarousel(carouselNode, carouselInstance) {
     evt.preventDefault();
     var posX = evt.screenX;
 
-    if (entryPosX - posX > 75 && !isObserve) {
+    if (entryPosX - posX > 75 && !_observeCarouselOffSection_js__WEBPACK_IMPORTED_MODULE_0__.isCarouselOffSectionIntersected) {
       carouselInstance.next();
-    } else if (posX - entryPosX > 75 && !isObserve) {
+    } else if (posX - entryPosX > 75 && !_observeCarouselOffSection_js__WEBPACK_IMPORTED_MODULE_0__.isCarouselOffSectionIntersected) {
       carouselInstance.prev();
     }
 
@@ -143,281 +606,57 @@ function onSwipeSlideCarousel(carouselNode, carouselInstance) {
   };
 
   window.addEventListener('mousedown', onMouseDownListenMouseMove);
-} // навигация между слайдерами по кнопкам вверх/вниз
-
-
-var btns = document.querySelectorAll('.scroll-btn');
-
-function onScrollBtnHandler(carouselNode) {
-  var onClickChangeActiveCarousel = function onClickChangeActiveCarousel(evt) {
-    if (carouselNode.contains(evt.target) && activeSlider !== aboutSection && isFullScreen) {
-      animateSection('about');
-    }
-
-    if (carouselNode.contains(evt.target) && activeSlider !== introSection && isFullScreen) {
-      animateSection('intro');
-    }
-  };
-
-  btns.forEach(function (btn) {
-    btn.addEventListener('click', onClickChangeActiveCarousel);
-  });
-} //навигация по клавиатуре
-
-
-var activeSlider = document.querySelector('.carousel-section.active');
-
-function keyboardNavigation(carouselNode, carouselInstance) {
-  var onClickNavigatePage = function onClickNavigatePage(evt) {
-    evt.preventDefault(); //console.log('keyboardNavigation: ', activeSlider, document.activeElement)
-
-    if (evt.code === 'ArrowUp' && !debounce && !isObserve) {
-      if (activeSlider.contains(carouselNode) && activeSlider !== introSection) {
-        if (activeSlider === aboutSection && !isScrollActive) {
-          animateSection('intro');
-        }
-      }
-    }
-
-    if (evt.code === 'ArrowDown' && !debounce && !isObserve) {
-      if (activeSlider.contains(carouselNode) && activeSlider !== aboutSection) {
-        animateSection('about');
-      }
-    }
-
-    if (evt.code === 'ArrowLeft' && !debounce && !isObserve) {
-      //console.log(activeSlider.contains(carouselNode), activeSlider, carouselNode)
-      if (activeSlider.contains(carouselNode)) {
-        carouselInstance.prev();
-      }
-    }
-
-    if (evt.code === 'ArrowRight' && !debounce && !isObserve) {
-      // console.log(activeSlider.contains(carouselNode), activeSlider, carouselNode)
-      if (activeSlider.contains(carouselNode)) {
-        carouselInstance.next();
-      }
-    }
-
-    if (evt.code === 'Home' && !debounce && !isScrollActive) {
-      if (activeSlider === aboutSection) {
-        animateSection('intro');
-      }
-    }
-
-    if (evt.code === 'End' && !debounce && !isObserve) {
-      if (activeSlider === introSection) {
-        animateSection('about');
-      }
-    }
-
-    if (evt.code === 'Tab') {
-      evt.preventDefault();
-      console.log('tab');
-    }
-  };
-
-  window.addEventListener('keyup', onClickNavigatePage);
 }
 
-;
-/*function tabNavigation(carouselNode, carouselInstance) {
+/***/ }),
 
-  const onTabNavigatePage = (evt) => {
-    if(evt.code === 'Tab' || evt.key === 9) {
+/***/ "./src/scripts/modules/carousel-new.js":
+/*!*********************************************!*\
+  !*** ./src/scripts/modules/carousel-new.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-      if(activeSlider === introSection) {
-        const lastFocusableElement = introSection.querySelector('.control-next');
-        const firstFocusableElement = nav.querySelector('.navbar-brand');
-
-        if (evt.shiftKey) {
-          if(evt.target === firstFocusableElement) {
-            console.log('first')
-            lastFocusableElement.focus();
-          }
-        } else {
-          if(evt.target === lastFocusableElement) {
-            firstFocusableElement.focus();
-          }
-        }
-      }
-
-      if(activeSlider === aboutSection) {
-        const lastFocusableElement = aboutSection.querySelector('.control-next');
-        const firstFocusableElement = nav.querySelector('.navbar-brand');
-
-        if (evt.shiftKey) {
-          if(evt.target === firstFocusableElement) {
-            console.log('first')
-            lastFocusableElement.focus();
-          }
-        } else {
-          if(evt.target === lastFocusableElement) {
-            firstFocusableElement.focus();
-          }
-        }
-      }
-    }
-  }
-
-  window.addEventListener('keydown', onTabNavigatePage);
-}*/
-// убераю фокус с кнопок управления, при смене слайдера
-
-var controls = document.querySelectorAll('.control');
-var indicators = document.querySelectorAll('.indicator');
-
-function controlsBlur() {
-  controls.forEach(function (cntr) {
-    cntr.blur();
-  });
-  indicators.forEach(function (ind) {
-    ind.blur();
-  });
-} //анимация слайдеров
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js */ "./node_modules/bootstrap/dist/js/bootstrap.bundle.js");
+/* harmony import */ var _node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/functions */ "./src/scripts/utils/functions.js");
+/* harmony import */ var seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! seamless-scroll-polyfill */ "./node_modules/seamless-scroll-polyfill/lib/scrollIntoView.js");
+/* harmony import */ var seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! seamless-scroll-polyfill */ "./node_modules/seamless-scroll-polyfill/lib/scroll.js");
+/* harmony import */ var _carousel_modules_debounce_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./carousel-modules/debounce.js */ "./src/scripts/modules/carousel-modules/debounce.js");
+/* harmony import */ var _carousel_modules_fillControlsTitle_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./carousel-modules/fillControlsTitle.js */ "./src/scripts/modules/carousel-modules/fillControlsTitle.js");
+/* harmony import */ var _carousel_modules_setControlsTitle_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./carousel-modules/setControlsTitle.js */ "./src/scripts/modules/carousel-modules/setControlsTitle.js");
+/* harmony import */ var _carousel_modules_setPaddings_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./carousel-modules/setPaddings.js */ "./src/scripts/modules/carousel-modules/setPaddings.js");
+/* harmony import */ var _carousel_modules_swipe_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./carousel-modules/swipe.js */ "./src/scripts/modules/carousel-modules/swipe.js");
+/* harmony import */ var _carousel_modules_observeCarouselOffSection_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./carousel-modules/observeCarouselOffSection.js */ "./src/scripts/modules/carousel-modules/observeCarouselOffSection.js");
+/* harmony import */ var _carousel_modules_fakeScroll_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./carousel-modules/fakeScroll.js */ "./src/scripts/modules/carousel-modules/fakeScroll.js");
+/* harmony import */ var _carousel_modules_calcScreenMode_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./carousel-modules/calcScreenMode.js */ "./src/scripts/modules/carousel-modules/calcScreenMode.js");
+/* harmony import */ var _carousel_modules_controlsBlur_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./carousel-modules/controlsBlur.js */ "./src/scripts/modules/carousel-modules/controlsBlur.js");
+/* harmony import */ var _carousel_modules_onScrollSlideCarousel_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./carousel-modules/onScrollSlideCarousel.js */ "./src/scripts/modules/carousel-modules/onScrollSlideCarousel.js");
+/* harmony import */ var _carousel_modules_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./carousel-modules/carouselAnimation.js */ "./src/scripts/modules/carousel-modules/carouselAnimation.js");
+/* harmony import */ var _carousel_modules_keyboardNavigation_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./carousel-modules/keyboardNavigation.js */ "./src/scripts/modules/carousel-modules/keyboardNavigation.js");
+/* harmony import */ var _carousel_modules_scrollBtns_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./carousel-modules/scrollBtns.js */ "./src/scripts/modules/carousel-modules/scrollBtns.js");
 
 
-function animateSection(destSection) {
-  debounce = true;
-  console.log('animateSection: ', activeSlider);
-
-  if (destSection === 'about') {
-    if (introSection.classList.contains('active')) {
-      introSection.classList.remove('active');
-      aboutSection.classList.add('active');
-    }
-
-    aboutSection.classList.add('transition-on');
-    aboutSection.classList.add('active');
-    aboutSection.style.position = 'absolute';
-    aboutSection.style.zIndex = '3';
-    aboutSection.style.top = '0';
-    setTimeout(function () {
-      debounce = false;
-      activeSlider = aboutSection;
-      controlsBlur();
-      aboutSection.style.position = 'relative';
-      aboutSection.style.zIndex = '1';
-      aboutSection.classList.remove('transition-on');
-      introSection.style.zIndex = '-1';
-      introSection.style.position = 'absolute';
-      introSection.style.top = '-105vh'; //ставлю фокус на активном индикаторе
-      //aboutSection.querySelector('.indicator.active').focus();
-    }, 1000);
-    nav.classList.remove('main-navbar-black-theme');
-    nav.classList.add('main-navbar-white-theme');
-  }
-
-  if (destSection === 'intro') {
-    if (aboutSection.classList.contains('active')) {
-      aboutSection.classList.remove('active');
-      introSection.classList.add('active');
-    }
-
-    introSection.style.position = 'absolute';
-    aboutSection.classList.remove('active');
-    introSection.classList.add('transition-on');
-    introSection.style.zIndex = '3';
-    introSection.style.top = '0';
-    setTimeout(function () {
-      debounce = false;
-      activeSlider = introSection;
-      controlsBlur();
-      introSection.style.position = 'relative';
-      introSection.style.zIndex = '1';
-      introSection.classList.remove('transition-on');
-      aboutSection.style.zIndex = '-1';
-      aboutSection.style.position = 'absolute';
-      aboutSection.style.top = '105vh';
-    }, 1000);
-    setTimeout(function () {
-      nav.classList.remove('main-navbar-white-theme');
-      nav.classList.add('main-navbar-black-theme');
-    }, 700);
-  }
-} //установка паддингов абсолютным блокам, чтобы не прыгал экран
+ //carousel-modules
 
 
-var header = document.querySelector('.main-header');
-
-function setPaddings(isActive) {
-  var paddingOffset = window.innerWidth - document.body.offsetWidth + 'px';
-  header.style.paddingRight = isActive ? paddingOffset : '0';
-  aboutSection.style.paddingRight = isActive ? paddingOffset : '0';
-  introSection.style.paddingRight = isActive ? paddingOffset : '0';
-} // fake scrollbar
 
 
-var fakeScrollbar = document.getElementById('scrollbar');
-var isScrollActive = true;
-
-function showFakeScroll() {
-  console.log('showFakeScroll');
-
-  if (fakeScrollbar.style.display !== 'block' && isFullScreen) {
-    isScrollActive = false;
-    setPaddings(true);
-    fakeScrollbar.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-  }
-}
-
-function hideFakeScroll() {
-  console.log('hideFakeScroll');
-
-  if (fakeScrollbar.style.display !== 'none') {
-    setPaddings(false);
-    fakeScrollbar.style.display = 'none';
-    document.body.style.overflow = 'auto';
-    isScrollActive = true;
-  }
-} // смена слайдов по скроллу
 
 
-function onScrollSlideCarousel(carouselNode, carouselInstance) {
-  var onMouseWheelChangeSlide = function onMouseWheelChangeSlide(evt) {
-    //let windowHeight = document.documentElement.clientHeight;
-    //let sliderHeight = carouselNode.getBoundingClientRect().height;
-    // let isFullScreen = windowHeight === sliderHeight || sliderHeight - windowHeight === 7 ? true : false;
-    if (carouselNode.contains(evt.target) && !isObserve) {
-      if (evt.deltaY > 0 && !isScrollActive) {
-        evt.preventDefault();
-
-        if (!debounce) {
-          carouselInstance.next();
-        }
-      } else if (evt.deltaY < 0) {
-        evt.preventDefault();
-
-        if (!debounce) {
-          carouselInstance.prev();
-        }
-      }
-    }
-  };
-
-  window.addEventListener('wheel', onMouseWheelChangeSlide, {
-    passive: false
-  });
-} // наблюдаю, попал ли блок идущий за слайдерами во вьюпорт
 
 
-var isObserve = false;
 
-if (carouselOffSection) {
-  var observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        isObserve = true;
-      } else {
-        isObserve = false;
-      }
-    });
-  });
-  observer.observe(carouselOffSection);
-}
 
-var debounce = false;
+
+
+
+
+var aboutCarousel = document.querySelector('#aboutCarousel');
+var aboutCarouselInner = null;
+var introCarousel = document.querySelector('#introCarousel');
+var introCarouselInner = null;
 
 if (aboutCarousel) {
   aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner');
@@ -425,17 +664,18 @@ if (aboutCarousel) {
     interval: false
   }); // swipe
 
-  isFullScreen ? onSwipeSlideCarousel(aboutCarousel, aboutCarouselInstance) : null; // scroll
+  (0,_carousel_modules_swipe_js__WEBPACK_IMPORTED_MODULE_6__.onSwipeSlideCarousel)(aboutCarousel, aboutCarouselInstance); // scroll
 
-  isFullScreen ? onScrollSlideCarousel(aboutCarousel, aboutCarouselInstance) : null;
-  isFullScreen ? keyboardNavigation(aboutCarousel, aboutCarouselInstance) : null; //tabNavigation(aboutCarousel, aboutCarouselInstance);
+  _carousel_modules_calcScreenMode_js__WEBPACK_IMPORTED_MODULE_9__.isFullScreenMode ? (0,_carousel_modules_onScrollSlideCarousel_js__WEBPACK_IMPORTED_MODULE_11__.onScrollSlideCarousel)(aboutCarousel, aboutCarouselInstance) : null; //keyboard
 
-  onScrollBtnHandler(aboutCarousel); // текст на кнопках
+  (0,_carousel_modules_keyboardNavigation_js__WEBPACK_IMPORTED_MODULE_13__.keyboardNavigation)(aboutCarousel, aboutCarouselInstance); //scroll-btns
+
+  (0,_carousel_modules_scrollBtns_js__WEBPACK_IMPORTED_MODULE_14__.onScrollBtnHandler)(aboutCarousel); // первоначальный текст на кнопках
 
   var carouselItems = aboutCarouselInner.querySelectorAll('.carousel-item');
   var prevControl = aboutCarousel.querySelector('.control-prev');
   var nextControl = aboutCarousel.querySelector('.control-next');
-  fillControlsTitle({
+  (0,_carousel_modules_fillControlsTitle_js__WEBPACK_IMPORTED_MODULE_3__.fillControlsTitle)({
     nextControl: nextControl,
     prevControl: prevControl,
     nextControlTitle: carouselItems[1].getAttribute("data-title"),
@@ -455,46 +695,10 @@ if (aboutCarousel) {
         ind.querySelector('.indicator-inner').style.backgroundColor = '#664599';
         !ind.classList.contains('indicator-purple') ? ind.classList.add('indicator-purple') : null;
       });
-    } // отмена смены слайда и скролл в другой блок
+    } // динамический текст на кнопках
 
 
-    if (evt.direction === 'right' && evt.from === 0) {
-      evt.preventDefault(); // переход к intro слайдеру
-
-      if (!debounce && isFullScreen) {
-        animateSection('intro');
-      } else {
-        (0,seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_2__.scrollIntoView)(introCarousel, {
-          behavior: "smooth",
-          block: "start"
-        });
-      }
-    } // переход к projects
-
-
-    if (evt.direction === 'right' && evt.to !== carouselItems.length - 1 && !isObserve) {
-      showFakeScroll();
-    }
-
-    if (evt.direction === 'left' && evt.to === 0) {
-      evt.preventDefault();
-
-      if (!isFullScreen) {
-        var nextAnchor = document.querySelector('#carousel-off-section');
-        var nextAnchorCoord = nextAnchor.offsetTop - window.scrollY - (0,_utils_functions__WEBPACK_IMPORTED_MODULE_1__.getHeaderHeight)();
-        (0,seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_3__.scrollBy)(window, {
-          behavior: "smooth",
-          top: nextAnchorCoord
-        });
-      }
-    }
-
-    if (evt.direction === 'left' && evt.to === carouselItems.length - 1) {
-      hideFakeScroll();
-    } // текст на кнопках
-
-
-    setControlsTitle({
+    (0,_carousel_modules_setControlsTitle_js__WEBPACK_IMPORTED_MODULE_4__.setControlsTitle)({
       items: carouselItems,
       nextControl: nextControl,
       prevControl: prevControl,
@@ -504,7 +708,42 @@ if (aboutCarousel) {
         from: evt.from,
         direction: evt.direction
       }
-    });
+    }); // отмена смены слайда и скролл в другой блок
+
+    if (evt.direction === 'right' && evt.from === 0) {
+      evt.preventDefault(); // переход к intro слайдеру
+
+      if (!_carousel_modules_debounce_js__WEBPACK_IMPORTED_MODULE_2__.preventAction && _carousel_modules_calcScreenMode_js__WEBPACK_IMPORTED_MODULE_9__.isFullScreenMode) {
+        (0,_carousel_modules_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_12__.animateSection)('intro');
+      } else {
+        (0,seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_15__.scrollIntoView)(introCarousel, {
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    } // переход к projects
+
+
+    if (evt.direction === 'right' && evt.to !== carouselItems.length - 1 && !_carousel_modules_observeCarouselOffSection_js__WEBPACK_IMPORTED_MODULE_7__.isCarouselOffSectionIntersected) {
+      (0,_carousel_modules_fakeScroll_js__WEBPACK_IMPORTED_MODULE_8__.showFakeScroll)();
+    }
+
+    if (evt.direction === 'left' && evt.to === 0) {
+      evt.preventDefault();
+
+      if (!_carousel_modules_calcScreenMode_js__WEBPACK_IMPORTED_MODULE_9__.isFullScreenMode) {
+        var nextAnchor = document.querySelector('#carousel-off-section');
+        var nextAnchorCoord = nextAnchor.offsetTop - window.scrollY - (0,_utils_functions__WEBPACK_IMPORTED_MODULE_1__.getHeaderHeight)();
+        (0,seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_16__.scrollBy)(window, {
+          behavior: "smooth",
+          top: nextAnchorCoord
+        });
+      }
+    }
+
+    if (evt.direction === 'left' && evt.to === carouselItems.length - 1) {
+      (0,_carousel_modules_fakeScroll_js__WEBPACK_IMPORTED_MODULE_8__.hideFakeScroll)();
+    }
   };
 
   aboutCarousel.addEventListener('slide.bs.carousel', onSlideChangeHandler);
@@ -514,13 +753,15 @@ if (introCarousel) {
   introCarouselInner = introCarousel.querySelector('.carousel-inner');
   var introCarouselInstance = new (_node_modules_bootstrap_dist_js_bootstrap_bundle_js__WEBPACK_IMPORTED_MODULE_0___default().Carousel)(introCarousel, {
     interval: false
-  }); // swipe
+  }); //swipe
 
-  isFullScreen ? onSwipeSlideCarousel(introCarousel, introCarouselInstance) : null;
-  isFullScreen ? onScrollSlideCarousel(introCarousel, introCarouselInstance) : null;
-  isFullScreen ? keyboardNavigation(introCarousel, introCarouselInstance) : null; // tabNavigation(introCarousel, introCarouselInstance);
+  (0,_carousel_modules_swipe_js__WEBPACK_IMPORTED_MODULE_6__.onSwipeSlideCarousel)(introCarousel, introCarouselInstance); //scroll
 
-  onScrollBtnHandler(introCarousel); // текст на кнопках
+  _carousel_modules_calcScreenMode_js__WEBPACK_IMPORTED_MODULE_9__.isFullScreenMode ? (0,_carousel_modules_onScrollSlideCarousel_js__WEBPACK_IMPORTED_MODULE_11__.onScrollSlideCarousel)(introCarousel, introCarouselInstance) : null; //keyboard
+
+  (0,_carousel_modules_keyboardNavigation_js__WEBPACK_IMPORTED_MODULE_13__.keyboardNavigation)(introCarousel, introCarouselInstance); //scroll-btns
+
+  (0,_carousel_modules_scrollBtns_js__WEBPACK_IMPORTED_MODULE_14__.onScrollBtnHandler)(introCarousel); // первоначальный текст на кнопках
 
   var _carouselItems = introCarouselInner.querySelectorAll('.carousel-item');
 
@@ -528,7 +769,7 @@ if (introCarousel) {
 
   var _nextControl = introCarousel.querySelector('.control-next');
 
-  fillControlsTitle({
+  (0,_carousel_modules_fillControlsTitle_js__WEBPACK_IMPORTED_MODULE_3__.fillControlsTitle)({
     nextControl: _nextControl,
     prevControl: _prevControl,
     nextControlTitle: _carouselItems[1].getAttribute("data-title"),
@@ -536,27 +777,8 @@ if (introCarousel) {
   });
 
   var _onSlideChangeHandler = function _onSlideChangeHandler(evt) {
-    // отмена смены слайда и скролл в другой блок
-    if (evt.direction === 'right' && evt.from === 0) {
-      evt.preventDefault();
-    } //переход к about слайдеру
-
-
-    if (evt.direction === 'left' && evt.to === 0) {
-      evt.preventDefault();
-
-      if (!debounce && isFullScreen) {
-        animateSection('about');
-      } else {
-        (0,seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_2__.scrollIntoView)(aboutCarousel, {
-          behavior: "smooth",
-          block: "start"
-        });
-      }
-    } // текст на кнопках
-
-
-    setControlsTitle({
+    // динамический текст на кнопках
+    (0,_carousel_modules_setControlsTitle_js__WEBPACK_IMPORTED_MODULE_4__.setControlsTitle)({
       items: _carouselItems,
       nextControl: _nextControl,
       prevControl: _prevControl,
@@ -566,7 +788,26 @@ if (introCarousel) {
         from: evt.from,
         direction: evt.direction
       }
-    });
+    }); // отмена смены слайда и скролл в другой блок
+
+    if (evt.direction === 'right' && evt.from === 0) {
+      evt.preventDefault();
+    } //переход к about слайдеру
+
+
+    if (evt.direction === 'left' && evt.to === 0) {
+      evt.preventDefault();
+
+      if (!_carousel_modules_debounce_js__WEBPACK_IMPORTED_MODULE_2__.preventAction && _carousel_modules_calcScreenMode_js__WEBPACK_IMPORTED_MODULE_9__.isFullScreenMode) {
+        console.log(_carousel_modules_debounce_js__WEBPACK_IMPORTED_MODULE_2__.preventAction);
+        (0,_carousel_modules_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_12__.animateSection)('about');
+      } else {
+        (0,seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_15__.scrollIntoView)(aboutCarousel, {
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    }
   };
 
   introCarousel.addEventListener('slide.bs.carousel', _onSlideChangeHandler);

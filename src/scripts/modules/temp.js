@@ -94,7 +94,7 @@ if(carouselOffSection) {
   window.addEventListener('mousewheel', onMouseWheelChangeSlide, { passive: false });
 } */
 
-/*
+
 
 function keyboardNavigation(carouselNode, carouselInstance) {
   const onClickNavigatePage = (evt) => {
@@ -158,4 +158,47 @@ function keyboardNavigation(carouselNode, carouselInstance) {
   window.addEventListener('keydown', onClickNavigatePage);
 }
 
-*/
+
+
+
+/*function tabNavigation(carouselNode, carouselInstance) {
+
+  const onTabNavigatePage = (evt) => {
+    if(evt.code === 'Tab' || evt.key === 9) {
+
+      if(activeSlider === introSection) {
+        const lastFocusableElement = introSection.querySelector('.control-next');
+        const firstFocusableElement = nav.querySelector('.navbar-brand');
+
+        if (evt.shiftKey) {
+          if(evt.target === firstFocusableElement) {
+            console.log('first')
+            lastFocusableElement.focus();
+          }
+        } else {
+          if(evt.target === lastFocusableElement) {
+            firstFocusableElement.focus();
+          }
+        }
+      }
+
+      if(activeSlider === aboutSection) {
+        const lastFocusableElement = aboutSection.querySelector('.control-next');
+        const firstFocusableElement = nav.querySelector('.navbar-brand');
+
+        if (evt.shiftKey) {
+          if(evt.target === firstFocusableElement) {
+            console.log('first')
+            lastFocusableElement.focus();
+          }
+        } else {
+          if(evt.target === lastFocusableElement) {
+            firstFocusableElement.focus();
+          }
+        }
+      }
+    }
+  }
+
+  window.addEventListener('keydown', onTabNavigatePage);
+}*/
