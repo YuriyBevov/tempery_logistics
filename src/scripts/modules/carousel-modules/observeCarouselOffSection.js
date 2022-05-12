@@ -11,6 +11,7 @@ if(carouselOffSection) {
     entries.forEach( entry => {
       if(entry.isIntersecting) {
         hideFakeScroll();
+        //при возврате нужно уберать скролл если я вернулся в первый слайдер интро
         isCarouselOffSectionIntersected = true;
         console.log(carouselOffSection)
       } else {

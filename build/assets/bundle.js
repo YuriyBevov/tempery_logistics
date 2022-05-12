@@ -13,10 +13,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "blurFocusedElement": () => (/* binding */ blurFocusedElement)
 /* harmony export */ });
 // убераю фокус с кнопок управления, при смене слайдера
+var firstFocusableElement = document.querySelector('.navbar-brand');
 function blurFocusedElement() {
-  console.log(document.activeElement); //document.activeElement.blur();
+  document.activeElement.blur();
 
-  console.log(document.activeElement);
+  var onKeyDownHandler = function onKeyDownHandler(evt) {
+    if (evt.code === 'Tab') {
+      firstFocusableElement.focus();
+      window.removeEventListener('keydown', onKeyDownHandler);
+    }
+  };
+
+  window.addEventListener('keydown', onKeyDownHandler);
 }
 
 /***/ }),
@@ -463,7 +471,8 @@ if (carouselOffSection) {
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
-        (0,_fakeScroll__WEBPACK_IMPORTED_MODULE_0__.hideFakeScroll)();
+        (0,_fakeScroll__WEBPACK_IMPORTED_MODULE_0__.hideFakeScroll)(); //при возврате нужно уберать скролл если я вернулся в первый слайдер интро
+
         isCarouselOffSectionIntersected = true;
         console.log(carouselOffSection);
       } else {
@@ -840,7 +849,6 @@ if (aboutCarousel) {
         });
         (0,_carousel_modules_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_10__.animateSection)('intro');
         (0,_carousel_modules_fakeScroll_js__WEBPACK_IMPORTED_MODULE_7__.showFakeScroll)();
-        document.querySelector('.navbar-brand').focus();
       } else if (!_carousel_modules_calcScreenMode_js__WEBPACK_IMPORTED_MODULE_8__.isFullScreenMode) {
         (0,seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_14__.scrollIntoView)(introCarousel, {
           behavior: "smooth",

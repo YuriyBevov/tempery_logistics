@@ -94,7 +94,6 @@ if(aboutCarousel) {
         scrollIntoView(introCarousel, { behavior: "smooth", block: "start"});
         animateSection('intro');
         showFakeScroll();
-        document.querySelector('.navbar-brand').focus();
       }
       else if ( !isFullScreenMode ) {
         scrollIntoView(introCarousel, { behavior: "smooth", block: "start"});
