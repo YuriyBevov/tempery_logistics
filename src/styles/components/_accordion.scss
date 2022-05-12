@@ -83,7 +83,7 @@
 
   & >.accordion-header>.accordion-button[aria-expanded="false"]:not(.prevent-animation)::before {
     height: 100%;
-    animation: hideBorder 0.3s 0.3s ease-in forwards;
+    animation: hideBorder 0.3s ease-in 0.3s forwards;
   }
 
   @keyframes showBorder {

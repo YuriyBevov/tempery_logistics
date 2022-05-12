@@ -13767,8 +13767,8 @@ table th {
 }
 .accordion-item.lined > .accordion-header > .accordion-button[aria-expanded=false]:not(.prevent-animation)::before {
   height: 100%;
-  -webkit-animation: hideBorder 0.3s 0.3s ease-in forwards;
-  animation: hideBorder 0.3s 0.3s ease-in forwards;
+  -webkit-animation: hideBorder 0.3s ease-in 0.3s forwards;
+  animation: hideBorder 0.3s ease-in 0.3s forwards;
 }
 @-webkit-keyframes showBorder {
   0% {
