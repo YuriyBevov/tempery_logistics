@@ -3,6 +3,7 @@ mixin main-intro-slide-view(opt)
     .container.h-100
       .row.my-auto.align-items-center.h-100
         .slide-content.d-flex.flex-column.align-items-center.align-items-lg-start.my-lg-auto.pe-3(class= opt.slideContentCls ? opt.slideContentCls : null)
+          img(src=`./assets/img/${opt.bg}`).visually-hidden
           h2.mb-4.text-white.col-lg-10.text-center.text-lg-start!= opt.title
           p.slide-content-desc.mb-4.mb-md-5.text-white!= opt.desc
 

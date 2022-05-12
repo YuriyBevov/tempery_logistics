@@ -65,7 +65,7 @@
       height: 0;
       content: '';
       background-color: $purple;
-      transition: height 0.3s ease-in;
+      // transition: height 0.3s ease-in;
     }
 
     @include media-breakpoint-down(lg) {
@@ -75,6 +75,35 @@
 
   & >.accordion-header>.accordion-button:not(.collapsed)::before {
     height: 100%;
+  }
+
+  & >.accordion-header>.accordion-button[aria-expanded="true"]:not(.collapsed):not(.prevent-animation)::before {
+    animation: showBorder 0.3s ease-in forwards;
+  }
+
+  & >.accordion-header>.accordion-button[aria-expanded="false"]:not(.prevent-animation)::before {
+    height: 100%;
+    animation: hideBorder 0.3s 0.3s ease-in forwards;
+  }
+
+  @keyframes showBorder {
+    0% {
+      height: 0;
+    }
+
+    100% {
+      height: 100%;
+    }
+  }
+
+  @keyframes hideBorder {
+    0% {
+      height: 100%;
+    }
+
+    100% {
+      height: 0;
+    }
   }
 
   & > .accordion-collapse {

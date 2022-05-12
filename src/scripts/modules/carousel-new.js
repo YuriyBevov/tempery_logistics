@@ -10,7 +10,7 @@ import { setControlsTitle } from './carousel-modules/setControlsTitle.js';
 import { onSwipeSlideCarousel } from './carousel-modules/swipe.js';
 import { isCarouselOffSectionIntersected } from './carousel-modules/observeCarouselOffSection.js';
 import { showFakeScroll, hideFakeScroll, isScrollActive } from './carousel-modules/fakeScroll.js';
-import { isFullScreenMode } from './carousel-modules/calcScreenMode.js';
+import { isFullScreenMode/*, calcScreenMode*/ } from './carousel-modules/calcScreenMode.js';
 import { onScrollSlideCarousel } from './carousel-modules/onScrollSlideCarousel.js';
 import { animateSection } from './carousel-modules/carouselAnimation.js';
 import { keyboardNavigation } from './carousel-modules/keyboardNavigation.js';
@@ -87,7 +87,6 @@ if(aboutCarousel) {
       evt.preventDefault();
       // переход к intro слайдеру
       if(!preventAction && isFullScreenMode && !isScrollActive) {
-        console.log(isFullScreenMode);
         animateSection('intro');
       }
       else if(!preventAction && isFullScreenMode && isScrollActive) {

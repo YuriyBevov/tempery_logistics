@@ -13752,9 +13752,6 @@ table th {
   height: 0;
   content: "";
   background-color: #664599;
-  -webkit-transition: height 0.3s ease-in;
-  -o-transition: height 0.3s ease-in;
-  transition: height 0.3s ease-in;
 }
 @media (max-width: 991.98px) {
   .accordion-item.lined > .accordion-header > .accordion-button {
@@ -13763,6 +13760,47 @@ table th {
 }
 .accordion-item.lined > .accordion-header > .accordion-button:not(.collapsed)::before {
   height: 100%;
+}
+.accordion-item.lined > .accordion-header > .accordion-button[aria-expanded=true]:not(.collapsed):not(.prevent-animation)::before {
+  -webkit-animation: showBorder 0.3s ease-in forwards;
+  animation: showBorder 0.3s ease-in forwards;
+}
+.accordion-item.lined > .accordion-header > .accordion-button[aria-expanded=false]:not(.prevent-animation)::before {
+  height: 100%;
+  -webkit-animation: hideBorder 0.3s 0.3s ease-in forwards;
+  animation: hideBorder 0.3s 0.3s ease-in forwards;
+}
+@-webkit-keyframes showBorder {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+}
+@keyframes showBorder {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+}
+@-webkit-keyframes hideBorder {
+  0% {
+    height: 100%;
+  }
+  100% {
+    height: 0;
+  }
+}
+@keyframes hideBorder {
+  0% {
+    height: 100%;
+  }
+  100% {
+    height: 0;
+  }
 }
 .accordion-item.lined > .accordion-collapse {
   position: relative;

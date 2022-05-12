@@ -1,6 +1,37 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/scripts/modules/accordionLineAnimation.js":
+/*!*******************************************************!*\
+  !*** ./src/scripts/modules/accordionLineAnimation.js ***!
+  \*******************************************************/
+/***/ (() => {
+
+var linedButtons = document.querySelectorAll('.accordion-item.lined > .accordion-header > .accordion-button');
+
+var onClickAnimateBorder = function onClickAnimateBorder(evt) {
+  if (evt.currentTarget !== linedButtons[linedButtons.length - 1]) {
+    evt.currentTarget.classList.contains('prevent-animation') ? evt.currentTarget.classList.remove('prevent-animation') : null;
+    linedButtons.forEach(function (btn) {
+      !btn.classList.contains('prevent-animation') ? btn.removeEventListener('click', onClickAnimateBorder) : null;
+    });
+  } else {
+    linedButtons.forEach(function (btn) {
+      btn.classList.contains('prevent-animation') ? btn.classList.remove('prevent-animation') : null;
+      btn.removeEventListener('click', onClickAnimateBorder);
+    });
+  }
+};
+
+if (linedButtons) {
+  linedButtons.forEach(function (btn) {
+    btn.classList.add('prevent-animation');
+    btn.addEventListener('click', onClickAnimateBorder);
+  });
+}
+
+/***/ }),
+
 /***/ "./src/scripts/modules/carousel-modules/blurFocusedElement.js":
 /*!********************************************************************!*\
   !*** ./src/scripts/modules/carousel-modules/blurFocusedElement.js ***!
@@ -40,19 +71,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "isFullScreenMode": () => (/* binding */ isFullScreenMode)
 /* harmony export */ });
-/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/functions */ "./src/scripts/utils/functions.js");
-/* harmony import */ var _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./carouselSections.js */ "./src/scripts/modules/carousel-modules/carouselSections.js");
+/* harmony import */ var _quard_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./quard.js */ "./src/scripts/modules/carousel-modules/quard.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/functions */ "./src/scripts/utils/functions.js");
+/* harmony import */ var _carouselSections_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./carouselSections.js */ "./src/scripts/modules/carousel-modules/carouselSections.js");
 
 
-var windowHeight = document.documentElement.clientHeight;
-var sliderHeight = introCarousel.getBoundingClientRect().height;
-var isEqualHeight = windowHeight === sliderHeight || sliderHeight - windowHeight === 7 ? true : false;
-var windowWidth = (0,_utils_functions__WEBPACK_IMPORTED_MODULE_0__.getWindowWidth)();
-var isFullScreenMode = isEqualHeight && windowWidth > 1200 ? true : false;
 
-if (isFullScreenMode) {
-  _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.aboutSection.classList.add('full-height');
-  _carouselSections_js__WEBPACK_IMPORTED_MODULE_1__.introSection.classList.add('full-height');
+var isFullScreenMode = false;
+
+if (_quard_js__WEBPACK_IMPORTED_MODULE_0__.isCarouselExist) {
+  var windowHeight = document.documentElement.clientHeight;
+  var sliderHeight = introCarousel.getBoundingClientRect().height;
+  var isEqualHeight = windowHeight === sliderHeight || sliderHeight - windowHeight === 7 ? true : false;
+  var windowWidth = (0,_utils_functions__WEBPACK_IMPORTED_MODULE_1__.getWindowWidth)();
+  isFullScreenMode = isEqualHeight && windowWidth > 1200 ? true : false;
+
+  if (isFullScreenMode) {
+    _carouselSections_js__WEBPACK_IMPORTED_MODULE_2__.aboutSection.classList.add('full-height');
+    _carouselSections_js__WEBPACK_IMPORTED_MODULE_2__.introSection.classList.add('full-height');
+  }
 }
 
 
@@ -199,9 +236,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "isScrollActive": () => (/* binding */ isScrollActive),
 /* harmony export */   "showFakeScroll": () => (/* binding */ showFakeScroll)
 /* harmony export */ });
-/* harmony import */ var _calcScreenMode_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./calcScreenMode.js */ "./src/scripts/modules/carousel-modules/calcScreenMode.js");
-/* harmony import */ var _setPaddings_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./setPaddings.js */ "./src/scripts/modules/carousel-modules/setPaddings.js");
-/* harmony import */ var _carouselSections_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./carouselSections.js */ "./src/scripts/modules/carousel-modules/carouselSections.js");
+/* harmony import */ var _quard_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./quard.js */ "./src/scripts/modules/carousel-modules/quard.js");
+/* harmony import */ var _calcScreenMode_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./calcScreenMode.js */ "./src/scripts/modules/carousel-modules/calcScreenMode.js");
+/* harmony import */ var _setPaddings_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./setPaddings.js */ "./src/scripts/modules/carousel-modules/setPaddings.js");
+/* harmony import */ var _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./carouselSections.js */ "./src/scripts/modules/carousel-modules/carouselSections.js");
+
 
 
  // fake scrollbar
@@ -213,22 +252,26 @@ var fakeScrollbar = document.getElementById('scrollbar');
 var isScrollActive = true;
 
 function showFakeScroll() {
-  if (fakeScrollbar.style.display !== 'block' && _calcScreenMode_js__WEBPACK_IMPORTED_MODULE_0__.isFullScreenMode) {
-    console.log('showFakeScroll');
-    isScrollActive = false;
-    (0,_setPaddings_js__WEBPACK_IMPORTED_MODULE_1__.setPaddings)(true, _carouselSections_js__WEBPACK_IMPORTED_MODULE_2__.aboutSection, _carouselSections_js__WEBPACK_IMPORTED_MODULE_2__.introSection);
-    fakeScrollbar.style.display = 'block';
-    document.body.style.overflow = 'hidden';
+  if (fakeScrollbar && _quard_js__WEBPACK_IMPORTED_MODULE_0__.isCarouselExist) {
+    if (fakeScrollbar.style.display !== 'block' && _calcScreenMode_js__WEBPACK_IMPORTED_MODULE_1__.isFullScreenMode) {
+      console.log('showFakeScroll');
+      isScrollActive = false;
+      (0,_setPaddings_js__WEBPACK_IMPORTED_MODULE_2__.setPaddings)(true, _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.aboutSection, _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.introSection);
+      fakeScrollbar.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
   }
 }
 
 function hideFakeScroll() {
-  if (fakeScrollbar.style.display !== 'none') {
-    console.log('hideFakeScroll');
-    (0,_setPaddings_js__WEBPACK_IMPORTED_MODULE_1__.setPaddings)(false, _carouselSections_js__WEBPACK_IMPORTED_MODULE_2__.aboutSection, _carouselSections_js__WEBPACK_IMPORTED_MODULE_2__.introSection);
-    fakeScrollbar.style.display = 'none';
-    document.body.style.overflow = 'auto';
-    isScrollActive = true;
+  if (fakeScrollbar && _quard_js__WEBPACK_IMPORTED_MODULE_0__.isCarouselExist) {
+    if (fakeScrollbar.style.display !== 'none' && _quard_js__WEBPACK_IMPORTED_MODULE_0__.isCarouselExist) {
+      console.log('hideFakeScroll');
+      (0,_setPaddings_js__WEBPACK_IMPORTED_MODULE_2__.setPaddings)(false, _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.aboutSection, _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.introSection);
+      fakeScrollbar.style.display = 'none';
+      document.body.style.overflow = 'auto';
+      isScrollActive = true;
+    }
   }
 }
 
@@ -463,11 +506,11 @@ __webpack_require__.r(__webpack_exports__);
  // наблюдаю, попал ли блок идущий за слайдерами во вьюпорт
 
 var carouselOffSection = document.querySelector('#carousel-off-section');
-carouselOffSection.style.marginTop = '1px'; // без маргина блок попадает в зону видимости
-
 var isCarouselOffSectionIntersected = false;
 
 if (carouselOffSection) {
+  carouselOffSection.style.marginTop = '1px'; // без маргина блок попадает в зону видимости
+
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
@@ -529,6 +572,25 @@ function onScrollSlideCarousel(carouselNode, carouselInstance) {
     passive: false
   });
 }
+
+/***/ }),
+
+/***/ "./src/scripts/modules/carousel-modules/quard.js":
+/*!*******************************************************!*\
+  !*** ./src/scripts/modules/carousel-modules/quard.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isCarouselExist": () => (/* binding */ isCarouselExist)
+/* harmony export */ });
+var carousel = document.querySelector('.carousel');
+var isCarouselExist = false;
+carousel ? isCarouselExist = true : false;
+console.log(isCarouselExist);
+
 
 /***/ }),
 
@@ -840,7 +902,6 @@ if (aboutCarousel) {
       evt.preventDefault(); // переход к intro слайдеру
 
       if (!_carousel_modules_debounce_js__WEBPACK_IMPORTED_MODULE_2__.preventAction && _carousel_modules_calcScreenMode_js__WEBPACK_IMPORTED_MODULE_8__.isFullScreenMode && !_carousel_modules_fakeScroll_js__WEBPACK_IMPORTED_MODULE_7__.isScrollActive) {
-        console.log(_carousel_modules_calcScreenMode_js__WEBPACK_IMPORTED_MODULE_8__.isFullScreenMode);
         (0,_carousel_modules_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_10__.animateSection)('intro');
       } else if (!_carousel_modules_debounce_js__WEBPACK_IMPORTED_MODULE_2__.preventAction && _carousel_modules_calcScreenMode_js__WEBPACK_IMPORTED_MODULE_8__.isFullScreenMode && _carousel_modules_fakeScroll_js__WEBPACK_IMPORTED_MODULE_7__.isScrollActive) {
         (0,seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_14__.scrollIntoView)(introCarousel, {
@@ -8729,16 +8790,19 @@ var __webpack_exports__ = {};
   !*** ./src/scripts/main.js ***!
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_pageOffset_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/pageOffset.js */ "./src/scripts/modules/pageOffset.js");
-/* harmony import */ var _modules_pageOffset_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_pageOffset_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _modules_header_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/header.js */ "./src/scripts/modules/header.js");
-/* harmony import */ var _modules_header_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modules_header_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _modules_carousel_new_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/carousel-new.js */ "./src/scripts/modules/carousel-new.js");
-/* harmony import */ var _modules_searchField_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/searchField.js */ "./src/scripts/modules/searchField.js");
-/* harmony import */ var _modules_searchField_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_modules_searchField_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _modules_accordionLineAnimation_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/accordionLineAnimation.js */ "./src/scripts/modules/accordionLineAnimation.js");
+/* harmony import */ var _modules_accordionLineAnimation_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_accordionLineAnimation_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modules_pageOffset_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/pageOffset.js */ "./src/scripts/modules/pageOffset.js");
+/* harmony import */ var _modules_pageOffset_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modules_pageOffset_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _modules_header_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/header.js */ "./src/scripts/modules/header.js");
+/* harmony import */ var _modules_header_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_modules_header_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _modules_carousel_new_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/carousel-new.js */ "./src/scripts/modules/carousel-new.js");
+/* harmony import */ var _modules_searchField_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/searchField.js */ "./src/scripts/modules/searchField.js");
+/* harmony import */ var _modules_searchField_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_modules_searchField_js__WEBPACK_IMPORTED_MODULE_4__);
 //import './modules/module.js';
 //import "./vue/main.js";
 //import '../../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
+
 
 
  //import './modules/carousel.js';

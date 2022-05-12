@@ -5,7 +5,7 @@ mixin accordion(opt)
     each item,index in opt.items
       .accordion-item(class= opt.isLined ? 'lined' : null)
         h2(id= item.headerID).accordion-header
-          button(type="button" data-bs-toggle="collapse" data-bs-target="#" + item.targetID aria-expanded= item.ariaExpanded aria-controls= item.targetID class= !item.collapsed ? 'collapsed' : '').accordion-button.fw-medium.fs-3
+          button(type="button" data-bs-toggle="collapse" data-bs-target="#" + item.targetID aria-expanded= item.ariaExpanded ? 'true' : "false" aria-controls= item.targetID class= !item.collapsed ? 'collapsed' : '').accordion-button.fw-medium.fs-3.prevent-animation
             span.pe-5(class= opt.id === 'reporting_accordion' ? 'fs-2' : opt.id === 'about_accordion' && index === 0 ? 'fade-in-btn' : null)!= item.buttonText
         .accordion-collapse.collapse(aria-labelledby= item.headerID data-bs-parent="#" + opt.id class= item.collapsed ? 'show' : '' id= item.targetID)
           .accordion-body.fw-light.py-3!= item.bodyText
@@ -15,7 +15,7 @@ mixin accordion(opt)
               each innerItem in item.innerAccordion.items
                 .accordion-item.accordion-item-inner.border-0.border-bottom
                   h2(id= innerItem.headerID).accordion-header
-                    button(type="button" data-bs-toggle="collapse" data-bs-target="#" + innerItem.targetID aria-expanded= innerItem.ariaExpanded aria-controls= innerItem.targetID class= !innerItem.collapsed ? 'collapsed' : '').accordion-button.fw-medium.fs-3
+                    button(type="button" data-bs-toggle="collapse" data-bs-target="#" + innerItem.targetID aria-expanded= innerItem.ariaExpanded ? 'true' : "false" aria-controls= innerItem.targetID class= !innerItem.collapsed ? 'collapsed' : '').accordion-button.fw-medium.fs-3
                       span.pe-2.pe-md-5= innerItem.buttonText
 
                   .accordion-collapse.accordion-collapse-inner.collapse(aria-labelledby= innerItem.headerID data-bs-parent="#" + innerItem.id class= innerItem.collapsed ? 'show' : '' id= innerItem.targetID)
