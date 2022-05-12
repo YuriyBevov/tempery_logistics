@@ -2,7 +2,6 @@ import { hideFakeScroll } from "./fakeScroll";
 
 // наблюдаю, попал ли блок идущий за слайдерами во вьюпорт
 const carouselOffSection = document.querySelector('#carousel-off-section');
-
 let isCarouselOffSectionIntersected = false;
 
 if(carouselOffSection) {
@@ -14,10 +13,8 @@ if(carouselOffSection) {
         hideFakeScroll();
         //при возврате нужно уберать скролл если я вернулся в первый слайдер интро
         isCarouselOffSectionIntersected = true;
-        console.log(carouselOffSection)
       } else {
         isCarouselOffSectionIntersected = false;
-        console.log(carouselOffSection)
       }
     });
   });

@@ -74,7 +74,6 @@ function getBoundingClientRect(elem, side) {
 }
 
 function getHeaderHeight() {
-  //const header = document.querySelector('header').getBoundingClientRect().height;
   return getBoundingClientRect(document.querySelector('header'), 'height');
 }
 

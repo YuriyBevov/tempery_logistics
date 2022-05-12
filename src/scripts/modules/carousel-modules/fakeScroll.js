@@ -1,9 +1,7 @@
 import { isCarouselExist } from './quard.js';
-
 import { isFullScreenMode } from './calcScreenMode.js';
 import { setPaddings } from './setPaddings.js';
 import { aboutSection, introSection } from './carouselSections.js';
-
 
 // fake scrollbar
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,7 +14,6 @@ let isScrollActive = true;
 function showFakeScroll() {
   if(fakeScrollbar && isCarouselExist) {
     if(fakeScrollbar.style.display !== 'block' && isFullScreenMode ) {
-      console.log('showFakeScroll');
       isScrollActive = false;
 
       setPaddings(true, aboutSection, introSection);
@@ -29,7 +26,6 @@ function showFakeScroll() {
 function hideFakeScroll() {
   if(fakeScrollbar && isCarouselExist) {
     if(fakeScrollbar.style.display !== 'none' && isCarouselExist) {
-      console.log('hideFakeScroll');
       setPaddings(false, aboutSection, introSection);
       fakeScrollbar.style.display = 'none';
       document.body.style.overflow = 'auto';

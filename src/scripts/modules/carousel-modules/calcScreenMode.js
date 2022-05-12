@@ -1,12 +1,10 @@
 import { isCarouselExist } from './quard.js';
-
 import { getWindowWidth } from "../../utils/functions";
 import { aboutSection, introSection } from './carouselSections.js';
 
 let isFullScreenMode = false;
 
 if(isCarouselExist) {
-
   let windowHeight = document.documentElement.clientHeight;
   let sliderHeight = introCarousel.getBoundingClientRect().height;
   let isEqualHeight = windowHeight === sliderHeight || sliderHeight - windowHeight === 7 ? true : false;
