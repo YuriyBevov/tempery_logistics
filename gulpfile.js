@@ -230,7 +230,7 @@ const svg = () => {
         },
       })
     )
-    .pipe(
+    /*.pipe(
       cheerio({
         run: function ($) {
           $('[fill]').removeAttr('fill');
@@ -242,7 +242,7 @@ const svg = () => {
           xmlMode: true
         },
       })
-    )
+    )*/
     .pipe(dest(PATHS.svg.dest));
 }
 

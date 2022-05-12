@@ -13931,6 +13931,9 @@ header.sticky {
 .main-footer-logos svg {
   fill: #ffffff;
 }
+.main-footer .dev-logo {
+  fill: #ffffff;
+}
 .main-footer .nav-item a {
   color: #ffffff;
 }

@@ -47,7 +47,6 @@ footer.main-footer.pt-5.bg-lightblack.text-white
             .accordion-collapse.collapse#collapseFooterCompany(aria-labelledby="footerAccCompany" data-bs-parent="#footerAcc")
               include ../components/_footer-nav
 
-
   .copyrights
     .container
       .row.py-2
@@ -59,4 +58,5 @@ footer.main-footer.pt-5.bg-lightblack.text-white
 
         .col-12.col-md.d-flex
           a(href="#" target="_blank").my-auto.mx-auto.mx-md-0.ms-md-auto
-            img(src="./assets/img/wdmg-logo@1x.png" alt="Created by W.D.M.Group, Ukraine")
+            svg(width="106" height="36" aria-label="Created by W.D.M.Group, Ukraine").dev-logo
+              use(xlink:href="./assets/svg-sprite.svg#icon-wdmg-logotype")
