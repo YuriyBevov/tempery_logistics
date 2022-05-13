@@ -341,6 +341,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ //import { refreshPageState } from './refreshPageState.js';
 
 var footer = document.querySelector('footer'); //навигация по клавиатуре
 
@@ -403,13 +404,14 @@ function keyboardNavigation(carouselNode, carouselInstance) {
       }
     }
 
-    if (evt.code === 'PageUp' && !_debounce_js__WEBPACK_IMPORTED_MODULE_4__.preventAction && !_fakeScroll__WEBPACK_IMPORTED_MODULE_1__.isScrollActive) {
-      if (_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider === _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.aboutSection) {
-        (0,_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.animateSection)('intro');
-      }
+    if (evt.code === 'PageUp' && !_debounce_js__WEBPACK_IMPORTED_MODULE_4__.preventAction) {
+      if (_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider === _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.aboutSection && !_fakeScroll__WEBPACK_IMPORTED_MODULE_1__.isScrollActive
+      /*&& !isCarouselOffSectionIntersected*/
 
-      if (_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider === _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.introSection) {
-        (0,_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.animateSection)('about');
+      /* && window.scrollY < 500*/
+      ) {
+        //showFakeScroll();
+        (0,_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.animateSection)('intro');
       }
     }
 
@@ -419,12 +421,21 @@ function keyboardNavigation(carouselNode, carouselInstance) {
       }
 
       if (_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider === _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.aboutSection) {
-        (0,_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.animateSection)('intro');
+        (0,_fakeScroll__WEBPACK_IMPORTED_MODULE_1__.hideFakeScroll)();
+        (0,seamless_scroll_polyfill__WEBPACK_IMPORTED_MODULE_5__.scrollIntoView)(_carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.carouselOffSection, {
+          behavior: "smooth",
+          block: "start"
+        });
       }
     }
 
     if (evt.code === 'Home' && !_debounce_js__WEBPACK_IMPORTED_MODULE_4__.preventAction) {
       (0,_fakeScroll__WEBPACK_IMPORTED_MODULE_1__.showFakeScroll)();
+
+      if (_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.activeSlider === _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.aboutSection) {
+        console.log('active intro');
+        (0,_carouselAnimation_js__WEBPACK_IMPORTED_MODULE_0__.animateSection)('intro');
+      }
     }
 
     if (evt.code === 'End' && !_debounce_js__WEBPACK_IMPORTED_MODULE_4__.preventAction) {
@@ -437,6 +448,12 @@ function keyboardNavigation(carouselNode, carouselInstance) {
   };
 
   window.addEventListener('keyup', onClickNavigatePage);
+  window.addEventListener('scroll', function () {
+    if (scrollY === 0) {
+      (0,_fakeScroll__WEBPACK_IMPORTED_MODULE_1__.showFakeScroll)();
+      console.log('scroll');
+    }
+  });
   var firstFocusableElement = document.querySelector('.navbar-brand');
 
   var onTabClickHandler = function onTabClickHandler(evt) {
