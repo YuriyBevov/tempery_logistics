@@ -8,18 +8,15 @@ header.inner-header.fixed-top
 
       include ../components/_nav
 
-      .ms-auto.align-items-center.d-none.d-md-flex
-        .search-field
-          form(action="#").d-flex.me-2
-            input.for-control.me-2(type="search" placeholder="Start your search..." aria-label="Search")
-            button(type="submit").btn.btn-outline-success
-              svg(width="23" height="22")
-                use(xlink:href="./assets/svg-sprite.svg#icon-search")
+      .ms-auto.align-items-center.d-flex
+        button(type="button").search-opener.btn.btn-outline-success.me-3.d-none.d-xl-flex
+          svg(width="23" height="22")
+            use(xlink:href="./assets/svg-sprite.svg#icon-search")
 
         +main-select({
           selected: 'EN',
           options: ['EN', 'BLG',],
-          cls: 'lang-select me-4'
+          cls: 'lang-select me-4 d-none d-md-flex'
         })
 
       include ../components/_offcanvas

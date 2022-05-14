@@ -42,18 +42,13 @@
               </form>
             </div>
           </nav>
-          <div class="ms-auto align-items-center d-none d-md-flex">
-            <div class="search-field">
-              <form class="d-flex me-2" action="#">
-                <input class="for-control me-2" type="search" placeholder="Start your search..." aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">
-                  <svg width="23" height="22">
-                    <use xlink:href="./assets/svg-sprite.svg#icon-search"></use>
-                  </svg>
-                </button>
-              </form>
-            </div>
-                <select class="lang-select me-4 form-select">
+          <div class="ms-auto align-items-center d-flex">
+            <button class="search-opener btn btn-outline-success me-3 d-none d-xl-flex" type="button">
+              <svg width="23" height="22">
+                <use xlink:href="./assets/svg-sprite.svg#icon-search"></use>
+              </svg>
+            </button>
+                <select class="lang-select me-4 d-none d-md-flex form-select">
                   <option value="EN" selected>EN</option>
                   <option value="BLG">BLG</option>
                 </select>
