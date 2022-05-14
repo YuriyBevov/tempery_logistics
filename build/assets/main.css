@@ -13486,7 +13486,7 @@ button.swiper-pagination-bullet {
   background-color: var(--main-scrollbar-thumb-color);
 }
 
-.flex-centered-content, .carousel-indicators .indicator, .about-slide-btn, .play-btn {
+.flex-centered-content, .carousel-indicators .indicator, .about-slide-btn, .search-form form button[type=submit], .play-btn {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -13656,7 +13656,7 @@ table th {
   transform: translateX(-50%);
 }
 @media (max-width: 1599.98px) {
-  .section-title:not(.section-title-centered)::before {
+  .section-title:not(.section-title-centered):not(.section-title-bordered)::before {
     display: none;
   }
 }
@@ -14045,6 +14045,9 @@ header.sticky {
   fill: #ffffff;
 }
 
+.main-nav {
+  position: relative;
+}
 .main-nav .nav-link {
   position: relative;
   overflow: hidden;
@@ -14438,22 +14441,71 @@ header.sticky {
   }
 }
 
-.search-field {
+/* .search-field {
   position: relative;
-}
-.search-field button {
+
+  button {
+    height: 40px;
+  }
+
+  input {
+    display: none;
+    position: absolute;
+    left: -400px;
+    bottom: -120%;
+    width: 360px;
+    border: 1px solid $purple;
+
+    &.js-active {
+      display: block;
+    }
+  }
+} */
+.search-opener {
   height: 40px;
 }
-.search-field input {
-  display: none;
-  position: absolute;
-  left: -400px;
-  bottom: -120%;
-  width: 360px;
-  border: 1px solid #664599;
+.search-opener svg {
+  fill: #664599;
 }
-.search-field input.js-active {
-  display: block;
+
+.search-form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.search-form form {
+  position: relative;
+  height: inherit;
+}
+.search-form form input[type=text] {
+  width: 100%;
+  height: inherit;
+  padding-left: 60px;
+}
+.search-form form button[type=submit] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 43px;
+  height: 100%;
+  padding: 5px;
+}
+.search-form form button[type=submit] svg {
+  fill: #ffffff;
+}
+.search-form form button[type=reset] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 43px;
+  height: 100%;
+}
+.search-form.hidden {
+  -webkit-transform: translateY(-300px);
+  -ms-transform: translateY(-300px);
+  transform: translateY(-300px);
 }
 
 .slide-content-desc {

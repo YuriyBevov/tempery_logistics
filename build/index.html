@@ -33,18 +33,33 @@
                 </ul>
               </li>
             </ul>
-          </nav>
-          <div class="ms-auto align-items-center d-none d-md-flex">
-            <div class="search-field">
-              <form class="d-flex me-2" action="#">
-                <input class="form-control me-2" type="search" placeholder="Start your search..." aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">
+            <div class="search-form hidden">
+              <form action="#">
+                <input class="form-control me-2" type="text" placeholder="Start your search..." aria-label="Search">
+                <button class="btn btn-outline-success bg-purple" type="submit">
                   <svg width="23" height="22">
                     <use xlink:href="./assets/svg-sprite.svg#icon-search"></use>
                   </svg>
                 </button>
+                <button class="btn btn-close btn-outline-success bg-purple search-closer" type="reset"></button>
               </form>
             </div>
+          </nav>
+          <div class="ms-auto align-items-center d-none d-md-flex">
+            <button class="search-opener btn btn-outline-success me-3" type="button">
+              <svg width="23" height="22">
+                <use xlink:href="./assets/svg-sprite.svg#icon-search"></use>
+              </svg>
+            </button>
+            <!--.search-field
+            form(action="#").d-flex.me-2
+              input.form-control.me-2(type="search" placeholder="Start your search..." aria-label="Search")
+              button(type="submit").btn.btn-outline-success
+                svg(width="23" height="22")
+                  use(xlink:href="./assets/svg-sprite.svg#icon-search")
+            
+            
+            -->
                 <select class="lang-select me-4 form-select">
                   <option value="EN" selected>EN</option>
                   <option value="BLG">BLG</option>
@@ -289,7 +304,7 @@
               <div class="container">
                 <div class="row">
                   <div class="col-12 col-xl-7">
-                    <h2 class="section-title mb-3">About us</h2>
+                    <h2 class="section-title section-title-bordered mb-3">About us</h2>
                     <p class="about-slide-desc">The company was established in 2020, but the team has 30 years of hands-on experience in these areas.</p>
                     <p class="about-slide-text">Operational activity of the company covers the region of 2.5 million square kilometers of land in Europe and Asia. Conducts and supports marketing and engineering studies related to special cargo transportation conditions and processing of large data sets. The company is interested in investment projects related to <span>job creation in Bulgaria</span>.</p>
                     <div class="row mb-4 d-none d-xl-flex">

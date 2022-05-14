@@ -133,7 +133,7 @@ table {
   }
 
   @include media-breakpoint-down(xxl) {
-    &:not(&-centered) {
+    &:not(&-centered):not(&-bordered) {
       &::before {
         display: none;
       }

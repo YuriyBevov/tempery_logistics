@@ -16,3 +16,11 @@ nav.d-none.d-xl-block.mx-auto.main-nav
           a(href="#").dropdown-item.fs-4.fw-medium Link 2
         li
           a(href="#").dropdown-item.fs-4.fw-medium Link 3
+
+  .search-form.hidden
+    form(action="#")
+      input.form-control.me-2(type="text" placeholder="Start your search..." aria-label="Search")
+      button(type="submit").btn.btn-outline-success.bg-purple
+        svg(width="23" height="22")
+          use(xlink:href="./assets/svg-sprite.svg#icon-search")
+      button(type="reset").btn.btn-close.btn-outline-success.bg-purple.search-closer

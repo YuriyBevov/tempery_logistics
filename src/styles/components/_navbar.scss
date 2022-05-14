@@ -41,6 +41,7 @@ $transition-rule: all 0.3s ease-in-out;
 }
 
 .main-nav {
+  position: relative;
   .nav-link {
     position: relative;
     overflow: hidden;

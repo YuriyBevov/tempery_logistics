@@ -1288,35 +1288,6 @@ if (header) {
 
 /***/ }),
 
-/***/ "./src/scripts/modules/searchField.js":
-/*!********************************************!*\
-  !*** ./src/scripts/modules/searchField.js ***!
-  \********************************************/
-/***/ (() => {
-
-var searchForm = document.querySelector('.search-field form');
-
-if (searchForm) {
-  var searchBtn = document.querySelector('.search-field button[type="submit"');
-  var searchField = document.querySelector('.search-field input[type="search"');
-
-  var onClickShowSearchField = function onClickShowSearchField(evt) {
-    evt.preventDefault();
-
-    if (!searchField.classList.contains('js-active')) {
-      searchField.classList.add('js-active');
-    } else {
-      searchField.classList.remove('js-active');
-      searchField.value = '';
-      console.log(searchForm, 'submit');
-    }
-  };
-
-  searchBtn.addEventListener('click', onClickShowSearchField);
-}
-
-/***/ }),
-
 /***/ "./src/scripts/modules/sectionAnimation.js":
 /*!*************************************************!*\
   !*** ./src/scripts/modules/sectionAnimation.js ***!
@@ -17736,16 +17707,72 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_header_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/header.js */ "./src/scripts/modules/header.js");
 /* harmony import */ var _modules_header_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_modules_header_js__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _modules_carousel_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/carousel.js */ "./src/scripts/modules/carousel.js");
-/* harmony import */ var _modules_searchField_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/searchField.js */ "./src/scripts/modules/searchField.js");
-/* harmony import */ var _modules_searchField_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_modules_searchField_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _modules_sectionAnimation_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/sectionAnimation.js */ "./src/scripts/modules/sectionAnimation.js");
+/* harmony import */ var _modules_sectionAnimation_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/sectionAnimation.js */ "./src/scripts/modules/sectionAnimation.js");
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 //document.querySelector('body').classList.remove('nojs');
 
 
 
+ //import './modules/searchField.js';
 
 
 
+var searchOpener = document.querySelector('.search-opener');
+var searchField = document.querySelector('.search-form');
+var navItems = document.querySelectorAll('.main-nav .nav-item');
+var searchCloser = document.querySelector('.search-closer');
+
+var onClickCloseSearchField = function onClickCloseSearchField() {
+  gsap__WEBPACK_IMPORTED_MODULE_5__["default"].to(searchField, {
+    duration: 0.5,
+    y: -300,
+    delay: 0.2,
+    ease: 'ease-in'
+  });
+  gsap__WEBPACK_IMPORTED_MODULE_5__["default"].to(searchOpener, {
+    duration: 0.7,
+    scale: 1,
+    delay: 0.2,
+    ease: 'ease-in'
+  });
+  navItems.forEach(function (item, i) {
+    gsap__WEBPACK_IMPORTED_MODULE_5__["default"].to(item, {
+      duration: 0.7,
+      scale: 1,
+      delay: 0.2,
+      ease: "ease-in"
+    });
+  });
+  searchCloser.removeEventListener('click', onClickCloseSearchField);
+  searchOpener.addEventListener('click', onClickOpenSearchField);
+};
+
+var onClickOpenSearchField = function onClickOpenSearchField() {
+  gsap__WEBPACK_IMPORTED_MODULE_5__["default"].to(searchOpener, {
+    duration: 0.5,
+    scale: 0,
+    delay: 0.2,
+    ease: 'ease-in'
+  });
+  navItems.forEach(function (item, i) {
+    gsap__WEBPACK_IMPORTED_MODULE_5__["default"].to(item, {
+      duration: 0.5,
+      scale: 0,
+      delay: 0.2 + 0.05 * i,
+      ease: "ease-in"
+    });
+  });
+  gsap__WEBPACK_IMPORTED_MODULE_5__["default"].to(searchField, {
+    duration: 0.5,
+    y: 0,
+    delay: 0.8,
+    ease: 'ease-in'
+  });
+  searchOpener.removeEventListener('click', onClickOpenSearchField);
+  searchCloser.addEventListener('click', onClickCloseSearchField);
+};
+
+searchOpener.addEventListener('click', onClickOpenSearchField);
 })();
 
 /******/ })()

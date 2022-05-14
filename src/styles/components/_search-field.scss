@@ -1,4 +1,4 @@
-.search-field {
+/* .search-field {
   position: relative;
 
   button {
@@ -16,5 +16,59 @@
     &.js-active {
       display: block;
     }
+  }
+} */
+
+.search-opener {
+  height: 40px;
+
+  svg {
+    fill: $purple;
+  }
+}
+
+.search-form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  form {
+    position: relative;
+    height: inherit;
+
+    input[type="text"] {
+      width: 100%;
+      height: inherit;
+      padding-left: 60px;
+    }
+
+    button[type="submit"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 43px;
+      height: 100%;
+      padding: 5px;
+
+      @extend .flex-centered-content;
+
+      svg {
+        fill: $white;
+      }
+    }
+
+    button[type="reset"] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 43px;
+      height: 100%;
+    }
+  }
+
+  &.hidden {
+    transform: translateY(-300px);
   }
 }

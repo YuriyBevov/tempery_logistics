@@ -12,7 +12,10 @@ header.main-header.fixed-top
       include ../components/_nav
 
       .ms-auto.align-items-center.d-none.d-md-flex
-        .search-field
+        button(type="button").search-opener.btn.btn-outline-success.me-3
+          svg(width="23" height="22")
+            use(xlink:href="./assets/svg-sprite.svg#icon-search")
+        //.search-field
           form(action="#").d-flex.me-2
             input.form-control.me-2(type="search" placeholder="Start your search..." aria-label="Search")
             button(type="submit").btn.btn-outline-success
