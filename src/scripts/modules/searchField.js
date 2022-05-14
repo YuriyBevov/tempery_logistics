@@ -10,12 +10,12 @@ const onClickCloseSearchField = () => {
 
   gsap.to(searchOpener, {duration: 0.7, scale: 1, delay: 0.2, ease: 'ease-in'});
 
-  navItems.forEach((item,i) => {
+  navItems.forEach((item, i) => {
     gsap.to(item, {
-      duration: 0.7,
+      duration: 0.4,
       scale: 1,
-      delay: 0.2,
-      ease: "ease-in"
+      delay: 0.1,
+      ease: "linear"
     });
   })
 

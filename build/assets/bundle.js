@@ -1317,10 +1317,10 @@ var onClickCloseSearchField = function onClickCloseSearchField() {
   });
   navItems.forEach(function (item, i) {
     gsap__WEBPACK_IMPORTED_MODULE_0__["default"].to(item, {
-      duration: 0.7,
+      duration: 0.4,
       scale: 1,
-      delay: 0.2,
-      ease: "ease-in"
+      delay: 0.1,
+      ease: "linear"
     });
   });
   searchCloser.removeEventListener('click', onClickCloseSearchField);
