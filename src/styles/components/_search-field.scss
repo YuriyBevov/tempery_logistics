@@ -1,24 +1,3 @@
-/* .search-field {
-  position: relative;
-
-  button {
-    height: 40px;
-  }
-
-  input {
-    display: none;
-    position: absolute;
-    left: -400px;
-    bottom: -120%;
-    width: 360px;
-    border: 1px solid $purple;
-
-    &.js-active {
-      display: block;
-    }
-  }
-} */
-
 .search-opener {
   height: 40px;
 
@@ -51,7 +30,6 @@
       width: 43px;
       height: 100%;
       padding: 5px;
-
       @extend .flex-centered-content;
 
       svg {

@@ -14441,26 +14441,6 @@ header.sticky {
   }
 }
 
-/* .search-field {
-  position: relative;
-
-  button {
-    height: 40px;
-  }
-
-  input {
-    display: none;
-    position: absolute;
-    left: -400px;
-    bottom: -120%;
-    width: 360px;
-    border: 1px solid $purple;
-
-    &.js-active {
-      display: block;
-    }
-  }
-} */
 .search-opener {
   height: 40px;
 }
