@@ -51,3 +51,9 @@
     background-image: url("../assets/img/icon-arr-down.png");
   }
 }
+
+.offcanvas form {
+  button > svg {
+    fill: $white;
+  }
+}

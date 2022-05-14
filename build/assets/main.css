@@ -14123,6 +14123,10 @@ header.sticky {
   background-image: url("../assets/img/icon-arr-down.png");
 }
 
+.offcanvas form button > svg {
+  fill: #ffffff;
+}
+
 .pagination {
   width: -webkit-fit-content;
   width: -moz-fit-content;
