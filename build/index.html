@@ -45,8 +45,8 @@
               </form>
             </div>
           </nav>
-          <div class="ms-auto align-items-center d-none d-md-flex">
-            <button class="search-opener btn btn-outline-success me-3" type="button">
+          <div class="ms-auto align-items-center d-flex">
+            <button class="search-opener btn btn-outline-success me-3 d-none d-xl-flex" type="button">
               <svg width="23" height="22">
                 <use xlink:href="./assets/svg-sprite.svg#icon-search"></use>
               </svg>
@@ -60,7 +60,7 @@
             
             
             -->
-                <select class="lang-select me-4 form-select">
+                <select class="lang-select me-4 d-none d-md-flex form-select">
                   <option value="EN" selected>EN</option>
                   <option value="BLG">BLG</option>
                 </select>
@@ -76,6 +76,16 @@
               <button class="btn-close text-reset bg-purple me-1" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
+              <form class="mb-4 d-block d-xl-none" action="#">
+                <div class="input-group">
+                  <input class="form-control" type="text" placeholder="Start your search..." aria-label="Start your search..." aria-describedby="search-form-btn">
+                  <button class="btn btn-outline bg-purple" type="button" id="search-form-btn">
+                    <svg width="23" height="22">
+                      <use xlink:href="./assets/svg-sprite.svg#icon-search"></use>
+                    </svg>
+                  </button>
+                </div>
+              </form>
               <ul class="navbar-nav pb-4">
                 <li class="nav-item mb-4">
                   <div class="accordion" id="offcanvas-home-acc">

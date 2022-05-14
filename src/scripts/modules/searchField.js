@@ -9,6 +9,7 @@ const onClickCloseSearchField = () => {
   gsap.to(searchField, {duration: 1.2, y: -300, ease: 'ease-in'});
 
   gsap.to(searchOpener, {duration: 0.7, scale: 1, delay: 0.2, ease: 'ease-in'});
+
   navItems.forEach((item,i) => {
     gsap.to(item, {
       duration: 0.7,
@@ -17,6 +18,7 @@ const onClickCloseSearchField = () => {
       ease: "ease-in"
     });
   })
+
   searchCloser.removeEventListener('click', onClickCloseSearchField);
   searchOpener.addEventListener('click', onClickOpenSearchField);
 }
@@ -24,6 +26,7 @@ const onClickCloseSearchField = () => {
 const onClickOpenSearchField = () => {
 
   gsap.to(searchOpener, {duration: 0.5, scale: 0, delay: 0.2, ease: 'ease-in'});
+
   navItems.forEach((item,i) => {
     gsap.to(item, {
       duration: 0.5,

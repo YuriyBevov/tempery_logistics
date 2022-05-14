@@ -11,8 +11,8 @@ header.main-header.fixed-top
 
       include ../components/_nav
 
-      .ms-auto.align-items-center.d-none.d-md-flex
-        button(type="button").search-opener.btn.btn-outline-success.me-3
+      .ms-auto.align-items-center.d-flex
+        button(type="button").search-opener.btn.btn-outline-success.me-3.d-none.d-xl-flex
           svg(width="23" height="22")
             use(xlink:href="./assets/svg-sprite.svg#icon-search")
         //.search-field
@@ -26,7 +26,7 @@ header.main-header.fixed-top
         +main-select({
           selected: 'EN',
           options: ['EN', 'BLG',],
-          cls: 'lang-select me-4'
+          cls: 'lang-select me-4 d-none d-md-flex'
         })
 
       include ../components/_offcanvas

@@ -14454,6 +14454,9 @@ header.sticky {
   left: 0;
   width: 100%;
   height: 100%;
+  -webkit-transform: translateY(-300px);
+  -ms-transform: translateY(-300px);
+  transform: translateY(-300px);
 }
 .search-form form {
   position: relative;
@@ -14467,7 +14470,7 @@ header.sticky {
 .search-form form button[type=submit] {
   position: absolute;
   top: 0;
-  left: 0;
+  left: -1px;
   width: 43px;
   height: 100%;
   padding: 5px;
@@ -14478,14 +14481,10 @@ header.sticky {
 .search-form form button[type=reset] {
   position: absolute;
   top: 0;
-  right: 0;
+  right: -1px;
   width: 43px;
   height: 100%;
-}
-.search-form.hidden {
-  -webkit-transform: translateY(-300px);
-  -ms-transform: translateY(-300px);
-  transform: translateY(-300px);
+  opacity: 1;
 }
 
 .slide-content-desc {

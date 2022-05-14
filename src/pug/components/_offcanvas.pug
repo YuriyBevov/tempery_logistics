@@ -17,6 +17,12 @@ button(type="button" data-bs-toggle="offcanvas" data-bs-target="#site_nav" aria-
     button(type="button" data-bs-dismiss="offcanvas" aria-label="Close").btn-close.text-reset.bg-purple.me-1
 
   .offcanvas-body
+    form(action="#").mb-4.d-block.d-xl-none
+      .input-group
+        input(type="text" placeholder="Start your search..." aria-label="Start your search..." aria-describedby="search-form-btn").form-control
+        button(type="button")#search-form-btn.btn.btn-outline.bg-purple
+          svg(width="23" height="22")
+            use(xlink:href="./assets/svg-sprite.svg#icon-search")
     ul.navbar-nav.pb-4
       li.nav-item.mb-4
         .accordion#offcanvas-home-acc
