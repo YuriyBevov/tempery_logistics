@@ -1,7 +1,6 @@
 import { blurFocusedElement } from "./blurFocusedElement";
 import { aboutSection, introSection } from './carouselSections.js';
 import { setPreventState } from './debounce.js';
-// import { focusableElements } from './focusable.js';
 
 let activeSlider = document.querySelector('.carousel-section.active');
 const nav = document.querySelector('.navbar');
@@ -13,6 +12,7 @@ const startAnimation = (opt) => {
     opt.prevSliderNode.classList.remove('active');
     opt.currentSliderNode.classList.add('active');
   }
+
   //ставлю класс для анимации с transition в css
   opt.currentSliderNode.classList.add('transition-on');
   //задаю стили для активного слайдера

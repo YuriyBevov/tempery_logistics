@@ -2,11 +2,12 @@ include ./_main-link
 include ./_card
 
 mixin main-card-section(data)
-  section.section(class= data.sectionClass id= data.sectionId ? data.sectionId : null)
+  section.section.gsap-animated-section(class= data.sectionClass id= data.sectionId ? data.sectionId : null)
     .container
       .row
         .col-12.col-xxl-3.d-flex.flex-xxl-column.align-items-center.align-items-xxl-start.mb-4.mb-md-5.mb-xxl-0
-          h2.section-title.mb-0.mx-auto.mx-lg-0.me-lg-auto.me-xxl-0= data.sectionTitle
+          h2.section-title.section-animated-title.mb-0.mx-auto.mx-lg-0.me-lg-auto.me-xxl-0= data.sectionTitle
+            span
           +main-link({
             cls: 'mt-0 mt-xxl-auto btn-outline-purple view-all-btn',
             text:  'View all',

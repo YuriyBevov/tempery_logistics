@@ -5,6 +5,10 @@
     max-width: 220px;
     max-height: 170px;
     object-fit: contain;
+    //gsap
+    opacity: 0;
+    transform: translateY(300px);
+    //gsap
 
     @include media-breakpoint-down(xl) {
       max-height: 130px;
@@ -20,6 +24,8 @@
   }
 
   .collage-part {
+    transform: translateY(200px);
+    opacity: 0;
     &:not(:last-child) {
       padding-right: 30px;
     }
@@ -49,6 +55,14 @@
         padding-left: 10px;
       }
     }
+  }
+
+  .collage-part:nth-child(2) {
+    transform: translateY(-200px);
+  }
+
+  .collage-part:last-child {
+    transform: translateX(300px);
   }
 }
 
@@ -240,6 +254,9 @@
 }
 
 .about-slide-card {
+  //gsap
+  opacity: 0;
+  transform: translateY(150px);
   min-height: initial;
 
   img {
@@ -255,19 +272,12 @@
   }
 }
 
-
-
 .about-carousel-section.full-height {
   position: absolute;
   left: 0;
   top: 105vh;
   width: 100%;
   z-index: -1;
-  //padding-right: 12px;
-
-  /*.scroll-btn svg {
-    transform: rotate(180deg);
-  } */
 
   &.transition-on {
     transition: top 0.7s ease-in;
@@ -279,9 +289,39 @@
   width: 100%;
   top: 0;
   left: 0;
-  //padding-right: 12px;
 
   &.transition-on {
     transition: top 0.7s ease-in;
   }
 }
+
+//body:not(.nojs) {
+  //gsap
+  .carousel-section {
+    .carousel-item .gsap-title {
+      transform: translateY(35%);
+      opacity: 0;
+    }
+
+    .carousel-item .gsap-text {
+      transform: translateX(50%);
+      opacity: 0;
+
+      &::before {
+        width: 0;
+        transition: 0.4s 1s ease-in;
+      }
+    }
+
+    .carousel-item .gsap-text.showBefore {
+      &::before {
+        width: 60px;
+        //transition: 0.4s 1s ease-in;
+      }
+    }
+
+    .carousel-item .gsap-btn {
+      opacity: 0;
+    }
+  }
+//}

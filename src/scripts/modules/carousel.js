@@ -1,4 +1,5 @@
 import bootstrap from  '../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
+import gsap from 'gsap';
 
 import { getHeaderHeight } from "../utils/functions";
 import { scrollIntoView, scrollBy } from "seamless-scroll-polyfill";
@@ -16,6 +17,7 @@ import { animateSection } from './carousel-modules/carouselAnimation.js';
 import { keyboardNavigation } from './carousel-modules/keyboardNavigation.js';
 import { onScrollBtnHandler } from './carousel-modules/scrollBtns.js';
 import { carouselOffSection, introSection } from './carousel-modules/carouselSections.js';
+import { introCarouselTransform, aboutCarouselTransform } from './carousel-modules/carouselTransformAnimation.js';
 
 const aboutCarousel = document.querySelector('#aboutCarousel');
 let aboutCarouselInner = null;
@@ -82,6 +84,7 @@ if(aboutCarousel) {
         direction: evt.direction
       }
     })
+
     // отмена смены слайда и скролл в другой блок
     if(evt.direction === 'right' && evt.from === 0) {
       evt.preventDefault();
@@ -109,11 +112,13 @@ if(aboutCarousel) {
     }
   }
   aboutCarousel.addEventListener('slide.bs.carousel', onSlideChangeHandler)
+  document.querySelector('.about-carousel-section').classList.add('animation-ready');
 
   aboutCarousel.addEventListener('slid.bs.carousel', (evt) => {
     if(evt.direction === 'left' && evt.to === carouselItems.length - 1) {
       hideFakeScroll();
     }
+    introCarouselTransform(aboutCarousel);
   })
 }
 
@@ -177,4 +182,46 @@ if(introCarousel) {
   }
 
   introCarousel.addEventListener('slide.bs.carousel', onSlideChangeHandler)
+
+  // gsap initial for first slide
+  document.querySelector('.intro-carousel-section').classList.add('animation-ready');
+  let title = introCarousel.querySelector('.carousel-item.active .gsap-title');
+  let par = introCarousel.querySelector('.carousel-item.active .gsap-text');
+  let btn = introCarousel.querySelector('.carousel-item.active .gsap-btn');
+  let scrollBtn = introCarousel.querySelector('.intro-carousel-section .gsap-scroll-btn');
+  let cards = introCarousel.querySelectorAll('.carousel-item.active .slide-side-card');
+
+  setTimeout(() => {
+    if(title) {
+      gsap.to(title, {duration: 1.2, opacity: 1, ease: "ease-in"});
+      gsap.to(title, {duration: .8, y: 0, ease: "ease-in"});
+    }
+
+    if(par) {
+      gsap.to(par, {duration: 1.2, delay: 0.2, opacity: 1, ease: "ease-in"});
+      gsap.to(par, {duration: .8, delay: 0.2, x: 0, ease: "ease-in"});
+      par.classList.add('showBefore');
+    }
+
+    if(btn) {
+      gsap.to(btn, {duration: 1, delay: 0.2, opacity: 1, ease: "ease-in"});
+    }
+
+    gsap.to(scrollBtn, {duration: 0.5, delay: 1.5, height: 120, ease: "ease-in"});
+    if(cards) {
+      cards.forEach((card,i) => {
+        gsap.to(card,{
+          duration: 0.8,
+          y: 0,
+          opacity: 1,
+          delay: 1 + (0.3 * i),
+          ease: 'ease-in'
+        })
+      })
+    }
+  }, 300);
+
+  introCarousel.addEventListener('slid.bs.carousel', (evt) => {
+    introCarouselTransform(introCarousel);
+  });
 }

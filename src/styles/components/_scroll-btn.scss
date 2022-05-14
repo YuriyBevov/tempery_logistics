@@ -6,6 +6,10 @@
   height: 120px;
   background-color: $purple;
 
+  &.gsap-scroll-btn {
+    height: 0;
+  }
+
   svg {
     fill: white;
   }

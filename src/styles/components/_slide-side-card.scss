@@ -1,5 +1,9 @@
 .slide-side-card {
   max-width: 378px;
+  //gsap
+  transform: translateY(300px);
+  opacity: 0;
+  //gsap
 
   @include media-breakpoint-down(md) {
     width: 100%;

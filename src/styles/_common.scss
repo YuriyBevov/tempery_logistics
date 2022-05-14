@@ -141,6 +141,27 @@ table {
   }
 }
 
+.section-animated-title {
+  &::before {
+    display: none;
+  }
+
+  span {
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    content: '';
+    width: 60px;
+    height: 5px;
+
+    background-color: $purple;
+
+    @include media-breakpoint-down(xxl) {
+      display: none;
+    }
+  }
+}
+
 .main-logo {
   @include media-breakpoint-down(md) {
     width: 199px;

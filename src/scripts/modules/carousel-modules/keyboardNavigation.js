@@ -4,7 +4,6 @@ import { isCarouselOffSectionIntersected } from './observeCarouselOffSection.js'
 import { aboutSection, introSection, carouselOffSection } from './carouselSections.js';
 import { preventAction, setPreventState } from './debounce.js';
 import { scrollIntoView } from "seamless-scroll-polyfill";
-//import { refreshPageState } from './refreshPageState.js';
 
 const footer = document.querySelector('footer');
 
@@ -68,8 +67,7 @@ function keyboardNavigation(carouselNode, carouselInstance) {
     }
 
     if(evt.code === 'PageUp' && !preventAction) {
-      if(activeSlider === aboutSection && !isScrollActive /*&& !isCarouselOffSectionIntersected*//* && window.scrollY < 500*/) {
-        //showFakeScroll();
+      if(activeSlider === aboutSection && !isScrollActive) {
         animateSection('intro');
       }
     }
@@ -88,7 +86,6 @@ function keyboardNavigation(carouselNode, carouselInstance) {
     if(evt.code === 'Home' && !preventAction) {
       showFakeScroll();
       if(activeSlider === aboutSection) {
-        console.log('active intro')
         animateSection('intro');
       }
     }
@@ -104,7 +101,6 @@ function keyboardNavigation(carouselNode, carouselInstance) {
   window.addEventListener('scroll', () => {
     if(scrollY === 0) {
       showFakeScroll();
-      console.log('scroll')
     }
   })
 
