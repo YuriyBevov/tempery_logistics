@@ -1,4 +1,5 @@
 import gsap from 'gsap';
+import Parallax from 'parallax-js'
 
 function carouselTransform(carousel) {
   let title = carousel.querySelector('.carousel-item.active .gsap-title');
