@@ -13,7 +13,21 @@ $transition-rule: all 0.3s ease-in-out;
     background-color: $white;
     transition: $transition-rule;
 
-    .search-field svg {
+    .search-form {
+      input[type="text"] {
+        color: $lightblack;
+        border-color: $purple;
+
+        &::placeholder {
+          color: $lightblack;
+        }
+      }
+      button[type="submit"] svg {
+        fill: $purple;
+      }
+    }
+
+    .search-closer svg {
       fill: $purple;
     }
 }
@@ -35,8 +49,25 @@ $transition-rule: all 0.3s ease-in-out;
     color: $white;
   }
 
-  .search-field svg {
+  .search-opener svg {
     fill: $white;
+  }
+
+  .search-closer svg {
+    fill: $white;
+  }
+
+  .main-nav .nav-link::before {
+    background-color: $white;
+  }
+
+  .lang-select {
+    border-color: $white;
+    background-image: url(../assets/img/icon-arr-down-white.png);
+  }
+
+  .navbar-dropdown-toggle::after {
+    background-image: url(../assets/img/icon-arr-down-white.png);
   }
 }
 

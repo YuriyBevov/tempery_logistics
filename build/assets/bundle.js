@@ -331,7 +331,7 @@ function carouselTransform(carousel) {
     });
     setTimeout(function () {
       var scene = document.getElementById('book-scene');
-      new (parallax_js__WEBPACK_IMPORTED_MODULE_0___default())(scene);
+      var bookParallax = new (parallax_js__WEBPACK_IMPORTED_MODULE_0___default())(scene);
     }, 1000);
   }
 
@@ -358,7 +358,7 @@ function carouselTransform(carousel) {
     });
     setTimeout(function () {
       var scene = document.getElementById('note-scene');
-      new (parallax_js__WEBPACK_IMPORTED_MODULE_0___default())(scene);
+      var noteParallax = new (parallax_js__WEBPACK_IMPORTED_MODULE_0___default())(scene);
     }, 1500);
   }
 
@@ -1364,17 +1364,25 @@ var onClickCloseSearchField = function onClickCloseSearchField() {
     y: -300,
     ease: 'ease-in'
   });
-  gsap__WEBPACK_IMPORTED_MODULE_0__["default"].to(searchOpener, {
-    duration: 0.7,
-    scale: 1,
-    delay: 0.2,
+  gsap__WEBPACK_IMPORTED_MODULE_0__["default"].to(searchCloser, {
+    duration: 0.5,
+    scale: 0,
     ease: 'ease-in'
   });
+  setTimeout(function () {
+    searchCloser.classList.add('hidden');
+    gsap__WEBPACK_IMPORTED_MODULE_0__["default"].to(searchOpener, {
+      duration: 0.7,
+      scale: 1,
+      delay: 0.2,
+      ease: 'ease-in'
+    });
+  }, 500);
   navItems.forEach(function (item, i) {
     gsap__WEBPACK_IMPORTED_MODULE_0__["default"].to(item, {
       duration: 0.4,
       scale: 1,
-      delay: 0.1,
+      delay: 0.5,
       ease: "linear"
     });
   });
@@ -1389,9 +1397,19 @@ var onClickOpenSearchField = function onClickOpenSearchField() {
     delay: 0.2,
     ease: 'ease-in'
   });
+  setTimeout(function () {
+    searchOpener.classList.add('hidden');
+    searchCloser.classList.remove('hidden');
+    gsap__WEBPACK_IMPORTED_MODULE_0__["default"].to(searchCloser, {
+      duration: 0.5,
+      scale: 1,
+      delay: 0.2,
+      ease: 'ease-in'
+    });
+  }, 800);
   navItems.forEach(function (item, i) {
     gsap__WEBPACK_IMPORTED_MODULE_0__["default"].to(item, {
-      duration: 0.5,
+      duration: 0.4,
       scale: 0,
       delay: 0.2 + 0.05 * i,
       ease: "ease-in"

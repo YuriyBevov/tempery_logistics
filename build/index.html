@@ -33,15 +33,14 @@
                 </ul>
               </li>
             </ul>
-            <div class="search-form hidden">
+            <div class="search-form">
               <form action="#">
                 <input class="form-control me-2" type="text" placeholder="Start your search..." aria-label="Search">
-                <button class="btn btn-outline-success bg-purple" type="submit">
+                <button class="btn btn-outline-success" type="submit">
                   <svg width="23" height="22">
                     <use xlink:href="./assets/svg-sprite.svg#icon-search"></use>
                   </svg>
                 </button>
-                <button class="btn btn-close btn-outline-success bg-purple search-closer" type="reset"></button>
               </form>
             </div>
           </nav>
@@ -49,6 +48,11 @@
             <button class="search-opener btn btn-outline-success me-3 d-none d-xl-flex" type="button">
               <svg width="23" height="22">
                 <use xlink:href="./assets/svg-sprite.svg#icon-search"></use>
+              </svg>
+            </button>
+            <button class="search-closer hidden btn me-3" type="button">
+              <svg width="22" height="22">
+                <use xlink:href="./assets/svg-sprite.svg#icon-close"></use>
               </svg>
             </button>
                 <select class="lang-select me-4 d-none d-md-flex form-select">

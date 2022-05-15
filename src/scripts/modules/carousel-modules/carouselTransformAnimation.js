@@ -81,8 +81,8 @@ function carouselTransform(carousel) {
     gsap.to(book, {duration: 0.6, delay: 0.2, y: 0, opacity: 1, ease: "ease-in"});
 
     setTimeout(() => {
-      var scene = document.getElementById('book-scene');
-      new Parallax(scene);
+      const scene = document.getElementById('book-scene');
+      let bookParallax = new Parallax(scene);
     }, 1000);
   }
 
@@ -98,8 +98,8 @@ function carouselTransform(carousel) {
     gsap.to(note, {duration: 0.6, delay: 0.2, y: 0, opacity: 1, ease: "ease-in"});
 
     setTimeout(() => {
-      var scene = document.getElementById('note-scene');
-      new Parallax(scene);
+      const scene = document.getElementById('note-scene');
+      let noteParallax = new Parallax(scene);
     }, 1500);
   }
 
