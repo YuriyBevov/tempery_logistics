@@ -14934,10 +14934,10 @@ header.sticky {
 .about-slide-bg-box .decoration-wrapper .pencil-img {
   position: absolute;
   top: 112px !important;
-  left: 58% !important;
-  -webkit-transform: translateX(100vh);
-  -ms-transform: translateX(100vh);
-  transform: translateX(100vh);
+  left: 60% !important;
+  -webkit-transform: translateY(100vh);
+  -ms-transform: translateY(100vh);
+  transform: translateY(100vh);
   opacity: 0;
 }
 @media (max-width: 1199.98px) {

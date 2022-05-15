@@ -353,9 +353,9 @@
     .pencil-img {
       position: absolute;
       top: 112px !important;
-      left: 58% !important;
+      left: 60% !important;
       //gsap
-      transform: translateX(100vh);
+      transform: translateY(100vh);
       opacity: 0;
       //gsap
       @include media-breakpoint-down(xl) {

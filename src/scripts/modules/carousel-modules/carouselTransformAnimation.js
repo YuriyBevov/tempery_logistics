@@ -105,7 +105,7 @@ function carouselTransform(carousel) {
   let pencil = carousel.querySelector('.carousel-item.active .about-slide-bg-box .pencil-img');
 
   if(pencil) {
-    gsap.to(pencil, {duration: 0.7, delay: 0.7, x: 0, opacity: 1, ease: "ease-in"});
+    gsap.to(pencil, {duration: 0.7, delay: 0.7, y: 0, opacity: 1, ease: "ease-in"});
   }
 }
 

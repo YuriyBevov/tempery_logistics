@@ -365,7 +365,7 @@ function carouselTransform(carousel) {
     gsap__WEBPACK_IMPORTED_MODULE_0__["default"].to(pencil, {
       duration: 0.7,
       delay: 0.7,
-      x: 0,
+      y: 0,
       opacity: 1,
       ease: "ease-in"
     });
