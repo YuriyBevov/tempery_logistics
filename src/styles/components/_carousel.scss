@@ -80,10 +80,12 @@
   }
 
   &-item {
+    position: relative;
     padding-top: 115px;
     padding-bottom: 125px;
     background-size: cover;
     background-position: center;
+    z-index: 1;
 
     @include media-breakpoint-down(xl) {
       padding-bottom: 50px;
@@ -158,13 +160,13 @@
 
     &-purple {
       .indicator-inner {
-        background-color: #664599;
+        background-color: $purple;
         opacity: 0.5;
       }
     }
 
     &-purple.active {
-      border-color: #664599;
+      border-color: $purple;
 
       .indicator-inner {
         opacity: 1;
@@ -232,22 +234,135 @@
     z-index: 2;
   }
 
-  picture {
+  overflow: hidden;
+}
+
+.about-slide-bg-box {
+  position: relative;
+
+  //фиолетовый квадрат
+  &::before {
+    position: absolute;
+    width: 50vw;
+    height: 150vh;
+    top: -33vh;
+    left: 0;
+    content: '';
+
+    background-color: $purple;
+
+    @include media-breakpoint-down(xl) {
+      width: 100vw;
+      height: 400px;
+      top: initial;
+      bottom: -100px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      height: 350px;
+    }
+  }
+  //лого
+  &::after {
+    position: absolute;
+    top: 25%;
+    left: 13%;
+    content: '';
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    max-height: 494px;
+    background-image: url('../assets/img/logo-symbol.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    @include media-breakpoint-down(xxl) {
+      max-width: 260px;
+      max-height: 323px;
+      left: 7%;
+    }
+
+    @include media-breakpoint-down(xl) {
+      display: none;
+    }
+  }
+
+  .decoration-wrapper {
     position: absolute;
     top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
+    right: 50%;
+    z-index: 5;
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center right;
+    &.note-decoration-wrapper {
+      right: 40%;
 
       @include media-breakpoint-down(xl) {
-        object-position: center;
+        bottom: -30px;
+      }
+    }
+
+    @include media-breakpoint-down(xl) {
+      top: initial;
+      bottom: -100px;
+      right: 50%;
+      transform: translateX(50%) !important;
+      width: 100%;
+      max-width: 500px;
+      max-height: 600px;
+    }
+
+    .book-img {
+      //gsap
+      transform: translateY(100vh);
+      opacity: 0;
+      //gsap
+      @include media-breakpoint-down(xl) {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .pen-img {
+      position: absolute;
+      top: 10px !important;
+      left: 35% !important;
+      //gsap
+      opacity: 0;
+      //gsap
+      @include media-breakpoint-down(xl) {
+        top: 25px;
+        left: 40%;
+        width: 135px;
+        height: 207px;
+      }
+    }
+
+    .note-img {
+      //gsap
+      transform: translateY(100vh);
+      opacity: 0;
+      //gsap
+      @include media-breakpoint-down(xl) {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .pencil-img {
+      position: absolute;
+      top: 112px !important;
+      left: 58% !important;
+      //gsap
+      transform: translateX(100vh);
+      opacity: 0;
+      //gsap
+      @include media-breakpoint-down(xl) {
+        //top: 25px;
+        //left: 40%;
+        width: 200px;
+        height: 160px;
       }
     }
   }

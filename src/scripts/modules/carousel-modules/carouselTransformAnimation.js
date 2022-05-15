@@ -1,6 +1,6 @@
 import gsap from 'gsap';
 
-function introCarouselTransform(carousel) {
+function carouselTransform(carousel) {
   let title = carousel.querySelector('.carousel-item.active .gsap-title');
   if(title) {
     gsap.to(title, {duration: 1.2, opacity: 1, ease: "ease-in"});
@@ -73,10 +73,40 @@ function introCarouselTransform(carousel) {
       });
     })
   }
+
+  let book = carousel.querySelector('.carousel-item.active .about-slide-bg-box .book-img');
+
+  if(book) {
+    gsap.to(book, {duration: 0.6, delay: 0.2, y: 0, opacity: 1, ease: "ease-in"});
+
+    setTimeout(() => {
+      var scene = document.getElementById('book-scene');
+      new Parallax(scene);
+    }, 1000);
+  }
+
+  let pen = carousel.querySelector('.carousel-item.active .about-slide-bg-box .pen-img');
+
+  if(pen) {
+    gsap.to(pen, {duration: 1, delay: 0.7, opacity: 1, ease: "ease-in"});
+  }
+
+  let note = carousel.querySelector('.carousel-item.active .about-slide-bg-box .note-img');
+
+  if(note) {
+    gsap.to(note, {duration: 0.6, delay: 0.2, y: 0, opacity: 1, ease: "ease-in"});
+
+    setTimeout(() => {
+      var scene = document.getElementById('note-scene');
+      new Parallax(scene);
+    }, 1500);
+  }
+
+  let pencil = carousel.querySelector('.carousel-item.active .about-slide-bg-box .pencil-img');
+
+  if(pencil) {
+    gsap.to(pencil, {duration: 0.7, delay: 0.7, x: 0, opacity: 1, ease: "ease-in"});
+  }
 }
 
-function aboutCarouselTransform() {
-
-}
-
-export { introCarouselTransform, aboutCarouselTransform }
+export { carouselTransform }

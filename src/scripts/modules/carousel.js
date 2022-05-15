@@ -11,13 +11,13 @@ import { setControlsTitle } from './carousel-modules/setControlsTitle.js';
 import { onSwipeSlideCarousel } from './carousel-modules/swipe.js';
 import { isCarouselOffSectionIntersected } from './carousel-modules/observeCarouselOffSection.js';
 import { showFakeScroll, hideFakeScroll, isScrollActive } from './carousel-modules/fakeScroll.js';
-import { isFullScreenMode/*, calcScreenMode*/ } from './carousel-modules/calcScreenMode.js';
+import { isFullScreenMode } from './carousel-modules/calcScreenMode.js';
 import { onScrollSlideCarousel } from './carousel-modules/onScrollSlideCarousel.js';
 import { animateSection } from './carousel-modules/carouselAnimation.js';
 import { keyboardNavigation } from './carousel-modules/keyboardNavigation.js';
 import { onScrollBtnHandler } from './carousel-modules/scrollBtns.js';
-import { carouselOffSection, introSection } from './carousel-modules/carouselSections.js';
-import { introCarouselTransform, aboutCarouselTransform } from './carousel-modules/carouselTransformAnimation.js';
+import { carouselOffSection } from './carousel-modules/carouselSections.js';
+import { carouselTransform } from './carousel-modules/carouselTransformAnimation.js';
 
 const aboutCarousel = document.querySelector('#aboutCarousel');
 let aboutCarouselInner = null;
@@ -118,7 +118,7 @@ if(aboutCarousel) {
     if(evt.direction === 'left' && evt.to === carouselItems.length - 1) {
       hideFakeScroll();
     }
-    introCarouselTransform(aboutCarousel);
+    carouselTransform(aboutCarousel);
   })
 }
 
@@ -221,7 +221,7 @@ if(introCarousel) {
     }
   }, 300);
 
-  introCarousel.addEventListener('slid.bs.carousel', (evt) => {
-    introCarouselTransform(introCarousel);
+  introCarousel.addEventListener('slid.bs.carousel', () => {
+    carouselTransform(introCarousel);
   });
 }

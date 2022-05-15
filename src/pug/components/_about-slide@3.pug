@@ -1,9 +1,13 @@
 include ../mixins/_main-about-slide-view
 
 .carousel-item.h-100.about-slide-item.slide-bg(data-title="Reporting Temperi Logistics Ltd")
-  picture
-    source(srcset="./assets/img/about_3-tablet@1x.jpg" media="(max-width: 1200px)")
-    img(src="./assets/img/about_3@1x.jpg" alt="clipboard-bg")
+  //picture
+    source(srcset="./assets/img/about_1-tablet@1x.webp 1x, ./assets/img/about_1-tablet@2x.webp 2x" media="(max-width: 1200px)")
+    source(srcset="./assets/img/about_1-tablet@1x.png 1x, ./assets/img/about_1-tablet@2x.png 2x" media="(max-width: 1200px)")
+
+    source(type="image/webp" srcset="./assets/img/about_1@1x.webp 1x, ./assets/img/about_1@2x.webp 2x")
+    img(src="./assets/img/about_1@1x.jpg" srcset="./assets/img/about_1@1x.jpg 1x, ./assets/img/about_1@2x.jpg 2x" alt="slide-bg")
+
   .container.h-100
     .row.h-100
       .col-12.col-xl-6.mb-auto.my-xl-auto.d-flex.flex-column
@@ -14,5 +18,10 @@ include ../mixins/_main-about-slide-view
           cls: 'border-purple bg-purple text-white fit text-uppercase  mx-auto mx-xl-0 gsap-btn',
           url: 'reporting.html'
         })
+
+      .col-12.col-xl-3.bg-lightgrey.ms-auto.about-slide-bg-box
+        .decoration-wrapper.note-decoration-wrapper#note-scene
+          img(data-depth="0.2" src="./assets/img/note@1x.png" srcset="./assets/img/note@1x.png 1x, ./assets/img/note@2x.png 2x" alt="Note decoration" width="600" height="712").note-img
+          img(data-depth="0.6" src="./assets/img/pencil@1x.png" srcset="./assets/img/pencil@1x.png 1x, ./assets/img/pencil@2x.png 2x" alt="Pencil decoration" width="255" height="211").pencil-img
 
 

@@ -1,10 +1,6 @@
 include ../mixins/_main-about-slide-view
 
 .carousel-item.h-100.about-slide-item(data-title="Organization structure")
-  picture
-    source(srcset="./assets/img/about_1-1-tablet@1x.png" media="(max-width: 1200px)")
-    img(src="./assets/img/about_1-1@1x.png" alt="book-bg")
-
   .container.h-100
     .row.h-100
       .col-12.col-xl-6.mb-auto.my-xl-auto.d-flex.flex-column
@@ -15,3 +11,8 @@ include ../mixins/_main-about-slide-view
           cls: 'border-purple bg-purple text-white fit text-uppercase mx-auto mx-xl-0 gsap-btn',
           url: 'about.html'
         })
+
+      .col-12.col-xl-3.bg-lightgrey.ms-auto.about-slide-bg-box
+        .decoration-wrapper#book-scene
+          img(data-depth="0.2" src="./assets/img/book@1x.png" srcset="./assets/img/book@1x.png 1x, ./assets/img/book@2x.png 2x" alt="Book decoration" width="600" height="841").book-img
+          img(data-depth="0.6" src="./assets/img/pen@1x.png" srcset="./assets/img/pen@1x.png 1x, ./assets/img/pen@2x.png 2x" alt="Pen decoration" width="180" height="275").pen-img

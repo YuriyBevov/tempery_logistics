@@ -8,6 +8,7 @@
     <meta name="keywords" content=""/>
     <title></title>
     <link rel="stylesheet" href="./assets/main.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
     <script defer="defer" src="./assets/bundle.js"></script>
   </head>
   <body class="nojs">
@@ -351,25 +352,33 @@
               </div>
             </div>
             <div class="carousel-item h-100 about-slide-item" data-title="Organization structure">
-              <picture>
-                <source srcset="./assets/img/about_1-1-tablet@1x.png" media="(max-width: 1200px)"><img src="./assets/img/about_1-1@1x.png" alt="book-bg">
-              </picture>
               <div class="container h-100">
                 <div class="row h-100">
                   <div class="col-12 col-xl-6 mb-auto my-xl-auto d-flex flex-column">
                     <h2 class="mb-4 text-center text-xl-start gsap-title">Organization structure Temperi Logistics Ltd</h2><a class="border-purple bg-purple text-white fit text-uppercase mx-auto mx-xl-0 gsap-btn main-btn btn btn-outline-purple rounded-0 px-4 py-3 text-uppercase" href="about.html">more info</a>
                   </div>
+                  <div class="col-12 col-xl-3 bg-lightgrey ms-auto about-slide-bg-box">
+                    <div class="decoration-wrapper" id="book-scene"><img class="book-img" data-depth="0.2" src="./assets/img/book@1x.png" srcset="./assets/img/book@1x.png 1x, ./assets/img/book@2x.png 2x" alt="Book decoration" width="600" height="841"><img class="pen-img" data-depth="0.6" src="./assets/img/pen@1x.png" srcset="./assets/img/pen@1x.png 1x, ./assets/img/pen@2x.png 2x" alt="Pen decoration" width="180" height="275"></div>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="carousel-item h-100 about-slide-item slide-bg" data-title="Reporting Temperi Logistics Ltd">
-              <picture>
-                <source srcset="./assets/img/about_3-tablet@1x.jpg" media="(max-width: 1200px)"><img src="./assets/img/about_3@1x.jpg" alt="clipboard-bg">
-              </picture>
+              <!--picture
+              source(srcset="./assets/img/about_1-tablet@1x.webp 1x, ./assets/img/about_1-tablet@2x.webp 2x" media="(max-width: 1200px)")
+              source(srcset="./assets/img/about_1-tablet@1x.png 1x, ./assets/img/about_1-tablet@2x.png 2x" media="(max-width: 1200px)")
+              
+              source(type="image/webp" srcset="./assets/img/about_1@1x.webp 1x, ./assets/img/about_1@2x.webp 2x")
+              img(src="./assets/img/about_1@1x.jpg" srcset="./assets/img/about_1@1x.jpg 1x, ./assets/img/about_1@2x.jpg 2x" alt="slide-bg")
+              
+              -->
               <div class="container h-100">
                 <div class="row h-100">
                   <div class="col-12 col-xl-6 mb-auto my-xl-auto d-flex flex-column">
                     <h2 class="mb-4 text-center text-xl-start gsap-title">Reporting Temperi Logistics Ltd</h2><a class="border-purple bg-purple text-white fit text-uppercase  mx-auto mx-xl-0 gsap-btn main-btn btn btn-outline-purple rounded-0 px-4 py-3 text-uppercase" href="reporting.html">more info</a>
+                  </div>
+                  <div class="col-12 col-xl-3 bg-lightgrey ms-auto about-slide-bg-box">
+                    <div class="decoration-wrapper note-decoration-wrapper" id="note-scene"><img class="note-img" data-depth="0.2" src="./assets/img/note@1x.png" srcset="./assets/img/note@1x.png 1x, ./assets/img/note@2x.png 2x" alt="Note decoration" width="600" height="712"><img class="pencil-img" data-depth="0.6" src="./assets/img/pencil@1x.png" srcset="./assets/img/pencil@1x.png 1x, ./assets/img/pencil@2x.png 2x" alt="Pencil decoration" width="255" height="211"></div>
                   </div>
                 </div>
               </div>
