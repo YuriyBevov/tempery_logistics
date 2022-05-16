@@ -209,7 +209,7 @@ if(introCarousel) {
       gsap.to(btn, {duration: 1, delay: 0.2, opacity: 1, ease: "ease-in"});
     }
 
-    gsap.to(scrollBtn, {duration: 0.5, delay: 1.5, height: 120, ease: "ease-in"});
+    gsap.to(scrollBtn, {duration: 0.5, delay: 1.5, height: 100, ease: "ease-in"});
     if(cards) {
       cards.forEach((card,i) => {
         gsap.to(card,{

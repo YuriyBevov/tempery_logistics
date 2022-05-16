@@ -1025,17 +1025,9 @@ function onSwipeSlideCarousel(carouselNode, carouselInstance) {
     var posX = evt.screenX;
 
     if (entryPosX - posX > 75 && !_observeCarouselOffSection_js__WEBPACK_IMPORTED_MODULE_0__.isCarouselOffSectionIntersected && !_debounce_js__WEBPACK_IMPORTED_MODULE_1__.preventAction) {
-      (0,_debounce_js__WEBPACK_IMPORTED_MODULE_1__.setPreventState)(true);
       carouselInstance.next();
-      setTimeout(function () {
-        (0,_debounce_js__WEBPACK_IMPORTED_MODULE_1__.setPreventState)(false);
-      }, 1500);
     } else if (posX - entryPosX > 75 && !_observeCarouselOffSection_js__WEBPACK_IMPORTED_MODULE_0__.isCarouselOffSectionIntersected && !_debounce_js__WEBPACK_IMPORTED_MODULE_1__.preventAction) {
-      (0,_debounce_js__WEBPACK_IMPORTED_MODULE_1__.setPreventState)(true);
       carouselInstance.prev();
-      setTimeout(function () {
-        (0,_debounce_js__WEBPACK_IMPORTED_MODULE_1__.setPreventState)(false);
-      }, 1500);
     }
 
     window.addEventListener('mouseup', onMouseUpRemoveListeners);
@@ -1317,7 +1309,7 @@ if (introCarousel) {
     gsap__WEBPACK_IMPORTED_MODULE_17__["default"].to(scrollBtn, {
       duration: 0.5,
       delay: 1.5,
-      height: 120,
+      height: 100,
       ease: "ease-in"
     });
 

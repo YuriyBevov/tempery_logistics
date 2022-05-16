@@ -69,13 +69,14 @@
 .carousel {
   &-inner {
     height: 100vh;
-    min-height: 934px;
+    min-height: 860px;
+    //min-height: 934px;
     @include media-breakpoint-down(lg) {
-      min-height: 874px;
+      //min-height: 874px;
     }
 
     @include media-breakpoint-down(lg) {
-      min-height: 847px;
+      //min-height: 847px;
     }
   }
 
