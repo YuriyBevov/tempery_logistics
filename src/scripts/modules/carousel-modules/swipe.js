@@ -1,5 +1,5 @@
 import { isCarouselOffSectionIntersected } from './observeCarouselOffSection.js';
-
+import { preventAction, setPreventState } from './debounce.js';
 // смена слайдов по свайпу
 export function onSwipeSlideCarousel(carouselNode, carouselInstance) {
   let entryPosX = null;
@@ -12,10 +12,18 @@ export function onSwipeSlideCarousel(carouselNode, carouselInstance) {
     evt.preventDefault();
     let posX = evt.screenX;
 
-    if(entryPosX - posX > 75 && !isCarouselOffSectionIntersected) {
+    if(entryPosX - posX > 75 && !isCarouselOffSectionIntersected && !preventAction) {
+      setPreventState(true);
       carouselInstance.next();
-    } else if (posX - entryPosX > 75 && !isCarouselOffSectionIntersected){
+      setTimeout(() => {
+        setPreventState(false);
+      }, 1500);
+    } else if (posX - entryPosX > 75 && !isCarouselOffSectionIntersected && !preventAction){
+      setPreventState(true);
       carouselInstance.prev();
+      setTimeout(() => {
+        setPreventState(false);
+      }, 1500);
     }
 
     window.addEventListener('mouseup', onMouseUpRemoveListeners);

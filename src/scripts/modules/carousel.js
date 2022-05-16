@@ -17,7 +17,7 @@ import { animateSection } from './carousel-modules/carouselAnimation.js';
 import { keyboardNavigation } from './carousel-modules/keyboardNavigation.js';
 import { onScrollBtnHandler } from './carousel-modules/scrollBtns.js';
 import { carouselOffSection } from './carousel-modules/carouselSections.js';
-import { carouselTransform } from './carousel-modules/carouselTransformAnimation.js';
+import { carouselTransform, beforeSlideChange } from './carousel-modules/carouselTransformAnimation.js';
 
 const aboutCarousel = document.querySelector('#aboutCarousel');
 let aboutCarouselInner = null;
@@ -110,6 +110,8 @@ if(aboutCarousel) {
       const coordY = carouselOffSection.offsetTop - window.scrollY - getHeaderHeight();
       scrollBy(window, { behavior: "smooth", top: coordY });
     }
+
+    beforeSlideChange(aboutCarousel);
   }
   aboutCarousel.addEventListener('slide.bs.carousel', onSlideChangeHandler)
   document.querySelector('.about-carousel-section').classList.add('animation-ready');

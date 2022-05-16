@@ -14,14 +14,17 @@ $transition-rule: all 0.3s ease-in-out;
     transition: $transition-rule;
 
     .search-form {
+      .form-border {
+        background-color: $purple;
+      }
       input[type="text"] {
         color: $lightblack;
-        border-color: $purple;
 
         &::placeholder {
           color: $lightblack;
         }
       }
+
       button[type="submit"] svg {
         fill: $purple;
       }
@@ -30,6 +33,8 @@ $transition-rule: all 0.3s ease-in-out;
     .search-closer svg {
       fill: $purple;
     }
+
+
 }
 
 .main-navbar-black-theme {

@@ -50,11 +50,24 @@
   left: 0;
   width: 100%;
   height: 100%;
-  transform: translateY(-300px);
+  opacity: 0;
+  transform: translateX(220px);
+  z-index: -1;
+  overflow: hidden;
 
   form {
     position: relative;
     height: inherit;
+
+    .form-border {
+      position: absolute;
+      bottom: 0;
+      left: 20px;
+      width: calc(100% - 20px);
+      height: 1px;
+      background-color: $white;
+      transform: translateX(100%);
+    }
 
     input[type="text"] {
       width: 100%;
@@ -64,7 +77,7 @@
       color: $white;
       border: 0;
       border-radius: 0;
-      border-bottom: 1px solid $white;
+      //border-bottom: 1px solid $white;
 
       &::placeholder {
         color: $white;

@@ -2,11 +2,21 @@ import gsap from 'gsap';
 
 const searchOpener = document.querySelector('.search-opener');
 const searchField = document.querySelector('.search-form');
+const formBorder = searchField.querySelector('.form-border');
+console.log(formBorder);
 const navItems = document.querySelectorAll('.main-nav .nav-item');
 const searchCloser = document.querySelector('.search-closer');
 
 const onClickCloseSearchField = () => {
   gsap.to(searchField, {duration: 1.2, y: -300, ease: 'ease-in'});
+  setTimeout(() => {
+    gsap.to(searchField, {duration: 0, y: 0, x: 220, opacity: 0, ease: 'ease-in'});
+    searchField.style.zIndex = '-1';
+    gsap.to(formBorder, {duration: 0, delay: 0, x: '100%', ease: 'ease-in'});
+  }, 1250);
+
+
+
 
   gsap.to(searchCloser, {duration: 0.5, scale: 0, ease: 'ease-in'});
 
@@ -46,8 +56,9 @@ const onClickOpenSearchField = () => {
       ease: "ease-in"
     });
   })
-
-  gsap.to(searchField, {duration: 0.5, y: 0, delay: 0.8, ease: 'ease-in'});
+  searchField.style.zIndex = '1';
+  gsap.to(searchField, {duration: 0.5, x: 0, opacity: 1, delay: 0.8, ease: 'ease-in'});
+  gsap.to(formBorder, {duration: 0.5, delay: 1, x: 0, ease: 'ease-in'});
 
   searchOpener.removeEventListener('click', onClickOpenSearchField);
   searchCloser.addEventListener('click', onClickCloseSearchField);

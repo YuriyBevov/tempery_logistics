@@ -1,5 +1,7 @@
 import gsap from 'gsap';
 import Parallax from 'parallax-js'
+let bookParallax = null;
+let noteParallax = null;
 
 function carouselTransform(carousel) {
   let title = carousel.querySelector('.carousel-item.active .gsap-title');
@@ -82,14 +84,14 @@ function carouselTransform(carousel) {
 
     setTimeout(() => {
       const scene = document.getElementById('book-scene');
-      let bookParallax = new Parallax(scene);
-    }, 1000);
+      bookParallax = new Parallax(scene);
+    }, 1200);
   }
 
   let pen = carousel.querySelector('.carousel-item.active .about-slide-bg-box .pen-img');
 
   if(pen) {
-    gsap.to(pen, {duration: 1, delay: 0.7, opacity: 1, ease: "ease-in"});
+    gsap.to(pen, {duration: 0.4, delay: 0.8, opacity: 1, ease: "ease-in"});
   }
 
   let note = carousel.querySelector('.carousel-item.active .about-slide-bg-box .note-img');
@@ -99,15 +101,42 @@ function carouselTransform(carousel) {
 
     setTimeout(() => {
       const scene = document.getElementById('note-scene');
-      let noteParallax = new Parallax(scene);
-    }, 1500);
+      noteParallax = new Parallax(scene);
+    }, 1200);
   }
 
   let pencil = carousel.querySelector('.carousel-item.active .about-slide-bg-box .pencil-img');
 
   if(pencil) {
-    gsap.to(pencil, {duration: 0.7, delay: 0.7, y: 0, opacity: 1, ease: "ease-in"});
+    gsap.to(pencil, {duration: 0.8, delay: 0.4, y: 0, opacity: 1, ease: "ease-in"});
   }
 }
 
-export { carouselTransform }
+function beforeSlideChange(carousel) {
+  if(bookParallax) {
+    bookParallax.destroy();
+    bookParallax = null;
+
+    let book = carousel.querySelector('.about-slide-bg-box .book-img');
+    gsap.to(book, {duration: 0.4, delay: 0, y: 300, opacity: 1, ease: "ease-in"});
+    gsap.to(book, {duration: 0, delay: 0.4, y: 300, opacity: 0, ease: "ease-in"});
+
+    let pen = carousel.querySelector('.about-slide-bg-box .pen-img');
+    gsap.to(pen, {duration: 0.3, delay: 0.1, y: 300, opacity: 0, ease: "ease-in"});
+    gsap.to(pen, {duration: 0, delay: 0.4, y: 0, opacity: 0, ease: "ease-in"});
+  }
+
+  if(noteParallax) {
+    noteParallax.destroy();
+    noteParallax = null;
+
+    let note = carousel.querySelector('.about-slide-bg-box .note-img');
+    gsap.to(note, {duration: 0.4, delay: 0, y: 300, opacity: 1, ease: "ease-in"});
+    gsap.to(note, {duration: 0, delay: 0.4, y: 300, opacity: 0, ease: "ease-in"});
+
+    let pencil = carousel.querySelector('.about-slide-bg-box .pencil-img');
+    gsap.to(pencil, {duration: 0.3, delay: 0.1, y: 300, opacity: 0, ease: "ease-in"});
+  }
+}
+
+export { carouselTransform, beforeSlideChange }
