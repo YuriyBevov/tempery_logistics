@@ -386,14 +386,14 @@ function beforeSlideChange(carousel) {
     gsap__WEBPACK_IMPORTED_MODULE_1__["default"].to(book, {
       duration: 0.4,
       delay: 0,
-      y: 300,
-      opacity: 1,
+      y: '100vh',
+      opacity: 0.5,
       ease: "ease-in"
     });
     gsap__WEBPACK_IMPORTED_MODULE_1__["default"].to(book, {
       duration: 0,
       delay: 0.4,
-      y: 300,
+      y: '100vh',
       opacity: 0,
       ease: "ease-in"
     });
@@ -401,7 +401,7 @@ function beforeSlideChange(carousel) {
     gsap__WEBPACK_IMPORTED_MODULE_1__["default"].to(pen, {
       duration: 0.3,
       delay: 0.1,
-      y: 300,
+      y: '100vh',
       opacity: 0,
       ease: "ease-in"
     });
@@ -421,14 +421,14 @@ function beforeSlideChange(carousel) {
     gsap__WEBPACK_IMPORTED_MODULE_1__["default"].to(note, {
       duration: 0.4,
       delay: 0,
-      y: 300,
-      opacity: 1,
+      y: '100vh',
+      opacity: 0.5,
       ease: "ease-in"
     });
     gsap__WEBPACK_IMPORTED_MODULE_1__["default"].to(note, {
       duration: 0,
       delay: 0.4,
-      y: 300,
+      y: '100vh',
       opacity: 0,
       ease: "ease-in"
     });
@@ -436,7 +436,7 @@ function beforeSlideChange(carousel) {
     gsap__WEBPACK_IMPORTED_MODULE_1__["default"].to(pencil, {
       duration: 0.3,
       delay: 0.1,
-      y: 300,
+      y: '100vh',
       opacity: 0,
       ease: "ease-in"
     });

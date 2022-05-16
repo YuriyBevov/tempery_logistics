@@ -118,11 +118,11 @@ function beforeSlideChange(carousel) {
     bookParallax = null;
 
     let book = carousel.querySelector('.about-slide-bg-box .book-img');
-    gsap.to(book, {duration: 0.4, delay: 0, y: 300, opacity: 1, ease: "ease-in"});
-    gsap.to(book, {duration: 0, delay: 0.4, y: 300, opacity: 0, ease: "ease-in"});
+    gsap.to(book, {duration: 0.4, delay: 0, y: '100vh', opacity: 0.5, ease: "ease-in"});
+    gsap.to(book, {duration: 0, delay: 0.4, y: '100vh', opacity: 0, ease: "ease-in"});
 
     let pen = carousel.querySelector('.about-slide-bg-box .pen-img');
-    gsap.to(pen, {duration: 0.3, delay: 0.1, y: 300, opacity: 0, ease: "ease-in"});
+    gsap.to(pen, {duration: 0.3, delay: 0.1, y: '100vh', opacity: 0, ease: "ease-in"});
     gsap.to(pen, {duration: 0, delay: 0.4, y: 0, opacity: 0, ease: "ease-in"});
   }
 
@@ -131,11 +131,11 @@ function beforeSlideChange(carousel) {
     noteParallax = null;
 
     let note = carousel.querySelector('.about-slide-bg-box .note-img');
-    gsap.to(note, {duration: 0.4, delay: 0, y: 300, opacity: 1, ease: "ease-in"});
-    gsap.to(note, {duration: 0, delay: 0.4, y: 300, opacity: 0, ease: "ease-in"});
+    gsap.to(note, {duration: 0.4, delay: 0, y: '100vh', opacity: 0.5, ease: "ease-in"});
+    gsap.to(note, {duration: 0, delay: 0.4, y: '100vh', opacity: 0, ease: "ease-in"});
 
     let pencil = carousel.querySelector('.about-slide-bg-box .pencil-img');
-    gsap.to(pencil, {duration: 0.3, delay: 0.1, y: 300, opacity: 0, ease: "ease-in"});
+    gsap.to(pencil, {duration: 0.3, delay: 0.1, y: '100vh', opacity: 0, ease: "ease-in"});
   }
 }
 
