@@ -384,7 +384,7 @@ function beforeSlideChange(carousel) {
     bookParallax = null;
     var book = carousel.querySelector('.about-slide-bg-box .book-img');
     gsap__WEBPACK_IMPORTED_MODULE_1__["default"].to(book, {
-      duration: 0.4,
+      duration: 0.6,
       delay: 0,
       y: '100vh',
       opacity: 0.5,
@@ -419,7 +419,7 @@ function beforeSlideChange(carousel) {
     noteParallax = null;
     var note = carousel.querySelector('.about-slide-bg-box .note-img');
     gsap__WEBPACK_IMPORTED_MODULE_1__["default"].to(note, {
-      duration: 0.4,
+      duration: 0.6,
       delay: 0,
       y: '100vh',
       opacity: 0.5,
