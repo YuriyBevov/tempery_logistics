@@ -203,9 +203,9 @@ var isIntroSectionObserved,
     isCarouselOffSectionObserved = false;
 
 function setFixedIndicators() {
-  !introIndicators.classList.contains('js-fixed') ? introIndicators.classList.add('js-fixed') : null;
-
   if (!_calcScreenMode__WEBPACK_IMPORTED_MODULE_1__.isFullScreenMode && window.innerWidth < 992) {
+    console.log(_calcScreenMode__WEBPACK_IMPORTED_MODULE_1__.isFullScreenMode);
+    !introIndicators.classList.contains('js-fixed') ? introIndicators.classList.add('js-fixed') : null;
     var introSectionObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -250,8 +250,6 @@ function setFixedIndicators() {
   }
 
   function setFixed() {
-    console.log('set');
-
     if (isIntroSectionObserved && !isAboutSectionObserved) {
       !introIndicators.classList.contains('js-fixed') ? introIndicators.classList.add('js-fixed') : null;
       aboutIndicators.classList.contains('js-fixed') ? aboutIndicators.classList.remove('js-fixed') : null;
@@ -262,7 +260,7 @@ function setFixedIndicators() {
       !aboutIndicators.classList.contains('js-fixed') ? aboutIndicators.classList.add('js-fixed') : null;
     }
 
-    if (_carouselSections__WEBPACK_IMPORTED_MODULE_0__.aboutSection.getBoundingClientRect().y > 160 && aboutIndicators.classList.contains('js-fixed')) {
+    if (_carouselSections__WEBPACK_IMPORTED_MODULE_0__.aboutSection.getBoundingClientRect().y > window.innerHeight / 2 && aboutIndicators.classList.contains('js-fixed')) {
       aboutIndicators.classList.remove('js-fixed');
     }
 
