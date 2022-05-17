@@ -5,6 +5,7 @@ import { getHeaderHeight } from "../utils/functions";
 import { scrollIntoView, scrollBy } from "seamless-scroll-polyfill";
 
 //carousel-modules
+import { setFixedIndicators } from './carousel-modules/carouselFixedIndicators.js';
 import { preventAction } from './carousel-modules/debounce.js';
 import { fillControlsTitle } from './carousel-modules/fillControlsTitle.js';
 import { setControlsTitle } from './carousel-modules/setControlsTitle.js';
@@ -18,6 +19,8 @@ import { keyboardNavigation } from './carousel-modules/keyboardNavigation.js';
 import { onScrollBtnHandler } from './carousel-modules/scrollBtns.js';
 import { carouselOffSection } from './carousel-modules/carouselSections.js';
 import { carouselTransform, beforeSlideChange } from './carousel-modules/carouselTransformAnimation.js';
+
+setFixedIndicators();
 
 const aboutCarousel = document.querySelector('#aboutCarousel');
 let aboutCarouselInner = null;
