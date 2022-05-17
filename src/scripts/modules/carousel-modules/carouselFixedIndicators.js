@@ -7,8 +7,10 @@ const aboutIndicators = aboutSection.querySelector('.carousel-indicators');
 let isIntroSectionObserved, isAboutSectionObserved, isCarouselOffSectionObserved = false;
 
 function setFixedIndicators() {
-  if(!isFullScreenMode && window.innerWidth < 993) {
+  !introIndicators.classList.contains('js-fixed') ?
+  introIndicators.classList.add('js-fixed') :null;
 
+  if(!isFullScreenMode && window.innerWidth < 992) {
     let introSectionObserver = new IntersectionObserver(entries => {
       entries.forEach( entry => {
         if(entry.isIntersecting) {
@@ -50,10 +52,10 @@ function setFixedIndicators() {
     if(carouselOffSection) {
       carouselOffSectionObserver.observe(carouselOffSection);
     }
-    setFixed();
   }
 
   function setFixed() {
+    console.log('set')
     if(isIntroSectionObserved && !isAboutSectionObserved) {
       !introIndicators.classList.contains('js-fixed') ?
       introIndicators.classList.add('js-fixed') :null;

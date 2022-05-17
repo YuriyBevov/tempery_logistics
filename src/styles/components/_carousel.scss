@@ -175,6 +175,8 @@
     }
   }
 
+  //transition: all 0.3s ease-in;
+
   &.js-fixed {
     position: fixed;
     top: calc(100vh - 50px);

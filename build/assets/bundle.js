@@ -203,7 +203,9 @@ var isIntroSectionObserved,
     isCarouselOffSectionObserved = false;
 
 function setFixedIndicators() {
-  if (!_calcScreenMode__WEBPACK_IMPORTED_MODULE_1__.isFullScreenMode && window.innerWidth < 993) {
+  !introIndicators.classList.contains('js-fixed') ? introIndicators.classList.add('js-fixed') : null;
+
+  if (!_calcScreenMode__WEBPACK_IMPORTED_MODULE_1__.isFullScreenMode && window.innerWidth < 992) {
     var introSectionObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -245,11 +247,11 @@ function setFixedIndicators() {
     if (_carouselSections__WEBPACK_IMPORTED_MODULE_0__.carouselOffSection) {
       carouselOffSectionObserver.observe(_carouselSections__WEBPACK_IMPORTED_MODULE_0__.carouselOffSection);
     }
-
-    setFixed();
   }
 
   function setFixed() {
+    console.log('set');
+
     if (isIntroSectionObserved && !isAboutSectionObserved) {
       !introIndicators.classList.contains('js-fixed') ? introIndicators.classList.add('js-fixed') : null;
       aboutIndicators.classList.contains('js-fixed') ? aboutIndicators.classList.remove('js-fixed') : null;
@@ -1528,7 +1530,6 @@ __webpack_require__.r(__webpack_exports__);
 var searchOpener = document.querySelector('.search-opener');
 var searchField = document.querySelector('.search-form');
 var formBorder = searchField.querySelector('.form-border');
-console.log(formBorder);
 var navItems = document.querySelectorAll('.main-nav .nav-item');
 var searchCloser = document.querySelector('.search-closer');
 

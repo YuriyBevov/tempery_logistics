@@ -3,7 +3,6 @@ import gsap from 'gsap';
 const searchOpener = document.querySelector('.search-opener');
 const searchField = document.querySelector('.search-form');
 const formBorder = searchField.querySelector('.form-border');
-console.log(formBorder);
 const navItems = document.querySelectorAll('.main-nav .nav-item');
 const searchCloser = document.querySelector('.search-closer');
 
@@ -14,9 +13,6 @@ const onClickCloseSearchField = () => {
     searchField.style.zIndex = '-1';
     gsap.to(formBorder, {duration: 0, delay: 0, x: '100%', ease: 'ease-in'});
   }, 1250);
-
-
-
 
   gsap.to(searchCloser, {duration: 0.5, scale: 0, ease: 'ease-in'});
 
@@ -39,7 +35,6 @@ const onClickCloseSearchField = () => {
 }
 
 const onClickOpenSearchField = () => {
-
   gsap.to(searchOpener, {duration: 0.5, scale: 0, delay: 0.2, ease: 'ease-in'});
 
   setTimeout(() => {
