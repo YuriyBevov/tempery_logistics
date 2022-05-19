@@ -589,12 +589,16 @@ __webpack_require__.r(__webpack_exports__);
  // fake scrollbar
 
 document.addEventListener('DOMContentLoaded', function () {
-  showFakeScroll();
+  if (window.scrollY === 0) {
+    showFakeScroll();
+  }
 });
 var fakeScrollbar = document.getElementById('scrollbar');
 var isScrollActive = true;
 
 function showFakeScroll() {
+  console.log('showFake');
+
   if (fakeScrollbar && _quard_js__WEBPACK_IMPORTED_MODULE_0__.isCarouselExist) {
     if (fakeScrollbar.style.display !== 'block' && _calcScreenMode_js__WEBPACK_IMPORTED_MODULE_1__.isFullScreenMode) {
       isScrollActive = false;
@@ -606,8 +610,13 @@ function showFakeScroll() {
 }
 
 function hideFakeScroll() {
+  console.log('hideScroll');
+
   if (fakeScrollbar && _quard_js__WEBPACK_IMPORTED_MODULE_0__.isCarouselExist) {
+    console.log('hideScroll 2');
+
     if (fakeScrollbar.style.display !== 'none' && _quard_js__WEBPACK_IMPORTED_MODULE_0__.isCarouselExist) {
+      console.log('hideScroll 3');
       (0,_setPaddings_js__WEBPACK_IMPORTED_MODULE_2__.setPaddings)(false, _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.aboutSection, _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.introSection);
       fakeScrollbar.style.display = 'none';
       document.body.style.overflow = 'auto';
