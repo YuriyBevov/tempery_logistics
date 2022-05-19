@@ -14,7 +14,6 @@ const fakeScrollbar = document.getElementById('scrollbar');
 let isScrollActive = true;
 
 function showFakeScroll() {
-  console.log('showFake')
   if(fakeScrollbar && isCarouselExist) {
     if(fakeScrollbar.style.display !== 'block' && isFullScreenMode ) {
       isScrollActive = false;
@@ -29,9 +28,7 @@ function showFakeScroll() {
 function hideFakeScroll() {
   console.log('hideScroll')
   if(fakeScrollbar && isCarouselExist) {
-    console.log('hideScroll 2')
     if(fakeScrollbar.style.display !== 'none' && isCarouselExist) {
-      console.log('hideScroll 3')
       setPaddings(false, aboutSection, introSection);
       fakeScrollbar.style.display = 'none';
       document.body.style.overflow = 'auto';
