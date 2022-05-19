@@ -1,14 +1,20 @@
 import { aboutSection, introSection, carouselOffSection } from "./carouselSections";
 import { isFullScreenMode } from "./calcScreenMode";
 
-const introIndicators = introSection.querySelector('.carousel-indicators');
-const aboutIndicators = aboutSection.querySelector('.carousel-indicators');
+let introIndicators, aboutIndicators;
+
+if(aboutSection) {
+  aboutIndicators = aboutSection.querySelector('.carousel-indicators');
+}
+
+if(introSection) {
+  introIndicators = introSection.querySelector('.carousel-indicators');
+}
 
 let isIntroSectionObserved, isAboutSectionObserved, isCarouselOffSectionObserved = false;
 
 function setFixedIndicators() {
   if(!isFullScreenMode && window.innerWidth < 992) {
-    console.log(isFullScreenMode)
     !introIndicators.classList.contains('js-fixed') ?
     introIndicators.classList.add('js-fixed') :null;
 

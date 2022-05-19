@@ -20,12 +20,16 @@ import { onScrollBtnHandler } from './carousel-modules/scrollBtns.js';
 import { carouselOffSection } from './carousel-modules/carouselSections.js';
 import { carouselTransform, beforeSlideChange } from './carousel-modules/carouselTransformAnimation.js';
 
-setFixedIndicators();
+
 
 const aboutCarousel = document.querySelector('#aboutCarousel');
 let aboutCarouselInner = null;
 const introCarousel = document.querySelector('#introCarousel');
 let introCarouselInner = null;
+
+if(aboutCarousel || introCarousel) {
+  setFixedIndicators();
+}
 
 if(aboutCarousel) {
   aboutCarouselInner = aboutCarousel.querySelector('.carousel-inner');

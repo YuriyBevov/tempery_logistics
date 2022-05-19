@@ -26,7 +26,6 @@ function showFakeScroll() {
 }
 
 function hideFakeScroll() {
-  console.log('hideScroll')
   if(fakeScrollbar && isCarouselExist) {
     if(fakeScrollbar.style.display !== 'none' && isCarouselExist) {
       setPaddings(false, aboutSection, introSection);
