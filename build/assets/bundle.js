@@ -597,8 +597,6 @@ var fakeScrollbar = document.getElementById('scrollbar');
 var isScrollActive = true;
 
 function showFakeScroll() {
-  console.log('showFake');
-
   if (fakeScrollbar && _quard_js__WEBPACK_IMPORTED_MODULE_0__.isCarouselExist) {
     if (fakeScrollbar.style.display !== 'block' && _calcScreenMode_js__WEBPACK_IMPORTED_MODULE_1__.isFullScreenMode) {
       isScrollActive = false;
@@ -613,10 +611,7 @@ function hideFakeScroll() {
   console.log('hideScroll');
 
   if (fakeScrollbar && _quard_js__WEBPACK_IMPORTED_MODULE_0__.isCarouselExist) {
-    console.log('hideScroll 2');
-
     if (fakeScrollbar.style.display !== 'none' && _quard_js__WEBPACK_IMPORTED_MODULE_0__.isCarouselExist) {
-      console.log('hideScroll 3');
       (0,_setPaddings_js__WEBPACK_IMPORTED_MODULE_2__.setPaddings)(false, _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.aboutSection, _carouselSections_js__WEBPACK_IMPORTED_MODULE_3__.introSection);
       fakeScrollbar.style.display = 'none';
       document.body.style.overflow = 'auto';
@@ -1541,9 +1536,20 @@ var navItems = document.querySelectorAll('.main-nav .nav-item');
 var searchCloser = document.querySelector('.search-closer');
 
 var onClickCloseSearchField = function onClickCloseSearchField() {
+  gsap__WEBPACK_IMPORTED_MODULE_0__["default"].to(formBorder, {
+    duration: 0.6,
+    width: '0',
+    ease: 'ease-out'
+  });
   gsap__WEBPACK_IMPORTED_MODULE_0__["default"].to(searchField, {
-    duration: 1.2,
-    y: -300,
+    duration: 0.4,
+    delay: 0.4,
+    opacity: 0,
+    ease: 'ease-out'
+  });
+  gsap__WEBPACK_IMPORTED_MODULE_0__["default"].to(searchCloser, {
+    duration: 0.5,
+    scale: 0,
     ease: 'ease-in'
   });
   setTimeout(function () {
@@ -1557,17 +1563,15 @@ var onClickCloseSearchField = function onClickCloseSearchField() {
     searchField.style.zIndex = '-1';
     gsap__WEBPACK_IMPORTED_MODULE_0__["default"].to(formBorder, {
       duration: 0,
+      width: 'calc(100% - 20px)',
+      ease: 'ease-out'
+    });
+    gsap__WEBPACK_IMPORTED_MODULE_0__["default"].to(formBorder, {
+      duration: 0,
       delay: 0,
       x: '100%',
       ease: 'ease-in'
     });
-  }, 1250);
-  gsap__WEBPACK_IMPORTED_MODULE_0__["default"].to(searchCloser, {
-    duration: 0.5,
-    scale: 0,
-    ease: 'ease-in'
-  });
-  setTimeout(function () {
     searchCloser.classList.add('hidden');
     gsap__WEBPACK_IMPORTED_MODULE_0__["default"].to(searchOpener, {
       duration: 0.7,
@@ -1575,15 +1579,15 @@ var onClickCloseSearchField = function onClickCloseSearchField() {
       delay: 0.2,
       ease: 'ease-in'
     });
-  }, 500);
-  navItems.forEach(function (item, i) {
-    gsap__WEBPACK_IMPORTED_MODULE_0__["default"].to(item, {
-      duration: 0.4,
-      scale: 1,
-      delay: 0.5,
-      ease: "linear"
+    navItems.forEach(function (item, i) {
+      gsap__WEBPACK_IMPORTED_MODULE_0__["default"].to(item, {
+        duration: 0.4,
+        scale: 1,
+        delay: 0.3,
+        ease: "linear"
+      });
     });
-  });
+  }, 800);
   searchCloser.removeEventListener('click', onClickCloseSearchField);
   searchOpener.addEventListener('click', onClickOpenSearchField);
 };
