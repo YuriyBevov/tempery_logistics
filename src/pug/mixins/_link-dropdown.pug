@@ -1,7 +1,0 @@
-mixin link-dropdown(data)
-  .dropdown(class= data.cls ? data.cls : null)
-    button(type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownButton").btn.rounded-0.btn-outline.border-purple.btn-puple.dropdown-toggle= data.title
-    ul(aria-labelledby="dropdownButton").dropdown-menu
-      each link in data.links
-        li
-          a(href=link.url).dropdown-item=link.title

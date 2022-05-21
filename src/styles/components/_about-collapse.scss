@@ -1,0 +1,23 @@
+.about-header {
+  position: relative;
+
+  h1 {
+    padding-right: 100px;
+  }
+}
+
+.about-collapse-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 8px;
+  right: 0;
+  width: 100%;
+  max-width: 600px;
+  z-index: 3;
+
+  button {
+    background-color: var(--bs-body-bg);
+    margin-left: auto;
+  }
+}

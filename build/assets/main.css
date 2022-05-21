@@ -13695,32 +13695,31 @@ table th {
 }
 
 /* Компоненты */
-.dropdown-toggle::after {
-  border: 0;
+.about-header {
+  position: relative;
+}
+.about-header h1, .about-header .h1 {
+  padding-right: 100px;
 }
 
-.about-dropdown {
-  padding-top: 7px;
-}
-@media (max-width: 575.98px) {
-  .about-dropdown {
-    width: 100%;
-  }
-}
-.about-dropdown button {
+.about-collapse-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 10px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: absolute;
+  top: 8px;
+  right: 0;
+  width: 100%;
+  max-width: 600px;
+  z-index: 3;
 }
-.about-dropdown button::after {
-  border: 0;
-  background-size: contain;
-  background-image: url(../assets/img/icon-arr-down.png);
-  background-repeat: no-repeat;
-  width: 24px;
-  height: 24px;
-  margin-left: 10px;
+.about-collapse-container button {
+  background-color: var(--bs-body-bg);
+  margin-left: auto;
 }
 
 .accordion ul {

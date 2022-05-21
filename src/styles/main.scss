@@ -1,15 +1,13 @@
 /* Базовые подключения */
 @import "vendor";
-//@import "vars";
 @import "mixins";
 @import "fonts";
-//@import "global";
 @import "extends";
 @import "common";
 
 /* Компоненты */
 
-@import "./components/dropdown";
+@import "./components/about-collapse";
 @import "./components/accordion";
 @import "./components/main-footer";
 @import "./components/copyrights";

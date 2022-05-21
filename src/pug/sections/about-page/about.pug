@@ -1,6 +1,6 @@
 include ../../mixins/_download-btn
 include ../../mixins/_accordion
-include ../../mixins/_link-dropdown
+include ../../mixins/_download-btn
 
 -
   aboutAccOptions = {
@@ -183,23 +183,37 @@ include ../../mixins/_link-dropdown
   }
 
 section.about
-  .about-header.mb-4.mb-md-5.about-header.d-flex.flex-column.flex-sm-row.align-items-start
-    h1.pe-4 About Temperi Logistics Ltd
+  .about-header.position-relative.mb-4.mb-md-5.about-header.d-flex.flex-column.flex-sm-row.align-items-start
+    h1 About Temperi Logistics Ltd
 
-    +link-dropdown({
-      cls: 'ms-sm-auto about-dropdown',
-      title: 'Show more',
-      links: [
-        {
-          url: "#",
-          title: 'download Structure'
-        },
-        {
-          url: "#",
-          title: 'download BUSINESS ETHICS POLICY'
-        }
-      ]
-    })
+    .about-collapse-container.ms-sm-auto
+      button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample").btn.rounded-0.btn-outline.border-purple.btn-puple show more
+      .collapse(id="collapseExample")
+        .card.card-body
+          .container
+            .row.mb-3.d-flex.flex-column.flex-sm-row
+              .col
+                svg(width="45" height="46" style="fill: none;").mb-3
+                  use(xlink:href="./assets/svg-sprite.svg#icon-train")
+
+                p.about-slide-text Organizing the delivery of raw materials by rail transport of <span> 4 million </span> tons per year: to end users in industry and power generation; to sea and river ports
+
+              .col
+                svg(width="75" height="46" style="fill: #664599;").mb-3
+                  use(xlink:href="./assets/svg-sprite.svg#icon-ship")
+
+                p.about-slide-text Storage, transshipment, quality control, insurance and chartering of <span>sea vessels.</span>
+
+              .col
+                svg(width="34" height="46" style="fill: none;").mb-3
+                  use(xlink:href="./assets/svg-sprite.svg#icon-boxes")
+                p.about-slide-text Wholesale supplies of raw materials and solid fuels <span>300,000 tons</span> per year. Main markets: EU (Bulgaria, Poland, Romania)
+
+            +download-btn({
+              cls: "me-0 me-lg-4 about-slide-btn mb-3 mb-xl-0 ",
+              isIconEnabled: true,
+              btnText: 'download BUSINESS ETHICS POLICY'
+            })
 
   .row.bg-white.py-5
     .col-8.mx-auto.py-4
