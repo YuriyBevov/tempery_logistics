@@ -13699,6 +13699,14 @@ table th {
   border: 0;
 }
 
+.about-dropdown {
+  padding-top: 7px;
+}
+@media (max-width: 575.98px) {
+  .about-dropdown {
+    width: 100%;
+  }
+}
 .about-dropdown button {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -15060,6 +15068,8 @@ table th {
 }
 
 .about-carousel-section .dropdown {
+  -ms-flex-item-align: start;
+  align-self: flex-start;
   background-color: #664599;
 }
 .about-carousel-section .dropdown button {

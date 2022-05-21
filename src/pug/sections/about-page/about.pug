@@ -183,11 +183,11 @@ include ../../mixins/_link-dropdown
   }
 
 section.about
-  .about-header.mb-4.mb-md-5.about-header.d-flex.align-items-center
-    h1 About Temperi Logistics Ltd
+  .about-header.mb-4.mb-md-5.about-header.d-flex.flex-column.flex-sm-row.align-items-start
+    h1.pe-4 About Temperi Logistics Ltd
 
     +link-dropdown({
-      cls: 'ms-auto about-dropdown',
+      cls: 'ms-sm-auto about-dropdown',
       title: 'Show more',
       links: [
         {

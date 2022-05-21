@@ -3,6 +3,11 @@
 }
 
 .about-dropdown {
+  padding-top: 7px;
+  @include media-breakpoint-down(sm) {
+    width: 100%;
+  }
+
   button {
     display: flex;
     padding: 10px;
