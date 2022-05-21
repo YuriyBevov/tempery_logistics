@@ -15036,6 +15036,30 @@ table th {
   }
 }
 
+.about-carousel-section .controls.js-fixed {
+  position: fixed;
+  top: calc(100vh - 50px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0;
+  padding: 5px 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 1;
+}
+.about-carousel-section .controls.js-fixed .scroll-btn {
+  display: none;
+}
+.about-carousel-section .controls.js-fixed .control svg {
+  fill: #000000;
+}
+.about-carousel-section .controls.js-fixed .control span {
+  color: #000000 !important;
+}
+
 .about-carousel-section.full-height {
   position: absolute;
   left: 0;
