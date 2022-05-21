@@ -1,4 +1,5 @@
 include ../mixins/_download-btn
+include ../mixins/_link-dropdown
 
 .carousel-item.active.my-auto(data-title="About us")
   .container
@@ -33,7 +34,21 @@ include ../mixins/_download-btn
             btnText: 'download BUSINESS ETHICS POLICY'
             })
 
-          a(href="about.html").btn.btn-purple.rounded-0.about-slide-btn.mb-3.mb-xl-0  More info
+          //a(href="about.html").btn.btn-purple.rounded-0.about-slide-btn.mb-3.mb-xl-0  More info
+          +link-dropdown({
+            cls: '',
+            title: 'more info',
+            links: [
+              {
+                url: "#",
+                title: 'download Structure'
+              },
+              {
+                url: "#",
+                title: 'download BUSINESS ETHICS POLICY'
+              }
+            ]
+          })
 
           //+download-btn({
             cls: "mb-3 mb-lg-0 about-slide-btn d-lg-none",

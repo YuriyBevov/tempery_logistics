@@ -414,6 +414,15 @@
 }
 
 .about-carousel-section {
+  .dropdown {
+    background-color: $purple;
+
+    button {
+      color: $white;
+      text-transform: uppercase;
+    }
+  }
+
   .controls {
     &.js-fixed {
       position: fixed;

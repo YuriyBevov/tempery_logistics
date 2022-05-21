@@ -339,7 +339,15 @@
                       btnText: 'download BUSINESS ETHICS POLICY'
                       })
                       
-                      --><a class="btn btn-purple rounded-0 about-slide-btn mb-3 mb-xl-0" href="about.html"> More info</a>
+                      -->
+                      <!--a(href="about.html").btn.btn-purple.rounded-0.about-slide-btn.mb-3.mb-xl-0  More info-->
+                                  <div class="dropdown">
+                                    <button class="btn rounded-0 btn-outline border-purple btn-puple dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownButton">more info</button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownButton">
+                                      <li><a class="dropdown-item" href="#">download Structure</a></li>
+                                      <li><a class="dropdown-item" href="#">download BUSINESS ETHICS POLICY</a></li>
+                                    </ul>
+                                  </div>
                       <!--+download-btn({
                       cls: "mb-3 mb-lg-0 about-slide-btn d-lg-none",
                       isIconEnabled: true,

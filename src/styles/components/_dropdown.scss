@@ -1,0 +1,20 @@
+.dropdown-toggle::after {
+  border: 0;
+}
+
+.about-dropdown {
+  button {
+    display: flex;
+    padding: 10px;
+
+    &::after {
+      border: 0;
+      background-size: contain;
+      background-image: url(../assets/img/icon-arr-down.png);
+      background-repeat: no-repeat;
+      width: 24px;
+      height: 24px;
+      margin-left: 10px;
+    }
+  }
+}

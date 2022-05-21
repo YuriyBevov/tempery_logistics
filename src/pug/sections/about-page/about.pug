@@ -1,5 +1,6 @@
 include ../../mixins/_download-btn
 include ../../mixins/_accordion
+include ../../mixins/_link-dropdown
 
 -
   aboutAccOptions = {
@@ -182,7 +183,23 @@ include ../../mixins/_accordion
   }
 
 section.about
-  h1.mb-4.mb-md-5 About Temperi Logistics Ltd
+  .about-header.mb-4.mb-md-5.about-header.d-flex.align-items-center
+    h1 About Temperi Logistics Ltd
+
+    +link-dropdown({
+      cls: 'ms-auto about-dropdown',
+      title: 'Show more',
+      links: [
+        {
+          url: "#",
+          title: 'download Structure'
+        },
+        {
+          url: "#",
+          title: 'download BUSINESS ETHICS POLICY'
+        }
+      ]
+    })
 
   .row.bg-white.py-5
     .col-8.mx-auto.py-4
