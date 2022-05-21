@@ -1,22 +1,27 @@
 import { aboutSection, introSection, carouselOffSection } from "./carouselSections";
 import { isFullScreenMode } from "./calcScreenMode";
 
-let introIndicators, aboutIndicators;
+let introIndicators, aboutIndicators, introControls, aboutControls;
 
 if(aboutSection) {
   aboutIndicators = aboutSection.querySelector('.carousel-indicators');
+  aboutControls = aboutSection.querySelector('.controls');
 }
 
 if(introSection) {
   introIndicators = introSection.querySelector('.carousel-indicators');
+  introControls = introSection.querySelector('.controls');
 }
 
 let isIntroSectionObserved, isAboutSectionObserved, isCarouselOffSectionObserved = false;
 
 function setFixedIndicators() {
-  if(!isFullScreenMode && window.innerWidth < 992) {
+  if(!isFullScreenMode) {
     !introIndicators.classList.contains('js-fixed') ?
     introIndicators.classList.add('js-fixed') :null;
+
+    !introControls.classList.contains('js-fixed') ?
+    introControls.classList.add('js-fixed') :null;
 
     let introSectionObserver = new IntersectionObserver(entries => {
       entries.forEach( entry => {
@@ -68,6 +73,20 @@ function setFixedIndicators() {
 
       aboutIndicators.classList.contains('js-fixed') ?
       aboutIndicators.classList.remove('js-fixed') :null;
+
+      !introControls.classList.contains('js-fixed') ?
+      introControls.classList.add('js-fixed') :null;
+
+      aboutControls.classList.contains('js-fixed') ?
+      aboutControls.classList.add('js-fixed') :null;
+    }
+
+    if(isAboutSectionObserved) {
+      console.log('ABOUT')
+      introIndicators.classList.contains('js-fixed') ?
+      introIndicators.classList.remove('js-fixed') :null;
+      introControls.classList.contains('js-fixed') ?
+      introControls.classList.remove('js-fixed') :null;
     }
 
     if(isAboutSectionObserved && !isCarouselOffSectionObserved) {
@@ -76,15 +95,25 @@ function setFixedIndicators() {
 
       !aboutIndicators.classList.contains('js-fixed') ?
       aboutIndicators.classList.add('js-fixed') : null;
+
+      introControls.classList.contains('js-fixed') ?
+      introControls.classList.add('js-fixed') :null;
+
+      !aboutControls.classList.contains('js-fixed') ?
+      aboutControls.classList.add('js-fixed') :null;
     }
 
     if(aboutSection.getBoundingClientRect().y > window.innerHeight / 2 && aboutIndicators.classList.contains('js-fixed')) {
       aboutIndicators.classList.remove('js-fixed');
+      aboutControls.classList.remove('js-fixed')
     }
 
     if(isCarouselOffSectionObserved) {
       aboutIndicators.classList.contains('js-fixed') ?
       aboutIndicators.classList.remove('js-fixed') :null;
+
+      aboutControls.classList.contains('js-fixed') ?
+      aboutControls.classList.remove('js-fixed') :null;
     }
   }
 

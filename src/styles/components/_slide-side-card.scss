@@ -1,5 +1,7 @@
 .slide-side-card {
+  width: 100%;
   max-width: 378px;
+  min-height: 140px;
   //gsap
   transform: translateY(300px);
   opacity: 0;
@@ -8,6 +10,7 @@
   @include media-breakpoint-down(md) {
     width: 100%;
     max-width: 100%;
+    min-height: initial;
   }
 }
 

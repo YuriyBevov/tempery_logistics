@@ -18,7 +18,7 @@ mixin main-intro-slide-view(opt)
           .slide-side.d-flex.flex-column.flex-md-row.flex-lg-column.align-items-start.align-items-lg-end.my-0.my-lg-auto.col-12.col-lg-4
             each item in opt.sideItems
               .slide-side-card(class = item.cls ? item.cls : null)
-                .d-flex.align-items-end.mb-0.mb-md-3.slide-side-title
+                .d-flex.align-items-end.mb-0.mb-md-2.slide-side-title
                   p.me-2.lh-1.mb-0= item.titleCount
                   span.lh-1.mb-1.mb-md-2!= item.titleText
                 span.slide-side-desc.fw-light= item.desc
