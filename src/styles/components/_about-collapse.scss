@@ -2,7 +2,11 @@
   position: relative;
 
   h1 {
-    padding-right: 100px;
+    padding-right: 140px;
+
+    @include media-breakpoint-down(sm) {
+      padding-right: 0;
+    }
   }
 }
 
@@ -10,14 +14,44 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 8px;
+  top: 10px;
   right: 0;
   width: 100%;
   max-width: 600px;
   z-index: 3;
 
+  @include media-breakpoint-down(sm) {
+    position: relative;
+    max-width: 100%;
+  }
+
   button {
+    color: $purple;
     background-color: var(--bs-body-bg);
+
+    padding-right: 30px;
     margin-left: auto;
+    position: relative;
+
+    @include media-breakpoint-down(sm) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      width: 24px;
+      height: 24px;
+      content: '';
+
+      background-size: contain;
+      background-image: url(../assets/img/icon-arr-down.png);
+      background-repeat: no-repeat;
+    }
   }
 }
