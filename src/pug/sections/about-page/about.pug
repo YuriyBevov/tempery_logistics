@@ -191,29 +191,34 @@ section.about
       .collapse(id="collapseExample")
         .card.card-body
           .container
-            .row.mb-3.d-flex.flex-column.flex-sm-row
-              .col
-                svg(width="45" height="46" style="fill: none;").mb-3
-                  use(xlink:href="./assets/svg-sprite.svg#icon-train")
+            .row
+              .col-12
+                p.about-slide-desc The company was established in 2020, but the team has 30 years of hands-on experience in these areas.
+                p.about-slide-text Operational activity of the company covers the region of 2.5 million square kilometers of land in Europe and Asia. Conducts and supports marketing and engineering studies related to special cargo transportation conditions and processing of large data sets. The company is interested in investment projects related to <span>job creation in Bulgaria</span>.
 
-                p.about-slide-text Organizing the delivery of raw materials by rail transport of <span> 4 million </span> tons per year: to end users in industry and power generation; to sea and river ports
+                .row.mb-3.d-flex.flex-column.flex-sm-row
+                  .col
+                    svg(width="45" height="46" style="fill: none;").mb-3
+                      use(xlink:href="./assets/svg-sprite.svg#icon-train")
 
-              .col
-                svg(width="75" height="46" style="fill: #664599;").mb-3
-                  use(xlink:href="./assets/svg-sprite.svg#icon-ship")
+                    p.about-slide-text Organizing the delivery of raw materials by rail transport of <span> 4 million </span> tons per year: to end users in industry and power generation; to sea and river ports
 
-                p.about-slide-text Storage, transshipment, quality control, insurance and chartering of <span>sea vessels.</span>
+                  .col
+                    svg(width="75" height="46" style="fill: #664599;").mb-3
+                      use(xlink:href="./assets/svg-sprite.svg#icon-ship")
 
-              .col
-                svg(width="34" height="46" style="fill: none;").mb-3
-                  use(xlink:href="./assets/svg-sprite.svg#icon-boxes")
-                p.about-slide-text Wholesale supplies of raw materials and solid fuels <span>300,000 tons</span> per year. Main markets: EU (Bulgaria, Poland, Romania)
+                    p.about-slide-text Storage, transshipment, quality control, insurance and chartering of <span>sea vessels.</span>
 
-            +download-btn({
-              cls: "me-0 me-lg-4 about-slide-btn mb-3 mb-xl-0 ",
-              isIconEnabled: true,
-              btnText: 'download BUSINESS ETHICS POLICY'
-            })
+                  .col
+                    svg(width="34" height="46" style="fill: none;").mb-3
+                      use(xlink:href="./assets/svg-sprite.svg#icon-boxes")
+                    p.about-slide-text Wholesale supplies of raw materials and solid fuels <span>300,000 tons</span> per year. Main markets: EU (Bulgaria, Poland, Romania)
+
+                +download-btn({
+                  cls: "me-0 me-lg-4 about-slide-btn mb-3 mb-xl-0 ",
+                  isIconEnabled: true,
+                  btnText: 'download BUSINESS ETHICS POLICY'
+                })
 
   .row.bg-white.py-5
     .col-8.mx-auto.py-4
