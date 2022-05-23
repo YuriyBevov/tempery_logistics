@@ -183,13 +183,13 @@ include ../../mixins/_download-btn
   }
 
 section.about
-  .about-header.position-relative.mb-4.mb-md-5.about-header.d-flex.flex-column.flex-sm-row.align-items-start
-    h1 About Temperi Logistics Ltd
+  .about-header.position-relative.mb-4.mb-md-5.about-header.d-flex.flex-column.flex-sm-row.align-items-start.align-items-sm-center
+    h1.mb-3.m-sm-0 About Temperi Logistics Ltd
+    button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample").btn.rounded-0.btn-outline.border-purple.btn-puple show more
 
-    .about-collapse-container.ms-sm-auto
-      button(type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample").btn.rounded-0.btn-outline.border-purple.btn-puple show more
-      .collapse(id="collapseExample")
-        .card.card-body
+  .row.pb-3.bg-white
+    .collapse(id="collapseExample")
+        .card.card-body.border-0
           .container
             .row
               .col-12
@@ -219,8 +219,8 @@ section.about
                   isIconEnabled: true,
                   btnText: 'download BUSINESS ETHICS POLICY'
                 })
-
   .row.bg-white.py-5
+
     .col-8.mx-auto.py-4
       h2.mb-5.fs-2 Organizational Structure
 
