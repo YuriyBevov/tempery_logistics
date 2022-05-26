@@ -14745,9 +14745,6 @@ table th {
   transform: translateX(300px);
 }
 
-.carousel {
-  max-height: 100vh;
-}
 .carousel-inner {
   height: 100vh;
   -webkit-transition: height 0.3s linear;
@@ -14776,13 +14773,17 @@ table th {
 }
 
 .test {
-  position: sticky;
+  position: absolute;
   bottom: 0;
+  width: 100%;
   height: 50px;
   background-color: transparent;
   z-index: 1000;
   color: red;
   outline: 1px solid red;
+}
+.test.js-fixed {
+  position: sticky;
 }
 
 .about-slide-desc {

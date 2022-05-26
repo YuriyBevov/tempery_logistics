@@ -2,7 +2,7 @@ include ../../mixins/_main-link
 
 section.about.carousel-section.about-carousel-section
   #aboutCarousel.carousel.bg-white.slide(data-bs-ride="aboutCarousel")
-    .carousel-indicators
+    //.carousel-indicators
       button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1").indicator.indicator-purple.active
         .indicator-inner
       button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="1" aria-label="Slide 2").indicator.indicator-purple
@@ -19,7 +19,7 @@ section.about.carousel-section.about-carousel-section
       include ../../components/_about-slide@3
       include ../../components/_about-slide@4
 
-    .controls
+    //.controls
       .container.position-relative
         .row
           a(href="#" aria-label="Next carousel" data-scroll-to="#carousel-off-section").scroll-btn
@@ -39,4 +39,30 @@ section.about.carousel-section.about-carousel-section
               span.visually-hidden Next
 
     .test
-     p sticky
+      .carousel-indicators
+        button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1").indicator.indicator-purple.active
+          .indicator-inner
+        button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="1" aria-label="Slide 2").indicator.indicator-purple
+          .indicator-inner
+        button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="2" aria-label="Slide 3").indicator.indicator-purple
+          .indicator-inner
+        button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="3" aria-label="Slide 4").indicator.indicator-purple
+          .indicator-inner
+      .controls
+        .container.position-relative
+          .row
+            a(href="#" aria-label="Next carousel" data-scroll-to="#carousel-off-section").scroll-btn
+              svg(width="24" height="32")
+                use(xlink:href="./assets/svg-sprite.svg#icon-arrow-down")
+            .col-12.col-xl-10.col-xxl-8.d-flex.mx-auto.justify-content-between
+              button(type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev").control.control-purple.control-prev.ps-4.ps-xl-0
+                svg(width="24" height="24")
+                  use(xlink:href="./assets/svg-sprite.svg#icon-carousel-prev")
+                span.fw-medium.text-lightblack start
+                span.visually-hidden Previous
+
+              button(type="button" data-bs-target="#aboutCarousel" data-bs-slide="next").control.control-purple.control-next.pe-4.pe-xl-0
+                span.fw-medium.text-lightblack next
+                svg(width="24" height="24")
+                  use(xlink:href="./assets/svg-sprite.svg#icon-carousel-next")
+                span.visually-hidden Next

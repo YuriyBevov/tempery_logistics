@@ -196,16 +196,135 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _calcScreenMode__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./calcScreenMode */ "./src/scripts/modules/carousel-modules/calcScreenMode.js");
 
 
-var introIndicators, aboutIndicators, introControls, aboutControls;
+/*let introIndicators, aboutIndicators, introControls, aboutControls;
+
+if(aboutSection) {
+  aboutIndicators = aboutSection.querySelector('.carousel-indicators');
+  aboutControls = aboutSection.querySelector('.controls');
+}
+
+if(introSection) {
+  introIndicators = introSection.querySelector('.carousel-indicators');
+  introControls = introSection.querySelector('.controls');
+}
+
+let isIntroSectionObserved, isAboutSectionObserved, isCarouselOffSectionObserved = false;
+
+function setFixedIndicators() {
+  if(!isFullScreenMode) {
+    !introIndicators.classList.contains('js-fixed') ?
+    introIndicators.classList.add('js-fixed') :null;
+
+    !introControls.classList.contains('js-fixed') ?
+    introControls.classList.add('js-fixed') :null;
+
+    let introSectionObserver = new IntersectionObserver(entries => {
+      entries.forEach( entry => {
+        if(entry.isIntersecting) {
+          isIntroSectionObserved = true;
+        } else {
+          isIntroSectionObserved = false;
+        }
+      });
+    });
+
+    if(introSection) {
+      introSectionObserver.observe(introSection);
+    }
+
+    let aboutSectionObserver = new IntersectionObserver(entries => {
+      entries.forEach( entry => {
+        if(entry.isIntersecting) {
+          isAboutSectionObserved = true;
+        } else {
+          isAboutSectionObserved = false;
+        }
+      });
+    });
+
+    if(aboutSection) {
+      aboutSectionObserver.observe(aboutSection);
+    }
+
+    let carouselOffSectionObserver = new IntersectionObserver(entries => {
+      entries.forEach( entry => {
+        if(entry.isIntersecting) {
+          isCarouselOffSectionObserved = true;
+        } else {
+          isCarouselOffSectionObserved = false;
+        }
+      });
+    });
+
+    if(carouselOffSection) {
+      carouselOffSectionObserver.observe(carouselOffSection);
+    }
+  }
+
+  function setFixed() {
+    if(isIntroSectionObserved && !isAboutSectionObserved) {
+      !introIndicators.classList.contains('js-fixed') ?
+      introIndicators.classList.add('js-fixed') :null;
+
+      aboutIndicators.classList.contains('js-fixed') ?
+      aboutIndicators.classList.remove('js-fixed') :null;
+
+      !introControls.classList.contains('js-fixed') ?
+      introControls.classList.add('js-fixed') :null;
+
+      aboutControls.classList.contains('js-fixed') ?
+      aboutControls.classList.add('js-fixed') :null;
+    }
+
+    if(isAboutSectionObserved) {
+      console.log('ABOUT')
+      introIndicators.classList.contains('js-fixed') ?
+      introIndicators.classList.remove('js-fixed') :null;
+      introControls.classList.contains('js-fixed') ?
+      introControls.classList.remove('js-fixed') :null;
+    }
+
+    if(isAboutSectionObserved && !isCarouselOffSectionObserved) {
+      introIndicators.classList.contains('js-fixed') ?
+      introIndicators.classList.remove('js-fixed') :null;
+
+      !aboutIndicators.classList.contains('js-fixed') ?
+      aboutIndicators.classList.add('js-fixed') : null;
+
+      introControls.classList.contains('js-fixed') ?
+      introControls.classList.add('js-fixed') :null;
+
+      !aboutControls.classList.contains('js-fixed') ?
+      aboutControls.classList.add('js-fixed') :null;
+    }
+
+    if(aboutSection.getBoundingClientRect().y > window.innerHeight / 2 && aboutIndicators.classList.contains('js-fixed')) {
+      aboutIndicators.classList.remove('js-fixed');
+      aboutControls.classList.remove('js-fixed')
+    }
+
+    if(isCarouselOffSectionObserved) {
+      aboutIndicators.classList.contains('js-fixed') ?
+      aboutIndicators.classList.remove('js-fixed') :null;
+
+      aboutControls.classList.contains('js-fixed') ?
+      aboutControls.classList.remove('js-fixed') :null;
+    }
+  }
+
+  window.addEventListener('scroll', () => {
+    setFixed();
+  })
+}*/
+
+var introControls, aboutControls;
 
 if (_carouselSections__WEBPACK_IMPORTED_MODULE_0__.aboutSection) {
-  aboutIndicators = _carouselSections__WEBPACK_IMPORTED_MODULE_0__.aboutSection.querySelector('.carousel-indicators');
-  aboutControls = _carouselSections__WEBPACK_IMPORTED_MODULE_0__.aboutSection.querySelector('.controls');
+  aboutControls = _carouselSections__WEBPACK_IMPORTED_MODULE_0__.aboutSection.querySelector('.test');
 }
 
 if (_carouselSections__WEBPACK_IMPORTED_MODULE_0__.introSection) {
-  introIndicators = _carouselSections__WEBPACK_IMPORTED_MODULE_0__.introSection.querySelector('.carousel-indicators');
-  introControls = _carouselSections__WEBPACK_IMPORTED_MODULE_0__.introSection.querySelector('.controls');
+  introControls = _carouselSections__WEBPACK_IMPORTED_MODULE_0__.introSection.querySelector('.test');
 }
 
 var isIntroSectionObserved,
@@ -214,7 +333,8 @@ var isIntroSectionObserved,
 
 function setFixedIndicators() {
   if (!_calcScreenMode__WEBPACK_IMPORTED_MODULE_1__.isFullScreenMode) {
-    !introIndicators.classList.contains('js-fixed') ? introIndicators.classList.add('js-fixed') : null;
+    introControls.style.backgroundColor = 'rgba(0,0,0,0.5)';
+    aboutControls.style.backgroundColor = 'rgba(255,255,255,0.5)';
     !introControls.classList.contains('js-fixed') ? introControls.classList.add('js-fixed') : null;
     var introSectionObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -261,32 +381,24 @@ function setFixedIndicators() {
 
   function setFixed() {
     if (isIntroSectionObserved && !isAboutSectionObserved) {
-      !introIndicators.classList.contains('js-fixed') ? introIndicators.classList.add('js-fixed') : null;
-      aboutIndicators.classList.contains('js-fixed') ? aboutIndicators.classList.remove('js-fixed') : null;
       !introControls.classList.contains('js-fixed') ? introControls.classList.add('js-fixed') : null;
-      aboutControls.classList.contains('js-fixed') ? aboutControls.classList.add('js-fixed') : null;
+      aboutControls.classList.contains('js-fixed') ? aboutControls.classList.remove('js-fixed') : null;
     }
 
     if (isAboutSectionObserved) {
-      console.log('ABOUT');
-      introIndicators.classList.contains('js-fixed') ? introIndicators.classList.remove('js-fixed') : null;
       introControls.classList.contains('js-fixed') ? introControls.classList.remove('js-fixed') : null;
     }
 
     if (isAboutSectionObserved && !isCarouselOffSectionObserved) {
-      introIndicators.classList.contains('js-fixed') ? introIndicators.classList.remove('js-fixed') : null;
-      !aboutIndicators.classList.contains('js-fixed') ? aboutIndicators.classList.add('js-fixed') : null;
       introControls.classList.contains('js-fixed') ? introControls.classList.add('js-fixed') : null;
       !aboutControls.classList.contains('js-fixed') ? aboutControls.classList.add('js-fixed') : null;
     }
 
     if (_carouselSections__WEBPACK_IMPORTED_MODULE_0__.aboutSection.getBoundingClientRect().y > window.innerHeight / 2 && aboutIndicators.classList.contains('js-fixed')) {
-      aboutIndicators.classList.remove('js-fixed');
       aboutControls.classList.remove('js-fixed');
     }
 
     if (isCarouselOffSectionObserved) {
-      aboutIndicators.classList.contains('js-fixed') ? aboutIndicators.classList.remove('js-fixed') : null;
       aboutControls.classList.contains('js-fixed') ? aboutControls.classList.remove('js-fixed') : null;
     }
   }

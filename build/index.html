@@ -129,23 +129,19 @@
     <main>
       <section class="intro carousel-section intro-carousel-section active">
         <div class="carousel slide" id="introCarousel" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-            <button class="indicator active" type="button" data-bs-target="#introCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1">
-              <div class="indicator-inner"></div>
-            </button>
-            <button class="indicator" type="button" data-bs-target="#introCarousel" data-bs-slide-to="1" aria-label="Slide 2">
-              <div class="indicator-inner"></div>
-            </button>
-            <button class="indicator" type="button" data-bs-target="#introCarousel" data-bs-slide-to="2" aria-label="Slide 3">
-              <div class="indicator-inner"></div>
-            </button>
-            <button class="indicator" type="button" data-bs-target="#introCarousel" data-bs-slide-to="3" aria-label="Slide 4">
-              <div class="indicator-inner"></div>
-            </button>
-            <button class="indicator" type="button" data-bs-target="#introCarousel" data-bs-slide-to="4" aria-label="Slide 5">
-              <div class="indicator-inner"></div>
-            </button>
-          </div>
+          <!--.carousel-indicators
+          button(type="button" data-bs-target="#introCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1").indicator.active
+            .indicator-inner
+          button(type="button" data-bs-target="#introCarousel" data-bs-slide-to="1" aria-label="Slide 2").indicator
+            .indicator-inner
+          button(type="button" data-bs-target="#introCarousel" data-bs-slide-to="2" aria-label="Slide 3").indicator
+            .indicator-inner
+          button(type="button" data-bs-target="#introCarousel" data-bs-slide-to="3" aria-label="Slide 4").indicator
+            .indicator-inner
+          button(type="button" data-bs-target="#introCarousel" data-bs-slide-to="4" aria-label="Slide 5").indicator
+            .indicator-inner
+          
+          -->
           <div class="carousel-inner">
                         <div class="carousel-item active h-100" style="background-image: url('./assets/img/intro_0@1x.jpg')" data-title="Temperi Logistics Ltd">
                           <div class="container h-100">
@@ -268,46 +264,78 @@
                           </div>
                         </div>
           </div>
-          <div class="controls">
-            <div class="container position-relative"><a class="gsap-scroll-btn scroll-btn" href="#" aria-label="Next carousel" data-scroll-to="#aboutCarousel">
-                <svg width="24" height="32">
-                  <use xlink:href="./assets/svg-sprite.svg#icon-arrow-down"></use>
-                </svg></a>
-              <div class="col-12 col-xl-10 col-xxl-8 d-flex mx-auto justify-content-between">
-                <button class="control control-prev ps-4 ps-xl-0" type="button" data-bs-target="#introCarousel" data-bs-slide="prev">
-                  <svg width="24" height="24">
-                    <use xlink:href="./assets/svg-sprite.svg#icon-carousel-prev"></use>
-                  </svg><span class="fw-medium">Sale of anthracite, coal, coke products</span><span class="visually-hidden">Previous</span>
-                </button>
-                <button class="control control-next pe-4 pe-xl-0" type="button" data-bs-target="#introCarousel" data-bs-slide="next"><span class="fw-medium">Sale of anthracite, coal, coke products</span>
-                  <svg width="24" height="24">
-                    <use xlink:href="./assets/svg-sprite.svg#icon-carousel-next"></use>
-                  </svg><span class="visually-hidden">Next</span>
-                </button>
+          <!--.controls
+          .container.position-relative
+            a(href="#" aria-label="Next carousel" data-scroll-to="#aboutCarousel").gsap-scroll-btn.scroll-btn
+              svg(width="24" height="32")
+                use(xlink:href="./assets/svg-sprite.svg#icon-arrow-down")
+            .col-12.col-xl-10.col-xxl-8.d-flex.mx-auto.justify-content-between
+              button(type="button" data-bs-target="#introCarousel" data-bs-slide="prev").control.control-prev.ps-4.ps-xl-0
+                svg(width="24" height="24")
+                  use(xlink:href="./assets/svg-sprite.svg#icon-carousel-prev")
+                span.fw-medium Sale of anthracite, coal, coke products
+                span.visually-hidden Previous
+          
+              button(type="button" data-bs-target="#introCarousel" data-bs-slide="next").control.control-next.pe-4.pe-xl-0
+                span.fw-medium Sale of anthracite, coal, coke products
+                svg(width="24" height="24")
+                  use(xlink:href="./assets/svg-sprite.svg#icon-carousel-next")
+                span.visually-hidden Next
+          
+          -->
+          <div class="test">
+            <div class="carousel-indicators">
+              <button class="indicator active" type="button" data-bs-target="#introCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1">
+                <div class="indicator-inner"></div>
+              </button>
+              <button class="indicator" type="button" data-bs-target="#introCarousel" data-bs-slide-to="1" aria-label="Slide 2">
+                <div class="indicator-inner"></div>
+              </button>
+              <button class="indicator" type="button" data-bs-target="#introCarousel" data-bs-slide-to="2" aria-label="Slide 3">
+                <div class="indicator-inner"></div>
+              </button>
+              <button class="indicator" type="button" data-bs-target="#introCarousel" data-bs-slide-to="3" aria-label="Slide 4">
+                <div class="indicator-inner"></div>
+              </button>
+              <button class="indicator" type="button" data-bs-target="#introCarousel" data-bs-slide-to="4" aria-label="Slide 5">
+                <div class="indicator-inner"></div>
+              </button>
+            </div>
+            <div class="controls">
+              <div class="container position-relative"><a class="gsap-scroll-btn scroll-btn" href="#" aria-label="Next carousel" data-scroll-to="#aboutCarousel">
+                  <svg width="24" height="32">
+                    <use xlink:href="./assets/svg-sprite.svg#icon-arrow-down"></use>
+                  </svg></a>
+                <div class="col-12 col-xl-10 col-xxl-8 d-flex mx-auto justify-content-between">
+                  <button class="control control-prev ps-4 ps-xl-0" type="button" data-bs-target="#introCarousel" data-bs-slide="prev">
+                    <svg width="24" height="24">
+                      <use xlink:href="./assets/svg-sprite.svg#icon-carousel-prev"></use>
+                    </svg><span class="fw-medium">Sale of anthracite, coal, coke products</span><span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="control control-next pe-4 pe-xl-0" type="button" data-bs-target="#introCarousel" data-bs-slide="next"><span class="fw-medium">Sale of anthracite, coal, coke products</span>
+                    <svg width="24" height="24">
+                      <use xlink:href="./assets/svg-sprite.svg#icon-carousel-next"></use>
+                    </svg><span class="visually-hidden">Next</span>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="test">
-            <p>sticky</p>
           </div>
         </div>
       </section>
       <section class="about carousel-section about-carousel-section">
         <div class="carousel bg-white slide" id="aboutCarousel" data-bs-ride="aboutCarousel">
-          <div class="carousel-indicators">
-            <button class="indicator indicator-purple active" type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1">
-              <div class="indicator-inner"></div>
-            </button>
-            <button class="indicator indicator-purple" type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="1" aria-label="Slide 2">
-              <div class="indicator-inner"></div>
-            </button>
-            <button class="indicator indicator-purple" type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="2" aria-label="Slide 3">
-              <div class="indicator-inner"></div>
-            </button>
-            <button class="indicator indicator-purple" type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="3" aria-label="Slide 4">
-              <div class="indicator-inner"></div>
-            </button>
-          </div>
+          <!--.carousel-indicators
+          button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1").indicator.indicator-purple.active
+            .indicator-inner
+          button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="1" aria-label="Slide 2").indicator.indicator-purple
+            .indicator-inner
+          button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="2" aria-label="Slide 3").indicator.indicator-purple
+            .indicator-inner
+          button(type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="3" aria-label="Slide 4").indicator.indicator-purple
+            .indicator-inner
+          
+          -->
           <div class="carousel-inner d-flex">
             <div class="carousel-item active my-auto" data-title="About us">
               <div class="container">
@@ -459,29 +487,62 @@
               </div>
             </div>
           </div>
-          <div class="controls">
-            <div class="container position-relative">
-              <div class="row"><a class="scroll-btn" href="#" aria-label="Next carousel" data-scroll-to="#carousel-off-section">
-                  <svg width="24" height="32">
-                    <use xlink:href="./assets/svg-sprite.svg#icon-arrow-down"></use>
-                  </svg></a>
-                <div class="col-12 col-xl-10 col-xxl-8 d-flex mx-auto justify-content-between">
-                  <button class="control control-purple control-prev ps-4 ps-xl-0" type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev">
-                    <svg width="24" height="24">
-                      <use xlink:href="./assets/svg-sprite.svg#icon-carousel-prev"></use>
-                    </svg><span class="fw-medium text-lightblack">start</span><span class="visually-hidden">Previous</span>
-                  </button>
-                  <button class="control control-purple control-next pe-4 pe-xl-0" type="button" data-bs-target="#aboutCarousel" data-bs-slide="next"><span class="fw-medium text-lightblack">next</span>
-                    <svg width="24" height="24">
-                      <use xlink:href="./assets/svg-sprite.svg#icon-carousel-next"></use>
-                    </svg><span class="visually-hidden">Next</span>
-                  </button>
+          <!--.controls
+          .container.position-relative
+            .row
+              a(href="#" aria-label="Next carousel" data-scroll-to="#carousel-off-section").scroll-btn
+                svg(width="24" height="32")
+                  use(xlink:href="./assets/svg-sprite.svg#icon-arrow-down")
+              .col-12.col-xl-10.col-xxl-8.d-flex.mx-auto.justify-content-between
+                button(type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev").control.control-purple.control-prev.ps-4.ps-xl-0
+                  svg(width="24" height="24")
+                    use(xlink:href="./assets/svg-sprite.svg#icon-carousel-prev")
+                  span.fw-medium.text-lightblack start
+                  span.visually-hidden Previous
+          
+                button(type="button" data-bs-target="#aboutCarousel" data-bs-slide="next").control.control-purple.control-next.pe-4.pe-xl-0
+                  span.fw-medium.text-lightblack next
+                  svg(width="24" height="24")
+                    use(xlink:href="./assets/svg-sprite.svg#icon-carousel-next")
+                  span.visually-hidden Next
+          
+          -->
+          <div class="test">
+            <div class="carousel-indicators">
+              <button class="indicator indicator-purple active" type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1">
+                <div class="indicator-inner"></div>
+              </button>
+              <button class="indicator indicator-purple" type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="1" aria-label="Slide 2">
+                <div class="indicator-inner"></div>
+              </button>
+              <button class="indicator indicator-purple" type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="2" aria-label="Slide 3">
+                <div class="indicator-inner"></div>
+              </button>
+              <button class="indicator indicator-purple" type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="3" aria-label="Slide 4">
+                <div class="indicator-inner"></div>
+              </button>
+            </div>
+            <div class="controls">
+              <div class="container position-relative">
+                <div class="row"><a class="scroll-btn" href="#" aria-label="Next carousel" data-scroll-to="#carousel-off-section">
+                    <svg width="24" height="32">
+                      <use xlink:href="./assets/svg-sprite.svg#icon-arrow-down"></use>
+                    </svg></a>
+                  <div class="col-12 col-xl-10 col-xxl-8 d-flex mx-auto justify-content-between">
+                    <button class="control control-purple control-prev ps-4 ps-xl-0" type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev">
+                      <svg width="24" height="24">
+                        <use xlink:href="./assets/svg-sprite.svg#icon-carousel-prev"></use>
+                      </svg><span class="fw-medium text-lightblack">start</span><span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="control control-purple control-next pe-4 pe-xl-0" type="button" data-bs-target="#aboutCarousel" data-bs-slide="next"><span class="fw-medium text-lightblack">next</span>
+                      <svg width="24" height="24">
+                        <use xlink:href="./assets/svg-sprite.svg#icon-carousel-next"></use>
+                      </svg><span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="test">
-            <p>sticky</p>
           </div>
         </div>
       </section>
