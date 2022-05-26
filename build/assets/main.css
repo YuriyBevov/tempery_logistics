@@ -14747,6 +14747,7 @@ table th {
 
 .carousel-inner {
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   min-height: 767px;
 }
 .carousel-item {
@@ -14852,8 +14853,8 @@ table th {
   margin-bottom: 1rem;
 }
 .controls.js-fixed {
-  position: sticky;
-  bottom: calc(100vh - 50px);
+  position: fixed;
+  top: calc(100vh - 50px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

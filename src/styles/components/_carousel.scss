@@ -69,6 +69,7 @@
 .carousel {
   &-inner {
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     min-height: 767px; //860
   }
 
@@ -188,10 +189,8 @@
   margin-bottom: 1rem;
 
   &.js-fixed {
-    //position: fixed;
-    //top: calc(100vh - 50px);
-    position: sticky;
-    bottom: calc(100vh - 50px);
+    position: fixed;
+    top: calc(100vh - 50px);
     display: flex;
     align-items: center;
     margin: 0;
