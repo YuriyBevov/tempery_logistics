@@ -14745,6 +14745,10 @@ table th {
   transform: translateX(300px);
 }
 
+:root {
+  --vh: 6px;
+}
+
 .carousel-inner {
   height: 100vh;
   -webkit-transition: height 0.3s linear;
