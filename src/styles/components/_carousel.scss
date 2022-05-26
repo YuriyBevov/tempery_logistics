@@ -69,12 +69,7 @@
 .carousel {
   &-inner {
     height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
     min-height: 767px; //860
-
-    @include media-breakpoint-down(md) {
-      height: calc(var(--vh, 1vh) * 100 - 50px);
-    }
   }
 
   &-item {
