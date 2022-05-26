@@ -66,21 +66,14 @@
   }
 }
 
-:root {
-  --vh: 1px;
-}
-
 .carousel {
-  &-inner,
-  &-inner.initialized {
+  &-inner {
     height: 100vh;
-    transition: height 0.3s linear;
-    height: calc(var(--vh, 1vh) * 100);
-    min-height: 767px; //860
+    /*transition: height 0.3s linear;
+    height: calc(var(--vh, 1vh) * 100);*/
 
-    @include media-breakpoint-down(md) {
-      min-height: initial !important;
-    }
+    min-height: -webkit-fill-available;
+    //min-height: 767px;
   }
 
   &-item {
