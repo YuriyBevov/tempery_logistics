@@ -394,7 +394,7 @@ function setFixedIndicators() {
       !aboutControls.classList.contains('js-fixed') ? aboutControls.classList.add('js-fixed') : null;
     }
 
-    if (_carouselSections__WEBPACK_IMPORTED_MODULE_0__.aboutSection.getBoundingClientRect().y > window.innerHeight / 2 && aboutIndicators.classList.contains('js-fixed')) {
+    if (_carouselSections__WEBPACK_IMPORTED_MODULE_0__.aboutSection.getBoundingClientRect().y > window.innerHeight / 2 && aboutControls.classList.contains('js-fixed')) {
       aboutControls.classList.remove('js-fixed');
     }
 
@@ -19245,16 +19245,15 @@ __webpack_require__.r(__webpack_exports__);
 
  // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
 
-/*let vh = window.innerHeight * 0.01;
-// Then we set the value in the --vh custom property to the root of the document
-document.documentElement.style.setProperty('--vh', `${vh}px`);
+var vh = window.innerHeight * 0.01; // Then we set the value in the --vh custom property to the root of the document
 
-// We listen to the resize event
-window.addEventListener('resize', () => {
+document.documentElement.style.setProperty('--vh', "".concat(vh, "px")); // We listen to the resize event
+
+window.addEventListener('resize', function () {
   // We execute the same script as before
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-});*/
+  var vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', "".concat(vh, "px"));
+});
 })();
 
 /******/ })()

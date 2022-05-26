@@ -71,8 +71,8 @@
 
   &-inner {
     height: 100vh;
-    /*transition: height 0.3s linear;
-    height: calc(var(--vh, 1vh) * 100);*/
+    transition: height 0.3s linear;
+    height: calc(var(--vh, 1vh) * 100);
 
     //min-height: -webkit-fill-available;
     min-height: 767px;

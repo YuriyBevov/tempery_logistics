@@ -209,7 +209,7 @@ function setFixedIndicators() {
       aboutControls.classList.add('js-fixed') :null;
     }
 
-    if(aboutSection.getBoundingClientRect().y > window.innerHeight / 2 && aboutIndicators.classList.contains('js-fixed')) {
+    if(aboutSection.getBoundingClientRect().y > window.innerHeight / 2 && aboutControls.classList.contains('js-fixed')) {
       aboutControls.classList.remove('js-fixed')
     }
 
