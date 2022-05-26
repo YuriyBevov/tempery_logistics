@@ -147,6 +147,7 @@
 }
 
 .carousel-indicators {
+  margin-bottom: 0.7rem;
   .indicator {
     @extend .button-default;
     @extend .flex-centered-content;
@@ -204,7 +205,7 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 0.7rem;
 
   &.js-fixed {
     position: fixed;

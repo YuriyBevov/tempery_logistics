@@ -14814,6 +14814,9 @@ table th {
   fill: #ffffff;
 }
 
+.carousel-indicators {
+  margin-bottom: 0.6rem;
+}
 .carousel-indicators .indicator {
   width: 26px;
   height: 26px;
@@ -14865,7 +14868,7 @@ table th {
   left: 0;
   bottom: 0;
   width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem;
 }
 .controls.js-fixed {
   position: fixed;
