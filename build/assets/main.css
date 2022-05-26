@@ -14745,11 +14745,16 @@ table th {
   transform: translateX(300px);
 }
 
+.carousel {
+  max-height: 100vh;
+}
 .carousel-inner {
   height: 100vh;
-  /*transition: height 0.3s linear;
-  height: calc(var(--vh, 1vh) * 100);*/
-  min-height: -webkit-fill-available;
+  -webkit-transition: height 0.3s linear;
+  -o-transition: height 0.3s linear;
+  transition: height 0.3s linear;
+  height: calc(var(--vh, 1vh) * 100);
+  min-height: 767px;
 }
 .carousel-item {
   position: relative;
@@ -14768,6 +14773,16 @@ table th {
   .carousel-item {
     padding-top: 80px;
   }
+}
+
+.test {
+  position: sticky;
+  bottom: 0;
+  height: 50px;
+  background-color: transparent;
+  z-index: 1000;
+  color: red;
+  outline: 1px solid red;
 }
 
 .about-slide-desc {

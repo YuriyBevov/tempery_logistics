@@ -2,8 +2,8 @@
   .partner-logo {
     width: 100%;
     height: 100%;
-    max-width: 200px; //220
-    max-height: 120px; //170
+    max-width: 200px;
+    max-height: 120px;
     object-fit: contain;
     //gsap
     opacity: 0;
@@ -67,13 +67,15 @@
 }
 
 .carousel {
+  max-height: 100vh;
+
   &-inner {
     height: 100vh;
-    /*transition: height 0.3s linear;
-    height: calc(var(--vh, 1vh) * 100);*/
+    transition: height 0.3s linear;
+    height: calc(var(--vh, 1vh) * 100);
 
-    min-height: -webkit-fill-available;
-    //min-height: 767px;
+    //min-height: -webkit-fill-available;
+    min-height: 767px;
   }
 
   &-item {
@@ -93,6 +95,16 @@
     }
 
   }
+}
+
+.test {
+  position: sticky;
+  bottom: 0;
+  height: 50px;
+  background-color: transparent;
+  z-index: 1000;
+  color: red;
+  outline: 1px solid red;
 }
 
 .about-slide {

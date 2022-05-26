@@ -19126,13 +19126,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_carousel_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/carousel.js */ "./src/scripts/modules/carousel.js");
 /* harmony import */ var _modules_searchField_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/searchField.js */ "./src/scripts/modules/searchField.js");
 /* harmony import */ var _modules_sectionAnimation_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/sectionAnimation.js */ "./src/scripts/modules/sectionAnimation.js");
-//document.querySelector('body').classList.remove('nojs');
 
 
 
 
 
+ // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
 
+var vh = window.innerHeight * 0.01; // Then we set the value in the --vh custom property to the root of the document
+
+document.documentElement.style.setProperty('--vh', "".concat(vh, "px")); // We listen to the resize event
+
+window.addEventListener('resize', function () {
+  // We execute the same script as before
+  var vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', "".concat(vh, "px"));
+});
 })();
 
 /******/ })()
