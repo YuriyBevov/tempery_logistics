@@ -13528,8 +13528,7 @@ body {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
+  min-height: 100vh;
   overflow-x: hidden !important;
 }
 
@@ -14748,7 +14747,16 @@ table th {
 
 .carousel-inner {
   height: 100vh;
+  -webkit-transition: height 0.3s linear;
+  -o-transition: height 0.3s linear;
+  transition: height 0.3s linear;
+  height: calc(var(--vh, 1vh) * 100);
   min-height: 767px;
+}
+@media (max-width: 767.98px) {
+  .carousel-inner {
+    min-height: initial !important;
+  }
 }
 .carousel-item {
   position: relative;
