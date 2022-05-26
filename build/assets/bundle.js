@@ -320,11 +320,11 @@ function setFixedIndicators() {
 var introControls, aboutControls;
 
 if (_carouselSections__WEBPACK_IMPORTED_MODULE_0__.aboutSection) {
-  aboutControls = _carouselSections__WEBPACK_IMPORTED_MODULE_0__.aboutSection.querySelector('.test');
+  aboutControls = _carouselSections__WEBPACK_IMPORTED_MODULE_0__.aboutSection.querySelector('.slider-controls');
 }
 
 if (_carouselSections__WEBPACK_IMPORTED_MODULE_0__.introSection) {
-  introControls = _carouselSections__WEBPACK_IMPORTED_MODULE_0__.introSection.querySelector('.test');
+  introControls = _carouselSections__WEBPACK_IMPORTED_MODULE_0__.introSection.querySelector('.slider-controls');
 }
 
 var isIntroSectionObserved,
@@ -19245,15 +19245,16 @@ __webpack_require__.r(__webpack_exports__);
 
  // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
 
-var vh = window.innerHeight * 0.01; // Then we set the value in the --vh custom property to the root of the document
+/*let vh = window.innerHeight * 0.01;
+// Then we set the value in the --vh custom property to the root of the document
+document.documentElement.style.setProperty('--vh', `${vh}px`);
 
-document.documentElement.style.setProperty('--vh', "".concat(vh, "px")); // We listen to the resize event
-
-window.addEventListener('resize', function () {
+// We listen to the resize event
+window.addEventListener('resize', () => {
   // We execute the same script as before
-  var vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', "".concat(vh, "px"));
-});
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+});*/
 })();
 
 /******/ })()

@@ -125,11 +125,11 @@ function setFixedIndicators() {
 let introControls, aboutControls;
 
 if(aboutSection) {
-  aboutControls = aboutSection.querySelector('.test');
+  aboutControls = aboutSection.querySelector('.slider-controls');
 }
 
 if(introSection) {
-  introControls = introSection.querySelector('.test');
+  introControls = introSection.querySelector('.slider-controls');
 }
 
 let isIntroSectionObserved, isAboutSectionObserved, isCarouselOffSectionObserved = false;
@@ -137,8 +137,8 @@ let isIntroSectionObserved, isAboutSectionObserved, isCarouselOffSectionObserved
 function setFixedIndicators() {
   if(!isFullScreenMode) {
 
-    introControls.style.backgroundColor = 'rgba(0,0,0,0.5)'
-    aboutControls.style.backgroundColor = 'rgba(255,255,255,0.5)'
+    introControls.style.backgroundColor = 'rgba(0,0,0,0.5)';
+    aboutControls.style.backgroundColor = 'rgba(255,255,255,0.5)';
 
     !introControls.classList.contains('js-fixed') ?
     introControls.classList.add('js-fixed') : null;
