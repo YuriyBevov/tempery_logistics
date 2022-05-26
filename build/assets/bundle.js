@@ -19143,6 +19143,13 @@ window.addEventListener('resize', function () {
   var vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', "".concat(vh, "px"));
 });
+var carouselInner = document.querySelector('.carousel-inner');
+console.log(carouselInner);
+document.addEventListener('DOMContentLoaded', function () {
+  var vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', "".concat(vh, "px"));
+  carouselInner.classList.add('initialized');
+});
 })();
 
 /******/ })()

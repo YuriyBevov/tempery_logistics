@@ -67,11 +67,12 @@
 }
 
 :root {
-  --vh: 6px;
+  --vh: 1px;
 }
 
 .carousel {
-  &-inner {
+  &-inner,
+  &-inner.initialized {
     height: 100vh;
     transition: height 0.3s linear;
     height: calc(var(--vh, 1vh) * 100);

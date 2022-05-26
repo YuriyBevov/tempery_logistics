@@ -18,3 +18,12 @@ window.addEventListener('resize', () => {
   let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 });
+
+const carouselInner = document.querySelector('.carousel-inner');
+console.log(carouselInner);
+
+document.addEventListener('DOMContentLoaded', function() {
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+  carouselInner.classList.add('initialized');
+});
