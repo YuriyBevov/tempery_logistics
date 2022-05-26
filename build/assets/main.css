@@ -14852,8 +14852,8 @@ table th {
   margin-bottom: 1rem;
 }
 .controls.js-fixed {
-  position: fixed;
-  top: calc(100vh - 50px);
+  position: sticky;
+  bottom: calc(100vh - 50px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
